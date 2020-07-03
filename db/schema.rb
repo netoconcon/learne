@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_03_145043) do
+ActiveRecord::Schema.define(version: 2020_07_03_145320) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,21 @@ ActiveRecord::Schema.define(version: 2020_07_03_145043) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["company_id"], name: "index_bank_accounts_on_company_id"
+  end
+
+  create_table "campaigns", force: :cascade do |t|
+    t.bigint "selling_page_id", null: false
+    t.string "fbid"
+    t.string "utm_source"
+    t.string "utm_campaign"
+    t.string "utm_medium"
+    t.string "utm_term"
+    t.string "utm_content"
+    t.string "pubid"
+    t.string "title"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["selling_page_id"], name: "index_campaigns_on_selling_page_id"
   end
 
   create_table "companies", force: :cascade do |t|
@@ -113,6 +128,7 @@ ActiveRecord::Schema.define(version: 2020_07_03_145043) do
   end
 
   add_foreign_key "bank_accounts", "companies"
+  add_foreign_key "campaigns", "selling_pages"
   add_foreign_key "kit_products", "kits"
   add_foreign_key "kit_products", "products"
   add_foreign_key "products", "companies"
