@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_03_142931) do
+ActiveRecord::Schema.define(version: 2020_07_03_144342) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,41 @@ ActiveRecord::Schema.define(version: 2020_07_03_142931) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "kits", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.string "payment_type"
+    t.integer "standard_installments"
+    t.integer "maximum_installments"
+    t.integer "shipment_cost"
+    t.string "shipment_description"
+    t.boolean "allow_free_shipment"
+    t.integer "weight"
+    t.integer "width"
+    t.integer "height"
+    t.integer "length"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.bigint "company_id", null: false
+    t.boolean "virtual"
+    t.string "name"
+    t.string "sku"
+    t.integer "price"
+    t.string "description"
+    t.integer "external_id"
+    t.integer "weight"
+    t.integer "width"
+    t.integer "height"
+    t.integer "length"
+    t.string "virtual_url"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["company_id"], name: "index_products_on_company_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -57,4 +92,5 @@ ActiveRecord::Schema.define(version: 2020_07_03_142931) do
   end
 
   add_foreign_key "bank_accounts", "companies"
+  add_foreign_key "products", "companies"
 end
