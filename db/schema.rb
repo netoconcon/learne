@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_03_144557) do
+ActiveRecord::Schema.define(version: 2020_07_03_145043) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -85,6 +85,16 @@ ActiveRecord::Schema.define(version: 2020_07_03_144557) do
     t.index ["company_id"], name: "index_products_on_company_id"
   end
 
+  create_table "selling_pages", force: :cascade do |t|
+    t.bigint "product_id", null: false
+    t.string "name"
+    t.string "description"
+    t.string "url"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_id"], name: "index_selling_pages_on_product_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -106,4 +116,5 @@ ActiveRecord::Schema.define(version: 2020_07_03_144557) do
   add_foreign_key "kit_products", "kits"
   add_foreign_key "kit_products", "products"
   add_foreign_key "products", "companies"
+  add_foreign_key "selling_pages", "products"
 end
