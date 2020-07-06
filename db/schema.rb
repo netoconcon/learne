@@ -10,30 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_03_172619) do
-
+ActiveRecord::Schema.define(version: 2020_07_06_120924) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "admins", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.string "first_name"
-    t.string "last_name"
-    t.integer "sign_in_count", default: 0, null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string "current_sign_in_ip"
-    t.string "last_sign_in_ip"
-    t.index ["email"], name: "index_admins_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
-  end
 
   create_table "bank_accounts", force: :cascade do |t|
     t.bigint "company_id", null: false
@@ -64,7 +44,7 @@ ActiveRecord::Schema.define(version: 2020_07_03_172619) do
 
   create_table "companies", force: :cascade do |t|
     t.boolean "international", default: false
-    t.string "CNPJ"
+    t.string "cnpj"
     t.string "email_notification"
     t.string "email_support"
     t.string "phone_support"
@@ -88,7 +68,7 @@ ActiveRecord::Schema.define(version: 2020_07_03_172619) do
   create_table "kits", force: :cascade do |t|
     t.string "name"
     t.string "description"
-    t.string "payment_type"
+    t.integer "payment_type"
     t.integer "standard_installments"
     t.integer "maximum_installments"
     t.integer "shipment_cost"
@@ -100,6 +80,30 @@ ActiveRecord::Schema.define(version: 2020_07_03_172619) do
     t.integer "length"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "email"
+    t.string "phone"
+    t.boolean "paid", default: false
+    t.integer "installments"
+    t.bigint "kit_id", null: false
+    t.boolean "payment_method", default: false
+    t.string "zipcode"
+    t.string "street"
+    t.string "street_number"
+    t.string "neighborhood"
+    t.string "city"
+    t.string "state"
+    t.string "complement"
+    t.integer "price"
+    t.string "CPF"
+    t.date "birthday"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["kit_id"], name: "index_orders_on_kit_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -136,6 +140,11 @@ ActiveRecord::Schema.define(version: 2020_07_03_172619) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet "current_sign_in_ip"
+    t.inet "last_sign_in_ip"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
@@ -146,6 +155,7 @@ ActiveRecord::Schema.define(version: 2020_07_03_172619) do
   add_foreign_key "campaigns", "selling_pages"
   add_foreign_key "kit_products", "kits"
   add_foreign_key "kit_products", "products"
+  add_foreign_key "orders", "kits"
   add_foreign_key "products", "companies"
   add_foreign_key "selling_pages", "products"
 end

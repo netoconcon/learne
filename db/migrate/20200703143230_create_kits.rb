@@ -3,7 +3,7 @@ class CreateKits < ActiveRecord::Migration[6.0]
     create_table :kits do |t|
       t.string :name
       t.string :description
-      t.string :payment_type
+      t.integer :payment_type
       t.integer :standard_installments
       t.integer :maximum_installments
       t.integer :shipment_cost
