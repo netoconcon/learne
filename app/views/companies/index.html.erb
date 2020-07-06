@@ -1,0 +1,15 @@
+<p>Minhas empresas</p>
+
+<p> <%= link_to "Cadastrar empresa", new_company_path %> </p>
+
+<% @companies.each do |company|%>
+  <p>
+  <%= company.name %>
+  <%= company.international %>
+  <%= company.CNPJ %>
+  <%= company.email_support %>
+  <%= company.phone_support %>
+  <%= company.shipment_origin_zipcode %>
+  <%= link_to "Editar", edit_company_path(company) %>
+  </p>
+<% end %>

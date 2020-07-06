@@ -1,0 +1,12 @@
+<h1>Editar empresa</h1>
+
+<%= simple_form_for @company do |f| %>
+  <%= f.input :international %>
+  <%= f.input :name, label: 'Nome' %>
+  <%= f.input :CNPJ, label: 'CNPJ' %>
+  <%= f.input :email_support, label: 'Email de suporte' %>
+  <%= f.input :email_notification, label: 'Email para notificacoes' %>
+  <%= f.input :phone_support, label: 'Telefone de suporte' %>
+  <%= f.input :shipment_origin_zipcode, label: 'CEP de saida' %>
+  <%= f.button :submit, 'Editar' %>
+<% end %>
