@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_03_151833) do
+ActiveRecord::Schema.define(version: 2020_07_03_172619) do
 
 
   # These are extensions that must be enabled in order to support this database
@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 2020_07_03_151833) do
   create_table "bank_accounts", force: :cascade do |t|
     t.bigint "company_id", null: false
     t.integer "bank_code"
-    t.boolean "international"
+    t.boolean "international", default: false
     t.string "bank_name"
     t.string "agency_number"
     t.string "account_number"
@@ -63,7 +63,7 @@ ActiveRecord::Schema.define(version: 2020_07_03_151833) do
   end
 
   create_table "companies", force: :cascade do |t|
-    t.boolean "international"
+    t.boolean "international", default: false
     t.string "CNPJ"
     t.string "email_notification"
     t.string "email_support"
@@ -93,7 +93,7 @@ ActiveRecord::Schema.define(version: 2020_07_03_151833) do
     t.integer "maximum_installments"
     t.integer "shipment_cost"
     t.string "shipment_description"
-    t.boolean "allow_free_shipment"
+    t.boolean "allow_free_shipment", default: false
     t.integer "weight"
     t.integer "width"
     t.integer "height"
@@ -104,7 +104,7 @@ ActiveRecord::Schema.define(version: 2020_07_03_151833) do
 
   create_table "products", force: :cascade do |t|
     t.bigint "company_id", null: false
-    t.boolean "virtual"
+    t.boolean "virtual", default: false
     t.string "name"
     t.string "sku"
     t.integer "price"
@@ -138,11 +138,6 @@ ActiveRecord::Schema.define(version: 2020_07_03_151833) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "sign_in_count", default: 0, null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string "current_sign_in_ip"
-    t.string "last_sign_in_ip"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
