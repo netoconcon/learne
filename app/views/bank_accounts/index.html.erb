@@ -1,0 +1,17 @@
+<p> Contas bancarias </p>
+
+<p> Nova conta bancaria <%= link_to "criar", new_bank_account_path %> </p>
+
+<% unless @bank_accounts.nil? %>
+  <% @bank_accounts.each do |bank_account|%>
+    <p>
+    <%= bank_account.name %>
+    <%= bank_account.bank_code %>
+    <%= bank_account.international %>
+    <%= bank_account.bank_name %>
+    <%= bank_account.agency_number %>
+    <%= bank_account.account_number %>
+    <%= link_to "Editar", edit_bank_account_path(bank_account) %>
+    </p>
+  <% end %>
+<% end %>
