@@ -1,7 +1,8 @@
-<%= simple_form_for @bank_account do |f| %>
-  <%= f.input :bank_code, label: 'Nome' %>
+<p>Adiconar conta bancaria da empresa <%= @company.name %></p>
+
+<%= simple_form_for [@company, @bank_account], url: company_bank_accounts_path do |f| %>
   <%= f.input :international %>
-  <%= f.input :company_id %>
+  <%= f.input :bank_code, label: 'Codigo do banco' %>
   <%= f.input :bank_name, label: 'Banco' %>
   <%= f.input :agency_number, label: 'Agencia' %>
   <%= f.input :account_number, label: 'Conta' %>

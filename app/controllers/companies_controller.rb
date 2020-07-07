@@ -1,10 +1,11 @@
 class CompaniesController < ApplicationController
   def index
     @companies = Company.all
+    @bank_accounts = BankAccount.all
   end
 
   def show
-    @companies = Company.find(params[:id])
+    @company = Company.find(params[:id])
   end
 
   def new

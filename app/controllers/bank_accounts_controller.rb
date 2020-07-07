@@ -1,6 +1,6 @@
 class BankAccountsController < ApplicationController
   def index
-    # @bank_accounts = Bank_account.all
+    @bank_accounts = Bank_account.all
   end
 
   def show
@@ -9,12 +9,14 @@ class BankAccountsController < ApplicationController
 
   def new
     @bank_account = BankAccount.new
+    @company = Company.find(params[:company_id])
   end
 
   def create
     @bank_account = BankAccount.new(bank_account_params)
+    @bank_account.company_id = params[:company_id]
     if @bank_account.save!
-      redirect_to bank_accounts_path
+      redirect_to companies_path
     else
       render :new
     end
@@ -28,7 +30,7 @@ class BankAccountsController < ApplicationController
     @bank_account = BankAccount.find(params[:id])
     @bank_account.update(bank_account_params)
     if @bank_account.save!
-      redirect_to bank_accounts_path
+      redirect_to company_bank_account_path
     else
       render :new
     end
