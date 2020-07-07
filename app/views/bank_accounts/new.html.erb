@@ -1,4 +1,4 @@
-<p>Adiconar conta bancaria da empresa <%= @company.name %></p>
+<p>Adiconar conta bancaria da <%= @company.name %></p>
 
 <%= simple_form_for [@company, @bank_account], url: company_bank_accounts_path do |f| %>
   <%= f.input :international %>
