@@ -30,7 +30,7 @@ class BankAccountsController < ApplicationController
     @bank_account = BankAccount.find(params[:id])
     @bank_account.update(bank_account_params)
     if @bank_account.save!
-      redirect_to company_bank_account_path
+      redirect_to companies_path
     else
       render :new
     end
@@ -39,6 +39,7 @@ class BankAccountsController < ApplicationController
   def destroy
     @bank_account = BankAccount.find(params[:id])
     @bank_account.destroy
+    redirect_to companies_path
   end
 
   private

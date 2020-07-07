@@ -24,7 +24,8 @@
       <%= bank_account.bank_name %>
       <%= bank_account.agency_number %>
       <%= bank_account.account_number %>
-
+      <%= link_to "Editar", edit_company_bank_account_path(company_id: bank_account.company_id, id: bank_account.id) %>
+      <%= link_to "Apagar conta", company_bank_account_path(company_id: bank_account.company_id, id: bank_account.id), method: :delete %>
       </p>
     <% end %>
   </p>
