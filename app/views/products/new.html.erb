@@ -1,0 +1,10 @@
+<%= simple_form_for [@company, @product] do |f| %>
+  <%= f.input :name, label: 'Nome do produto' %>
+  <%= f.association :company %>
+  <%= f.input :sku, hint: "opcional", label: 'Codigo SKU' %>
+  <%= f.input :description, label: 'Descricao' %>
+  <%= f.input :virtual, label: 'Infoproduto', as: :select, colletion: [['Nao', false], ['Sim', true]], include_blank: false %>
+  <%= f.input :price, label: 'Preco de venda' %>
+  <%= f.input :external_id, label: 'ID Externo', hint: "opcional" %>
+  <%= f.button :submit, 'Cadastrar' %>
+<% end %>
