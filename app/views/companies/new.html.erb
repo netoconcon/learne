@@ -1,5 +1,5 @@
 <%= simple_form_for @company do |f| %>
-  <%= f.input :international %>
+  <%= f.input :international, label: 'Internacional', as: :select, colletion: [['Nao', false], ['Sim', true]], include_blank: false %>
   <%= f.input :name, label: 'Nome' %>
   <%= f.input :cnpj, label: 'CNPJ' %>
   <%= f.input :email_support, label: 'Email de suporte' %>

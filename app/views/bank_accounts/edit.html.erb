@@ -1,6 +1,6 @@
 <h1>Editar conta bancaria</h1>
 <%= simple_form_for [@company, @bank_account], url: company_bank_account_path, method: :patch do |f| %>
-  <%= f.input :international %>
+  <%= f.input :international, disabled: true %>
   <%= f.input :bank_code, label: 'Codigo do banco' %>
   <%= f.input :bank_name, label: 'Banco' %>
   <%= f.input :agency_number, label: 'Agencia' %>
