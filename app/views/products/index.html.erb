@@ -4,3 +4,14 @@
   Meus produtos
   <%= link_to "Cadastrar novo produto", new_product_path %>
 </p>
+
+<% @products.each do |product| %>
+  <p>
+    <%= product.id %>
+    imagem
+    <%= product.sku %>
+    <%= product.name %>
+    <%= product.price %>
+    <%= link_to "Editar", edit_product_path(product) %>
+  </p>
+<% end %>
