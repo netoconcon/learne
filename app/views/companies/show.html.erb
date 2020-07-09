@@ -1,0 +1,13 @@
+<%= @company.name %>
+<%= @company.international %>
+<%= @company.cnpj %>
+<%= @company.email_support %>
+<%= @company.phone_support %>
+<%= @company.shipment_origin_zipcode %>
+<p>
+  <%= link_to "Adicionar Conta Bancaria", new_company_bank_account_path(@company.id) %>
+</p>
+
+<p>
+  <%= link_to "Apagar empresa", company_path,  method: :delete, data: { confirm: 'Você tem certeza' } %>
+</p>
