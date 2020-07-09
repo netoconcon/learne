@@ -1,0 +1,18 @@
+<div class="container">
+  <h2>Meus kits</h2>
+
+  <p>
+    <%= link_to "Novo kit", new_kit_path %>
+  </p>
+  <% if !@kits.nil? %>
+    <% @kits.each do |kit|  %>
+      <p>
+        <%= kit.id %>
+        imagem
+        <%= kit.name %>
+        <%= link_to "Editar", edit_kit_path(kit) %>
+        <%= link_to "Apagar kit", kit_path(kit), method: :delete, data: { confirm: 'Você tem certeza que deseja apagar o kit?' } %>
+      </p>
+    <% end %>
+  <% end %>
+</div>
