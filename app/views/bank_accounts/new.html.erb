@@ -1,10 +1,12 @@
-<p>Adiconar conta bancaria da <%= @company.name %></p>
+<div class="container">
+  <p>Adiconar conta bancaria da <%= @company.name %></p>
 
-<%= simple_form_for [@company, @bank_account], url: company_bank_accounts_path do |f| %>
-  <%= f.input :international,  as: :select, colletion: [['Nao', false], ['Sim', true]], include_blank: false %>
-  <%= f.input :bank_code, label: 'Codigo do banco' %>
-  <%= f.input :bank_name, label: 'Banco' %>
-  <%= f.input :agency_number, label: 'Agencia' %>
-  <%= f.input :account_number, label: 'Conta' %>
-  <%= f.button :submit, 'Cadastrar' %>
-<% end %>
+  <%= simple_form_for [@company, @bank_account], url: company_bank_accounts_path do |f| %>
+    <%= f.input :international,  as: :select, colletion: [['Nao', false], ['Sim', true]], include_blank: false %>
+    <%= f.input :bank_code, label: 'Codigo do banco' %>
+    <%= f.input :bank_name, label: 'Banco' %>
+    <%= f.input :agency_number, label: 'Agencia' %>
+    <%= f.input :account_number, label: 'Conta' %>
+    <%= f.button :submit, 'Cadastrar' %>
+  <% end %>
+</div>
