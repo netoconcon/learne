@@ -1,0 +1,15 @@
+<div class="container">
+  <p> <%= link_to "Gerar link de redirecionamento", new_campaign_path %> </p>
+  <% @campaigns.each do |campaign| %>
+    <p>
+    <%= campaign.id %>
+    <%= campaign.title %>
+    <%= campaign.fbid %>
+    <%= campaign.utm_source %>
+    <%= campaign.utm_campaign %>
+    <%= campaign.utm_medium %>
+    <%= campaign.utm_term %>
+    <%= campaign.utm_content %>
+    </p>
+  <% end %>
+</div>
