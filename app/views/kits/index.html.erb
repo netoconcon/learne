@@ -20,7 +20,7 @@
           <td>imagem</td>
           <td><%= kit.name %></td>
           <td><%= link_to "Editar", edit_kit_path(kit) %></td>
-          <td><%= link_to "Gerenciar produtos", kit_kit_products_path(kit) %></td>
+          <td><%= link_to "Gerenciar produtos", kit_products_path %></td>
           <td><%= link_to "Apagar produto", kit_path(kit), method: :delete, data: { confirm: 'Você tem certeza que deseja apagar o produto?' } %></td>
         </tr>
       <% end %>

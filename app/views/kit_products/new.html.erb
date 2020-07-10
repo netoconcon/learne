@@ -1,5 +1,5 @@
 <div class="container">
-  <%= simple_form_for @kit_product, url: 'kit_kit_products' do |f| %>
+  <%= simple_form_for @kit_product do |f| %>
     <%= f.association :product %>
     <%= f.input :quantity, label: 'Quantidade' %>
     <%= f.input :price, label: 'Preco' %>
