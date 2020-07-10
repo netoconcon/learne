@@ -20,6 +20,8 @@ class KitsController < ApplicationController
   def edit
     @kit = Kit.find(params[:id])
     @products = Product.all
+    @prod_name = @products.name
+    @kit_products = @kit.products
   end
 
   def update
@@ -34,6 +36,7 @@ class KitsController < ApplicationController
 
   def destroy
     @kit = Kit.find(params[:id])
+    @products = Product.all
     @kit.destroy
     redirect_to kits_path
   end
