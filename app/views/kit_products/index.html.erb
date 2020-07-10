@@ -1,0 +1,27 @@
+<div class="container">
+  <h2>Gerenciamento de produto do kit</h2>
+  <p>
+    Meus produtos
+    <%= link_to "Adicionar produto", new_kit_kit_product_path %>
+  </p>
+  <table class="table">
+    <thead>
+      <th scope="col">Imagem</th>
+      <th scope="col">Produto</th>
+      <th scope="col">Quantidade</th>
+      <th scope="col">Preco</th>
+      <th scope="col"></th>
+    </thead>
+    <tbody>
+      <% @kit_products.each do |kit_product| %>
+        <tr>
+          <th scope="row">imagem</th>
+          <td><%= kit_product.product.name %></td>
+          <td><%= kit_product.quantity %></td>
+          <td><%= kit_product.price %></td>
+          <td><%= link_to "Apagar produto", kit_product_path(kit_product), method: :delete, data: { confirm: 'Você tem certeza que deseja apagar o produto?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
