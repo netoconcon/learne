@@ -12,7 +12,7 @@ class KitProductsController < ApplicationController
   def create
     @kit_product = KitProduct.new(kit_product_params)
     if @kit_product.save!
-      redirect_to products_path
+      redirect_to "/kit_products.#{@kit_product.kit_id}"
     else
       render :new
     end
@@ -21,7 +21,7 @@ class KitProductsController < ApplicationController
   def destroy
     @kit_product = KitProduct.find(params[:id])
     @kit_product.destroy
-    redirect_to kit_products_path(kit_product)
+    redirect_to "/kit_products.#{@kit_product.kit_id}"
   end
 
   private
