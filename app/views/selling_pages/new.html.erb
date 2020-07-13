@@ -1,8 +1,10 @@
-<h1>Nova pagina</h1>
-<%= simple_form_for @selling_page do |f| %>
-  <%= f.association :product, label: 'Nome do produto' %>
-  <%= f.input :name, label: 'Nome da pagina' %>
-  <%= f.input :url, label: 'Url' %>
-  <%= f.input :description, label: 'Descricao' %>
-  <%= f.button :submit, 'Cadastrar nova pagina' %>
-<% end %>
+<div class="container">
+  <h1>Nova pagina</h1>
+  <%= simple_form_for @selling_page do |f| %>
+    <%= f.association :product, label: 'Nome do produto' %>
+    <%= f.input :name, label: 'Nome da pagina' %>
+    <%= f.input :url, label: 'Url' %>
+    <%= f.input :description, label: 'Descricao' %>
+    <%= f.button :submit, 'Cadastrar nova pagina' %>
+  <% end %>
+</div>
