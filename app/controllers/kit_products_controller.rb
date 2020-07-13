@@ -1,10 +1,12 @@
 class KitProductsController < ApplicationController
   def index
     @kit_products = KitProduct.all
+    @list_products = @kit_products.where(kit_id: params["format"])
   end
 
   def new
-    @kit_product = KitProduct.new  
+    @kit_product = KitProduct.new
+    @kit_id = params["format"]
   end
 
   def create
@@ -14,6 +16,12 @@ class KitProductsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def destroy
+    @kit_product = KitProduct.find(params[:id])
+    @kit_product.destroy
+    redirect_to kit_products_path(kit_product)
   end
 
   private

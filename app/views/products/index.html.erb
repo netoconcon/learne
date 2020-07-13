@@ -21,7 +21,7 @@
           <td>imagem</td>
           <td><%= product.sku %></td>
           <td><%= product.name %></td>
-          <td><%= product.price %></td>
+          <td>R$ <%= product.price %></td>
           <td><%= link_to "Editar", edit_product_path(product) %></td>
           <td><%= link_to "Apagar produto", product_path(product), method: :delete, data: { confirm: 'Você tem certeza que deseja apagar o produto?' } %></td>
         </tr>

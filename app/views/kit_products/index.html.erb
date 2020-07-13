@@ -2,7 +2,7 @@
   <h2>Gerenciamento de produto do kit</h2>
   <p>
     Meus produtos
-    <%= link_to "Adicionar produto", new_kit_product_path %>
+    <%= link_to "Adicionar produto", new_kit_product_path(params["format"]) %>
   </p>
   <table class="table">
     <thead>
@@ -13,13 +13,13 @@
       <th scope="col"></th>
     </thead>
     <tbody>
-      <% @kit_products.each do |kit_product| %>
+      <% @list_products.each do |list_product| %>
         <tr>
           <th scope="row">imagem</th>
-          <td><%= kit_product.product.name %></td>
-          <td><%= kit_product.quantity %></td>
-          <td><%= kit_product.price %></td>
-          <td><%= link_to "Apagar produto", kit_product_path(kit_product), method: :delete, data: { confirm: 'Você tem certeza que deseja apagar o produto?' } %></td>
+          <td><%= list_product.product.name %></td>
+          <td><%= list_product.quantity %></td>
+          <td><%= list_product.price %></td>
+          <td><%= link_to "Apagar produto", kit_product_path(params[:format]), method: :delete, data: { confirm: 'Você tem certeza que deseja apagar o produto?' } %></td>
         </tr>
       <% end %>
     </tbody>

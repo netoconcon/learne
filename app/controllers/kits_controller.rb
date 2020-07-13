@@ -19,6 +19,7 @@ class KitsController < ApplicationController
 
   def edit
     @kit = Kit.find(params[:id])
+    @kit_product = KitProduct.new
   end
 
   def update

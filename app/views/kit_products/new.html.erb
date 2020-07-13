@@ -1,6 +1,8 @@
 <div class="container">
+  <%= @kit_id.to_i %>
   <%= simple_form_for @kit_product do |f| %>
     <%= f.association :product %>
+    <%= f.input :kit_id, as: :hidden, input_html: {value: @kit_id.to_i, id: :kit} %>
     <%= f.input :quantity, label: 'Quantidade' %>
     <%= f.input :price, label: 'Preco' %>
     <%= f.button :submit, 'Adicionar produto' %>
