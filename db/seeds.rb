@@ -7,15 +7,31 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 company.destroy
 
+
 puts 'Criando companhias'
 10.times do
-  company = Company.new(
+  company = Company.create(
     name: Faker::Company.name,
     cnpj: Faker::Company.brazilian_company_number(formatted: true),
     email = Faker::Internet.email,
     email_support = email,
     email_notification = email
-
   )
   company.save!
 end
+puts 'Companhias criadas'
+
+puts 'Adicionando contas bancarias'
+
+15.times do
+  bank_account = BankAccount.create(
+    company_id: rand(0..10),
+    bank_code: rand(100..800),
+    bank_name: Faker::Bank.name,
+    agency_number: rand(1000..5000),
+    account_number: rand(0010..8590)
+  )
+  bank_account.save
+end
+
+puts 'Contas bancarias adicionadas'
