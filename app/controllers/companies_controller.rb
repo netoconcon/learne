@@ -44,6 +44,6 @@ class CompaniesController < ApplicationController
   private
 
   def company_params
-    params.require(:company).permit(:CNPJ, :international, :email_support, :email_notification, :phone_support, :shipment_origin_zipcode, :name)   
+    params.require(:company).permit(:cnpj, :international, :email_support, :email_notification, :phone_support, :shipment_origin_zipcode, :name)   
   end
 end

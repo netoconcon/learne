@@ -1,15 +1,27 @@
 <div class="container">
   <h1> Paginas de oferta </h1>
   <p> <%= link_to "Cadastrar nova pagina", new_selling_page_path %> </p>
-
-  <% @selling_pages.each do |selling_page| %>
-    <p>
-      <%= selling_page.id %>
-      <%= selling_page.name %>
-      <%= selling_page.url %>
-      <%= selling_page.description %>
-      <%= link_to "Editar", edit_selling_page_path(selling_page) %>
-      <%= link_to "Apagar", selling_page_path(selling_page), method: :delete %>
-    </p>
-  <% end %>
+  
+  <table class="table">
+    <thead>
+      <th scope="col">ID</th>
+      <th scope="col">Produto</th>
+      <th scope="col">Nome da pagina</th>
+      <th scope="col">URL</th>
+      <th scope="col">Editar</th>
+      <th scope="col">Apagar</th>
+    </thead>
+    <tbody>
+      <% @selling_pages.each do |selling_page| %>
+        <tr>  
+          <td><%= selling_page.id %></td>
+          <td><%= selling_page.name %></td>  
+          <td><%= selling_page.url %></td>
+          <td><%= selling_page.description %></td>
+          <td><%= link_to "Editar", edit_selling_page_path(selling_page) %></td>
+          <td><%= link_to "Apagar", selling_page_path(selling_page), method: :delete %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>

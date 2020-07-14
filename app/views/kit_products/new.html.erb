@@ -4,6 +4,6 @@
     <%= f.input :kit_id, as: :hidden, input_html: {value: @kit_id.to_i, id: :kit} %>
     <%= f.input :quantity, label: 'Quantidade' %>
     <%= f.input :price, label: 'Preco' %>
-    <%= f.button :submit, 'Adicionar produto' %>
+    <%= f.button :submit, 'Adicionar produto', class: "btn btn-primary" %>
   <% end %>
 </div>

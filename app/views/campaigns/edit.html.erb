@@ -1,5 +1,5 @@
 <div class="container">
-  <h1>Gerador de paginas de destinos</h1>
+  <h2>Editar</h2>
   <%= simple_form_for @campaign do |f| %>
     <%= f.input :title, label: 'Titulo' %>
     <%= f.association :selling_page, label: 'Pagina de destino' %>
@@ -10,6 +10,6 @@
     <%= f.input :utm_term, label: 'utm_term' %>
     <%= f.input :utm_content, label: 'utm_content' %>
     <%= f.input :pubid, label: 'pubid' %>
-    <%= f.button :submit, 'Gerar link', class: "btn btn-primary" %>
+    <%= f.button :submit, 'Editar', class: "btn btn-primary" %>
   <% end %>
 </div>
