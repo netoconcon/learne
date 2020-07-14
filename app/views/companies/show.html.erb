@@ -1,15 +1,17 @@
 <div class="container">
-  <%= @company.name %>
-  <%= @company.international %>
-  <%= @company.cnpj %>
-  <%= @company.email_support %>
-  <%= @company.phone_support %>
-  <%= @company.shipment_origin_zipcode %>
+  <h2>Detalhes</h2>
+    <h5><%= @company.name %></h5>
+    <p>CNPJ: <%= @company.cnpj %></p>
+    <p>Internacional? <%= @company.international %></p>
+    <p>Email para notificacao: <%= @company.email_notification %></p>
+    <p>Email para suporte: <%= @company.phone_support %></p>
+    <p>Suporte de fone: <%= @company.phone_support %></p>
+    <p>CEP de origem: <%= @company.shipment_origin_zipcode %></p>    
   <p>
-    <%= link_to "Adicionar Conta Bancaria", new_company_bank_account_path(@company.id) %>
+    <%= link_to "Adicionar Conta Bancaria", new_company_bank_account_path(@company.id), class: "btn btn-primary" %>
   </p>
 
   <p>
-    <%= link_to "Apagar empresa", company_path,  method: :delete, data: { confirm: 'Você tem certeza' } %>
+    <%= link_to "Apagar empresa", company_path,  method: :delete, data: { confirm: 'Você tem certeza' }, class: "btn btn-danger" %>
   </p>
 </div>
