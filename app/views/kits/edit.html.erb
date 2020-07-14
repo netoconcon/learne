@@ -1,0 +1,21 @@
+<div class="container">
+  <%= simple_form_for @kit do |f| %>
+    <%= f.input :name, label: 'Nome do kit' %>
+    <%= f.input :description, label: 'Descricao' %>
+    Pagamento
+    <%= f.input :payment_type, label: 'Tipo de pagamento', collection: Kit.payment_types.keys %>
+    <%= f.input :standard_installments, label: 'Parcela padrao', input_html: {value: f.object.standard_installments || '12'} %>
+    <%= f.input :maximum_installments, label: 'Parcela maxima', input_html: {value: f.object.maximum_installments || '12'} %>
+    Frete
+    <%= f.input :shipment_cost, label: 'Frete' %>
+    <%= f.input :allow_free_shipment, label: 'Permitir frete gratis', as: :select, colletion: [['Nao', false], ['Sim', true]], include_blank: false %>
+    <%= f.input :weight, label: 'Peso' %>
+    <%= f.input :height, label: 'Altura' %>
+    <%= f.input :width, label: 'Largura' %>
+    <%= f.input :length, label: 'Comprimento' %>
+
+    <%= f.button :submit, 'Salvar alteracoes' %>
+  <% end %>
+  Produtos
+
+</div>
