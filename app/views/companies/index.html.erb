@@ -1,37 +1,48 @@
 <div class="container">
-  <p>Minhas empresas</p>
+  <h2>Minhas empresas</h2>
 
   <table class="table">
-  <p> <%= link_to "Cadastrar empresa", new_company_path %> </p>
-
-  <% @companies.each do |company|%>
-
-    <p>
-      Empresa:
-      <%= company.name %>
-      <%= company.international %>
-      <%= company.cnpj %>
-      <%= company.email_support %>
-      <%= company.phone_support %>
-      <%= company.shipment_origin_zipcode %>
-      <%= link_to "Detalhes", company_path(company) %>
-      <%= link_to "Editar", edit_company_path(company) %>
-    </p>
-    <p>
-      <% @bank_accounts.where(company_id: company.id).each do |bank_account| %>
-        <p>
-        Conta bancaria: 
-        <%= bank_account.international %>
-        <%= bank_account.bank_code %>
-        <%= bank_account.bank_name %>
-        <%= bank_account.agency_number %>
-        <%= bank_account.account_number %>
-        <%= link_to "Editar", edit_company_bank_account_path(company_id: bank_account.company_id, id: bank_account.id) %>
-        <%= link_to "Apagar conta", company_bank_account_path(company_id: bank_account.company_id, id: bank_account.id), method: :delete %>
-        </p>
+    <p> <%= link_to "Cadastrar empresa", new_company_path, class: "btn btn-primary" %> </p>
+    
+    <thead>
+      <th scope="col">Nome</th>
+      <th scope="col">Internacional</th>
+      <th scope="col">CNPJ</th>
+      <th scope="col">Email</th>
+      <th scope="col">Telefone</th>
+      <th scope="col">CEP</th>
+      <th scope="col">Detalhes</th>
+      <th scope="col">Editar</th>
+    </thead>
+    <tbody>
+      <% @companies.each do |company|%>
+        <tr>
+          <td><%= company.name %></td>
+          <td><%= company.international %></td>
+          <td><%= company.cnpj %></td>
+          <td><%= company.email_support %></td>
+          <td><%= company.phone_support %></td>
+          <td><%= company.shipment_origin_zipcode %></td>
+          <td><%= link_to "Detalhes", company_path(company) %></td>
+          <td><%= link_to "Editar", edit_company_path(company) %></td>
+        </tr>
+        
+          <% @bank_accounts.where(company_id: company.id).each do |bank_account| %>
+            <tr>
+              <td>Conta bancaria</td>
+              <td><%= bank_account.international %></td>
+              <td><%= bank_account.bank_code %></td>
+              <td><%= bank_account.bank_name %></td>
+              <td><%= bank_account.agency_number %></td>
+              <td><%= bank_account.account_number %></td>
+              <td><%= link_to "Editar", edit_company_bank_account_path(company_id: bank_account.company_id, id: bank_account.id) %></td>
+              <td><%= link_to "Apagar conta", company_bank_account_path(company_id: bank_account.company_id, id: bank_account.id), method: :delete %></td>
+              
+            </tr>
+          <% end %>
+        
+        
       <% end %>
-    </p>
-  <p> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ </p>
-
-  <% end %>
+    </tbody>
+  </table>
 </div>

@@ -18,7 +18,7 @@
           <th scope="row">imagem</th>
           <td><%= list_product.product.name %></td>
           <td><%= list_product.quantity %></td>
-          <td><%= list_product.price %></td>
+          <td>R$ <%= list_product.price %></td>
           <td><%= link_to "Apagar produto", "/kit_products/#{list_product.id}", method: :delete, data: { confirm: 'Você tem certeza que deseja apagar o produto?' } %></td>
         </tr>
       <% end %>
