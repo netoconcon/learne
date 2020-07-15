@@ -41,10 +41,9 @@ puts 'Criando produtos'
 
 13.times do
   Product.create(
-    company_id: rand(1..10)
-    name:
-    price:
-    description:
-    external_id:
+    company_id: rand(1..10),
+    name: Faker::Appliance.equipment,
+    price: rand(30..200),
+    description: Faker::Company.bs
   )
 end
