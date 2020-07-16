@@ -1,0 +1,9 @@
+<div class="nested-fields">
+  <div class="field">
+    <%= f.association :product, as: :select, label: "Produto" %>
+    <%= f.fields_for :product do |kit_product| %>
+      <%= kit_product.text_field :name %>
+    <% end %>
+    <%= link_to_remove_association "Remover produto", f %>
+  </div>
+</div>
