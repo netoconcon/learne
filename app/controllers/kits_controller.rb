@@ -34,7 +34,6 @@ class KitsController < ApplicationController
 
   def destroy
     @kit = Kit.find(params[:id])
-    @products = Product.all
     @kit.destroy
     redirect_to kits_path
   end
