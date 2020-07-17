@@ -5,5 +5,7 @@ class Product < ApplicationRecord
   has_many :kits, through: :kit_products
 
   has_many :selling_pages, dependent: :destroy
+
+  monetize :price_cents
   default_scope {order(created_at: :asc)}
 end

@@ -43,7 +43,7 @@ puts 'Criando produtos'
   Product.create(
     company_id: rand(1..10),
     name: Faker::Appliance.equipment,
-    price: rand(30..200),
+    price_cents: rand(3000..20000),
     description: Faker::Company.bs
   )
 end
