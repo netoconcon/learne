@@ -3,8 +3,8 @@
     <div class="form-products">
       <%= f.association :product, as: :select, label: "Produto" %>
       <div class="form-fields">  
-        <%= f.input :quantity %>
-        <%= f.input :price %>
+        <%= f.input :quantity, input_html: { value: '1' } %>
+        <%= f.input :price, input_html: { "data-set" => "product.price_cents" } %>
       </div>
     </div>
       <%= link_to_remove_association "Remover produto", f %>
