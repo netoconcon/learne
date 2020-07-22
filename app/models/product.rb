@@ -1,4 +1,5 @@
 class Product < ApplicationRecord
+
   belongs_to :company
   
   has_many :kit_products, dependent: :destroy
