@@ -1,8 +1,6 @@
 class Product < ApplicationRecord
 
-  validates :name, presence: true
-  validates :company, presence: true
-  validates :price_cents, presence: true
+  validates :name, :company, :price_cents, presence: true
 
   belongs_to :company
   

@@ -1,12 +1,6 @@
 class Kit < ApplicationRecord
 
-  validates :name, presence: true
-  validates :standard_installments, presence: true
-  validates :maximum_installments, presence: true
-  validates :height, presence: true
-  validates :weight, presence: true
-  validates :width, presence: true
-  validates :length, presence: true
+  validates :name, :standard_installments, :maximum_installments, :height, :weight, :width, :length, presence: true
 
   has_many :kit_products, dependent: :destroy
   has_many :products, through: :kit_products

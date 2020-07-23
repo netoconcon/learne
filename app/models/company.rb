@@ -1,7 +1,6 @@
 class Company < ApplicationRecord
-  
-  validates_format_of :email_support, :with => Devise::email_regexp
-  validates_format_of :email_notification, :with => Devise::email_regexp
+  include Email
+  # email_validation
 
   validates :cnpj, presence: true, format: { with: /\A(\d{2}\.\d{3}\.\d{3}\/\d{4}\-\d{2})\z/ } 
   validates :name, presence: true
