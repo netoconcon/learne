@@ -1,11 +1,11 @@
 class Company < ApplicationRecord
-  include Email
-  # email_validation
+  include Validation
 
-  validates :cnpj, presence: true, format: { with: /\A(\d{2}\.\d{3}\.\d{3}\/\d{4}\-\d{2})\z/ } 
+  validates :email_support, :email_notification, presence: true, format: Validation.email
+  validates :cnpj, presence: true, format: Validation.cnpj
   validates :name, presence: true
-  validates :shipment_origin_zipcode, :allow_blank => true, format: { with: /\A\d{5}-\d{3}\z/ }
-  validates :phone_support, :allow_blank => true , format: { with: /\A(([0-9]{2}\\)[0-9]?[0-9]{4}-[0-9]{4})\z/ }
+  validates :shipment_origin_zipcode, :allow_blank => true, format: Validation.zipcode
+  validates :phone_support, :allow_blank => true , format: Validation.phone
 
   has_many :bank_accounts, dependent: :destroy
   has_many :products, dependent: :destroy
