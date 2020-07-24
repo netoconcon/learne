@@ -4,8 +4,11 @@
   <p> <%= link_to "Cadastrar empresa", new_company_path, class: "btn btn-primary" %> </p>
 
   <p> <%= link_to "Voltar", financials_path %></p>
-    
-  <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Procurar empresa">
+  
+  <div class="input-wrapper">
+    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Procurar empresa">
+    <label class="fa fa-search" aria-hidden="true"></label>
+  </div>
 
   <table class="table" id="myTable">
     <thead>
@@ -27,8 +30,16 @@
           <td><%= company.email_support %></td>
           <td><%= company.phone_support %></td>
           <td><%= company.shipment_origin_zipcode %></td>
-          <td><%= link_to "Detalhes", company_path(company) %></td>
-          <td><%= link_to "Editar", edit_company_path(company) %></td>
+          <td>
+            <%= link_to company_path(company) do %>
+              <i class="fa fa-info-circle"></i>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to edit_company_path(company) do %>
+              <i class="far fa-edit"></i>
+            <% end %>
+          </td>
         </tr>
         <div class="panel-group" id="myaccordion">
           <div class="panel panel-primrary">
@@ -49,8 +60,12 @@
                      <b>Agencia:</b> <%= bank_account.agency_number %>
                      <b>Conta:</b> <%= bank_account.account_number %>
                      <span class="float-right">
-                       <%= link_to "Editar", edit_company_bank_account_path(company_id: bank_account.company_id, id: bank_account.id) %>
-                       <%= link_to "Apagar conta", company_bank_account_path(company_id: bank_account.company_id, id: bank_account.id), method: :delete %>
+                       <%= link_to  edit_company_bank_account_path(company_id: bank_account.company_id, id: bank_account.id) do %>
+                         <i class="far fa-edit"></i>
+                       <% end %>
+                       <%= link_to company_bank_account_path(company_id: bank_account.company_id, id: bank_account.id), method: :delete, data: { confirm: 'Você tem certeza que deseja apagar o produto?' } do %>
+                         <i class="fa fa-trash"></i>
+                       <% end %>
                      </span>
                   </p>
               <% end %>
