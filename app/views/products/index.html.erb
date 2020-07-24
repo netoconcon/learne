@@ -6,7 +6,10 @@
   </p>
   <p> <%= link_to "Voltar", catalogs_path %></p>
 
-  <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Procurar produto">
+  <div class="input-wrapper">
+    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Procurar produto">
+    <label class="fa fa-search" aria-hidden="true"></label>
+  </div>
   
   <table class="table" id="myTable">
     <thead>
