@@ -16,4 +16,8 @@ module Validation
   def self.zipcode
     { with: /\A\d{5}-\d{3}\z/ }
   end
+
+  def self.cpf
+    { with: /\A\d{3}\.\d{3}\.\d{3}\-\d{2}\z/ }
+  end
 end
