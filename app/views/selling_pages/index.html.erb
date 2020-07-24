@@ -18,8 +18,16 @@
           <td><%= selling_page.name %></td>  
           <td><%= selling_page.url %></td>
           <td><%= selling_page.description %></td>
-          <td><%= link_to "Editar", edit_selling_page_path(selling_page) %></td>
-          <td><%= link_to "Apagar", selling_page_path(selling_page), method: :delete %></td>
+          <td>
+            <%= link_to  edit_selling_page_path(selling_page) do %>
+              <i class="far fa-edit"></i>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to selling_page_path(selling_page), method: :delete, data: { confirm: 'Você tem certeza que deseja apagar o produto?' } do %>
+              <i class="fa fa-trash"></i>
+            <% end %>
+          </td>
         </tr>
       <% end %>
     </tbody>
