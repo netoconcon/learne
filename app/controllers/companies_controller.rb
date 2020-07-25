@@ -14,6 +14,7 @@ class CompaniesController < ApplicationController
 
   def create
     @company = Company.new(company_params)
+    @company.cnpj.gsub!(/\D/, '')
     if @company.save!
       redirect_to companies_path
     else
