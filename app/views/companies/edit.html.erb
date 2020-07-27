@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" data-controller="masks">
   <h1>Editar empresa</h1>
 
   <%= simple_form_for @company do |f| %>
@@ -7,8 +7,8 @@
     <%= f.input :cnpj, label: 'CNPJ',  disabled: true %>
     <%= f.input :email_support, label: 'Email de suporte' %>
     <%= f.input :email_notification, label: 'Email para notificacoes' %>
-    <%= f.input :phone_support, label: 'Telefone de suporte' %>
-    <%= f.input :shipment_origin_zipcode, label: 'CEP de saida' %>
+    <%= f.input :phone_support, label: 'Telefone de suporte', input_html: { "data-js" => "phone" } %>
+    <%= f.input :shipment_origin_zipcode, label: 'CEP de saida', input_html: { "data-js" => "cep" } %>
     <%= f.button :submit, 'Editar', class: "btn btn-primary" %>
   <% end %>
 </div>

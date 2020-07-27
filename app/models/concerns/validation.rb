@@ -6,11 +6,11 @@ module Validation
   end
 
   def self.cnpj
-    { with: /\A(\d{14})\z/ } 
+    { with: /\A([0-9]{2}\.?[0-9]{3}\.?[0-9]{3}\/?[0-9]{4}\-?[0-9]{2})\z/ } 
   end
 
   def self.phone
-    { with: /\A(([0-9]{2}\\)[0-9]?[0-9]{4}-[0-9]{4})\z/ }
+    { with: /\A(\([0-9]{2}\)[0-9]?[0-9]{4}-[0-9]{4})\z/ }
   end
 
   def self.zipcode
