@@ -34,7 +34,6 @@ class KitsController < ApplicationController
 
   def destroy
     @kit = Kit.find(params[:id])
-    @products = Product.all
     @kit.destroy
     redirect_to kits_path
   end
@@ -43,6 +42,6 @@ class KitsController < ApplicationController
   private
 
   def kit_params
-    params.require(:kit).permit(:name, :description, :payment_type, :standard_installments, :maximum_installments, :shipment_cost, :allow_free_shipment, :weight, :height, :length)   
+    params.require(:kit).permit(:name, :description, :payment_type, :standard_installments, :maximum_installments, :shipment_cost, :allow_free_shipment, :weight, :height, :length, kit_products_attributes:[:id, :product_id, :kit_id, :quantity, :price, :_destroy, product_attributes:[:id, :company_id, :name, :sku, :price, :description, :external_id, :weight, :height, :length, :virtual_url]])   
   end
 end

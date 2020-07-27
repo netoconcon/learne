@@ -4,5 +4,6 @@ class Product < ApplicationRecord
   has_many :kit_products, dependent: :destroy
   has_many :kits, through: :kit_products
 
-  has_many :selling_pages
+  has_many :selling_pages, dependent: :destroy
+  default_scope {order(created_at: :asc)}
 end

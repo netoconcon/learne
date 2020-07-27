@@ -4,6 +4,7 @@
     Meus kits
     <%= link_to "Novo kit", new_kit_path %>
   </p>
+  <p> <%= link_to "Voltar", catalogs_path %></p>
 
   <table class="table">
     <thead>
@@ -11,7 +12,6 @@
       <th scope="col">Imagem</th>
       <th scope="col">Nome</th>
       <th scope="col">Editar</th>
-      <th scope="col">Gerenciar produtos</th>
       <th scope="col">Apagar</th>
     </thead>
     <tbody>
@@ -21,7 +21,6 @@
           <td>imagem</td>
           <td><%= kit.name %></td>
           <td><%= link_to "Editar", edit_kit_path(kit) %></td>
-          <td><%= link_to "Gerenciar produtos", kit_products_path(kit) %></td>
           <td><%= link_to "Apagar kit", kit_path(kit), method: :delete, data: { confirm: 'Você tem certeza que deseja apagar o kit?' } %></td>
         </tr>
       <% end %>

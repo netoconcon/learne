@@ -1,0 +1,12 @@
+<div class="nested-fields">
+  <div class="field form-kit-products">
+    <div class="form-products">
+      <%= f.association :product, as: :select, label: "Produto" %>
+      <div class="form-fields">  
+        <%= f.input :quantity %>
+        <%= f.input :price %>
+      </div>
+    </div>
+      <%= link_to_remove_association "Remover produto", f %>
+  </div>
+</div>
