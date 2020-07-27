@@ -5,7 +5,7 @@
     <%= f.input :cnpj, label: 'CNPJ', input_html: { "data-js" => "cnpj" }  %>
     <%= f.input :email_support, label: 'Email de suporte' %>
     <%= f.input :email_notification, label: 'Email para notificacoes' %>
-    <%= f.input :phone_support, label: 'Telefone de suporte' %>
+    <%= f.input :phone_support, label: 'Telefone de suporte', input_html: { "data-js" => "phone" } %>
     <%= f.input :shipment_origin_zipcode, label: 'CEP de saida' %>
     <%= f.button :submit, 'Cadastrar', class: "btn btn-primary" %>
   <% end %>
