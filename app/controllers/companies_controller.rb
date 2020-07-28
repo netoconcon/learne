@@ -15,7 +15,7 @@ class CompaniesController < ApplicationController
   def create
     @company = Company.new(company_params)
     # @company.cnpj.gsub!(/\D/, '')
-    if @company.save!
+    if @company.save
       redirect_to companies_path
     else
       render :new
@@ -29,10 +29,10 @@ class CompaniesController < ApplicationController
   def update
     @company = Company.find(params[:id])
     @company.update(company_params)
-    if @company.save!
+    if @company.save
       redirect_to companies_path
     else
-      render :new
+      render :edit
     end
   end
 
@@ -45,6 +45,6 @@ class CompaniesController < ApplicationController
   private
 
   def company_params
-    params.require(:company).permit(:cnpj, :international, :email_support, :email_notification, :phone_support, :shipment_origin_zipcode, :name)   
+    params.require(:company).permit(:cnpj, :international, :email_support, :email_notification, :phone_support, :shipment_origin_zipcode, :name)
   end
 end

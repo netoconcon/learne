@@ -10,7 +10,7 @@ class SellingPagesController < ApplicationController
   def create
     @selling_page = SellingPage.new(selling_page_params)
     @company = params[:company_id]
-    if @selling_page.save!
+    if @selling_page.save
       redirect_to selling_pages_path
     else
       render :new
@@ -27,7 +27,7 @@ class SellingPagesController < ApplicationController
     if @selling_page.save!
       redirect_to selling_pages_path
     else
-      render :new
+      render :edit
     end
   end
 
@@ -41,6 +41,6 @@ class SellingPagesController < ApplicationController
   private
 
   def selling_page_params
-    params.require(:selling_page).permit(:product_id, :name, :description, :url)   
+    params.require(:selling_page).permit(:product_id, :name, :description, :url)
   end
 end
