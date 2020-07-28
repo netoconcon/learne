@@ -20,8 +20,16 @@
           <th scope="row"><%= kit.id %></th>
           <td>imagem</td>
           <td><%= kit.name %></td>
-          <td><%= link_to "Editar", edit_kit_path(kit) %></td>
-          <td><%= link_to "Apagar kit", kit_path(kit), method: :delete, data: { confirm: 'Você tem certeza que deseja apagar o kit?' } %></td>
+          <td>
+            <%= link_to  edit_kit_path(kit) do %>
+              <i class="far fa-edit"></i>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to kit_path(kit), method: :delete, data: { confirm: 'Você tem certeza que deseja apagar o produto?' } do %>
+              <i class="fa fa-trash"></i>
+            <% end %>
+          </td>
         </tr>
       <% end %>
     </tbody>

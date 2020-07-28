@@ -1,4 +1,7 @@
 class KitProduct < ApplicationRecord
+
+  validates :quantity, :price_cents, presence: true
+  
   belongs_to :product
   belongs_to :kit
 
