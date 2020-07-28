@@ -15,7 +15,7 @@ class BankAccountsController < ApplicationController
   def create
     @bank_account = BankAccount.new(bank_account_params)
     @bank_account.company_id = params[:company_id]
-    if @bank_account.save!
+    if @bank_account.save
       redirect_to companies_path
     else
       render :new
@@ -29,10 +29,10 @@ class BankAccountsController < ApplicationController
   def update
     @bank_account = BankAccount.find(params[:id])
     @bank_account.update(bank_account_params)
-    if @bank_account.save!
+    if @bank_account.save
       redirect_to companies_path
     else
-      render :new
+      render :edit
     end
   end
 
@@ -45,6 +45,6 @@ class BankAccountsController < ApplicationController
   private
 
   def bank_account_params
-    params.require(:bank_account).permit(:bank_code, :international, :bank_name, :agency_number, :account_number)   
+    params.require(:bank_account).permit(:bank_code, :international, :bank_name, :agency_number, :account_number)
   end
 end
