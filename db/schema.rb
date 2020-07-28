@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_06_140600) do
+ActiveRecord::Schema.define(version: 2020_07_23_131939) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,9 +58,9 @@ ActiveRecord::Schema.define(version: 2020_07_06_140600) do
     t.bigint "product_id", null: false
     t.bigint "kit_id", null: false
     t.integer "quantity"
-    t.integer "price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "price_cents", default: 0, null: false
     t.index ["kit_id"], name: "index_kit_products_on_kit_id"
     t.index ["product_id"], name: "index_kit_products_on_product_id"
   end
@@ -111,7 +111,6 @@ ActiveRecord::Schema.define(version: 2020_07_06_140600) do
     t.boolean "virtual", default: false
     t.string "name"
     t.string "sku"
-    t.integer "price"
     t.string "description"
     t.integer "external_id"
     t.integer "weight"
@@ -121,6 +120,7 @@ ActiveRecord::Schema.define(version: 2020_07_06_140600) do
     t.string "virtual_url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "price_cents", default: 0, null: false
     t.index ["company_id"], name: "index_products_on_company_id"
   end
 

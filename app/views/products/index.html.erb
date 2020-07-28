@@ -4,7 +4,14 @@
     Meus produtos
     <%= link_to "Cadastrar novo produto", new_product_path %>
   </p>
-  <table class="table">
+  <p> <%= link_to "Voltar", catalogs_path %></p>
+
+  <div class="input-wrapper">
+    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Procurar produto">
+    <label class="fa fa-search" aria-hidden="true"></label>
+  </div>
+
+  <table class="table" id="myTable">
     <thead>
       <th scope="col">ID</th>
       <th scope="col">Imagem</th>
@@ -21,11 +28,43 @@
           <td>imagem</td>
           <td><%= product.sku %></td>
           <td><%= product.name %></td>
-          <td>R$ <%= product.price %></td>
-          <td><%= link_to "Editar", edit_product_path(product) %></td>
-          <td><%= link_to "Apagar produto", product_path(product), method: :delete, data: { confirm: 'Você tem certeza que deseja apagar o produto?' } %></td>
+          <td>Preco: <%= humanized_money_with_symbol(product.price_cents) %></td>
+          <td>
+            <%= link_to  edit_product_path(product) do %>
+              <i class="far fa-edit"></i>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to product_path(product), method: :delete, data: { confirm: 'Você tem certeza que deseja apagar o produto?' } do %>
+              <i class="fa fa-trash"></i>
+            <% end %>
+          </td>
         </tr>
       <% end %>
     </tbody>
   </table>
 </div>
+
+<script>
+  function myFunction() {
+    // Declare variables
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("myTable");
+    tr = table.getElementsByTagName("tr");
+
+    // Loop through all table rows, and hide those who don't match the search query
+    for (i = 0; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td")[2];
+      if (td) {
+        txtValue = td.textContent || td.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
+    }
+  }
+</script>

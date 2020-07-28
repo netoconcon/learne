@@ -1,7 +1,7 @@
 <div class="container">
-  <h1> Paginas de oferta </h1>
+  <h1> Paginas de vendas </h1>
   <p> <%= link_to "Cadastrar nova pagina", new_selling_page_path %> </p>
-  
+  <p> <%= link_to "Voltar", settings_path %></p>
   <table class="table">
     <thead>
       <th scope="col">ID</th>
@@ -18,8 +18,16 @@
           <td><%= selling_page.name %></td>  
           <td><%= selling_page.url %></td>
           <td><%= selling_page.description %></td>
-          <td><%= link_to "Editar", edit_selling_page_path(selling_page) %></td>
-          <td><%= link_to "Apagar", selling_page_path(selling_page), method: :delete %></td>
+          <td>
+            <%= link_to  edit_selling_page_path(selling_page) do %>
+              <i class="far fa-edit"></i>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to selling_page_path(selling_page), method: :delete, data: { confirm: 'Você tem certeza que deseja apagar o produto?' } do %>
+              <i class="fa fa-trash"></i>
+            <% end %>
+          </td>
         </tr>
       <% end %>
     </tbody>

@@ -5,7 +5,7 @@
     <%= f.input :sku, hint: "opcional", label: 'Codigo SKU' %>
     <%= f.input :description, label: 'Descricao' %>
     <%= f.input :virtual_url, label: 'Infoproduto', as: :select, colletion: [['Nao', false], ['Sim', true]], include_blank: false %>
-    <%= f.input :price, label: 'Preco de venda' %>
+    <%= f.input :price_cents, label: 'Preco de venda' %>
     <%= f.input :external_id, label: 'ID Externo', hint: "opcional" %>
     <%= f.button :submit, 'Editar', class: "btn btn-primary" %>
   <% end %>

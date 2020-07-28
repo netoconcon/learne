@@ -13,6 +13,18 @@
     <%= f.input :height, label: 'Altura' %>
     <%= f.input :width, label: 'Largura' %>
     <%= f.input :length, label: 'Comprimento' %>
+    
+
+    <h4>Adicionar produtos</h4>
+    <%= f.fields_for :kit_products do |kit_product| %>
+      <%= render 'kit_product_fields', f: kit_product %>
+    <% end %>
+
+    <div class="links">
+      <%= link_to_add_association "Adicionar produto", f, :kit_products %>
+    </div>
+
     <%= f.button :submit, 'Cadastrar', class: "btn btn-primary" %>
   <% end %>
+
 </div>
