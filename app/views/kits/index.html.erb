@@ -38,10 +38,8 @@
                     <div class="container-fluid">
                       <% kit.products.each do |product| %>
                         <div class="row">
-                          
                             <div class="col-md-8"><%= product.name %></div>
-                            <div class="col-md-4">R$ <%= product.price_cents %></div>
-
+                            <div class="col-md-3">R$ <%= product.price_cents %></div>
                         </div>
                       <% end %>
                     </div>
