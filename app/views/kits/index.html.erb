@@ -22,9 +22,6 @@
           <td>imagem</td>
           <td><%= kit.name %></td>
           <td>
-            <button data-toggle="modal" data-target="#products-<%= kit.id %>">
-              Ver produtos
-            </button>
             <%= render partial: 'modal', :locals => {:kit => kit} %>
           </td>
           <td>

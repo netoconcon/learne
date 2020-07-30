@@ -1,5 +1,8 @@
+<button data-toggle="modal" data-target="#products-<%= kit.id %>">
+  Ver produtos
+</button>
 <div class="modal fade" id="products-<%= kit.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLongTitle">Produtos</h5>
@@ -11,15 +14,15 @@
         <div class="container-fluid">
           <% kit.products.each do |product| %>
             <div class="row">
-                <div class="col-md-8"><%= product.name %></div>
+                <div class="col-md-2"> product.image </div>
+                <div class="col-md-7"><%= product.name %></div>
                 <div class="col-md-3">R$ <%= product.price_cents %></div>
             </div>
           <% end %>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
       </div>
     </div>
   </div>
