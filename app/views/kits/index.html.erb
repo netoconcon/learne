@@ -1,4 +1,4 @@
-<div class="container">
+ <div class="container">
   <h1>Meus kits</h1>
   <p>
     Meus kits
@@ -22,7 +22,7 @@
           <td>imagem</td>
           <td><%= kit.name %></td>
           <td>
-            <%= render partial: 'modal', :locals => {:kit => kit} %>
+            <%= render partial: 'modal', :locals => {:kit => kit, :products => @products} %>
           </td>
           <td>
             <%= link_to  edit_kit_path(kit) do %>

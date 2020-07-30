@@ -1,11 +1,11 @@
-<div class="container">
+<div class="container" data-controller="masks">
   <%= simple_form_for [@company, @product] do |f| %>
     <%= f.input :name, label: 'Nome do produto' %>
     <%= f.association :company, value_method: :id %>
     <%= f.input :sku, hint: "opcional", label: 'Codigo SKU' %>
     <%= f.input :description, label: 'Descricao' %>
     <%= f.input :virtual_url, label: 'Infoproduto', input_html: { id: 'infoproduto' }, as: :select, colletion: [['Nao', false], ['Sim', true]] %>
-    <%= f.input :price_cents, label: 'Preco de venda', as: :string %>
+    <%= f.input :price_cents, label: 'Preco de venda', as: :string, input_html: { "data-js" => "price" } %>
     <%= f.input :external_id, label: 'ID Externo', hint: "opcional", as: :string %>
     <%= f.input :weight, label: 'Peso', as: :string %>
     <%= f.input :height, label: 'Altura', as: :string %>

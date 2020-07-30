@@ -1,6 +1,7 @@
 class KitsController < ApplicationController
   def index
     @kits = Kit.all
+    @products = Product.all
   end
 
   def new
