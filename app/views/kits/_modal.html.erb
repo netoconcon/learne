@@ -15,8 +15,8 @@
           <% kit.kit_products.each do |kit_product| %>
             <div class="row">
                 <div class="col-md-2"> product.image </div>
-                <div class="col-md-6"><%= products.find(kit_product.product_id).name %></div>
-                <div class="col-md-1"><%= kit_product.quantity %></div>
+                <div class="col-md-3"><%= products.find(kit_product.product_id).name %></div>
+                <div class="col-md-3">Quantidade: <%= kit_product.quantity %></div>
                 <div class="col-md-3">R$ <%= products.find(kit_product.product_id).price_cents %></div>
             </div>
           <% end %>
