@@ -1,6 +1,6 @@
 class BankAccountsController < ApplicationController
   def index
-    @bank_accounts = Bank_account.all
+    @bank_accounts = BankAccount.all
   end
 
   def show
