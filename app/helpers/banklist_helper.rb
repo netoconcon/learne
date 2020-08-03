@@ -1,6 +1,6 @@
 module BanklistHelper
   def banklist
-    [
+    @banks = [
       {
         "value": "001",
         "label": "Banco do Brasil S.A."
@@ -774,5 +774,11 @@ module BanklistHelper
         "label": "Banco Keb Hana do Brasil S. A."
       }
     ]
+  end
+
+  def bank_code_name
+    @banks.each_with_object({}) do |bcode, bname|
+      bname[bcode[:value]] = bcode[:label]
+    end
   end
 end

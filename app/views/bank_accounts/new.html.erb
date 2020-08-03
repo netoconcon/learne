@@ -5,7 +5,7 @@
   <%= simple_form_for [@company, @bank_account], url: company_bank_accounts_path do |f| %>
     <%= f.input :international,  as: :select, colletion: [['Nao', false], ['Sim', true]], include_blank: false %>
 
-    <%= f.input :bank_code, label: 'Codigo do banco', collection: banklist.map{ |obj| obj[:value].to_i } %>
+    <%= f.input :bank_code, label: 'Codigo do banco', collection: banklist.map{ |obj| obj[:value] }, label_method: lambda { |bank| "#{bank} - #{bank_code_name[bank]}"} %>
     <%= f.input :bank_name, label: 'Banco',collection: banklist.map{ |obj| obj[:label] } %>
     <%= f.input :agency_number, label: 'Agencia', input_html: { "data-js" => "agency", maxlength: 5} %>
     <%= f.input :account_number, label: 'Conta' %>
