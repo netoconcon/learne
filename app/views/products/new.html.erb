@@ -1,4 +1,4 @@
-<div class="container" data-controller="masks">
+<div class="container" data-controller="masks infoproduct">`
   <%= simple_form_for [@company, @product] do |f| %>
     <%= f.input :name, label: 'Nome do produto' %>
     <%= f.association :company, value_method: :id %>
@@ -11,7 +11,7 @@
     <%= f.input :height, label: 'Altura', as: :string %>
     <%= f.input :width, label: 'Largura', as: :string %>
     <%= f.input :length, label: 'Comprimento', as: :string %>
-    <%= f.input :virtual_url, label: 'Link do Infoproduto' %>
+    <%= f.input :virtual_url, label: 'Link do Infoproduto', disabled: true %>
     <%= f.button :submit, 'Cadastrar', class: "btn btn-primary" %>
   <% end %>
 </div>
