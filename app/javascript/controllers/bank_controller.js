@@ -5,7 +5,10 @@ export default class extends Controller {
 	
 	name(e) {
 	  const x = e.currentTarget.value;
-	  this.labelTarget.value = x;
-	  console.log(x)
+	  const y = x.split("-");
+	  const bankNum = y[0];
+	  const bankName = y[1];
+	  this.labelTarget.value = bankName;
+	  //checar o .value
 	}
 }
