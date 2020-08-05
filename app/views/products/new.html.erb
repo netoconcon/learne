@@ -4,7 +4,7 @@
     <%= f.association :company, value_method: :id %>
     <%= f.input :sku, hint: "opcional", label: 'Codigo SKU' %>
     <%= f.input :description, label: 'Descricao' %>
-    <%= f.input :virtual, label: 'Infoproduto', input_html: { "data-action" => "change -> infoproduct#selection" }, as: :select, colletion: [['Nao', false], ['Sim', true]] %>
+    <%= f.input :virtual, label: 'Infoproduto', input_html: { "data-action" => "change -> infoproduct#selection" }, as: :select, colletion: [["Nao", false], ["Sim", true]], include_blank: false %>
     <%= f.input :price_cents, label: 'Preco de venda', as: :string %>
     <%= f.input :external_id, label: 'ID Externo', hint: "opcional", as: :string %>
     <div data-target="infoproduct.specs" style="display: block;" >
