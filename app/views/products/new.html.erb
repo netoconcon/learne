@@ -4,14 +4,18 @@
     <%= f.association :company, value_method: :id %>
     <%= f.input :sku, hint: "opcional", label: 'Codigo SKU' %>
     <%= f.input :description, label: 'Descricao' %>
-    <%= f.input :virtual_url, label: 'Infoproduto', input_html: { id: 'infoproduto' }, as: :select, colletion: [['Nao', false], ['Sim', true]] %>
+    <%= f.input :virtual_url, label: 'Infoproduto', input_html: { "data-action" => "change -> infoproduct#selection" }, as: :select, colletion: [['Nao', false], ['Sim', true]] %>
     <%= f.input :price_cents, label: 'Preco de venda', as: :string, input_html: { "data-js" => "price" } %>
     <%= f.input :external_id, label: 'ID Externo', hint: "opcional", as: :string %>
-    <%= f.input :weight, label: 'Peso', as: :string %>
-    <%= f.input :height, label: 'Altura', as: :string %>
-    <%= f.input :width, label: 'Largura', as: :string %>
-    <%= f.input :length, label: 'Comprimento', as: :string %>
-    <%= f.input :virtual_url, label: 'Link do Infoproduto', disabled: true %>
+    <div data-target="infoproduct.specs" style="display: none;" >
+      <%= f.input :weight, label: 'Peso', as: :string %>
+      <%= f.input :height, label: 'Altura', as: :string %>
+      <%= f.input :width, label: 'Largura', as: :string %>
+      <%= f.input :length, label: 'Comprimento', as: :string %>
+    </div>
+    <div data-target="infoproduct.vurl" style="display: none;">
+      <%= f.input :virtual_url, label: 'Link do Infoproduto' %>
+    </div>
     <%= f.button :submit, 'Cadastrar', class: "btn btn-primary" %>
   <% end %>
 </div>
