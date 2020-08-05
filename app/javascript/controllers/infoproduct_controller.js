@@ -6,12 +6,12 @@ export default class extends Controller {
   selection(e) {
     const state = e.currentTarget.value;
     console.log(state)
-		if (state == 'false') {
-			this.specsTarget.style.display = "block";
-			this.vurlTarget.style.display = "none";
-		} else if (state == 'true') {
-			this.vurlTarget.style.display = "block";
+		if (state == 'true') {
 			this.specsTarget.style.display = "none";
+			this.vurlTarget.style.display = "block";
+		} else if (state == 'false') {
+			this.vurlTarget.style.display = "none";
+			this.specsTarget.style.display = "block";
 		}
 		else {
 			this.vurlTarget.style.display = "none";
