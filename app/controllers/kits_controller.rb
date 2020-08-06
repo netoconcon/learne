@@ -22,7 +22,6 @@ class KitsController < ApplicationController
     @kit = Kit.find(params[:id])
     @kit_product = KitProduct.new
     @products = Product.all
-    @product = Product.find(params[:id])
   end
 
   def update
