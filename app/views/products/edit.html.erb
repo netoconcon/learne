@@ -1,12 +1,24 @@
-<div class="container">
+<div class="container" data-controller="infoproduct">
   <%= simple_form_for [@company, @product] do |f| %>
     <%= f.input :name, label: 'Nome do produto' %>
     <%= f.association :company,  disabled: true %>
     <%= f.input :sku, hint: "opcional", label: 'Codigo SKU' %>
     <%= f.input :description, label: 'Descricao' %>
-    <%= f.input :virtual_url, label: 'Infoproduto', as: :select, colletion: [['Nao', false], ['Sim', true]], include_blank: false %>
+    <%= f.input :virtual, label: 'Infoproduto', as: :select, disabled: true, colletion: [['Nao', false], ['Sim', true]] %>
     <%= f.input :price_cents, label: 'Preco de venda' %>
     <%= f.input :external_id, label: 'ID Externo', hint: "opcional" %>
+    <% if @product.virtual == false %>
+      <div data-target="infoproduct.specs" >
+        <%= f.input :weight, label: 'Peso', as: :string %>
+        <%= f.input :height, label: 'Altura', as: :string %>
+        <%= f.input :width, label: 'Largura', as: :string %>
+        <%= f.input :length, label: 'Comprimento', as: :string %>
+      </div>
+    <% else %>
+      <div data-target="infoproduct.vurl">
+        <%= f.input :virtual_url, label: 'Link do Infoproduto' %>
+      </div>
+    <% end %>
     <%= f.button :submit, 'Editar', class: "btn btn-primary" %>
   <% end %>
 </div>

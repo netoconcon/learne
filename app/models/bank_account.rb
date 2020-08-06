@@ -1,6 +1,6 @@
 class BankAccount < ApplicationRecord
-  validates :bank_code, presence: true, length: { is: 3 }, format: { with: /\A(\d{3}+?)\z/, message: "Informar o codigo do banco" }
-  validates :bank_name, presence: true, format: { with: /\A(([^0-9]*))\z/ }
+  validates :bank_code, presence: true, length: { in: 1..3 }, format: { with: /\A(\d{1,3})\z/, message: "Informar o codigo do banco" }
+  validates :bank_name, presence: true
   validates :agency_number, presence: true, format: { with: /\A((?:\D*\d){5}\D*)\z/, message: "Digitar numero da agencia" }
   validates :account_number, presence: true, format: { with: /\A(^[0-9]+)\z/ }
   
