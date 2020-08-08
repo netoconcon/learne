@@ -52,28 +52,11 @@ class Parser
     val
   end
 
-  def self.sanitize(val)
-    val.encode("UTF-8", invalid: :replace, undef: :replace, replace: "")
-  end
-
   def self.nil_to_zero(val)
     if val.is_a? Enumerable
       val.map { |v| nil_to_zero(v) }
     else
       val.presence || 0
-    end
-  end
-
-  def self.auto_cast(val)
-    case val
-    when /^\d+$/
-      Integer(val)
-    when /^(?!-0$)[+-]?([1-9]\d*|0)(\.\d+)?$/
-      BigDecimal(val)
-    when "true", "false", "TRUE", "false"
-      val.downcase === "true"
-    else
-      val
     end
   end
 end
