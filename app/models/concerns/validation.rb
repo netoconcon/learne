@@ -10,11 +10,11 @@ module Validation
   end
 
   def self.phone
-    { with: /\A(\([0-9]{2}\)[0-9]?[0-9]{4}-[0-9]{4})\z/ }
+    { with: /\A(\([0-9]{2}\) [0-9]?[0-9]{4}-[0-9]{4})\z/ }
   end
 
   def self.zipcode
-    { with: /\A\d{5}-\d{3}\z/ }
+    { with: /\A\d{8}\z/ }
   end
 
   def self.cpf
