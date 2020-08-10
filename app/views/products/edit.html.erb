@@ -1,4 +1,4 @@
-<div class="container" data-controller="infoproduct">
+<div class="main" data-controller="infoproduct">
   <%= simple_form_for [@company, @product] do |f| %>
     <%= f.input :name, label: 'Nome do produto' %>
     <%= f.association :company,  disabled: true %>

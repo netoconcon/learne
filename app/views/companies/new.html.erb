@@ -1,4 +1,4 @@
-<div class="container" data-controller="masks">
+<div class="main" data-controller="masks">
   <%= simple_form_for @company do |f| %>
     <%= f.input :international, label: 'Internacional', as: :select, colletion: [['Nao', false], ['Sim', true]], include_blank: false %>
     <%= f.input :name, label: 'Nome' %>

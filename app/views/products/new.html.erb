@@ -1,4 +1,4 @@
-<div class="container" data-controller="masks infoproduct">`
+<div class="main" data-controller="masks infoproduct">`
   <%= simple_form_for [@company, @product] do |f| %>
     <%= f.input :name, label: 'Nome do produto' %>
     <%= f.association :company, value_method: :id %>
