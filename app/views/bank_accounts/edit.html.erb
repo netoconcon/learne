@@ -1,11 +1,13 @@
 <div class="main" data-controller="masks bank">
-  <h1>Editar conta bancaria</h1>
-  <%= simple_form_for [@company, @bank_account], url: company_bank_account_path, method: :patch do |f| %>
-    <%= f.input :international, disabled: true %>
-    <%= f.input :bank_code, label: 'Codigo do banco', collection: banklist.map{ |obj| "#{obj[:value]} - #{obj[:label]}" }, input_html: { "data-action" => "change -> bank#name" } %>
-    <%= f.input :bank_name, label: 'Banco', input_html: { "data-target" => "bank.label" }, readonly: true %>
-    <%= f.input :agency_number, label: 'Agencia', input_html: { "data-js" => "agency", maxlength: 5} %>
-    <%= f.input :account_number, label: 'Conta' %>
-    <%= f.button :submit, 'Editar', class: "btn btn-primary" %>
-  <% end %>
+  <div class="container">
+    <h1>Editar conta bancaria</h1>
+    <%= simple_form_for [@company, @bank_account], url: company_bank_account_path, method: :patch do |f| %>
+      <%= f.input :international, disabled: true %>
+      <%= f.input :bank_code, label: 'Codigo do banco', collection: banklist.map{ |obj| "#{obj[:value]} - #{obj[:label]}" }, input_html: { "data-action" => "change -> bank#name" } %>
+      <%= f.input :bank_name, label: 'Banco', input_html: { "data-target" => "bank.label" }, readonly: true %>
+      <%= f.input :agency_number, label: 'Agencia', input_html: { "data-js" => "agency", maxlength: 5} %>
+      <%= f.input :account_number, label: 'Conta' %>
+      <%= f.button :submit, 'Editar', class: "btn btn-primary" %>
+    <% end %>
+  </div>
 </div>
