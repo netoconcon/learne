@@ -1,10 +1,12 @@
-<div class="container">
-  <h1>Editar pagina</h1>
-  <%= simple_form_for @selling_page do |f| %>
-    <%= f.association :product, label: 'Nome do produto' %>
-    <%= f.input :name, label: 'Nome da pagina' %>
-    <%= f.input :url, label: 'Url' %>
-    <%= f.input :description, label: 'Descricao' %>
-    <%= f.button :submit, 'Editar pagina', class: "btn btn-primary" %>
-  <% end %>
+<div class="main">
+  <div class="container">
+    <h2>Editar pagina</h2>
+    <%= simple_form_for @selling_page do |f| %>
+      <%= f.association :product, label: 'Nome do produto' %>
+      <%= f.input :name, label: 'Nome da pagina' %>
+      <%= f.input :url, label: 'Url' %>
+      <%= f.input :description, label: 'Descricao' %>
+      <%= f.button :submit, 'Editar pagina', class: "btn btn-primary" %>
+    <% end %>
+  </div>
 </div>

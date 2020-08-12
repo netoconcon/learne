@@ -1,48 +1,48 @@
-<div class="container">
-  <h2>Nova pagina de produtos</h2>
-  <p>
-    Meus produtos
-    <%= link_to "Cadastrar novo produto", new_product_path %>
-  </p>
-  <p> <%= link_to "Voltar", catalogs_path %></p>
+<div class="main">
+  <div class="container">
+    <h2>Meus produtos</h2>
+    <p>
+      <%= link_to "Cadastrar novo produto", new_product_path, class: "btn btn-primary" %>
+    </p>
+    
+    <div class="input-wrapper">
+      <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Procurar produto">
+      <label class="fa fa-search" aria-hidden="true"></label>
+    </div>
 
-  <div class="input-wrapper">
-    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Procurar produto">
-    <label class="fa fa-search" aria-hidden="true"></label>
+    <table class="table" id="myTable">
+      <thead>
+        <th scope="col">ID</th>
+        <th scope="col">Imagem</th>
+        <th scope="col">Codigo SKU</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Preço</th>
+        <th scope="col">Editar</th>
+        <th scope="col">Apagar</th>
+      </thead>
+      <tbody>
+        <% @products.each do |product| %>
+          <tr>
+            <th scope="row"><%= product.id %></th>
+            <td>imagem</td>
+            <td><%= product.sku %></td>
+            <td><%= product.name %></td>
+            <td>Preco: R$  <%= product.price_cents %></td>
+            <td>
+              <%= link_to  edit_product_path(product) do %>
+                <i class="far fa-edit"></i>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to product_path(product), method: :delete, data: { confirm: 'Você tem certeza que deseja apagar o produto?' } do %>
+                <i class="fa fa-trash"></i>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
-
-  <table class="table" id="myTable">
-    <thead>
-      <th scope="col">ID</th>
-      <th scope="col">Imagem</th>
-      <th scope="col">Codigo SKU</th>
-      <th scope="col">Nome</th>
-      <th scope="col">Preço</th>
-      <th scope="col">Editar</th>
-      <th scope="col">Apagar</th>
-    </thead>
-    <tbody>
-      <% @products.each do |product| %>
-        <tr>
-          <th scope="row"><%= product.id %></th>
-          <td>imagem</td>
-          <td><%= product.sku %></td>
-          <td><%= product.name %></td>
-          <td>Preco: R$  <%= product.price_cents %></td>
-          <td>
-            <%= link_to  edit_product_path(product) do %>
-              <i class="far fa-edit"></i>
-            <% end %>
-          </td>
-          <td>
-            <%= link_to product_path(product), method: :delete, data: { confirm: 'Você tem certeza que deseja apagar o produto?' } do %>
-              <i class="fa fa-trash"></i>
-            <% end %>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
 </div>
 
 <script>
