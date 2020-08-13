@@ -36,6 +36,7 @@ gem 'simple_form'
 gem 'faker'
 gem 'cocoon'
 gem 'money-rails', '~>1.12'
+gem 'chartkick'
 
 group :development, :test do  gem 'pry-byebug'
   gem 'pry-rails'
