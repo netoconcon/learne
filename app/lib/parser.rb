@@ -52,6 +52,14 @@ class Parser
     val
   end
 
+  def self.agency_number(val)
+    return "" if !val || val == 0 || val.to_s.empty?
+
+    numbers = numbers(val).rjust(5, "0")
+    pattern = /(\d{4})(\d{1}))/
+    numbers.gsub!(pattern, "\\1-\\2")
+  end
+
   def self.nil_to_zero(val)
     if val.is_a? Enumerable
       val.map { |v| nil_to_zero(v) }

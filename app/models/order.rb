@@ -9,4 +9,10 @@ class Order < ApplicationRecord
   validates :neighborhood, :city, :state, :complement, :price_cents, :birthday, presence: true
 
   belongs_to :kit
+
+  normalize_attributes :email, with: [:numbers]
+  normalize_attributes :phone, with: [:phone]
+  normalize_attributes :zipcode, with: [:numbers]
+  normalize_attributes :cpf, with: [:cpf]
+  
 end

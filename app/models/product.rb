@@ -11,4 +11,7 @@ class Product < ApplicationRecord
 
   monetize :price_cents
   default_scope {order(created_at: :asc)}
+
+  normalize_attributes :price_cents, with: [:decimal]
+  
 end
