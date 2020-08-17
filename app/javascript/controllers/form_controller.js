@@ -5,5 +5,15 @@ export default class extends Controller {
 
   pricefill() {
   	console.log(this.productTarget.dataset)
+  	debugger
+  	console.log(this.priceTarget.value)
+  }
+
+  makeRequest() {
+  	Rails.ajax({
+  		type: "POST",
+			url: "/kits",
+
+  	})
   }
 }

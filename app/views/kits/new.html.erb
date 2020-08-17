@@ -25,8 +25,14 @@
       <div class="links">
         <%= link_to_add_association "Adicionar produto", f, :kit_products %>
       </div>
-
-      <%= f.button :submit, 'Cadastrar', class: "btn btn-primary" %>
+      
+      <div class="form-total-price">
+        <%= f.button :submit, 'Cadastrar', class: "btn btn-primary" %>
+        <div>
+          Preço total
+          <input type="text" >
+        </div>
+      </div>
     <% end %>
   </div>
 </div>
