@@ -6,6 +6,9 @@ class KitsController < ApplicationController
 
   def new
     @kit = Kit.new
+    if(params.has_key?(:aux))
+      @test = Product.find(params[:aux])
+    end
   end
 
   def create
