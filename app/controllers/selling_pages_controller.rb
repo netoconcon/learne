@@ -3,6 +3,10 @@ class SellingPagesController < ApplicationController
     @selling_pages = SellingPage.all
   end
 
+  def show
+    @selling_page = SellingPage.find(params[:id])
+  end
+
   def new
     @selling_page = SellingPage.new
   end
