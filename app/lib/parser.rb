@@ -56,7 +56,7 @@ class Parser
     return "" if !val || val == 0 || val.to_s.empty?
 
     numbers = numbers(val).rjust(5, "0")
-    pattern = /(\d{4})(\d{1}))/
+    pattern = /((\d{4})(\d{1}))/
     numbers.gsub!(pattern, "\\1-\\2")
   end
 
