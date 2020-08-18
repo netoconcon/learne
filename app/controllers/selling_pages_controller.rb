@@ -4,7 +4,7 @@ class SellingPagesController < ApplicationController
   end
 
   def show
-    @selling_page = SellingPage.find(params[:id])
+    @selling_page = SellingPage.friendly.find(params[:id])
   end
 
   def new
