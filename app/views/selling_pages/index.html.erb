@@ -13,11 +13,11 @@
       </thead>
       <tbody>
         <% @selling_pages.each do |selling_page| %>
-          <tr>  
+          <tr class="<%= cycle('list_line_odd', 'list_line_even') -%>">  
             <td><%= selling_page.id %></td>
-            <td><%= selling_page.name %></td>  
+            <td><%= link_to selling_page.product.name, selling_page_path(selling_page), style: "color: #1c54d6;" %></td>
+            <td><%= selling_page.name %></td>
             <td><%= selling_page.url %></td>
-            <td><%= selling_page.description %></td>
             <td>
               <%= link_to  edit_selling_page_path(selling_page) do %>
                 <i class="far fa-edit"></i>

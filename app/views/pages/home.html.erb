@@ -16,6 +16,16 @@
       <p>
         <i class="fas fa-link"> Links de redirecionamento gerados: <%= Campaign.all.size %></i>
       </p>
+
+      <p>
+        <h2>Chartkick testing:</h2>
+        <p>Empresas criadas por mes</p>
+        <%= column_chart Company.group_by_month(:created_at).count %>
+      </p>
+      <p>
+        <p>Produtos criados por semana</p>
+        <%= line_chart Product.group_by_week(:created_at).count %>
+      </p>
     </div>
   </div>
 </div>

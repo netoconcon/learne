@@ -17,7 +17,7 @@
       </thead>
       <tbody>
         <% @campaigns.each do |campaign| %>
-          <tr>
+          <tr class="<%= cycle('list_line_odd', 'list_line_even') -%>">
             <td><%= campaign.id %></td>
             <td><%= campaign.title %></td>
             <td><%= campaign.fbid %></td>

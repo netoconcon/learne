@@ -1,9 +1,10 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-  static targets = [ "price", "product" ]
+  static targets = [ "product" ]
 
   pricefill() {
-  	console.log(this.productTarget.dataset)
-  }
+  	const aux = this.productTarget.value;
+  	console.log(aux);
+	}
 }

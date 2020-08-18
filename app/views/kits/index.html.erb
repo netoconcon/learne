@@ -16,7 +16,7 @@
       </thead>
       <tbody>
         <% @kits.each do |kit| %>
-          <tr>
+          <tr class="<%= cycle('list_line_odd', 'list_line_even') -%>">
             <th scope="row"><%= kit.id %></th>
             <td>imagem</td>
             <td><%= kit.name %></td>
