@@ -1,17 +1,15 @@
-<div class="main">
-  <div class="container">
-    <h2>Gerador de paginas de destinos</h2>
-    <%= simple_form_for @campaign do |f| %>
-      <%= f.input :title, label: 'Titulo' %>
-      <%= f.association :selling_page, label: 'Pagina de destino' %>
-      <%= f.input :fbid, label: 'fbid' %>
-      <%= f.input :utm_source, label: 'utm_source' %>
-      <%= f.input :utm_campaign, label: 'utm_campaign' %>
-      <%= f.input :utm_medium, label: 'utm_medium' %>
-      <%= f.input :utm_term, label: 'utm_term' %>
-      <%= f.input :utm_content, label: 'utm_content' %>
-      <%= f.input :pubid, label: 'pubid' %>
-      <%= f.button :submit, 'Gerar link', class: "btn btn-primary" %>
-    <% end %>
-  </div>
+<div class="container">
+  <h2>Gerador de paginas de destinos</h2>
+  <%= simple_form_for @campaign do |f| %>
+    <%= f.input :title, label: 'Titulo' %>
+    <%= f.association :selling_page, label: 'Pagina de destino' %>
+    <%= f.input :fbid, label: 'fbid' %>
+    <%= f.input :utm_source, label: 'utm_source' %>
+    <%= f.input :utm_campaign, label: 'utm_campaign' %>
+    <%= f.input :utm_medium, label: 'utm_medium' %>
+    <%= f.input :utm_term, label: 'utm_term' %>
+    <%= f.input :utm_content, label: 'utm_content' %>
+    <%= f.input :pubid, label: 'pubid' %>
+    <%= f.button :submit, 'Gerar link', class: "btn btn-primary" %>
+  <% end %>
 </div>

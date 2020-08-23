@@ -1,4 +1,6 @@
 class CampaignsController < ApplicationController
+  layout "admin"
+
   def index
     @campaigns = Campaign.all
   end

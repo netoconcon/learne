@@ -1,4 +1,6 @@
 class SellingPagesController < ApplicationController
+  layout "admin"
+
   def index
     @selling_pages = SellingPage.all
   end

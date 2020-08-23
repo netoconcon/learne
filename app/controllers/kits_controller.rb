@@ -1,4 +1,6 @@
 class KitsController < ApplicationController
+  layout "admin"
+
   def index
     @kits = Kit.all
     @products = Product.all
