@@ -40,11 +40,6 @@
   margin: 20px;
 }
 
-.rows div {
-    
-}
-
-
 .styler {
   border: 0.5px solid #919190;
   border-radius: 20px;
@@ -74,4 +69,28 @@
 .virtual-url {
   padding-left: 30px;
   padding-right: 50px;
+}
+
+.payments {
+  border-bottom: 1px solid #bfbfbf;
+  border-top: 1px solid #bfbfbf;
+  margin-bottom: 4px;
+  margin-top: 4px;
+}
+
+.payments input {
+  width: 40%;
+}
+.payment-fields {
+  display: flex;
+  justify-content: space-between;
+}
+
+.payment-fields-ship {
+  display: flex;
+}
+
+.bbb {
+  width: 30%;
+  margin-left: 15%;
 }
