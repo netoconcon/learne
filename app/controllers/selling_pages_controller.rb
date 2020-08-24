@@ -1,6 +1,6 @@
 class SellingPagesController < ApplicationController
   def index
-    @selling_pages = SellingPage.all
+    @selling_pages = SellingPage.all.order('created_at ASC')
   end
 
   def show
