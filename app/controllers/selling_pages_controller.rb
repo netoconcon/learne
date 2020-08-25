@@ -5,6 +5,8 @@ class SellingPagesController < ApplicationController
 
   def show
     @selling_page = SellingPage.friendly.find(params[:id])
+    @instances = KitProduct.where(product_id: @selling_page.product.id)
+
   end
 
   def new
