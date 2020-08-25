@@ -19,32 +19,16 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a6a2dfd0-2648-4959-a01b-9530d60eae5b" name="Default Changelist" comment="removed script from views">
-      <change afterPath="$PROJECT_DIR$/app/controllers/orders_controller.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/form/order_form.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/models/address.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/models/address/validation.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/models/order/validation.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/models/user/validation.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/orders/new.html.erb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/db/migrate/20200823210548_create_addresses.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/db/migrate/20200823215123_add_address_to_order.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/db/migrate/20200823215633_add_columns_to_user.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/db/migrate/20200823215752_remove_columns_from_order.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/db/migrate/20200824020630_change_price_in_order.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/models/adress_test.rb" afterDir="false" />
+    <list default="true" id="a6a2dfd0-2648-4959-a01b-9530d60eae5b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/assets/images/banner_vmd3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/helpers/states_helper.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/layouts/public.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/checkout-app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/checkout-app.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.ruby-version" beforeDir="false" afterPath="$PROJECT_DIR$/.ruby-version" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gemfile" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gemfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/application_record.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/application_record.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/company.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/company.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/concerns/validation.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/concerns/formatter.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/kit_product.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/kit_product.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/order.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/order.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/user.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/user.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/migrate/20200703120021_devise_create_users.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/migrate/20200703120021_devise_create_users.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/schema.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/schema.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/orders_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/orders_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/order/validation.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/order/validation.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/orders/new.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/orders/new.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/routes/public.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes/public.rb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +53,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/controllers" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/assets/images" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -80,15 +64,15 @@
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode.JavaScript" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/javascript/controllers" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/assets/images" />
+      <recent name="$PROJECT_DIR$/app/views/layouts" />
       <recent name="$PROJECT_DIR$/app/controllers" />
       <recent name="$PROJECT_DIR$/app/models/order" />
       <recent name="$PROJECT_DIR$/app/models/user" />
-      <recent name="$PROJECT_DIR$/app/javascript" />
-      <recent name="$PROJECT_DIR$/app/views/layouts" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/app/javascript/controllers" />
     </key>
   </component>
   <component name="RunManager" selected="Rails.Development: checkout-app">
@@ -209,7 +193,9 @@
       <workItem from="1598215776262" duration="36000" />
       <workItem from="1598215826643" duration="88000" />
       <workItem from="1598215940518" duration="43000" />
-      <workItem from="1598215994681" duration="13143000" />
+      <workItem from="1598215994681" duration="14407000" />
+      <workItem from="1598314382415" duration="4884000" />
+      <workItem from="1598358182731" duration="1006000" />
     </task>
     <task id="LOCAL-00001" summary="added attribute_normalizer">
       <created>1596900125181</created>
@@ -302,7 +288,21 @@
       <option name="project" value="LOCAL" />
       <updated>1598215252439</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="added order_form.rb">
+      <created>1598273138893</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1598273138893</updated>
+    </task>
+    <task id="LOCAL-00015" summary="added order_form.rb">
+      <created>1598273151851</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1598273151851</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -342,7 +342,8 @@
     <MESSAGE value="test" />
     <MESSAGE value="created admin layout" />
     <MESSAGE value="removed script from views" />
-    <option name="LAST_COMMIT_MESSAGE" value="removed script from views" />
+    <MESSAGE value="added order_form.rb" />
+    <option name="LAST_COMMIT_MESSAGE" value="added order_form.rb" />
   </component>
   <component name="WindowStateProjectService">
     <state x="174" y="54" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1596581574962">
@@ -395,13 +396,13 @@
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state x="167" y="125" width="1099" height="543" key="com.intellij.history.integration.ui.views.FileHistoryDialog/67.27.1299.741@67.27.1299.741" timestamp="1597755080544" />
-    <state x="407" y="135" width="618" height="522" key="find.popup" timestamp="1598234956385">
+    <state x="407" y="135" width="618" height="548" key="find.popup" timestamp="1598318752048">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state x="407" y="135" width="618" height="522" key="find.popup/67.27.1299.741@67.27.1299.741" timestamp="1598234956385" />
-    <state x="379" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1598237636489">
+    <state x="407" y="135" width="618" height="548" key="find.popup/67.27.1299.741@67.27.1299.741" timestamp="1598318752048" />
+    <state x="379" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1598319117757">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state x="379" y="89" width="672" height="678" key="search.everywhere.popup/67.27.1299.741@67.27.1299.741" timestamp="1598237636489" />
+    <state x="379" y="89" width="672" height="678" key="search.everywhere.popup/67.27.1299.741@67.27.1299.741" timestamp="1598319117757" />
   </component>
 </project>

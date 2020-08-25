@@ -1,4 +1,4 @@
-module Address::Validation
+module Order::Validation
   extend ActiveSupport::Concern
 
   included do

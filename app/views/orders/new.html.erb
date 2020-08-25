@@ -1,0 +1,111 @@
+<%= simple_form_for @order, url: orders_path, method: :post do |f| %>
+  <div class="mt-4 mb-4">
+    <%= image_tag "banner_vmd3.png", width: "1070px", height: "300px" %>
+  </div>
+
+  <div class="row mb-4">
+    <div class="col-12 col-md-6">
+      <div class="card mb-4">
+        <div class="card-header text-center">
+          <h4>1 - Para Onde Enviamos Seu Pedido?</h4>
+        </div>
+
+        <div class="card-body">
+          <div class="form-group row">
+            <div class="col-12 col-sm-6">
+              <div class="form-group">
+                <%= f.input :first_name, label: "Nome", required: true %>
+              </div>
+            </div>
+            <div class="col-12 col-sm-6">
+              <div class="form-group">
+                <%= f.input :last_name, label: "Sobrenome", required: true %>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-12 col-sm-6">
+              <div class="form-group">
+                <%= f.input :email, label: "E-mail", required: true %>
+              </div>
+            </div>
+            <div class="col-12 col-sm-6">
+              <div class="form-group">
+                <%= f.input :phone, label: "Celular com DDD", required: true %>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-8 col-sm-6">
+              <div class="form-group">
+                <%= f.input :zipcode, label: "CEP", required: true %>
+              </div>
+            </div>
+          </div>
+
+          <div id="address-form">
+            <div class="form-group row">
+              <div class="col-8">
+                <div class="form-group">
+                  <%= f.input :street, label: "Endereço", required: true %>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="form-group">
+                  <%= f.input :number, label: "Número", required: true %>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <div class="col-12 col-sm-6">
+                <div class="form-group">
+                  <%= f.input :complement, label: "Complemento", required: true %>
+                </div>
+              </div>
+              <div class="col-12 col-sm-6">
+                <div class="form-group">
+                  <%= f.input :neighborhood, label: "Bairro", required: true %>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <div class="col-8">
+                <div class="form-group">
+                  <%= f.input :city, label: "Cidade", required: true %>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="form-group">
+                  <%= f.input :state, label: "Estado", required: true, as: :select, collection: states_list %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-6">
+      <div class="card">
+        <div class="card-header text-center">
+          <h4>2 - Selecionar Pagamento</h4>
+        </div>
+
+        <div class="card-body">
+          <div class="nav nav-tabs">
+
+            <%= link_to "Cartão de Crédito", root_path, class: "nav-link active show" %>
+            <%= link_to "Boleto", root_path, class: "nav-link show" %>
+            <div class="tab-content mt-4">
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
