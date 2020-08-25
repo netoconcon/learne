@@ -2,7 +2,7 @@ class CampaignsController < ApplicationController
   layout "admin"
 
   def index
-    @campaigns = Campaign.all
+    @campaigns = Campaign.all.order('created_at ASC')
   end
   def new
     @campaign = Campaign.new

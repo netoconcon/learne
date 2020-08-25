@@ -1,17 +1,25 @@
 <div data-controller="masks">
   <div class="container">
     <h2>Cadastrar nova empresa</h2>
-    <%= simple_form_for @company do |f| %>
-      <%= f.input :international, label: 'Internacional', as: :select, colletion: [['Nao', false], ['Sim', true]], include_blank: false %>
-      <%= f.input :name, label: 'Nome' %>
-      <%= f.input :cnpj, label: 'CNPJ', input_html: { "data-js" => "cnpj" }  %>
-      <div>
-        <%= f.input :email_support, label: 'Email de suporte' %>
-        <%= f.input :email_notification, label: 'Email para notificacoes' %>
-        <%= f.input :phone_support, label: 'Telefone de suporte', input_html: { "data-js" => "phone" } %>
-        <%= f.input :shipment_origin_zipcode, label: 'CEP de saida', input_html: { "data-js" => "cep" } %>
-      </div>
-      <%= f.button :submit, 'Cadastrar', class: "btn btn-primary" %>
-    <% end %>
+    <div class="styler">
+      <%= simple_form_for @company do |f| %>
+        <div class="columns">
+          <div>
+            <%= f.input :international, label: 'Internacional', as: :select, colletion: [['Nao', false], ['Sim', true]], include_blank: false %>
+            <%= f.input :cnpj, label: 'CNPJ', input_html: { "data-js" => "cnpj" }  %>
+            <%= f.input :email_notification, label: 'Email para notificacoes' %>
+            <%= f.input :shipment_origin_zipcode, label: 'CEP de saida', input_html: { "data-js" => "cep" } %>
+          </div>
+          <div>
+            <%= f.input :name, label: 'Nome' %>
+            <%= f.input :email_support, label: 'Email de suporte' %>
+            <%= f.input :phone_support, label: 'Telefone de suporte', input_html: { "data-js" => "phone" } %>
+          </div>
+        </div>
+        <div class="text-center">
+          <%= f.button :submit, 'Cadastrar', class: "btn btn-primary submit" %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>

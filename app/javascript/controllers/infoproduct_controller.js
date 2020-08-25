@@ -11,7 +11,7 @@ export default class extends Controller {
 			this.vurlTarget.style.display = "block";
 		} else if (state == 'false') {
 			this.vurlTarget.style.display = "none";
-			this.specsTarget.style.display = "block";
+			this.specsTarget.style.display = "flex";
 		}
 		else {
 			this.vurlTarget.style.display = "none";

@@ -12,7 +12,7 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:kit).permit(
+    params.require(:order).permit(
         :installments,
         :price,
         :kit,

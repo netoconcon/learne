@@ -2,11 +2,13 @@ class SellingPagesController < ApplicationController
   layout "admin"
 
   def index
-    @selling_pages = SellingPage.all
+    @selling_pages = SellingPage.all.order('created_at ASC')
   end
 
   def show
     @selling_page = SellingPage.friendly.find(params[:id])
+    @instances = KitProduct.where(product_id: @selling_page.product.id)
+
   end
 
   def new

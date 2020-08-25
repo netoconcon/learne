@@ -20,15 +20,39 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a6a2dfd0-2648-4959-a01b-9530d60eae5b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/assets/images/banner_vmd3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/helpers/states_helper.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/layouts/public.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/checkout-app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/checkout-app.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/assets/images/Boleto.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/assets/stylesheets/components/_checkout.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/assets/stylesheets/components/_formcompany.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/assets/stylesheets/components/_formproduct.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/orders/index.html.erb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/controllers/orders_controller_test.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gemfile" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gemfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/assets/stylesheets/components/_index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/stylesheets/components/_index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/campaigns_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/campaigns_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/kits_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/kits_controller.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/orders_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/orders_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/order/validation.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/order/validation.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/orders/new.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/orders/new.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/routes/public.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes/public.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/selling_pages_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/selling_pages_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/controllers/form_controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/controllers/form_controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/controllers/hello_controller.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/controllers/infoproduct_controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/controllers/infoproduct_controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/order.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/order.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/campaigns/edit.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/campaigns/edit.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/campaigns/new.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/campaigns/new.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/companies/edit.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/companies/edit.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/companies/new.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/companies/new.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/companies/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/companies/show.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/kits/_kit_product_fields.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/kits/_kit_product_fields.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/kits/edit.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/kits/edit.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/kits/new.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/kits/new.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/layouts/application.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layouts/application.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/products/edit.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/products/edit.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/products/new.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/products/new.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/selling_pages/edit.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/selling_pages/edit.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/selling_pages/new.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/selling_pages/new.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/selling_pages/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/selling_pages/show.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/shared/_sidebar.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/shared/_sidebar.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/routes/admin.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes/admin.rb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -196,6 +220,7 @@
       <workItem from="1598215994681" duration="14407000" />
       <workItem from="1598314382415" duration="4884000" />
       <workItem from="1598358182731" duration="1006000" />
+      <workItem from="1598371955673" duration="1877000" />
     </task>
     <task id="LOCAL-00001" summary="added attribute_normalizer">
       <created>1596900125181</created>
@@ -354,11 +379,11 @@
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state x="427" y="198" width="568" height="396" key="#com.intellij.fileTypes.FileTypeChooser/67.27.1299.741@67.27.1299.741" timestamp="1598231154116" />
-    <state x="167" y="125" width="1099" height="543" key="DiffContextDialog" timestamp="1597775302209">
+    <state x="167" y="125" width="1099" height="543" key="DiffContextDialog" timestamp="1598399908650">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state x="167" y="125" width="1099" height="543" key="DiffContextDialog/67.27.1299.741/1366.0.1360.768@67.27.1299.741" timestamp="1595289945625" />
-    <state x="167" y="125" width="1099" height="543" key="DiffContextDialog/67.27.1299.741@67.27.1299.741" timestamp="1597775302209" />
+    <state x="167" y="125" width="1099" height="543" key="DiffContextDialog/67.27.1299.741@67.27.1299.741" timestamp="1598399908650" />
     <state width="1253" height="175" key="GridCell.Tab.0.bottom" timestamp="1597776778523">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
@@ -375,23 +400,23 @@
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state width="1253" height="175" key="GridCell.Tab.0.right/67.27.1299.741@67.27.1299.741" timestamp="1597776778522" />
-    <state x="187" y="86" width="1039" height="622" key="MergeDialog" timestamp="1598212135418">
+    <state x="187" y="86" width="1039" height="622" key="MergeDialog" timestamp="1598399899629">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state x="187" y="86" width="1039" height="622" key="MergeDialog/67.27.1299.741@67.27.1299.741" timestamp="1598212135418" />
-    <state x="347" y="159" width="728" height="475" key="MultipleFileMergeDialog" timestamp="1598212137525">
+    <state x="187" y="86" width="1039" height="622" key="MergeDialog/67.27.1299.741@67.27.1299.741" timestamp="1598399899629" />
+    <state x="347" y="159" width="728" height="475" key="MultipleFileMergeDialog" timestamp="1598399899631">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state x="347" y="159" width="728" height="475" key="MultipleFileMergeDialog/67.27.1299.741@67.27.1299.741" timestamp="1598212137525" />
+    <state x="347" y="159" width="728" height="475" key="MultipleFileMergeDialog/67.27.1299.741@67.27.1299.741" timestamp="1598399899631" />
     <state x="205" y="31" key="SettingsEditor" timestamp="1598214283522">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state x="205" y="31" key="SettingsEditor/67.27.1299.741@67.27.1299.741" timestamp="1598214283522" />
-    <state x="477" y="113" width="472" height="566" key="VcsDiffUtil.ChangesDialog" timestamp="1597774260475">
+    <state x="477" y="113" width="472" height="566" key="VcsDiffUtil.ChangesDialog" timestamp="1598372408299">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state x="477" y="113" width="468" height="566" key="VcsDiffUtil.ChangesDialog/67.27.1299.741/1366.0.1360.768@67.27.1299.741" timestamp="1595289920873" />
-    <state x="477" y="113" width="472" height="566" key="VcsDiffUtil.ChangesDialog/67.27.1299.741@67.27.1299.741" timestamp="1597774260475" />
+    <state x="477" y="113" width="472" height="566" key="VcsDiffUtil.ChangesDialog/67.27.1299.741@67.27.1299.741" timestamp="1598372408299" />
     <state x="167" y="125" width="1099" height="543" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1597755080544">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
