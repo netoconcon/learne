@@ -1,8 +1,11 @@
-<div class="sidenav">
-  <p> <%= link_to "Home", root_path %> </p>
-  <p> <%= link_to "Empresas", companies_path %> </p>
-  <p> <%= link_to "Produtos", products_path %> </p>
-  <p> <%= link_to "Meus kits", kits_path %> </p>
-  <p> <%= link_to "Paginas de venda", selling_pages_path %> </p>
-  <p> <%= link_to "Link de redirecionamento", campaigns_path %> </p>
-</div>
+<% if user_signed_in? %>
+  <div class="sidenav">
+    <p> <%= link_to "Home", root_path %> </p>
+    <p> <%= link_to "Vendas", orders_path %> </p>
+    <p> <%= link_to "Empresas", companies_path %> </p>
+    <p> <%= link_to "Produtos", products_path %> </p>
+    <p> <%= link_to "Meus kits", kits_path %> </p>
+    <p> <%= link_to "Paginas de venda", selling_pages_path %> </p>
+    <p> <%= link_to "Link de redirecionamento", campaigns_path %> </p>
+  </div>
+<% end %>

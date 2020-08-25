@@ -2,31 +2,48 @@
   <div class="container" style="padding-bottom: 15px;">
     <h2>Novo kit</h2>
     <%= simple_form_for @kit do |f| %>
-      <%= f.input :name, label: 'Nome do kit' %>
-      <%= f.input :description, label: 'Descricao' %>
-      Pagamento
-      <%= f.input :payment_type, label: 'Tipo de pagamento', collection: Kit.payment_types.keys %>
-      <%= f.input :standard_installments, label: 'Parcela padrao', input_html: {value: f.object.standard_installments || '12'} %>
-      <%= f.input :maximum_installments, label: 'Parcela maxima', input_html: {value: f.object.maximum_installments || '12'} %>
-      Frete
-      <%= f.input :shipment_cost, label: 'Frete' %>
-      <%= f.input :allow_free_shipment, label: 'Permitir frete gratis', as: :select, colletion: [['Nao', false], ['Sim', true]], include_blank: false %>
-      <%= f.input :weight, label: 'Peso' %>
-      <%= f.input :height, label: 'Altura' %>
-      <%= f.input :width, label: 'Largura' %>
-      <%= f.input :length, label: 'Comprimento' %>
-      
+      <div class="styler">
+        <div>
+        <%= f.input :name, label: 'Nome do kit' %>
+        <%= f.input :description, label: 'Descricao' %>
+        </div>
+        Pagamento
+        <div class="payments">
+          <div class="payment-fields">
+            <%= f.input :payment_type, label: 'Tipo de pagamento', collection: Kit.payment_types.keys %>
+            <%= f.input :standard_installments, label: 'Parcela padrao', input_html: {value: f.object.standard_installments || '12'} %>
+            <%= f.input :maximum_installments, label: 'Parcela maxima', input_html: {value: f.object.maximum_installments || '12'} %>
+          </div>
+          <div class="payment-fields-ship">
+            <%= f.input :allow_free_shipment, label: 'Permitir frete gratis', as: :select, colletion: [['Nao', false], ['Sim', true]], include_blank: false %>
+            <div class="bbb">
+            <%= f.input :shipment_cost, label: 'Frete' %>
+            </div>
+          </div>
+        </div>
+          <div class="utm">
+            <%= f.input :weight, label: 'Peso' %>
+            <%= f.input :height, label: 'Altura' %>
+            <%= f.input :width, label: 'Largura' %>
+            <%= f.input :length, label: 'Comprimento' %>
+          </div>
 
-      <h4>Adicionar produtos</h4>
-      <%= f.fields_for :kit_products do |kit_product| %>
-        <%= render 'kit_product_fields', f: kit_product %>
-      <% end %>
+        <h4>Adicionar produtos</h4>
+        <%= f.fields_for :kit_products do |kit_product| %>
+          <%= render 'kit_product_fields', f: kit_product %>
+        <% end %>
 
-      <div class="links">
-        <%= link_to_add_association "Adicionar produto", f, :kit_products %>
+        <div class="links">
+          <%= link_to_add_association "Adicionar produto", f, :kit_products %>
+        </div>
       </div>
-
-      <%= f.button :submit, 'Cadastrar', class: "btn btn-primary" %>
+      <div class="form-total-price">
+        <%= f.button :submit, 'Cadastrar', class: "btn btn-primary submit-product" %>
+        <div style="width: 15%;">
+          Preço total
+          <input type="text" >
+        </div>
+      </div>
     <% end %>
   </div>
 </div>

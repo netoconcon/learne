@@ -1,0 +1,96 @@
+.simple_form input {
+  width: 100%;
+}
+
+.simple_form select {
+  width: 100%;
+}
+
+.submit {
+  width: 50% !important;
+  margin-bottom: 10px;
+}
+
+.submit-product {
+  width: 50% !important;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  margin-left: 25%;
+}
+
+.columns {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
+}
+
+.columns div {
+  width: 95%;
+}
+
+.utm {
+  display: flex;
+}
+
+.utm input {
+  width: 95%;
+}
+
+.rows {
+  margin: 20px;
+}
+
+.styler {
+  border: 0.5px solid #919190;
+  border-radius: 20px;
+  padding: 5px;
+}
+
+.description {
+  width: 94%;
+  margin: 20px;
+}
+
+.styler-margin {
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+.dimensions {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 30px;
+}
+
+.dimensions input{
+  width: 60%;
+}
+
+.virtual-url {
+  padding-left: 30px;
+  padding-right: 50px;
+}
+
+.payments {
+  border-bottom: 1px solid #bfbfbf;
+  border-top: 1px solid #bfbfbf;
+  margin-bottom: 4px;
+  margin-top: 4px;
+}
+
+.payments input {
+  width: 40%;
+}
+.payment-fields {
+  display: flex;
+  justify-content: space-between;
+}
+
+.payment-fields-ship {
+  display: flex;
+}
+
+.bbb {
+  width: 30%;
+  margin-left: 15%;
+}

@@ -1,6 +1,6 @@
 class CompaniesController < ApplicationController
   def index
-    @companies = Company.all
+    @companies = Company.all.order('created_at ASC')
     @bank_accounts = BankAccount.all
   end
 

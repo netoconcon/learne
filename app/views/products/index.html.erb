@@ -22,7 +22,7 @@
       </thead>
       <tbody>
         <% @products.each do |product| %>
-          <tr>
+          <tr class="<%= cycle('list_line_odd', 'list_line_even') -%>">
             <th scope="row"><%= product.id %></th>
             <td>imagem</td>
             <td><%= product.sku %></td>

@@ -36,6 +36,11 @@ gem 'simple_form'
 gem 'faker'
 gem 'cocoon'
 gem 'money-rails', '~>1.12'
+gem 'chartkick'
+gem 'groupdate'
+gem 'friendly_id', '~> 5.4.0'
+gem 'gon'
+
 
 group :development, :test do  gem 'pry-byebug'
   gem 'pry-rails'

@@ -6,6 +6,9 @@ class KitsController < ApplicationController
 
   def new
     @kit = Kit.new
+    if(params.has_key?(:aux))
+      @test = Product.find(params[:aux])
+    end
   end
 
   def create
@@ -19,6 +22,7 @@ class KitsController < ApplicationController
   end
 
   def edit
+    gon.products = product_price
     @kit = Kit.find(params[:id])
     @kit_product = KitProduct.new
     @products = Product.all
@@ -40,10 +44,15 @@ class KitsController < ApplicationController
     redirect_to kits_path
   end
 
+  def product_price
+    listproducts = Hash.new
+    products = Product.all
+    products.each { |x| listproducts[x]}
+  end
 
   private
 
   def kit_params
-    params.require(:kit).permit(:name, :description, :payment_type, :standard_installments, :maximum_installments, :shipment_cost, :allow_free_shipment, :weight, :height, :length, :width, kit_products_attributes:[:id, :product_id, :kit_id, :quantity, :price, :_destroy, product_attributes:[:id, :company_id, :name, :sku, :price, :description, :external_id, :weight, :height, :length, :virtual_url]])
+    params.require(:kit).permit(:name, :description, :payment_type, :standard_installments, :maximum_installments, :shipment_cost, :allow_free_shipment, :weight, :height, :length, :width, kit_products_attributes:[:id, :product_id, :kit_id, :quantity, :price_cents, :_destroy, product_attributes:[:id, :company_id, :name, :sku, :price, :description, :external_id, :weight, :height, :length, :virtual_url]])
   end
 end
