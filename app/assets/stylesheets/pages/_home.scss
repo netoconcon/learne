@@ -1,1 +1,16 @@
 // Specific CSS for your home-page
+.details {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    margin: 1em;
+}
+
+.details div {
+  width: 33%;
+}
+
+.spacing {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
