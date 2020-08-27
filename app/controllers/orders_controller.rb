@@ -21,7 +21,6 @@ class OrdersController < ApplicationController
         :email,
         :first_name,
         :last_name,
-        :cpf,
         :birthday,
         :street,
         :number,
@@ -30,6 +29,13 @@ class OrdersController < ApplicationController
         :city,
         :state,
         :zipcode,
+        :credit_card_number,
+        :credit_card_name,
+        :credit_card_cpf,
+        :credit_card_expiration_month,
+        :credit_card_expiration_year,
+        :credit_card_cvv,
+        :installments
     )
   end
 end

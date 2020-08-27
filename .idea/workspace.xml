@@ -19,40 +19,21 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a6a2dfd0-2648-4959-a01b-9530d60eae5b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/assets/images/Boleto.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/assets/stylesheets/components/_checkout.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/assets/stylesheets/components/_formcompany.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/assets/stylesheets/components/_formproduct.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/orders/index.html.erb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/controllers/orders_controller_test.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gemfile" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gemfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/assets/stylesheets/components/_index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/stylesheets/components/_index.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/campaigns_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/campaigns_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/kits_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/kits_controller.rb" afterDir="false" />
+    <list default="true" id="a6a2dfd0-2648-4959-a01b-9530d60eae5b" name="Default Changelist" comment="merged rafa's stuff">
+      <change afterPath="$PROJECT_DIR$/app/javascript/controllers/payment_method_controller.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/javascript/controllers/zipcode_controller.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/db/migrate/20200826012117_remove_product_from_selling_page.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/db/migrate/20200826012136_add_kit_to_selling_page.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/checkout-app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/checkout-app.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/orders_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/orders_controller.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/selling_pages_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/selling_pages_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/javascript/controllers/form_controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/controllers/form_controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/javascript/controllers/hello_controller.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/javascript/controllers/infoproduct_controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/controllers/infoproduct_controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/order.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/order.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/campaigns/edit.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/campaigns/edit.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/campaigns/new.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/campaigns/new.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/companies/edit.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/companies/edit.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/companies/new.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/companies/new.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/companies/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/companies/show.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/kits/_kit_product_fields.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/kits/_kit_product_fields.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/kits/edit.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/kits/edit.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/kits/new.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/kits/new.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/layouts/application.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layouts/application.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/products/edit.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/products/edit.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/products/new.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/products/new.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/selling_pages/edit.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/selling_pages/edit.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/selling_pages/new.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/selling_pages/new.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/selling_pages/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/selling_pages/show.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/shared/_sidebar.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/shared/_sidebar.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/routes/admin.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes/admin.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/form/order_form.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/form/order_form.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/helpers/states_helper.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/helpers/select_helper.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/controllers/masks_controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/controllers/masks_controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/selling_page.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/selling_page.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/orders/new.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/orders/new.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/schema.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/schema.rb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,6 +42,13 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="LogFilters">
+    <option name="FILTER_ERRORS" value="false" />
+    <option name="FILTER_WARNINGS" value="false" />
+    <option name="FILTER_INFO" value="true" />
+    <option name="FILTER_DEBUG" value="true" />
+    <option name="CUSTOM_FILTER" />
   </component>
   <component name="ProjectId" id="1f0UeXtAuKmwKyVo2tLTYMGGwzE" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -77,7 +65,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/assets/images" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/javascript/controllers" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -88,15 +76,15 @@
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode.JavaScript" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/app/javascript/controllers" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/javascript/controllers" />
       <recent name="$PROJECT_DIR$/app/assets/images" />
       <recent name="$PROJECT_DIR$/app/views/layouts" />
       <recent name="$PROJECT_DIR$/app/controllers" />
       <recent name="$PROJECT_DIR$/app/models/order" />
-      <recent name="$PROJECT_DIR$/app/models/user" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/javascript/controllers" />
     </key>
   </component>
   <component name="RunManager" selected="Rails.Development: checkout-app">
@@ -220,7 +208,8 @@
       <workItem from="1598215994681" duration="14407000" />
       <workItem from="1598314382415" duration="4884000" />
       <workItem from="1598358182731" duration="1006000" />
-      <workItem from="1598371955673" duration="1877000" />
+      <workItem from="1598371955673" duration="8716000" />
+      <workItem from="1598500725463" duration="5535000" />
     </task>
     <task id="LOCAL-00001" summary="added attribute_normalizer">
       <created>1596900125181</created>
@@ -327,7 +316,14 @@
       <option name="project" value="LOCAL" />
       <updated>1598273151851</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="merged rafa's stuff">
+      <created>1598399920829</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1598399920829</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -368,7 +364,8 @@
     <MESSAGE value="created admin layout" />
     <MESSAGE value="removed script from views" />
     <MESSAGE value="added order_form.rb" />
-    <option name="LAST_COMMIT_MESSAGE" value="added order_form.rb" />
+    <MESSAGE value="merged rafa's stuff" />
+    <option name="LAST_COMMIT_MESSAGE" value="merged rafa's stuff" />
   </component>
   <component name="WindowStateProjectService">
     <state x="174" y="54" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1596581574962">
@@ -384,22 +381,38 @@
     </state>
     <state x="167" y="125" width="1099" height="543" key="DiffContextDialog/67.27.1299.741/1366.0.1360.768@67.27.1299.741" timestamp="1595289945625" />
     <state x="167" y="125" width="1099" height="543" key="DiffContextDialog/67.27.1299.741@67.27.1299.741" timestamp="1598399908650" />
-    <state width="1253" height="175" key="GridCell.Tab.0.bottom" timestamp="1597776778523">
+    <state width="1253" height="175" key="GridCell.Tab.0.bottom" timestamp="1598507834423">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state width="1253" height="175" key="GridCell.Tab.0.bottom/67.27.1299.741@67.27.1299.741" timestamp="1597776778523" />
-    <state width="1253" height="175" key="GridCell.Tab.0.center" timestamp="1597776778520">
+    <state width="1253" height="175" key="GridCell.Tab.0.bottom/67.27.1299.741@67.27.1299.741" timestamp="1598507834423" />
+    <state width="1253" height="175" key="GridCell.Tab.0.center" timestamp="1598507834415">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state width="1253" height="175" key="GridCell.Tab.0.center/67.27.1299.741@67.27.1299.741" timestamp="1597776778520" />
-    <state width="1253" height="175" key="GridCell.Tab.0.left" timestamp="1597776778516">
+    <state width="1253" height="175" key="GridCell.Tab.0.center/67.27.1299.741@67.27.1299.741" timestamp="1598507834415" />
+    <state width="1253" height="175" key="GridCell.Tab.0.left" timestamp="1598507834414">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state width="1253" height="175" key="GridCell.Tab.0.left/67.27.1299.741@67.27.1299.741" timestamp="1597776778516" />
-    <state width="1253" height="175" key="GridCell.Tab.0.right" timestamp="1597776778522">
+    <state width="1253" height="175" key="GridCell.Tab.0.left/67.27.1299.741@67.27.1299.741" timestamp="1598507834414" />
+    <state width="1253" height="175" key="GridCell.Tab.0.right" timestamp="1598507834421">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state width="1253" height="175" key="GridCell.Tab.0.right/67.27.1299.741@67.27.1299.741" timestamp="1597776778522" />
+    <state width="1253" height="175" key="GridCell.Tab.0.right/67.27.1299.741@67.27.1299.741" timestamp="1598507834421" />
+    <state width="1253" height="175" key="GridCell.Tab.1.bottom" timestamp="1598507834427">
+      <screen x="67" y="27" width="1299" height="741" />
+    </state>
+    <state width="1253" height="175" key="GridCell.Tab.1.bottom/67.27.1299.741@67.27.1299.741" timestamp="1598507834427" />
+    <state width="1253" height="175" key="GridCell.Tab.1.center" timestamp="1598507834426">
+      <screen x="67" y="27" width="1299" height="741" />
+    </state>
+    <state width="1253" height="175" key="GridCell.Tab.1.center/67.27.1299.741@67.27.1299.741" timestamp="1598507834426" />
+    <state width="1253" height="175" key="GridCell.Tab.1.left" timestamp="1598507834425">
+      <screen x="67" y="27" width="1299" height="741" />
+    </state>
+    <state width="1253" height="175" key="GridCell.Tab.1.left/67.27.1299.741@67.27.1299.741" timestamp="1598507834425" />
+    <state width="1253" height="175" key="GridCell.Tab.1.right" timestamp="1598507834427">
+      <screen x="67" y="27" width="1299" height="741" />
+    </state>
+    <state width="1253" height="175" key="GridCell.Tab.1.right/67.27.1299.741@67.27.1299.741" timestamp="1598507834427" />
     <state x="187" y="86" width="1039" height="622" key="MergeDialog" timestamp="1598399899629">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
@@ -421,13 +434,16 @@
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state x="167" y="125" width="1099" height="543" key="com.intellij.history.integration.ui.views.FileHistoryDialog/67.27.1299.741@67.27.1299.741" timestamp="1597755080544" />
-    <state x="407" y="135" width="618" height="548" key="find.popup" timestamp="1598318752048">
+    <state x="407" y="135" width="618" height="548" key="find.popup" timestamp="1598501538366">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state x="407" y="135" width="618" height="548" key="find.popup/67.27.1299.741@67.27.1299.741" timestamp="1598318752048" />
-    <state x="379" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1598319117757">
+    <state x="407" y="135" width="618" height="548" key="find.popup/67.27.1299.741@67.27.1299.741" timestamp="1598501538366" />
+    <state x="379" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1598507271656">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state x="379" y="89" width="672" height="678" key="search.everywhere.popup/67.27.1299.741@67.27.1299.741" timestamp="1598319117757" />
+    <state x="379" y="89" width="672" height="678" key="search.everywhere.popup/67.27.1299.741@67.27.1299.741" timestamp="1598507271656" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/checkout_app@Development__checkout_app.rcov" NAME="Development: checkout-app Coverage Results" MODIFIED="1598507828286" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="checkout-app" />
   </component>
 </project>
