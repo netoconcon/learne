@@ -11,7 +11,6 @@ class RemoveColumnsFromOrder < ActiveRecord::Migration[6.0]
     remove_column :orders, :city, :string
     remove_column :orders, :state, :string
     remove_column :orders, :complement, :string
-    remove_column :orders, :cpf, :string
     remove_column :orders, :birthday, :string
   end
 end
