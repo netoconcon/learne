@@ -124,7 +124,7 @@
                           </label>
                           <select name="" id=""> 12x1</select>
                         </div>
-                        <input type="submit" class="btn btn-primary submit-button" value="Finalizar Pedido">
+                        <%= f.button :submit, 'Finalizar Pedido', class: "btn btn-primary submit-button" %>
                       </div>
                     </div>
                     <div class="tab-pane fade" id="boleto" role="tabpanel">
@@ -148,7 +148,7 @@
                         <div>
                           <%= f.input :CPF, label: "CPF (Para emissão da Nota Fiscal)" %>
                         </div>
-                        <input type="submit" class="btn btn-primary submit-button" value="Gerar boleto">
+                        <%= f.button :submit, 'Gerar boleto', class: "btn btn-primary submit-button" %>
                       </div>
                     </div>
                   </div> 

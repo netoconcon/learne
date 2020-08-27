@@ -6,7 +6,7 @@ class Order < ApplicationRecord
   validates :zipcode, presence: true, format: Validation.zipcode
   validates :CPF, presence: true, format: Validation.cpf
   validates :first_name, :last_name, :street, :street_number, presence: true
-  validates :neighborhood, :city, :state, :complement, :price, :birthday, presence: true
+  validates :neighborhood, :city, :state, :complement, :price, presence: true
 
   belongs_to :kit
 
