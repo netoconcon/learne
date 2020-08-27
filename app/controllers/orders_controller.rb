@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  layout "public"
+layout "public"
 
   def new
     @order = OrderForm.new
