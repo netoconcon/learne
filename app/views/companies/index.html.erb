@@ -1,102 +1,76 @@
-<div class="main">
-  <div class="container">
-    <h2>Minhas empresas</h2>
+<div class="container" data-controller="table">
+  <h2>Minhas empresas</h2>
 
-    <p> <%= link_to "Cadastrar empresa", new_company_path, class: "btn btn-primary" %> </p>
+  <p> <%= link_to "Cadastrar empresa", new_company_path, class: "btn btn-primary" %> </p>
 
 
-    <div class="input-wrapper">
-      <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Procurar empresa">
-      <label class="fa fa-search" aria-hidden="true"></label>
-    </div>
+  <div class="input-wrapper mb-1">
+    <input type="text" id="myInput" placeholder="Procurar empresa" data-action="input->table#search">
+    <label class="fa fa-search" aria-hidden="true"></label>
+  </div>
 
-    <table class="table" id="myTable">
-      <thead>
-        <th scope="col">Nome</th>
-        <th scope="col">CNPJ</th>
-        <th scope="col">Email</th>
-        <th scope="col">Telefone</th>
-        <th scope="col">CEP</th>
-        <th scope="col">Detalhes</th>
-        <th scope="col">Editar</th>
-      </thead>
-      <tbody>
-        <% @companies.each do |company|%>
-          <tr>
-            <td><%= company.name %></td>
-            <td id="cnpj-field"><%= company.cnpj %></td>
-            <td><%= company.email_support %></td>
-            <td><%= company.phone_support %></td>
-            <td><%= company.shipment_origin_zipcode %></td>
-            <td>
-              <%= link_to company_path(company) do %>
-                <i class="fa fa-info-circle"></i>
-              <% end %>
-            </td>
-            <td>
-              <%= link_to edit_company_path(company) do %>
-                <i class="far fa-edit"></i>
-              <% end %>
-            </td>
-          </tr>
-          <div class="panel-group" id="myaccordion">
-            <div class="panel panel-primrary">
-              <div class="panel-heading">
-                <td class="panel-title" colspan="2" data-toggle="collapse" data-target=<%= "#panel-#{company.id}" %> >
-                  <p style="color: #035AC1">Contas bancarias (<%= company.bank_accounts.size %>)</p>
-                </td>
-              </div>
+  <table class="table" id="myTable" data-target="table.table">
+    <thead>
+      <th scope="col">Nome</th>
+      <th scope="col">CNPJ</th>
+      <th scope="col">Email</th>
+      <th scope="col">Telefone</th>
+      <th scope="col">CEP</th>
+      <th scope="col">Detalhes</th>
+      <th scope="col">Editar</th>
+    </thead>
+    <tbody>
+      <% @companies.each do |company|%>
+        <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+          <td><%= company.name %></td>
+          <td id="cnpj-field"><%= company.cnpj %></td>
+          <td><%= company.email_support %></td>
+          <td><%= company.phone_support %></td>
+          <td><%= company.shipment_origin_zipcode %></td>
+          <td>
+            <%= link_to company_path(company) do %>
+              <i class="fa fa-info-circle"></i>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to edit_company_path(company) do %>
+              <i class="far fa-edit"></i>
+            <% end %>
+          </td>
+        </tr>
+        <div class="panel-group" id="myaccordion">
+          <div class="panel panel-primrary">
+            <div class="panel-heading">
+              <td class="panel-title" colspan="2" data-toggle="collapse" data-target=<%= "#panel-#{company.id}" %> >
+                <p style="color: #035AC1">Contas bancarias (<%= company.bank_accounts.size %>)</p>
+              </td>
             </div>
           </div>
-          <tr>
-            <td colspan="8" style="border-bottom: 2px solid black">
-              <div class="panel-collapse collapse" id=<%= "panel-#{company.id}" %>>
-                <div class="panel-body">
-                  <% @bank_accounts.where(company_id: company.id).each do |bank_account| %>
-                    <p>
-                       <%= bank_account.bank_name %>
-                       <b>Agencia:</b> <%= bank_account.agency_number %>
-                       <b>Conta:</b> <%= bank_account.account_number %>
-                       <span class="float-right">
-                         <%= link_to  edit_company_bank_account_path(company_id: bank_account.company_id, id: bank_account.id) do %>
-                           <i class="far fa-edit"></i>
-                         <% end %>
-                         <%= link_to company_bank_account_path(company_id: bank_account.company_id, id: bank_account.id), method: :delete, data: { confirm: 'Você tem certeza que deseja apagar o produto?' } do %>
-                           <i class="fa fa-trash"></i>
-                         <% end %>
-                       </span>
-                    </p>
-                <% end %>
-                </div>
+        </div>
+        <tr>
+          <td colspan="8" style="border-bottom: 2px solid black">
+            <div class="panel-collapse collapse" id=<%= "panel-#{company.id}" %>>
+              <div class="panel-body">
+                <% @bank_accounts.where(company_id: company.id).each do |bank_account| %>
+                  <p>
+                     <%= bank_account.bank_name %>
+                     <b>Agencia:</b> <%= bank_account.agency_number %>
+                     <b>Conta:</b> <%= bank_account.account_number %>
+                     <span class="float-right">
+                       <%= link_to  edit_company_bank_account_path(company_id: bank_account.company_id, id: bank_account.id) do %>
+                         <i class="far fa-edit"></i>
+                       <% end %>
+                       <%= link_to company_bank_account_path(company_id: bank_account.company_id, id: bank_account.id), method: :delete, data: { confirm: 'Você tem certeza que deseja apagar o produto?' } do %>
+                         <i class="fa fa-trash"></i>
+                       <% end %>
+                     </span>
+                  </p>
+              <% end %>
               </div>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
-
-<script>
-  function myFunction() {
-    // Declare variables
-    var input, filter, table, tr, td, i, txtValue;
-    input = document.getElementById("myInput");
-    filter = input.value.toUpperCase();
-    table = document.getElementById("myTable");
-    tr = table.getElementsByTagName("tr");
-
-    // Loop through all table rows, and hide those who don't match the search query
-    for (i = 0; i < tr.length; i++) {
-      td = tr[i].getElementsByTagName("td")[0];
-      if (td) {
-        txtValue = td.textContent || td.innerText;
-        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-          tr[i].style.display = "";
-        } else {
-          tr[i].style.display = "none";
-        }
-      }
-    }
-  }
-</script>

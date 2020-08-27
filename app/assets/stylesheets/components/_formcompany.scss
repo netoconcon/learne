@@ -1,0 +1,28 @@
+.simple_form input {
+  width: 100%;
+}
+
+.simple_form select {
+  width: 100%;
+}
+
+.submit {
+  width: 50% !important;
+  margin-bottom: 10px;
+}
+
+.columns {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
+}
+
+.columns div {
+  width: 95%;
+}
+
+.styler {
+  border: 0.5px solid #919190;
+  border-radius: 20px;
+  padding: 5px;
+}

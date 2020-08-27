@@ -1,0 +1,26 @@
+<div class="container" data-controller="table">
+  <h2>Pedidos</h2>
+
+  <table class="table" id="myTable" data-target="table.table">
+    <thead>
+    <th scope="col">Usuário</th>
+    <th scope="col">Endereço de entrega</th>
+    <th scope="col">Valor</th>
+    <th scope="col">Detalhes</th>
+    </thead>
+    <tbody>
+    <% @orders.each do |order|%>
+      <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+        <td><%= link_to order.user.email, admin_order_path(order) %></td>
+        <td><%= humanized_address(order.address) %></td>
+        <td><%= order.price %></td>
+        <td>
+          <%= link_to admin_order_path(order) do %>
+            <i class="fa fa-info-circle"></i>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

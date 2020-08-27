@@ -1,24 +1,42 @@
-<div class="main" data-controller="masks infoproduct">
+<div data-controller="masks infoproduct">
   <div class="container">
     <h2>Cadastrar novo produto</h2>
     <%= simple_form_for [@company, @product] do |f| %>
-      <%= f.input :name, label: 'Nome do produto' %>
-      <%= f.association :company, value_method: :id %>
-      <%= f.input :sku, hint: "opcional", label: 'Codigo SKU' %>
-      <%= f.input :description, label: 'Descricao' %>
-      <%= f.input :virtual, label: 'Infoproduto', input_html: { "data-action" => "change -> infoproduct#selection" }, as: :select, colletion: [["Nao", false], ["Sim", true]], include_blank: false %>
-      <%= f.input :price_cents, label: 'Preco de venda', as: :string %>
-      <%= f.input :external_id, label: 'ID Externo', hint: "opcional", as: :string %>
-      <div data-target="infoproduct.specs" style="display: block;" >
-        <%= f.input :weight, label: 'Peso', as: :string %>
-        <%= f.input :height, label: 'Altura', as: :string %>
-        <%= f.input :width, label: 'Largura', as: :string %>
-        <%= f.input :length, label: 'Comprimento', as: :string %>
+      <div class="styler">
+        <div class="columns">
+          <div>
+            <%= f.input :name, label: 'Nome do produto' %>
+            <%= f.input :sku, hint: "opcional", label: 'Codigo SKU' %>
+          </div>
+          <div>
+            <%= f.association :company, value_method: :id %>
+            <%= f.input :external_id, label: 'ID Externo', hint: "opcional", as: :string %>
+          </div>
+        </div>
+        <div class="description">
+          <%= f.input :description, label: 'Descrição' %>
+        </div>
+        <div class="columns">
+          <div>
+            <%= f.input :virtual, label: 'Infoproduto', input_html: { "data-action" => "change -> infoproduct#selection" }, as: :select, colletion: [["Nao", false], ["Sim", true]], include_blank: false %>
+          </div>
+          <div>
+            <%= f.input :price_cents, label: 'Preco de venda', as: :string %>
+          </div>
+        </div>
       </div>
-      <div data-target="infoproduct.vurl" style="display: none;">
-        <%= f.input :virtual_url, label: 'Link do Infoproduto' %>
+      <div class="styler-margin">
+        <div data-target="infoproduct.specs" class="styler dimensions"  >
+          <%= f.input :weight, label: 'Peso', as: :string %>
+          <%= f.input :height, label: 'Altura', as: :string %>
+          <%= f.input :width, label: 'Largura', as: :string %>
+          <%= f.input :length, label: 'Comprimento', as: :string %>
+        </div>
+        <div data-target="infoproduct.vurl" class="styler virtual-url" style="display: none;">
+          <%= f.input :virtual_url, label: 'Link do Infoproduto' %>
+        </div>
       </div>
-      <%= f.button :submit, 'Cadastrar', class: "btn btn-primary" %>
+      <%= f.button :submit, 'Cadastrar', class: "btn btn-primary submit-product" %>
     <% end %>
   </div>
 </div>

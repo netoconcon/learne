@@ -1,0 +1,21 @@
+<div class="container">
+  <h2>Página de venda</h2>
+
+    <table class="table" id="myTable">
+      <thead>
+        <th scope="col">ID</th>
+        <th scope="col">Nome do kit</th>
+      </thead>
+      <tbody>
+        <% @instances.each do |instance| %>
+          <tr class="<%= cycle('list_line_odd', 'list_line_even') -%>">
+            <td><%= Kit.find(instance.kit_id).id %></td>
+            <td><%= Kit.find(instance.kit_id).name %></td>
+            <td><%= link_to "Pagina do pedido", new_order_path %> </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+  </div>
+</div>
