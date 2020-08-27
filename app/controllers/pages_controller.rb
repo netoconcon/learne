@@ -7,20 +7,23 @@ class PagesController < ApplicationController
     Order.all.each do |order|
       @all_prices  << order.price
     end
-    chart
     order_card
     order_boleto
     boleto_generated
+    chart
   end
 
   def method_name
     # created_at.strftime("%Y-%m-%d")
+    # @today = Time.now.strftime("%d-%m")
   end
 
   def chart
-    @products = Product.all
-    @a = Product.group_by_day(:created_at, last:7, format: "%d/%m").count
-    @today = Time.now.strftime("%d-%m")
+    @a = Order.group(:payment_method).group_by_day(:created_at, last:7, format: "%d/%m").sum('orders.price')
+
+
+
+    @b = Order.group(:payment_method).where(payment_method: true).group_by_day(:created_at, last:7, format: "%d/%m").count
   end
 
   def order_card
