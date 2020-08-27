@@ -20,19 +20,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a6a2dfd0-2648-4959-a01b-9530d60eae5b" name="Default Changelist" comment="merged rafa's stuff">
-      <change afterPath="$PROJECT_DIR$/app/javascript/controllers/payment_method_controller.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/javascript/controllers/zipcode_controller.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/db/migrate/20200826012117_remove_product_from_selling_page.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/db/migrate/20200826012136_add_kit_to_selling_page.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/checkout-app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/checkout-app.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/helpers/orders_helper.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/orders/thank_you.html.erb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/db/migrate/20200827151618_add_user_to_order.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/orders_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/orders_controller.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/selling_pages_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/selling_pages_controller.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/form/order_form.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/form/order_form.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/helpers/states_helper.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/helpers/select_helper.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/javascript/controllers/masks_controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/controllers/masks_controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/selling_page.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/selling_page.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/kit.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/kit.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/order.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/order.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/user/validation.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/user/validation.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/orders/new.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/orders/new.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/selling_pages/index.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/selling_pages/index.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/selling_pages/new.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/selling_pages/new.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/schema.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/schema.rb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -65,7 +66,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/javascript/controllers" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/helpers" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -76,15 +77,15 @@
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode.JavaScript" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/javascript/controllers" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/helpers" />
       <recent name="$PROJECT_DIR$/app/javascript/controllers" />
       <recent name="$PROJECT_DIR$/app/assets/images" />
       <recent name="$PROJECT_DIR$/app/views/layouts" />
       <recent name="$PROJECT_DIR$/app/controllers" />
-      <recent name="$PROJECT_DIR$/app/models/order" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/app/javascript/controllers" />
     </key>
   </component>
   <component name="RunManager" selected="Rails.Development: checkout-app">
@@ -438,10 +439,10 @@
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state x="407" y="135" width="618" height="548" key="find.popup/67.27.1299.741@67.27.1299.741" timestamp="1598501538366" />
-    <state x="379" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1598507271656">
+    <state x="379" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1598542889948">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state x="379" y="89" width="672" height="678" key="search.everywhere.popup/67.27.1299.741@67.27.1299.741" timestamp="1598507271656" />
+    <state x="379" y="89" width="672" height="678" key="search.everywhere.popup/67.27.1299.741@67.27.1299.741" timestamp="1598542889948" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/checkout_app@Development__checkout_app.rcov" NAME="Development: checkout-app Coverage Results" MODIFIED="1598507828286" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="checkout-app" />

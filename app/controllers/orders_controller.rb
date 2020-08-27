@@ -7,6 +7,9 @@ class OrdersController < ApplicationController
 
   def create
     @order = OrderForm.new(order_params)
+    @order.save
+
+    render "orders/thank_you"
   end
 
   private
@@ -15,7 +18,7 @@ class OrdersController < ApplicationController
     params.require(:order).permit(
         :installments,
         :price,
-        :kit,
+        :kit_id,
         :id,
         :phone,
         :email,
@@ -35,6 +38,7 @@ class OrdersController < ApplicationController
         :credit_card_expiration_month,
         :credit_card_expiration_year,
         :credit_card_cvv,
+        :bank_slip_cpf,
         :installments
     )
   end

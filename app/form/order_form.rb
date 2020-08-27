@@ -10,7 +10,7 @@ class OrderForm
   attr_accessor(
       :installments,
       :price,
-      :kit,
+      :kit_id,
       :id,
       :phone,
       :email,
@@ -38,11 +38,16 @@ class OrderForm
     order.assign_attributes order_attributes
     order.user = user
     order.address = address
+    order.price = kit.price + 1
     order.save!
   end
 
   def order
     @order ||= Order.new
+  end
+
+  def kit
+    @kit ||= Kit.find(kit_id)
   end
 
   private
@@ -51,10 +56,19 @@ class OrderForm
     end
 
     def user
-      @user ||= User.find_or_create_by first_name: first_name, last_name: last_name, email: email, phone: phone, cpf: cpf, zipcode: zipcode
+      @user ||= begin
+        user = User.find_by email: email
+        user = User.create first_name: first_name, last_name: last_name, email: email, phone: phone, password: "123456" unless user.present?
+        user
+      end
     end
 
     def address
-      @address ||= Address.find_or_create_by user: user, street: street, number: number, complement: complement, neighborhood: neighborhood, city: city, state: state, zipcode: zipcode
+      @address ||= begin
+        address = Address.find_by user_id: user.id, street: street, number: number, complement: complement, neighborhood: neighborhood, city: city, state: state, zipcode: zipcode
+        address = Address.create user_id: user.id, street: street, number: number, complement: complement, neighborhood: neighborhood, city: city, state: state, zipcode: zipcode unless address.present?
+        address
+
+      end
     end
 end

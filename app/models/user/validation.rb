@@ -4,6 +4,5 @@ module User::Validation
   included do
     validates :phone, format: Formatter.phone
     validates :email, presence: true, format: Formatter.email
-    validates :cpf, format: Formatter.cpf
   end
 end
