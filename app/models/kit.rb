@@ -11,6 +11,6 @@ class Kit < ApplicationRecord
   enum payment_type: { single: 0, subscription: 1 }, _suffix: :payment
 
   def price
-    kit_products.map(&:price_cents).sum
+    products.map(&:price).sum
   end
 end
