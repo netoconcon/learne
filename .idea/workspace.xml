@@ -19,11 +19,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a6a2dfd0-2648-4959-a01b-9530d60eae5b" name="Default Changelist" comment="fixed">
-      <change afterPath="$PROJECT_DIR$/db/migrate/20200827163017_change_null_for_names_in_user.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/user/validation.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/user/validation.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/schema.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/schema.rb" afterDir="false" />
+    <list default="true" id="a6a2dfd0-2648-4959-a01b-9530d60eae5b" name="Default Changelist" comment="fixes">
+      <change beforePath="$PROJECT_DIR$/db/migrate/20200827163017_change_null_for_names_in_user.rb" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -334,7 +331,21 @@
       <option name="project" value="LOCAL" />
       <updated>1598544984412</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="fixed login">
+      <created>1598545942948</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1598545942948</updated>
+    </task>
+    <task id="LOCAL-00021" summary="fixes">
+      <created>1598546512382</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1598546512382</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -379,7 +390,9 @@
     <MESSAGE value="order is being created" />
     <MESSAGE value="order admin done" />
     <MESSAGE value="fixed" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed" />
+    <MESSAGE value="fixed login" />
+    <MESSAGE value="fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixes" />
   </component>
   <component name="WindowStateProjectService">
     <state x="174" y="54" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1596581574962">
@@ -452,10 +465,10 @@
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state x="407" y="135" width="618" height="548" key="find.popup/67.27.1299.741@67.27.1299.741" timestamp="1598501538366" />
-    <state x="379" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1598545902235">
+    <state x="379" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1598546874086">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state x="379" y="89" width="672" height="678" key="search.everywhere.popup/67.27.1299.741@67.27.1299.741" timestamp="1598545902235" />
+    <state x="379" y="89" width="672" height="678" key="search.everywhere.popup/67.27.1299.741@67.27.1299.741" timestamp="1598546874086" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/checkout_app@Development__checkout_app.rcov" NAME="Development: checkout-app Coverage Results" MODIFIED="1598507828286" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="checkout-app" />
