@@ -1,11 +1,6 @@
 <div class="container" data-controller="table">
   <h2>Pedidos</h2>
 
-  <div class="input-wrapper mb-1">
-    <input type="text" id="myInput" placeholder="Procurar pedido" data-action="input->table#search">
-    <label class="fa fa-search" aria-hidden="true"></label>
-  </div>
-
   <table class="table" id="myTable" data-target="table.table">
     <thead>
     <th scope="col">Usuário</th>
@@ -16,7 +11,7 @@
     <tbody>
     <% @orders.each do |order|%>
       <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
-        <td><%= link_to order.user.email, root_path %></td>
+        <td><%= link_to order.user.email, admin_order_path(order) %></td>
         <td><%= humanized_address(order.address) %></td>
         <td><%= order.price %></td>
         <td>
