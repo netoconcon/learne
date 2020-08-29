@@ -8,7 +8,3 @@ resources :campaigns
 resources :companies do
   resources :bank_accounts
 end
-
-namespace :charts do
-  get "total-price"
-end

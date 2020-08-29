@@ -182,7 +182,15 @@
       <div class="col-6">
         <div>
           <h4>Vendas</h4>
-          <%= area_chart @a, ytitle: 'Total', legend: true, prefix: 'R$', thousands: ".", max: 4000, label: "value" %>
+          <%= area_chart @value_chart, ytitle: 'Total', legend: true, prefix: 'R$', thousands: ".", max: @max, label: "value" %>
+        </div>
+        <div>
+          <div class="col-6">
+            
+          </div>
+          <div class="col-6">
+            
+          </div>
         </div>
       </div>
     </div>
