@@ -1,20 +1,18 @@
-<div class="main">
-  <div class="container">
-    <h2>Nova pagina</h2>
-    <%= simple_form_for @selling_page do |f| %>
-      <div class="styler">
-        <div class="columns">
-          <div>
-            <%= f.input :name, label: 'Nome da pagina' %>
-            <%= f.association :product, label: 'Nome do produto' %>
-          </div>
-          <div>
-            <%= f.input :url, label: 'Url' %>
-            <%= f.input :description, label: 'Descricao' %>
-          </div>
+<div class="container">
+  <h2>Nova pagina</h2>
+  <%= simple_form_for @selling_page do |f| %>
+    <div class="styler">
+      <div class="columns">
+        <div>
+          <%= f.input :name, label: 'Nome da pagina' %>
+          <%= f.association :kit, label: 'Nome do produto' %>
+        </div>
+        <div>
+          <%= f.input :url, label: 'Url' %>
+          <%= f.input :description, label: 'Descricao' %>
         </div>
       </div>
-      <%= f.button :submit, 'Cadastrar nova pagina', class: "btn btn-primary submit-product" %>
-    <% end %>
-  </div>
+    </div>
+    <%= f.button :submit, 'Cadastrar nova pagina', class: "btn btn-primary submit-product" %>
+  <% end %>
 </div>

@@ -1,25 +1,45 @@
 class OrdersController < ApplicationController
-
-  def index
-    @orders = Order.all
-  end
+layout "public"
 
   def new
-    @order = Order.new
+    @order = OrderForm.new
   end
 
   def create
-    @order = Order.new(order_params)
-    if @order.save
-      redirect_to root_path
-    else
-      render :new
-    end
+    @order = OrderForm.new(order_params)
+    @order.save
+
+    render "orders/thank_you"
   end
 
   private
 
   def order_params
-    params.require(:order).permit(:first_name, :last_name, :email, :phone, :paid, :installments, :kit_id, :payment_method, :zipcode, :street, :street_number, :neighborhood, :city, :state, :complement, :price, :CPF, :birthday, :kit_id)
+    params.require(:order).permit(
+        :installments,
+        :price,
+        :kit_id,
+        :id,
+        :phone,
+        :email,
+        :first_name,
+        :last_name,
+        :birthday,
+        :street,
+        :number,
+        :complement,
+        :neighborhood,
+        :city,
+        :state,
+        :zipcode,
+        :credit_card_number,
+        :credit_card_name,
+        :credit_card_cpf,
+        :credit_card_expiration_month,
+        :credit_card_expiration_year,
+        :credit_card_cvv,
+        :bank_slip_cpf,
+        :installments
+    )
   end
 end

@@ -1,0 +1,9 @@
+<div class="container">
+  <h2>Detalhes</h2>
+  <div>
+    <h5>Pedido N° <%= @order.id %></h5>
+    <p>Usuário: <%= @order.user.full_name %></p>
+    <p>Email: <%= @order.user.email %></p>
+    <p>Valor: <%= @order.price %></p>
+  </div>
+</div>

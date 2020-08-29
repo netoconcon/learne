@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="main">
   <div class="container-fluid">
     <div class="row">
@@ -196,3 +197,34 @@
     </div>
   </div>
 </div>
+=======
+<div class="container">
+  <div>
+    <p>
+      <i class="fas fa-building"> Total de empresas cadastradas: <%= Company.all.size %></i>
+    </p>
+    <p>
+      <i class="fas fa-box-open"> Total de produtos cadastrados: <%= Product.all.size %></i>
+    </p>
+    <p>
+      <i class="fas fa-boxes"> Kits criados: <%= Kit.all.size %></i>
+    </p>
+    <p>
+      <i class="fas fa-globe"> Total de paginas criadas: <%= SellingPage.all.size %></i>
+    </p>
+    <p>
+      <i class="fas fa-link"> Links de redirecionamento gerados: <%= Campaign.all.size %></i>
+    </p>
+
+    <p>
+      <h2>Chartkick testing:</h2>
+      <p>Empresas criadas por mes</p>
+      <%= column_chart Company.group_by_month(:created_at).count %>
+    </p>
+    <p>
+      <p>Produtos criados por semana</p>
+      <%= line_chart Product.group_by_week(:created_at).count %>
+    </p>
+  </div>
+</div>
+>>>>>>> 8f15b9c17c1c7f07dad90ba5488d0fe81a8e0f53

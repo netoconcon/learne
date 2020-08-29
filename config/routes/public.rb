@@ -1,0 +1,1 @@
+resources :orders, only: [:new, :create]

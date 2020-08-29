@@ -10,18 +10,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_18_062453) do
+ActiveRecord::Schema.define(version: 2020_08_27_163017) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "addresses", force: :cascade do |t|
+    t.string "street"
+    t.integer "number"
+    t.string "neighborhood"
+    t.string "complement"
+    t.string "city"
+    t.string "state"
+    t.string "zipcode"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_addresses_on_user_id"
+  end
+
   create_table "bank_accounts", force: :cascade do |t|
     t.bigint "company_id", null: false
-    t.integer "bank_code"
-    t.boolean "international", default: false
-    t.string "bank_name"
-    t.string "agency_number"
-    t.string "account_number"
+    t.integer "bank_code", null: false
+    t.boolean "international", default: false, null: false
+    t.string "bank_name", null: false
+    t.string "agency_number", null: false
+    t.string "account_number", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["company_id"], name: "index_bank_accounts_on_company_id"
@@ -36,20 +50,20 @@ ActiveRecord::Schema.define(version: 2020_08_18_062453) do
     t.string "utm_term"
     t.string "utm_content"
     t.string "pubid"
-    t.string "title"
+    t.string "title", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["selling_page_id"], name: "index_campaigns_on_selling_page_id"
   end
 
   create_table "companies", force: :cascade do |t|
-    t.boolean "international", default: false
-    t.string "cnpj"
-    t.string "email_notification"
-    t.string "email_support"
-    t.string "phone_support"
-    t.string "shipment_origin_zipcode"
-    t.string "name"
+    t.boolean "international", default: false, null: false
+    t.string "cnpj", null: false
+    t.string "email_notification", null: false
+    t.string "email_support", null: false
+    t.string "phone_support", null: false
+    t.string "shipment_origin_zipcode", null: false
+    t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -68,7 +82,7 @@ ActiveRecord::Schema.define(version: 2020_08_18_062453) do
   create_table "kit_products", force: :cascade do |t|
     t.bigint "product_id", null: false
     t.bigint "kit_id", null: false
-    t.integer "quantity"
+    t.integer "quantity", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "price_cents", default: 0, null: false
@@ -77,14 +91,14 @@ ActiveRecord::Schema.define(version: 2020_08_18_062453) do
   end
 
   create_table "kits", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.string "description"
-    t.integer "payment_type"
+    t.integer "payment_type", null: false
     t.integer "standard_installments"
-    t.integer "maximum_installments"
-    t.integer "shipment_cost"
+    t.integer "maximum_installments", null: false
+    t.integer "shipment_cost", null: false
     t.string "shipment_description"
-    t.boolean "allow_free_shipment", default: false
+    t.boolean "allow_free_shipment", default: false, null: false
     t.integer "weight"
     t.integer "width"
     t.integer "height"
@@ -94,35 +108,26 @@ ActiveRecord::Schema.define(version: 2020_08_18_062453) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
-    t.string "email"
-    t.string "phone"
-    t.boolean "paid", default: false
-    t.integer "installments"
+    t.boolean "paid", default: false, null: false
+    t.integer "installments", null: false
     t.bigint "kit_id", null: false
-    t.boolean "payment_method", default: false
-    t.string "zipcode"
-    t.string "street"
-    t.string "street_number"
-    t.string "neighborhood"
-    t.string "city"
-    t.string "state"
-    t.string "complement"
-    t.integer "price"
-    t.string "CPF"
-    t.date "birthday"
+    t.boolean "payment_method", default: false, null: false
+    t.decimal "price", precision: 8, scale: 2, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "address_id", null: false
+    t.bigint "user_id", null: false
+    t.index ["address_id"], name: "index_orders_on_address_id"
     t.index ["kit_id"], name: "index_orders_on_kit_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "products", force: :cascade do |t|
     t.bigint "company_id", null: false
-    t.boolean "virtual", default: false
-    t.string "name"
-    t.string "sku"
-    t.string "description"
+    t.boolean "virtual", default: false, null: false
+    t.string "name", null: false
+    t.string "sku", null: false
+    t.string "description", null: false
     t.integer "external_id"
     t.integer "weight"
     t.integer "width"
@@ -136,14 +141,14 @@ ActiveRecord::Schema.define(version: 2020_08_18_062453) do
   end
 
   create_table "selling_pages", force: :cascade do |t|
-    t.bigint "product_id", null: false
-    t.string "name"
+    t.string "name", null: false
     t.string "description"
-    t.string "url"
+    t.string "url", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "slug"
-    t.index ["product_id"], name: "index_selling_pages_on_product_id"
+    t.bigint "kit_id", null: false
+    t.index ["kit_id"], name: "index_selling_pages_on_kit_id"
     t.index ["slug"], name: "index_selling_pages_on_slug", unique: true
   end
 
@@ -161,15 +166,23 @@ ActiveRecord::Schema.define(version: 2020_08_18_062453) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "admin", default: false
+    t.string "first_name"
+    t.string "last_name"
+    t.string "phone"
+    t.string "cpf"
+    t.string "birthday"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "addresses", "users"
   add_foreign_key "bank_accounts", "companies"
   add_foreign_key "campaigns", "selling_pages"
   add_foreign_key "kit_products", "kits"
   add_foreign_key "kit_products", "products"
+  add_foreign_key "orders", "addresses"
   add_foreign_key "orders", "kits"
+  add_foreign_key "orders", "users"
   add_foreign_key "products", "companies"
-  add_foreign_key "selling_pages", "products"
+  add_foreign_key "selling_pages", "kits"
 end

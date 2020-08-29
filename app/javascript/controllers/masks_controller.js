@@ -13,7 +13,7 @@ const masks = {
   phone (value) {
     return value
       .replace(/\D/g, '')
-      .replace(/(\d{2})/, '($1)')
+      .replace(/(\d{2})/, '($1) ')
       .replace(/(\d{4})(\d)/, '$1-$2')
       .replace(/(\d{4})-(\d)(\d{4})/, '$1$2-$3')
       .replace(/(-\d{4})\d+?$/, '$1')
@@ -37,6 +37,27 @@ const masks = {
       .replace(/\D/g, '')
       .replace(/(\d+)(\d{2})/, '$1,$2')
       .replace(/(,\d{2})\d+?$/, '$1')
+  },
+
+  cpf (value) {
+    return value
+    .replace(/\D/g, '')
+    .replace(/(\d{3})(\d{3})(\d{3})(\d)/, '$1.$2.$3-$4')
+    .replace(/(\d{3})(\d{3})(\d)/, '$1.$2.$3')
+    .replace(/(\d{3})(\d)/, '$1.$2')
+  },
+
+  creditCard (value) {
+    return value
+    .replace(/\D/g, '')
+    .replace(/(\d{4})(\d{4})(\d{4})(\d)/, '$1 $2 $3 $4')
+    .replace(/(\d{4})(\d{4})(\d)/, '$1 $2 $3')
+    .replace(/(\d{4})(\d)/, '$1 $2')
+  },
+
+  numbers (value) {
+    return value
+    .replace(/\D/g, '')
   },
 }
 
