@@ -9,4 +9,8 @@ class Kit < ApplicationRecord
   default_scope {order(created_at: :asc)}
 
   enum payment_type: { single: 0, subscription: 1 }, _suffix: :payment
+
+  def price
+    products.map(&:price).sum
+  end
 end

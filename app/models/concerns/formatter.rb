@@ -1,4 +1,4 @@
-module Validation
+module Formatter
   extend ActiveSupport::Concern
 
   def self.email

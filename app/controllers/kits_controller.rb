@@ -1,4 +1,6 @@
 class KitsController < ApplicationController
+  layout "admin"
+
   def index
     @kits = Kit.all
     @products = Product.all
@@ -22,6 +24,7 @@ class KitsController < ApplicationController
   end
 
   def edit
+    gon.products = product_price
     @kit = Kit.find(params[:id])
     @kit_product = KitProduct.new
     @products = Product.all
@@ -43,6 +46,11 @@ class KitsController < ApplicationController
     redirect_to kits_path
   end
 
+  def product_price
+    listproducts = Hash.new
+    products = Product.all
+    products.each { |x| listproducts[x]}
+  end
 
   private
 

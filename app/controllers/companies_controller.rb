@@ -1,4 +1,6 @@
 class CompaniesController < ApplicationController
+  layout "admin"
+
   def index
     @companies = Company.all.order('created_at ASC')
     @bank_accounts = BankAccount.all

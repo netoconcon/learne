@@ -1,0 +1,191 @@
+<div data-controller="zipcode masks payment-method">
+  <%= simple_form_for @order, url: orders_path, method: :post do |f| %>
+    <%= f.input :kit_id, as: :hidden %>
+    <div class="mt-4 mb-4">
+      <%= image_tag "banner_vmd3.png", width: "1070px", height: "300px" %>
+    </div>
+
+    <div class="row mb-4">
+      <div class="col-12 col-md-6">
+        <div class="card mb-4">
+          <div class="card-header text-center">
+            <h4>1 - Para Onde Enviamos Seu Pedido?</h4>
+          </div>
+
+          <div class="card-body">
+            <div class="form-group row">
+              <div class="col-12 col-sm-6">
+                <div class="form-group">
+                  <%= f.input :first_name, label: "Nome", placeholder: "Digite seu nome" %>
+                </div>
+              </div>
+              <div class="col-12 col-sm-6">
+                <div class="form-group">
+                  <%= f.input :last_name, label: "Sobrenome", placeholder: "Digite seu sobrenome" %>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <div class="col-12 col-sm-6">
+                <div class="form-group">
+                  <%= f.input :email, label: "E-mail", placeholder: "seu@email.com.br" %>
+                </div>
+              </div>
+              <div class="col-12 col-sm-6">
+                <div class="form-group">
+                  <%= f.input :phone, label: "Celular com DDD", placeholder: "(__) _____-____", input_html: { data: { js: "phone" } }, maxlength: 16 %>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <div class="col-8 col-sm-6">
+                <div class="form-group">
+                  <%= f.input :zipcode, label: "CEP", placeholder: "00000-000", input_html: { data: { action: "input->zipcode#search", js: "cep" } } %>
+                </div>
+              </div>
+            </div>
+
+            <div id="address-form" data-target="zipcode.address" hidden="hidden">
+              <div class="form-group row">
+                <div class="col-8">
+                  <div class="form-group">
+                    <%= f.input :street, label: "Endereço", placeholder: "Rua, Avenida, Travessa...", input_html: { data: { target: "zipcode.street" } } %>
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div class="form-group">
+                    <%= f.input :number, label: "Número" %>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <div class="col-12 col-sm-6">
+                  <div class="form-group">
+                    <%= f.input :complement, label: "Complemento", placeholder: "Bloco, Apto..." %>
+                  </div>
+                </div>
+                <div class="col-12 col-sm-6">
+                  <div class="form-group">
+                    <%= f.input :neighborhood, label: "Bairro", placeholder: "Bairro", input_html: { data: { target: "zipcode.neighborhood" } } %>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <div class="col-8">
+                  <div class="form-group">
+                    <%= f.input :city, label: "Cidade", placeholder: "Cidade", input_html: { data: { target: "zipcode.city" } } %>
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div class="form-group">
+                    <%= f.input :state, label: "Estado", required: true, as: :select, collection: states_list, prompt: "Estado", input_html: { data: { target: "zipcode.state" } } %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6">
+        <div class="card">
+          <div class="card-header text-center">
+            <h4>2 - Selecionar Pagamento</h4>
+          </div>
+
+          <div class="card-body">
+            <div class="nav nav-tabs">
+              <%= button_tag "Cartão de Crédito", class: "nav-link active show", data: { action: "click->payment-method#creditCard", target: "payment-method.cardBtn" } %>
+              <%= button_tag "Boleto", class: "nav-link show", data: { action: "click->payment-method#bankSlip", target: "payment-method.slipBtn" } %>
+              <div id="credit-card" data-target="payment-method.creditCard">
+                <div class="tab-content mt-4">
+                  <div class="tab-pane fade show active">
+                    <div class="form-group row">
+                      <div class="col-12 mb-1">
+                        <%= f.input :credit_card_number, label: "Número do cartão", input_html: { data: { js: "creditCard" } }, maxlength: 19 %>
+                      </div>
+                      <div class="col-12 col-sm-6 mb-1">
+                        <%= f.input :credit_card_name, label: "Nome do titular", placeholder: "Como impresso no cartão" %>
+                      </div>
+                      <div class="col-12 col-sm-6 mb-1">
+                        <%= f.input :credit_card_cpf, label: "CPF do titular", placeholder: "Para envio da nota fiscal", input_html: { data: { js: "cpf" } }, maxlength: 14 %>
+                      </div>
+                      <div class="col-12 col-sm-6 mb-1">
+                        <div class="row no-gutters">
+                          <label class="string optional" for="order_credit_card_expiration_month">Data de expiração</label>
+                          <div class="col-6">
+                            <%= f.input :credit_card_expiration_month, label: false, as: :select, collection: month_number_list, prompt: "Mês" %>
+                          </div>
+                          <div class="col-6">
+                            <%= f.input :credit_card_expiration_year, label: false, placeholder: "Ano", input_html: { data: { js: "numbers" } }, maxlength: 4 %>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-12 col-sm-6">
+                        <%= f.input :credit_card_cvv, label: "Cód. de segurança", placeholder: "3 ou 4 dígitos", input_html: { data: { js: "numbers" } }, maxlength: 4 %>
+                      </div>
+                    </div>
+                    <div class="form-group w-100">
+                      <%= f.input :installments, label: "Parcelamento", as: :select, collection: order_installments(@order) %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div id="bank-slip" data-target="payment-method.bankSlip" hidden="hidden">
+                <div class="tab-content mt-4">
+                  <div class="tab-pane fade show active">
+                    <div class="row w-100">
+                      <div class="col-12 mb-2">
+                        <%= image_tag "Boleto.jpg" %>
+                      </div>
+                      <div class="col-12">
+                        <ol>
+                          <li>Pagamentos por boleto só podem ser efetuados à vista</li>
+                          <li>A compensação do pagamento pode levar até 3 dias úteis</li>
+                          <li>O Boleto será gerado por meio da plataforma Appmax</li>
+                          <li>Depois do pagamento, fique atento ao seu e-mail para acompanhar o envio do seu pedido (verifique também
+                            a caixa de SPAM)</li>
+                        </ol>
+                      </div>
+                      <div class="col-12">
+                        <b><%= "Produtos: #{number_to_currency(@order.kit.price, unit: "R$ ", separator: ",")}" %></b>
+                      </div>
+                      <div class="form-group row">
+                        <div class="col-12 col-md-12">
+                          <%= f.input :bank_slip_cpf, label: "CPF (Para emissão da Nota Fiscal)", input_html: { data: { js: "cpf" } }, maxlength: 14 %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <%= f.button :submit, "Finalizar Pedido", class: "btn btn-success submit-button", style: "color: #fff; background-color: #28a745; border-color: #28a745" %>
+            </div>
+          </div>
+          <div class="card-footer bg-transparent">
+            <img src="https://vmd.appmax.com.br/checkout-public/one-checkout/monetizze/images/secure.jpg" class="img-fluid d-block mx-auto">
+          </div>
+        </div>
+        <h6 class="text-black-50 mt-2"><small>Taxa de 2,99% a.m.</small></h6>
+      </div>
+    </div>
+  <% end %>
+  <div class="container-fluid mb-3">
+    <div class="footer row no-gutters">
+      <div class="col-12 col-md-6 text-center text-md-right">
+        <a href="https://vmd.appmax.com.br/policy/privacy" target="_blank">Política de privacidade</a> |
+        <a href="https://vmd.appmax.com.br/policy/return" target="_blank">Termos de compra</a>
+      </div>
+
+      <div class="col-12 col-md-6 text-center text-md-left">
+        &nbsp;<span class="d-none d-md-inline-block">|</span>
+        Esta compra será processada pela Appmax
+      </div>
+    </div>
+  </div>
+</div>
