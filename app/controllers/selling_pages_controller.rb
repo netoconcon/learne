@@ -1,4 +1,5 @@
 class SellingPagesController < ApplicationController
+  layout 'public'
 
   def show
     @selling_page = SellingPage.find(params[:id])

@@ -1,5 +1,4 @@
 resources :selling_pages
-resources :campaigns
 
 namespace :admin do
   resources :orders, only: [:index, :show]
@@ -9,4 +8,6 @@ namespace :admin do
   resources :products
   resources :kits
   resources :kit_products
+  resources :campaigns
+  resources :selling_pages
 end

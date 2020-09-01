@@ -39,6 +39,7 @@ gem 'money-rails', '~>1.12'
 gem 'chartkick'
 gem 'groupdate'
 gem 'gon'
+gem 'friendly_id', '~> 5.4.0'
 
 group :development, :test do  gem 'pry-byebug'
   gem 'pry-rails'
