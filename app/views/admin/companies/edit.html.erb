@@ -1,0 +1,26 @@
+<div data-controller="masks">
+  <div class="container">
+    <h1>Editar empresa</h1>
+
+    <div class="styler">
+      <%= simple_form_for [:admin, @company] do |f| %>
+        <div class="columns">
+          <div>
+            <%= f.input :international, label: 'Internacional', as: :select, colletion: [['Nao', false], ['Sim', true]], include_blank: false, disabled: true %>
+            <%= f.input :cnpj, label: 'CNPJ', input_html: { "data-js" => "cnpj" }, disabled: true  %>
+            <%= f.input :email_notification, label: 'Email para notificacoes' %>
+            <%= f.input :shipment_origin_zipcode, label: 'CEP de saida', input_html: { "data-js" => "cep" } %>
+          </div>
+          <div>
+            <%= f.input :name, label: 'Nome', disabled: true %>
+            <%= f.input :email_support, label: 'Email de suporte' %>
+            <%= f.input :phone_support, label: 'Telefone de suporte', input_html: { "data-js" => "phone" } %>
+          </div>
+        </div>
+        <div class="text-center">
+          <%= f.button :submit, 'Editar', class: "btn btn-primary submit" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

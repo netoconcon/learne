@@ -47,7 +47,9 @@ class OrderForm
   end
 
   def kit
-    @kit ||= Kit.find(kit_id)
+    if Kit.nil?
+     @kit ||= Kit.find(kit_id)
+   end
   end
 
   private

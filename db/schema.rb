@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_27_163017) do
+ActiveRecord::Schema.define(version: 2020_08_27_151618) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,11 +31,11 @@ ActiveRecord::Schema.define(version: 2020_08_27_163017) do
 
   create_table "bank_accounts", force: :cascade do |t|
     t.bigint "company_id", null: false
-    t.integer "bank_code", null: false
-    t.boolean "international", default: false, null: false
-    t.string "bank_name", null: false
-    t.string "agency_number", null: false
-    t.string "account_number", null: false
+    t.integer "bank_code"
+    t.boolean "international", default: false
+    t.string "bank_name"
+    t.string "agency_number"
+    t.string "account_number"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["company_id"], name: "index_bank_accounts_on_company_id"
@@ -50,20 +50,20 @@ ActiveRecord::Schema.define(version: 2020_08_27_163017) do
     t.string "utm_term"
     t.string "utm_content"
     t.string "pubid"
-    t.string "title", null: false
+    t.string "title"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["selling_page_id"], name: "index_campaigns_on_selling_page_id"
   end
 
   create_table "companies", force: :cascade do |t|
-    t.boolean "international", default: false, null: false
-    t.string "cnpj", null: false
-    t.string "email_notification", null: false
-    t.string "email_support", null: false
-    t.string "phone_support", null: false
-    t.string "shipment_origin_zipcode", null: false
-    t.string "name", null: false
+    t.boolean "international", default: false
+    t.string "cnpj"
+    t.string "email_notification"
+    t.string "email_support"
+    t.string "phone_support"
+    t.string "shipment_origin_zipcode"
+    t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -82,7 +82,7 @@ ActiveRecord::Schema.define(version: 2020_08_27_163017) do
   create_table "kit_products", force: :cascade do |t|
     t.bigint "product_id", null: false
     t.bigint "kit_id", null: false
-    t.integer "quantity", null: false
+    t.integer "quantity"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "price_cents", default: 0, null: false
@@ -91,14 +91,14 @@ ActiveRecord::Schema.define(version: 2020_08_27_163017) do
   end
 
   create_table "kits", force: :cascade do |t|
-    t.string "name", null: false
+    t.string "name"
     t.string "description"
-    t.integer "payment_type", null: false
+    t.integer "payment_type"
     t.integer "standard_installments"
-    t.integer "maximum_installments", null: false
-    t.integer "shipment_cost", null: false
+    t.integer "maximum_installments"
+    t.integer "shipment_cost"
     t.string "shipment_description"
-    t.boolean "allow_free_shipment", default: false, null: false
+    t.boolean "allow_free_shipment", default: false
     t.integer "weight"
     t.integer "width"
     t.integer "height"
@@ -108,11 +108,12 @@ ActiveRecord::Schema.define(version: 2020_08_27_163017) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.boolean "paid", default: false, null: false
-    t.integer "installments", null: false
+    t.boolean "paid", default: false
+    t.integer "installments"
     t.bigint "kit_id", null: false
-    t.boolean "payment_method", default: false, null: false
+    t.boolean "payment_method", default: false
     t.decimal "price", precision: 8, scale: 2, null: false
+    t.string "CPF"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "address_id", null: false
@@ -124,10 +125,10 @@ ActiveRecord::Schema.define(version: 2020_08_27_163017) do
 
   create_table "products", force: :cascade do |t|
     t.bigint "company_id", null: false
-    t.boolean "virtual", default: false, null: false
-    t.string "name", null: false
-    t.string "sku", null: false
-    t.string "description", null: false
+    t.boolean "virtual", default: false
+    t.string "name"
+    t.string "sku"
+    t.string "description"
     t.integer "external_id"
     t.integer "weight"
     t.integer "width"
@@ -141,9 +142,9 @@ ActiveRecord::Schema.define(version: 2020_08_27_163017) do
   end
 
   create_table "selling_pages", force: :cascade do |t|
-    t.string "name", null: false
+    t.string "name"
     t.string "description"
-    t.string "url", null: false
+    t.string "url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "slug"
@@ -153,7 +154,7 @@ ActiveRecord::Schema.define(version: 2020_08_27_163017) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "email", default: "", null: false
+    t.string "email", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -166,11 +167,8 @@ ActiveRecord::Schema.define(version: 2020_08_27_163017) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "admin", default: false
-    t.string "first_name"
-    t.string "last_name"
-    t.string "phone"
     t.string "cpf"
-    t.string "birthday"
+    t.date "birthday"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

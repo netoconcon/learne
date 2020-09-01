@@ -1,1 +1,28 @@
 // Specific CSS for your home-page
+.details {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    margin: 1em;
+}
+
+.details div {
+  width: 33%;
+}
+
+.spacing {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.withdrawl {
+  border-radius: 8px;
+  border-color: #197d15;
+  border-width: medium;
+}
+
+.release {
+  border-radius: 8px;
+  border-color: #F69017;
+  border-width: medium;
+}
