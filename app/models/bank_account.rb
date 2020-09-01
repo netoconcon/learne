@@ -8,7 +8,7 @@ class BankAccount < ApplicationRecord
   
   default_scope {order(created_at: :asc)}
 
-  normalize_attributes :agency_number, with: [:agency_number]
+  # normalize_attributes :agency_number, with: [:agency_number]
   normalize_attributes :account_number, with: [:numbers]
   
 end

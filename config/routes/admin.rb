@@ -1,5 +1,3 @@
-resources :selling_pages
-
 namespace :admin do
   resources :orders, only: [:index, :show]
   resources :companies do

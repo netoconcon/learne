@@ -1,6 +1,6 @@
 <div data-controller="masks bank">
   <div class="container">
-    <h2>Adiconar conta bancaria da <%= Company.find(params[:company_id]).name %></h2>
+    <h2>Adiconar conta bancaria da <%= @company.name %></h2>
 
     <%= simple_form_for [:admin, @company, :admin, @bank_account], url: admin_company_bank_accounts_path do |f| %>
       <%= f.input :international,  as: :select, colletion: [['Nao', false], ['Sim', true]], include_blank: false %>
@@ -12,5 +12,3 @@
     <% end %>
   </div>
 </div>
-<!-- collection: banklist.map{ |obj| obj[:label] } -->
-<!-- , label_method: lambda { |bank| "#{bank} - #{bank_code_name[bank]}"} -->

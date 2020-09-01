@@ -56,10 +56,10 @@
                      <b>Agencia:</b> <%= bank_account.agency_number %>
                      <b>Conta:</b> <%= bank_account.account_number %>
                      <span class="float-right">
-                       <%= link_to  edit_company_bank_account_path(company_id: bank_account.company_id, id: bank_account.id) do %>
+                       <%= link_to  edit_admin_company_bank_account_path(company_id: bank_account.company_id, id: bank_account.id) do %>
                          <i class="far fa-edit"></i>
                        <% end %>
-                       <%= link_to company_bank_account_path(company_id: bank_account.company_id, id: bank_account.id), method: :delete, data: { confirm: 'Você tem certeza que deseja apagar o produto?' } do %>
+                       <%= link_to admin_company_bank_account_path(company_id: bank_account.company_id, id: bank_account.id), method: :delete, data: { confirm: 'Você tem certeza que deseja apagar o produto?' } do %>
                          <i class="fa fa-trash"></i>
                        <% end %>
                      </span>
