@@ -181,8 +181,8 @@
       </div>
       <div class="col-6">
         <div>
-          <h4>Vendas</h4>
-          <%= area_chart Order.group(:payment_method).group_by_day(:created_at, last:7, format: "%d/%m").sum('orders.price'), ytitle: 'Total', legend: true, prefix: 'R$', thousands: ".", max: @max, label: "value" %>
+          <h4>Vendas </h4>
+          <%= area_chart admin_charts_values_path, ytitle: 'Total', legend: true, prefix: 'R$', thousands: ".",  label: "value" %>
         </div>
         <div>
           <div class="col-6">

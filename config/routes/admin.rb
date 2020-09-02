@@ -8,4 +8,8 @@ namespace :admin do
   resources :kit_products
   resources :campaigns
   resources :selling_pages
+
+  namespace :charts do
+    get "values"
+  end
 end
