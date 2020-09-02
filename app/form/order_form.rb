@@ -3,6 +3,7 @@
 class OrderForm
   include ActiveModel::Model
   include Address::Validation, User::Validation, Order::Validation
+  #TO DO CHANGE LINE 5 FOR CUSTOMER AND CREATE A CUSTOMER VALIDATION
 
   delegate :model_name, :to_param, :persisted?, to: :order
   delegate_missing_to :order
