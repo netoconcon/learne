@@ -66,12 +66,50 @@ class OrderForm
       end
     end
 
+    # REPLIQUEI O METODO USER PARA CUSTOMER
+    def customer
+      @customer ||= begin
+        customer = Customer.find_by email: email
+        customer = Customer.create first_name: first_name, last_name: last_name, email: email, phone: phone
+        customer
+      end
+    end
+
+    def boleto_transaction
+      # como eu pego a order aqui
+    end
+
+    def cred_card_transaction
+      # como eu pego a order aqui
+      @order
+      card = create_credit_card(@order)
+
+      PagarMe::Transaction.new(
+        amount:    #TO DO get value in cents
+        card_hash: card.id  # how to get a card hash: docs.pagar.me/capturing-card-data
+      ).charge
+    end
+
     def address
       @address ||= begin
         address = Address.find_by user_id: user.id, street: street, number: number, complement: complement, neighborhood: neighborhood, city: city, state: state, zipcode: zipcode
         address = Address.create user_id: user.id, street: street, number: number, complement: complement, neighborhood: neighborhood, city: city, state: state, zipcode: zipcode unless address.present?
         address
-
       end
     end
+
+  def create_credit_card(order)
+    # to save user credit card on pagarme and recieve a card hash
+    # create a credit card on pagarme
+
+    pagarme_card = PagarMe::Card.new({
+      card_number: order.credit_card_number,
+      card_holder_name: order.credit_card_name,
+      card_expiration_month: order.credit_card_expiration_month,
+      card_expiration_year: order.credit_card_expiration_year,
+      card_cvv: order.credit_card_cvv
+    })
+
+    pagarme_card.create
+  end
 end
