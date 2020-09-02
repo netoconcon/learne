@@ -75,8 +75,35 @@ class OrderForm
       end
     end
 
+    def pagarme_customer
+      # como pego nosso customer aqui
+      pagarme_customer = PagarMe::Customer.create(
+        name: @customer.first_name,
+        email: @customer.email,
+        type: 'individual',
+        external_id: "#3311", #conferir o que é
+        country: 'br',
+        birthday: @customer.birthday,
+        documents: [
+        {type: "cpf", number: @customer.cpf}
+        ],
+        phone_numbers: [@customer.phone]
+      )
+    end
+
     def boleto_transaction
       # como eu pego a order aqui
+
+      boleto = PagarMe::Transaction.new(
+        amount:         , #TO DO get value in cents
+        payment_method: 'boleto'
+      )
+      boleto.charge
+
+      boleto_url = boleto.boleto_url     # => boleto's URL
+      boleto_barcode =  boleto.boleto_barcode # => boleto's barcode
+
+      # TO DO ENVIAR ESSAS INFOS POR MAILER
     end
 
     def cred_card_transaction
@@ -85,8 +112,8 @@ class OrderForm
       card = create_credit_card(@order)
 
       PagarMe::Transaction.new(
-        amount:    #TO DO get value in cents
-        card_hash: card.id  # how to get a card hash: docs.pagar.me/capturing-card-data
+        amount:    , #TO DO get value in cents
+        card_hash: card.id
       ).charge
     end
 
