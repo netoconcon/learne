@@ -2,31 +2,50 @@ class PagesController < ApplicationController
   layout "admin"
 
   def home
-    @orders = Order.all
-    @all_prices = []
-    Order.all.each do |order|
-      @all_prices  << order.price
-    end
+    @date = params[:sales_date]
+    date_overview
     order_card
     order_boleto
     boleto_generated
   end
 
+  def date_overview
+    if @date.present?
+      @all_prices = []
+      @all_day_orders = Order.where(created_at: @date.to_date.midnight..@date.to_date.end_of_day)
+      @all_day_orders.each  do |order|
+        @all_prices  << order.price
+      end
+    else
+      @all_day_orders = []
+      @all_prices = [0]
+    end
+  end
+
+
   def order_card
-    @orders_card = Order.all.where(payment_method: true)
-    @testando = Order.all.where(payment_method: true)
+    if @date.present?
+    @orders_card = Order.all.where(payment_method: true).where(created_at: @date.to_date.midnight..@date.to_date.end_of_day)
     @cards_prices = []
     @orders_card.each do |order|
       @cards_prices << order.price
     end
-    @testando = "eita"
+    else
+      @orders_card = []
+      @cards_prices = [0]
+    end
   end
 
   def order_boleto
-    @orders_boleto = Order.all.where(payment_method: false)
-    @boletos_prices = []
-    @orders_boleto.each do |order|
-      @boletos_prices << order.price
+    if @date.present?
+      @orders_boleto = Order.all.where(payment_method: false).where(created_at: @date.to_date.midnight..@date.to_date.end_of_day)
+      @boletos_prices = []
+      @orders_boleto.each do |order|
+        @boletos_prices << order.price
+      end
+    else
+      @orders_boleto = []
+      @boletos_prices = [0]
     end
   end
 
