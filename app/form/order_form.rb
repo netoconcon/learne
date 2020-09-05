@@ -40,13 +40,16 @@ class OrderForm
     order.customer = customer
     order.address = address
     order.price = kit.price + 1
-    order.save!
+
 
     #START PAGARME ACTION TO REFACTOR LATER
     # TO DO CHECK IF CRED CARD OR BOLETO
 
-    pagarme_customer # create customer on pagarme's db
+    # pagarme_customer # create customer on pagarme's db
     cred_card_transaction
+    raise
+
+    order.save!
   end
 
   def order
@@ -64,15 +67,6 @@ class OrderForm
       Order.attribute_names.index_with { |a| send(a) if respond_to?(a) }.compact
     end
 
-    # def user
-    #   @user ||= begin
-    #     user = User.find_by email: email
-    #     user = User.create first_name: first_name, last_name: last_name, email: email, phone: phone, password: "123456" unless user.present?
-    #     user
-    #   end
-    # end
-
-    # REPLIQUEI O METODO USER PARA CUSTOMER
     def customer
       @customer ||= begin
         customer = Customer.find_by email: email
@@ -88,7 +82,7 @@ class OrderForm
         type: 'individual',
         # external_id: "#3311", #conferir o que é
         country: 'br',
-        # birthday: customer.birthday.to_s unless customer.birthday.nil?,
+        # birthday: birthday.to_s unless customer.birthday.nil?,
         documents: [
         {"type": "cpf", "number": credit_card_cpf.gsub(".","").gsub("-","")}
         ],
@@ -114,8 +108,26 @@ class OrderForm
       card = create_credit_card(@order)
 
       PagarMe::Transaction.new(
-        amount: order.amount, #TO DO get value in cents
-        card_hash: card.id
+        amount: 1, #TO DO get value in cents
+        card_hash: customer.pagarme_card,
+        installments: 1,
+        payment_method: 'credit_card',
+        # postback_url
+        customer: {
+          # "external_id": "#3311",
+          "name": "Morpheus Fishburne",
+          "type": "individual",
+          "country": "br",
+          "email": "mopheus@nabucodonozor.com",
+          "documents": [
+            {
+              "type": "cpf",
+              "number": "00000000000"
+            }
+          ],
+          "phone_numbers": ["+5511999998888"],
+          "birthday": "1965-01-01"
+        },
       ).charge
     end
 
@@ -130,17 +142,17 @@ class OrderForm
   def create_credit_card(order)
     # to save user credit card on pagarme and recieve a card hash
     # create a credit card on pagarme
-    raise
+
     pagarme_card = PagarMe::Card.new({
-      card_number: order.credit_card_number,
-      card_holder_name: order.credit_card_name,
-      card_expiration_month: order.credit_card_expiration_month,
-      card_expiration_year: order.credit_card_expiration_year,
-      card_cvv: order.credit_card_cvv
+      card_number: credit_card_number.gsub(" ",""),
+      card_holder_name: credit_card_name,
+      card_expiration_month: credit_card_expiration_month,
+      card_expiration_year: credit_card_expiration_year,
+      card_cvv: credit_card_cvv
     })
 
     pagarme_card.create
-    customer.pagarme_card = pagarme.card.id
+    customer.pagarme_card = pagarme_card.id
     customer.save
   end
 end
