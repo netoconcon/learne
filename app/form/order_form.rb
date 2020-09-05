@@ -70,7 +70,7 @@ class OrderForm
     def customer
       @customer ||= begin
         customer = Customer.find_by email: email
-        customer = Customer.create first_name: first_name, last_name: last_name, email: email, phone: phone
+        customer = Customer.create first_name: first_name, last_name: last_name, email: email, phone: phone user.present?
         customer
       end
     end
@@ -78,24 +78,23 @@ class OrderForm
     def pagarme_customer
       # como pego nosso customer aqui
       pagarme_customer = PagarMe::Customer.create(
-        name: @customer.first_name,
-        email: @customer.email,
+        name: customer.first_name,
+        email: customer.email,
         type: 'individual',
         external_id: "#3311", #conferir o que é
         country: 'br',
-        birthday: @customer.birthday,
+        birthday: customer.birthday,
         documents: [
-        {type: "cpf", number: @customer.cpf}
+        {type: "cpf", number: customer.cpf}
         ],
-        phone_numbers: [@customer.phone]
+        phone_numbers: [customer.phone]
       )
     end
 
     def boleto_transaction
-      # como eu pego a order aqui
 
       boleto = PagarMe::Transaction.new(
-        amount:         , #TO DO get value in cents
+        amount:  order.amount, #TO DO get value in cents
         payment_method: 'boleto'
       )
       boleto.charge
@@ -107,12 +106,10 @@ class OrderForm
     end
 
     def cred_card_transaction
-      # como eu pego a order aqui
-      @order
       card = create_credit_card(@order)
 
       PagarMe::Transaction.new(
-        amount:    , #TO DO get value in cents
+        amount: order.amount, #TO DO get value in cents
         card_hash: card.id
       ).charge
     end
@@ -138,5 +135,7 @@ class OrderForm
     })
 
     pagarme_card.create
+    customer.pagarme_card = pagarme.card.id
+    customer.save
   end
 end
