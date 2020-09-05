@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_05_175111) do
+ActiveRecord::Schema.define(version: 2020_09_05_183538) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,10 +23,10 @@ ActiveRecord::Schema.define(version: 2020_09_05_175111) do
     t.string "city"
     t.string "state"
     t.string "zipcode"
-    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_addresses_on_user_id"
+    t.bigint "customer_id", null: false
+    t.index ["customer_id"], name: "index_addresses_on_customer_id"
   end
 
   create_table "bank_accounts", force: :cascade do |t|
@@ -130,10 +130,12 @@ ActiveRecord::Schema.define(version: 2020_09_05_175111) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "address_id", null: false
+    t.bigint "user_id", null: false
     t.bigint "customer_id", null: false
     t.index ["address_id"], name: "index_orders_on_address_id"
     t.index ["customer_id"], name: "index_orders_on_customer_id"
     t.index ["kit_id"], name: "index_orders_on_kit_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -180,13 +182,11 @@ ActiveRecord::Schema.define(version: 2020_09_05_175111) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "admin", default: false
-    t.string "cpf"
-    t.date "birthday"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "addresses", "users"
+  add_foreign_key "addresses", "customers"
   add_foreign_key "bank_accounts", "companies"
   add_foreign_key "campaigns", "selling_pages"
   add_foreign_key "kit_products", "kits"
@@ -194,6 +194,7 @@ ActiveRecord::Schema.define(version: 2020_09_05_175111) do
   add_foreign_key "orders", "addresses"
   add_foreign_key "orders", "customers"
   add_foreign_key "orders", "kits"
+  add_foreign_key "orders", "users"
   add_foreign_key "products", "companies"
   add_foreign_key "selling_pages", "kits"
 end
