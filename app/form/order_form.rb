@@ -37,12 +37,16 @@ class OrderForm
 
   def save
     order.assign_attributes order_attributes
-    order.user = user
+    order.customer = customer
     order.address = address
     order.price = kit.price + 1
     order.save!
 
+    #START PAGARME ACTION TO REFACTOR LATER
     # TO DO CHECK IF CRED CARD OR BOLETO
+
+    pagarme_customer # create customer on pagarme's db
+    cred_card_transaction
   end
 
   def order
@@ -72,29 +76,28 @@ class OrderForm
     def customer
       @customer ||= begin
         customer = Customer.find_by email: email
-        customer = Customer.create first_name: first_name, last_name: last_name, email: email, phone: phone unless user.present?
+        customer = Customer.create first_name: first_name, last_name: last_name, email: email, cpf: credit_card_cpf , phone: phone unless customer.present?
         customer
       end
     end
 
     def pagarme_customer
-      # como pego nosso customer aqui
       pagarme_customer = PagarMe::Customer.create(
-        name: customer.first_name,
+        name: customer.first_name + ' ' + customer.last_name,
         email: customer.email,
         type: 'individual',
-        external_id: "#3311", #conferir o que é
+        # external_id: "#3311", #conferir o que é
         country: 'br',
-        birthday: customer.birthday,
+        # birthday: customer.birthday.to_s unless customer.birthday.nil?,
         documents: [
-        {type: "cpf", number: customer.cpf}
+        {"type": "cpf", "number": credit_card_cpf.gsub(".","").gsub("-","")}
         ],
-        phone_numbers: [customer.phone]
+        phone_numbers: ["+55#{phone}"]
       )
     end
 
-    def boleto_transaction
 
+    def boleto_transaction
       boleto = PagarMe::Transaction.new(
         amount:  order.amount, #TO DO get value in cents
         payment_method: 'boleto'
@@ -118,8 +121,8 @@ class OrderForm
 
     def address
       @address ||= begin
-        address = Address.find_by user_id: user.id, street: street, number: number, complement: complement, neighborhood: neighborhood, city: city, state: state, zipcode: zipcode
-        address = Address.create user_id: user.id, street: street, number: number, complement: complement, neighborhood: neighborhood, city: city, state: state, zipcode: zipcode unless address.present?
+        address = Address.find_by customer_id: customer.id, street: street, number: number, complement: complement, neighborhood: neighborhood, city: city, state: state, zipcode: zipcode
+        address = Address.create customer_id: customer.id, street: street, number: number, complement: complement, neighborhood: neighborhood, city: city, state: state, zipcode: zipcode unless address.present?
         address
       end
     end
@@ -127,7 +130,7 @@ class OrderForm
   def create_credit_card(order)
     # to save user credit card on pagarme and recieve a card hash
     # create a credit card on pagarme
-
+    raise
     pagarme_card = PagarMe::Card.new({
       card_number: order.credit_card_number,
       card_holder_name: order.credit_card_name,
