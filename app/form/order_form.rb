@@ -41,6 +41,8 @@ class OrderForm
     order.address = address
     order.price = kit.price + 1
     order.save!
+
+    # TO DO CHECK IF CRED CARD OR BOLETO
   end
 
   def order
@@ -48,7 +50,7 @@ class OrderForm
   end
 
   def kit
-    if Kit.nil?
+    unless kit_id.nil?
      @kit ||= Kit.find(kit_id)
    end
   end
@@ -58,19 +60,19 @@ class OrderForm
       Order.attribute_names.index_with { |a| send(a) if respond_to?(a) }.compact
     end
 
-    def user
-      @user ||= begin
-        user = User.find_by email: email
-        user = User.create first_name: first_name, last_name: last_name, email: email, phone: phone, password: "123456" unless user.present?
-        user
-      end
-    end
+    # def user
+    #   @user ||= begin
+    #     user = User.find_by email: email
+    #     user = User.create first_name: first_name, last_name: last_name, email: email, phone: phone, password: "123456" unless user.present?
+    #     user
+    #   end
+    # end
 
     # REPLIQUEI O METODO USER PARA CUSTOMER
     def customer
       @customer ||= begin
         customer = Customer.find_by email: email
-        customer = Customer.create first_name: first_name, last_name: last_name, email: email, phone: phone user.present?
+        customer = Customer.create first_name: first_name, last_name: last_name, email: email, phone: phone unless user.present?
         customer
       end
     end

@@ -7,7 +7,7 @@ class SellingPagesController < ApplicationController
   end
 
   def kit_show
-    kit_id = SellingPage.find_by(url: params[:selling_page_url]).kit.id if SellingPage.nil?
+    kit_id = SellingPage.find_by(url: params[:selling_page_url]).kit.id
     @order = OrderForm.new(kit_id: kit_id)
     render "orders/new"
   end
