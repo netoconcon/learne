@@ -1,9 +1,7 @@
 class Address < ApplicationRecord
   include Validation
 
-  belongs_to :user
-
-  has_many :orders
+  belongs_to :customer
 
   normalize_attributes :zipcode, with: [:numbers]
 end
