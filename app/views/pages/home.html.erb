@@ -25,15 +25,13 @@
           </div>
         </div>
         <div>
-          <h3>Resumo de vendas <%= params[:sales_date] %></h3>
-          <div data-controller="home">
-            <!-- <input type="date" data-action="event -> home#datepick" data-target="home.date" > -->
+          <h3>Resumo de vendas do dia <%= params[:sales_date] %></h3>
+          <div>
             <%= form_tag root_path, method: :get do %>
               <%= date_field_tag 'sales_date', Date.today %>
-              <%= submit_tag 'Search' %>
+              <%= submit_tag 'Procurar' %>
             <% end %>
           </div>
-          <p>   </p>
         </div>
         <div class="row spacing">
           <div class="col-6">
@@ -184,7 +182,7 @@
           </div> 
         </div>
       </div>
-      <div class="col-6">
+      <div class="col-6" data-controller="chart">
         <div>
           <h4>Vendas </h4>
           <%= area_chart admin_charts_values_path, ytitle: 'Total', legend: true, prefix: 'R$', thousands: ".",  label: "value" %>
