@@ -109,7 +109,7 @@ class OrderForm
 
       PagarMe::Transaction.new(
         amount: 1, #TO DO get value in cents
-        card_hash: customer.pagarme_card,
+        card_hash: card.id,
         installments: 1,
         payment_method: 'credit_card',
         # postback_url
@@ -152,7 +152,41 @@ class OrderForm
     })
 
     pagarme_card.create
-    customer.pagarme_card = pagarme_card.id
-    customer.save
+  end
+
+  def create_subscription
+
+    # get infos we need to subscription
+    customer = pagarme_customer
+    card = create_credit_card(@order)
+    # TO DO get plan on order.product
+
+    ActiveRecord::Base.transaction do
+
+      subscription = PagarMe::Subscription.new({
+        plan_id: plan,
+        payment_method: 'credit_card',
+        card_id: card.id,
+        # postback_url: ,
+        customer: {
+            name: credit_card_name,
+            document_number: credit_card_cpf,
+            email: current_user.email,
+            address: {
+                street: current_user.street,
+                neighborhood: current_user.neighborhood,
+                zipcode: current_user.zipcode,
+                street_number: current_user.street_number
+            },
+            phone: {
+                ddd: current_user.phone_ddd,
+                number: current_user.phone_number
+            },
+        },
+      })
+
+
+          subscription.create
+      end
   end
 end
