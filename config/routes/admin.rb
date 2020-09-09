@@ -8,4 +8,10 @@ namespace :admin do
   resources :kit_products
   resources :campaigns
   resources :selling_pages
+  resources :plans, except: [:destroy, :update] do
+    get '/activate_plan', to: 'plans#activate_plan', as: :activate_plan
+    get '/publish_plan', to: 'plans#publish_plan', as: :publish_plan
+    get '/deactivate_plan', to: 'plans#deactivate_plan', as: :deactivate_plan
+  end
+  patch '/plans/:id', to: "plans#update", as: "update_plan"
 end

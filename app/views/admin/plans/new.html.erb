@@ -1,0 +1,57 @@
+<div class="form-banner">
+  <div class="form-box">
+    <div class="form-area">
+        <div class="form-header">
+          <h2>Novo Plano</h2>
+        </div>
+        <br>
+        <div class="container devise-form">
+          <%= simple_form_for @plan, url: admin_plans_path do |f| %>
+
+          <p>Nome do Plano</p>
+
+          <%= f.input :name, label: false %>
+          <br>
+
+          <p>Valor em Centavos</p>
+
+          <%= f.input :price, label: false %>
+          <br>
+
+          <p>Dias</p>
+
+          <%= f.input :days, label: false %>
+          <br>
+
+          <p>Dias de Trial</p>
+
+          <%= f.input :trial_days, label: false %>
+          <br>
+
+          <p>Método de Pagamento</p>
+
+          <%= f.input :payment_methods, label: false %>
+          <br>
+
+          <p>Charges</p>
+
+          <%= f.input :charges, label: false %>
+          <br>
+
+          <p>Installments</p>
+
+          <%= f.input :installments, label: false %>
+          <br>
+
+          <p>Invoice Reminder</p>
+
+          <%= f.input :invoice_reminder, label: false %>
+          <br>
+
+
+          <%= f.button :submit, "Criar Plano", class: "btn-northern btn-block" %>
+          <% end %>
+        </div>
+    </div>
+  </div>
+</div>
