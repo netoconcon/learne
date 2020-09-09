@@ -1,6 +1,8 @@
 class OrdersController < ApplicationController
 layout "public"
 
+  after_create :send_email
+
   def new
     @order = OrderForm.new
   end
@@ -41,5 +43,9 @@ layout "public"
         :bank_slip_cpf,
         :installments
     )
+  end
+
+  def send_email
+    OrderMailer.confirmation(self).deliver_now
   end
 end
