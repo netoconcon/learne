@@ -24,9 +24,16 @@ class Admin::PlansController < ApplicationController
   end
 
   def edit
+    @plan = Plan.find(params[:id])
   end
 
   def update
+    @plan = Plan.find(params[:id])
+    if @plan.update(plan_params)
+      redirect_to admin_plans_path
+    else
+      render :edit
+    end
   end
 
   def activate_plan
@@ -60,7 +67,7 @@ class Admin::PlansController < ApplicationController
   private
 
   def plan_params
-    params.require(:plan).permit(:name, :amount, :days, :trials_days, :payment_methods, :charges, :installments, :invoice_reminder)
+    params.require(:plan).permit(:name, :price, :days, :trials_days, :payment_methods, :charges, :installments, :invoice_reminder)
   end
 
   def check_admin

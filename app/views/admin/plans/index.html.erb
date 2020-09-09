@@ -1,0 +1,99 @@
+  <%= link_to "Novo Plano", new_admin_plan_path, class:"btn btn-primary" %>
+
+  <div class="plan-area">
+    <div class="container">
+      <div id="new-plans" class="plans-grid">
+        <% @plans.each do |plan| %>
+          <% unless plan.active || plan.visible || plan.deactivated %>
+            <div class="plan-card">
+              <div class="plan-card-header">
+                <h4><%= plan.id %> - <%= plan.name %></h4>
+              </div>
+              <hr>
+              <div class="plan-card-infos">
+                <h5>Pagarme Id: <%= plan.pagarme_id %></h5>
+                <p>Valor: R$ <%= plan.price %></p>
+                <p>Dias: <%= plan.days %></p>
+              </div>
+              <hr>
+              <div class="plan-card-actions">
+                <%= link_to "ver", "admin_plan_path(plan)", class:"btn btn-sm btn-primary" %>
+                <%= link_to "ativar", admin_plan_activate_plan_path(plan), class:"btn btn-sm btn-primary" %>
+                <%= link_to "editar", edit_admin_plan_path(plan), class:"btn btn-sm btn-primary" %>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+      <div id="active-plans" class="plans-grid">
+        <% @plans.each do |plan| %>
+          <% if plan.active && !plan.visible && !plan.deactivated  %>
+            <div class="plan-card">
+              <div class="plan-card-header">
+                <h4><%= plan.id %> - <%= plan.name %></h4>
+              </div>
+              <hr>
+              <div class="plan-card-infos">
+                <h5>Pagarme Id: <%= plan.pagarme_id %></h5>
+                <p>Valor: R$ <%= plan.price %></p>
+                <p>Dias: <%= plan.days %></p>
+              </div>
+              <hr>
+              <div class="plan-card-actions">
+                <%= link_to "ver", root_path, class:"btn btn-sm btn-primary"%>
+                <%= link_to "publicar", root_path, class:"btn btn-sm btn-primary"%>
+                <%= link_to "desativar", root_path, class:"btn btn-sm btn-primary"%>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+      <div id="visible-plans" class="plans-grid">
+        <% @plans.each do |plan| %>
+          <% if plan.active && plan.visible && !plan.deactivated %>
+
+
+            <div class="plan-card">
+              <div class="plan-card-header">
+                <h4><%= plan.id %> - <%= plan.name %></h4>
+              </div>
+              <hr>
+              <div class="plan-card-infos">
+                <h5>Pagarme Id: <%= plan.pagarme_id %></h5>
+                <p>Valor: R$ <%= plan.price %></p>
+                <p>Dias: <%= plan.days %></p>
+              </div>
+              <hr>
+              <div class="plan-card-actions">
+                <%= link_to "ver", admin_plan_path(plan), class:"btn btn-sm btn-primary"%>
+                <%= link_to "desativar", root_path, class:"btn btn-sm btn-primary"%>
+              </div>
+            </div>
+
+          <% end %>
+        <% end %>
+      </div>
+      <div id="deactivated-plans" class="plans-grid">
+        <% @plans.each do |plan| %>
+          <% if plan.deactivated && !plan.active && !plan.visible %>
+
+            <div class="plan-card">
+              <div class="plan-card-header">
+                <h4><%= plan.id %> - <%= plan.name %></h4>
+              </div>
+              <hr>
+              <div class="plan-card-infos">
+                <h5>Pagarme Id: <%= plan.pagarme_id %></h5>
+                <p>Valor: R$ <%= plan.price %></p>
+                <p>Dias: <%= plan.days %></p>
+              </div>
+              <hr>
+              <div class="plan-card-actions">
+                <%= link_to "ver", admin_plan_path(plan), class:"btn btn-sm btn-primary"%>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+</div>

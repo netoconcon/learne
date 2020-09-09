@@ -6,7 +6,7 @@ class Plan < ApplicationRecord
       name: self.name,
       days: self.days,
       installments: self.installments,
-      amount: self.amount,
+      amount: self.price,
       payment_methods: ['credit_card']
     })
 
