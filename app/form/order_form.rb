@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class OrderForm
+  require 'pagarme'
   include ActiveModel::Model
   include Address::Validation, User::Validation, Order::Validation
   #TO DO CHANGE LINE 5 FOR CUSTOMER AND CREATE A CUSTOMER VALIDATION
@@ -45,11 +46,11 @@ class OrderForm
     #START PAGARME ACTION TO REFACTOR LATER
     # TO DO CHECK IF CRED CARD OR BOLETO
 
-    # pagarme_customer # create customer on pagarme's db
+    pagarme_customer # create customer on pagarme's db
     cred_card_transaction
-    raise
 
     order.save!
+    redirect_to root_path
   end
 
   def order
@@ -76,17 +77,18 @@ class OrderForm
     end
 
     def pagarme_customer
+      customer_phone = phone.gsub("(","").gsub(")","").gsub("-","").gsub(" ","")
       pagarme_customer = PagarMe::Customer.create(
         name: customer.first_name + ' ' + customer.last_name,
         email: customer.email,
         type: 'individual',
-        # external_id: "#3311", #conferir o que é
+        external_id: customer.id.to_s,
         country: 'br',
         # birthday: birthday.to_s unless customer.birthday.nil?,
         documents: [
         {"type": "cpf", "number": credit_card_cpf.gsub(".","").gsub("-","")}
         ],
-        phone_numbers: ["+55#{phone}"]
+        phone_numbers: ["+55#{customer_phone}"]
       )
     end
 
@@ -101,34 +103,86 @@ class OrderForm
       boleto_url = boleto.boleto_url     # => boleto's URL
       boleto_barcode =  boleto.boleto_barcode # => boleto's barcode
 
-      # TO DO ENVIAR ESSAS INFOS POR MAILER
+      # TODO ENVIAR ESSAS INFOS POR MAILER
     end
 
     def cred_card_transaction
-      card = create_credit_card(@order)
+      order = self
+      card = create_credit_card(order)
 
-      PagarMe::Transaction.new(
-        amount: 1, #TO DO get value in cents
-        card_hash: card.id,
-        installments: 1,
-        payment_method: 'credit_card',
-        # postback_url
+      card_number = order.credit_card_number.gsub(" ","")
+
+      transaction  = PagarMe::Transaction.new({
+        amount: 100,
+        payment_method: "credit_card",
+        card_number: order.credit_card_number.gsub(" ",""),
+        card_holder_name: order.credit_card_name,
+        card_expiration_date: credit_card_expiration_month + credit_card_expiration_year,
+        card_cvv: order.credit_card_cvv,
+        postback_url: "http://requestb.in/pkt7pgpk",
         customer: {
-          # "external_id": "#3311",
-          "name": "Morpheus Fishburne",
-          "type": "individual",
-          "country": "br",
-          "email": "mopheus@nabucodonozor.com",
-          "documents": [
+          external_id: order.customer.id.to_s,
+          name: order.credit_card_name,
+          type: "individual",
+          country: "br",
+          email: order.email,
+          documents: [
             {
-              "type": "cpf",
-              "number": "00000000000"
+              type: "cpf",
+              number: order.credit_card_cpf.gsub(".","").gsub("-","")
+
             }
+
           ],
-          "phone_numbers": ["+5511999998888"],
-          "birthday": "1965-01-01"
+          phone_numbers: ["+55" + order.phone.gsub("(","").gsub(")","").gsub(" ","").gsub("-","")],
+          # birthday: order.customer.birthday.to_s
         },
-      ).charge
+        billing: {
+          name: "Trinity Moss",
+          address: {
+            country: "br",
+            state: "sp",
+            city: "Cotia",
+            neighborhood: "Rio Cotia",
+            street: "Rua Matrix",
+            street_number: "9999",
+            zipcode: "06714360"
+          }
+        }
+        shipping: {
+          name: "Neo Reeves",
+          fee: 1000,
+          delivery_date: "2000-12-21",
+          expedited: true,
+          address: {
+            country: "br",
+            state: "sp",
+            city: "Cotia",
+            neighborhood: "Rio Cotia",
+            street: "Rua Matrix",
+            street_number: "9999",
+            zipcode: "06714360"
+          }
+        # },
+        items: [
+          {
+            id: "r123",
+            title: "Red pill",
+            unit_price: 10000,
+            quantity: 1,
+            tangible: true
+          },
+          {
+            id: "b123",
+            title: "Blue pill",
+            unit_price: 10000,
+            quantity: 1,
+            tangible: true
+          }
+
+        ]
+      })
+      transaction.charge
     end
 
     def address
@@ -142,7 +196,6 @@ class OrderForm
   def create_credit_card(order)
     # to save user credit card on pagarme and recieve a card hash
     # create a credit card on pagarme
-
     pagarme_card = PagarMe::Card.new({
       card_number: credit_card_number.gsub(" ",""),
       card_holder_name: credit_card_name,
@@ -162,7 +215,6 @@ class OrderForm
     # TO DO get plan on order.product
 
     ActiveRecord::Base.transaction do
-
       subscription = PagarMe::Subscription.new({
         plan_id: plan,
         payment_method: 'credit_card',
@@ -184,9 +236,7 @@ class OrderForm
             },
         },
       })
-
-
-          subscription.create
-      end
+      subscription.create
+    end
   end
 end
