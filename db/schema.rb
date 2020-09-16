@@ -10,7 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 2020_09_05_183538) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -136,6 +138,23 @@ ActiveRecord::Schema.define(version: 2020_09_05_183538) do
     t.index ["customer_id"], name: "index_orders_on_customer_id"
     t.index ["kit_id"], name: "index_orders_on_kit_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
+  create_table "plans", force: :cascade do |t|
+    t.string "name"
+    t.string "pagarme_id"
+    t.integer "price"
+    t.integer "days"
+    t.integer "trial_days"
+    t.string "payment_methods"
+    t.integer "charges"
+    t.integer "installments"
+    t.integer "invoice_reminder"
+    t.boolean "active", default: false
+    t.boolean "visible", default: false
+    t.boolean "deactivated", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "products", force: :cascade do |t|
