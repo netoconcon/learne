@@ -1,5 +1,7 @@
 class Order < ApplicationRecord
-  include Validation
+  include Validation 
+
+  after_create :send_email
 
   belongs_to :kit
   belongs_to :address
@@ -8,5 +10,11 @@ class Order < ApplicationRecord
   normalize_attributes :phone, with: [:phone]
   normalize_attributes :zipcode, with: [:numbers]
   normalize_attributes :cpf, with: [:cpf]
+
+  private
+
+  def send_email
+    OrderMailer.confirmation(self).deliver_now
+  end
 
 end
