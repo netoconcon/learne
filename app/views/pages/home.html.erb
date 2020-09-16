@@ -25,9 +25,12 @@
           </div>
         </div>
         <div>
-          <h3>Resumo de vendas</h3>
-          <div data-controller="home">
-            <input type="date" data-action="event -> home#datepick" data-target="home.date" >
+          <h3>Resumo de vendas do dia <%= params[:sales_date] %></h3>
+          <div>
+            <%= form_tag root_path, method: :get do %>
+              <%= date_field_tag 'sales_date', Date.today %>
+              <%= submit_tag 'Procurar' %>
+            <% end %>
           </div>
         </div>
         <div class="row spacing">
@@ -35,7 +38,7 @@
             <div class="card">
               <div class="card-body details">
                 <div style="width: 80%;">
-                  <h5 class="card-title"> Vendas totais: <%= Order.all.size %> </h5>
+                  <h5 class="card-title"> Vendas totais: <%= @all_day_orders.size %> </h5>
                   R$ <%= @all_prices.sum  %>
                 </div>
                 <div>
@@ -179,10 +182,10 @@
           </div> 
         </div>
       </div>
-      <div class="col-6">
+      <div class="col-6" data-controller="chart">
         <div>
-          <h4>Vendas</h4>
-          <%= area_chart Order.group(:payment_method).group_by_day(:created_at, last:7, format: "%d/%m").sum('orders.price'), ytitle: 'Total', legend: true, prefix: 'R$', thousands: ".", max: @max, label: "value" %>
+          <h4>Vendas </h4>
+          <%= area_chart admin_charts_values_path, ytitle: 'Total', legend: true, prefix: 'R$', thousands: ".",  label: "value" %>
         </div>
         <div>
           <div class="col-6">
