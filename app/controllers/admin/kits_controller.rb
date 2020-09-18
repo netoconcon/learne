@@ -24,7 +24,7 @@ class Admin::KitsController < ApplicationController
   end
 
   def edit
-    gon.products = product_price
+    gon.products = products
     @kit = Kit.find(params[:id])
     @kit_product = KitProduct.new
     @products = Product.all
@@ -46,7 +46,7 @@ class Admin::KitsController < ApplicationController
     redirect_to admin_kits_path
   end
 
-  def product_price
+  def products
     listproducts = Hash.new
     products = Product.all
     products.each { |x| listproducts[x]}

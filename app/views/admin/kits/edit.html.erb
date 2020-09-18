@@ -38,9 +38,9 @@
   </div>
   <div class="form-total-price">
     <%= f.button :submit, 'Salvar alterações', class: "btn btn-primary submit-product" %>
-    <div style="width: 15%;">
+    <div style="width: 15%;" data-controller="form">
       Preço total
-      <input type="text" >
+      <input type="text" data-target="sumvalue">
     </div>
   </div>
   <% end %>

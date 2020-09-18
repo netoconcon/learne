@@ -3,11 +3,11 @@
     <div class="form-products">
       <%= f.association :product, as: :select, label: "Produto", input_html: { "data-target" => "form.product", "data-action" => "event -> form#pricefill" } %>
       <div class="form-fields">  
-        <%= f.input :quantity %>
-        <!-- <p>
+        <%= f.input :quantity, input_html: { "data-target" => "form.quantity", "data-action" => "event -> form#quantity" } %>
+        <p>
           <label>Preço</label>
-          <input type="text" data-taget="form.valor">
-        </p> -->
+          <span data-taget="form.valor"></span>
+        </p>
       </div>
     </div>
       <%= link_to_remove_association "Remover produto", f %>
