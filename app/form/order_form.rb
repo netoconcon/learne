@@ -42,17 +42,17 @@ class OrderForm
     order.address = address
     order.price = kit.price + 1
 
-
-    #START PAGARME ACTION TO REFACTOR LATER
-    # TO DO CHECK IF CRED CARD OR BOLETO
-
     pagarme_customer # create customer on pagarme's db
 
-    if payment_method
-      cred_card_transaction
-    else
-      boleto_transaction
-    end
+    # if subscription
+      create_subscription
+    # else
+      if payment_method
+        cred_card_transaction
+      else
+        boleto_transaction
+      end
+    # end
     order.save!
     redirect_to root_path
   end
@@ -116,77 +116,78 @@ class OrderForm
 
       card_number = order.credit_card_number.gsub(" ","")
 
-      transaction  = PagarMe::Transaction.new({
-        amount: 100,
-        payment_method: "credit_card",
-        card_number: order.credit_card_number.gsub(" ",""),
-        card_holder_name: order.credit_card_name,
-        card_expiration_date: credit_card_expiration_month + credit_card_expiration_year,
-        card_cvv: order.credit_card_cvv,
-        postback_url: "http://requestb.in/pkt7pgpk",
-        customer: {
-          external_id: order.customer.id.to_s,
-          name: order.credit_card_name,
-          type: "individual",
-          country: "br",
-          email: order.email,
-          documents: [
-            {
-              type: "cpf",
-              number: order.credit_card_cpf.gsub(".","").gsub("-","")
+      ActiveRecord::Base.transaction do
+        transaction  = PagarMe::Transaction.new({
+          amount: 100,
+          payment_method: "credit_card",
+          card_number: order.credit_card_number.gsub(" ",""),
+          card_holder_name: order.credit_card_name,
+          card_expiration_date: credit_card_expiration_month + credit_card_expiration_year,
+          card_cvv: order.credit_card_cvv,
+          postback_url: "http://requestb.in/pkt7pgpk",
+          customer: {
+            external_id: order.customer.id.to_s,
+            name: order.credit_card_name,
+            type: "individual",
+            country: "br",
+            email: order.email,
+            documents: [
+              {
+                type: "cpf",
+                number: order.credit_card_cpf.gsub(".","").gsub("-","")
 
+              }
+            ],
+            phone_numbers: ["+55" + order.phone.gsub("(","").gsub(")","").gsub(" ","").gsub("-","")],
+            # birthday: order.customer.birthday.to_s
+          },
+          billing: {
+            name: "Trinity Moss",
+            address: {
+              country: "br",
+              state: "sp",
+              city: "Cotia",
+              neighborhood: "Rio Cotia",
+              street: "Rua Matrix",
+              street_number: "9999",
+              zipcode: "06714360"
+            }
+          },
+          shipping: {
+            name: "Neo Reeves",
+            fee: 1000,
+            delivery_date: "2000-12-21",
+            expedited: true,
+            address: {
+              country: "br",
+              state: "sp",
+              city: "Cotia",
+              neighborhood: "Rio Cotia",
+              street: "Rua Matrix",
+              street_number: "9999",
+              zipcode: "06714360"
+            }
+          },
+          items: [
+            {
+              id: "r123",
+              title: "Red pill",
+              unit_price: 10000,
+              quantity: 1,
+              tangible: true
+            },
+            {
+              id: "b123",
+              title: "Blue pill",
+              unit_price: 10000,
+              quantity: 1,
+              tangible: true
             }
 
-          ],
-          phone_numbers: ["+55" + order.phone.gsub("(","").gsub(")","").gsub(" ","").gsub("-","")],
-          # birthday: order.customer.birthday.to_s
-        },
-        billing: {
-          name: "Trinity Moss",
-          address: {
-            country: "br",
-            state: "sp",
-            city: "Cotia",
-            neighborhood: "Rio Cotia",
-            street: "Rua Matrix",
-            street_number: "9999",
-            zipcode: "06714360"
-          }
-        },
-        shipping: {
-          name: "Neo Reeves",
-          fee: 1000,
-          delivery_date: "2000-12-21",
-          expedited: true,
-          address: {
-            country: "br",
-            state: "sp",
-            city: "Cotia",
-            neighborhood: "Rio Cotia",
-            street: "Rua Matrix",
-            street_number: "9999",
-            zipcode: "06714360"
-          }
-        },
-        items: [
-          {
-            id: "r123",
-            title: "Red pill",
-            unit_price: 10000,
-            quantity: 1,
-            tangible: true
-          },
-          {
-            id: "b123",
-            title: "Blue pill",
-            unit_price: 10000,
-            quantity: 1,
-            tangible: true
-          }
-
-        ]
-      })
-      transaction.charge
+          ]
+        })
+        transaction.charge
+      end
     end
 
     def address
