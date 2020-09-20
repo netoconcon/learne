@@ -47,8 +47,12 @@ class OrderForm
     # TO DO CHECK IF CRED CARD OR BOLETO
 
     pagarme_customer # create customer on pagarme's db
-    cred_card_transaction
 
+    if payment_method
+      cred_card_transaction
+    else
+      boleto_transaction
+    end
     order.save!
     redirect_to root_path
   end
@@ -148,7 +152,7 @@ class OrderForm
             street_number: "9999",
             zipcode: "06714360"
           }
-        }
+        },
         shipping: {
           name: "Neo Reeves",
           fee: 1000,
@@ -163,7 +167,7 @@ class OrderForm
             street_number: "9999",
             zipcode: "06714360"
           }
-        # },
+        },
         items: [
           {
             id: "r123",
