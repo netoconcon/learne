@@ -9,17 +9,19 @@
     <th scope="col">Detalhes</th>
     </thead>
     <tbody>
-    <% @orders.each do |order|%>
-      <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
-        <td><%= link_to order.user.email, admin_order_path(order) %></td>
-        <td><%= humanized_address(order.address) %></td>
-        <td><%= order.price %></td>
-        <td>
-          <%= link_to admin_order_path(order) do %>
-            <i class="fa fa-info-circle"></i>
-          <% end %>
-        </td>
-      </tr>
+    <% unless @orders.present? %>
+      <% @orders.each do |order|%>
+        <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+          <td><%= link_to order.user.email, admin_order_path(order) %></td>
+          <td><%= humanized_address(order.address) %></td>
+          <td><%= order.price %></td>
+          <td>
+            <%= link_to admin_order_path(order) do %>
+              <i class="fa fa-info-circle"></i>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
     <% end %>
     </tbody>
   </table>

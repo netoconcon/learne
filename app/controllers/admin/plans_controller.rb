@@ -1,5 +1,5 @@
 class Admin::PlansController < ApplicationController
-  before_action :check_admin
+  # before_action :check_admin
 
   def index
     @plans = Plan.all

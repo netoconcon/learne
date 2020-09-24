@@ -31,7 +31,7 @@ class PagesController < ApplicationController
       @cards_prices << order.price
     end
     else
-      @orders_card = []
+      @orders_card = Order.all
       @cards_prices = [0]
     end
   end
