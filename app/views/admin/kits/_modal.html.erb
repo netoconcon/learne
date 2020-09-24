@@ -15,19 +15,17 @@
           <% total_price = Array.new %>
           <% kit.kit_products.each do |kit_product| %>
             <div class="row">
-                <div class="col-md-3"> product.image </div>
-                <div class="col-md-3"><%= products.find(kit_product.product_id).name %></div>
+                <div class="col-md-1"> image </div>
+                <div class="col-md-2"><%= products.find(kit_product.product_id).name %></div>
                 <div class="col-md-3">Quantidade: <%= kit_product.quantity %></div>
-                <div class="col-md-3">R$ <%= products.find(kit_product.product_id).price_cents * kit_product.quantity %></div>
+                <div class="col-md-3">Unit. : R$ <%= products.find(kit_product.product_id).price_cents %></div>
+                <div class="col-md-3">Total: R$ <%= products.find(kit_product.product_id).price_cents * kit_product.quantity %></div>
                 <% total_price << products.find(kit_product.product_id).price_cents * kit_product.quantity %>
             </div>
           <% end %>
           <div class="row justify-content-end">
-            <div class="col-3">
-              <b>Preco total:</b>
-            </div>
-            <div class="col-3">
-              <b>R$ <%= total_price.sum %></b>
+            <div class="col-4">
+              <b>Preco total: R$ <%= total_price.sum %></b>
             </div>
           </div> 
         </div>
