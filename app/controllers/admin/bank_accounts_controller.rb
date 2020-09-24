@@ -2,6 +2,7 @@ class Admin::BankAccountsController < ApplicationController
   layout "admin"
 
   def index
+    @company = Company.find(params[:company_id])
     @bank_accounts = BankAccount.all
   end
 

@@ -99,8 +99,8 @@
 
           <div class="card-body">
             <div class="nav nav-tabs">
-              <%= button_tag "Cartão de Crédito", class: "nav-link active show", data: { action: "click->payment-method#creditCard", target: "payment-method.cardBtn" } %>
-              <%= button_tag "Boleto", class: "nav-link show", data: { action: "click->payment-method#bankSlip", target: "payment-method.slipBtn" } %>
+              <p class="nav-link active show border" data-action="click->payment-method#creditCard" data-target="payment-method.cardBtn">Cartão de Crédito</p>
+              <p class="nav-link show border" data-action="click->payment-method#bankSlip" data-target="payment-method.slipBtn">Boleto</p>
               <div id="credit-card" data-target="payment-method.creditCard">
                 <div class="tab-content mt-4">
                   <div class="tab-pane fade show active">

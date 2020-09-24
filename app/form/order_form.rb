@@ -40,21 +40,22 @@ class OrderForm
     order.assign_attributes order_attributes
     order.customer = customer
     order.address = address
-    order.price = kit.price + 1
+    order.price = kit.price.to_i + 1
 
     pagarme_customer # create customer on pagarme's db
 
-    # if subscription
-      create_subscription
+    # if order.plan
+      # create_subscription
     # else
-      if payment_method
+
+      unless self.credit_card_cpf.empty?
+        raise
         cred_card_transaction
       else
         boleto_transaction
       end
     # end
     order.save!
-    redirect_to root_path
   end
 
   def order
@@ -82,6 +83,9 @@ class OrderForm
 
     def pagarme_customer
       customer_phone = phone.gsub("(","").gsub(")","").gsub("-","").gsub(" ","")
+      customer_cpf = credit_card_cpf.gsub(".","").gsub("-","") unless credit_card_cpf.nil?
+      customer_cpf = bank_slip_cpf .gsub(".","").gsub("-","") unless bank_slip_cpf.nil?
+
       pagarme_customer = PagarMe::Customer.create(
         name: customer.first_name + ' ' + customer.last_name,
         email: customer.email,
@@ -90,7 +94,7 @@ class OrderForm
         country: 'br',
         # birthday: birthday.to_s unless customer.birthday.nil?,
         documents: [
-        {"type": "cpf", "number": credit_card_cpf.gsub(".","").gsub("-","")}
+        {"type": "cpf", "number": customer_cpf}
         ],
         phone_numbers: ["+55#{customer_phone}"]
       )
@@ -98,16 +102,82 @@ class OrderForm
 
 
     def boleto_transaction
-      boleto = PagarMe::Transaction.new(
-        amount:  order.amount, #TO DO get value in cents
-        payment_method: 'boleto'
-      )
-      boleto.charge
 
-      boleto_url = boleto.boleto_url     # => boleto's URL
-      boleto_barcode =  boleto.boleto_barcode # => boleto's barcode
+      ActiveRecord::Base.transaction do
+        transaction  = PagarMe::Transaction.new({
+          amount: 100,
+          payment_method: "boleto",
+          # card_number: order.credit_card_number.gsub(" ",""),
+          # card_holder_name: order.credit_card_name,
+          # card_expiration_date: credit_card_expiration_month + credit_card_expiration_year,
+          # card_cvv: order.credit_card_cvv,
+          postback_url: "http://requestb.in/pkt7pgpk",
+          customer: {
+            external_id: order.customer.id.to_s,
+            name: self.first_name + ' ' + self.last_name,
+            type: "individual",
+            country: "br",
+            email: self.email,
+            documents: [
+              {
+                type: "cpf",
+                number: self.bank_slip_cpf.gsub(".","").gsub("-","")
 
-      # TODO ENVIAR ESSAS INFOS POR MAILER
+              }
+            ],
+            phone_numbers: ["+55" + self.phone.gsub("(","").gsub(")","").gsub(" ","").gsub("-","")],
+            # birthday: order.customer.birthday.to_s
+          },
+          billing: {
+            name: "Trinity Moss",
+            address: {
+              country: "br",
+              state: "sp",
+              city: "Cotia",
+              neighborhood: "Rio Cotia",
+              street: "Rua Matrix",
+              street_number: "9999",
+              zipcode: "06714360"
+            }
+          },
+          shipping: {
+            name: "Neo Reeves",
+            fee: 1000,
+            delivery_date: "2000-12-21",
+            expedited: true,
+            address: {
+              country: "br",
+              state: "sp",
+              city: "Cotia",
+              neighborhood: "Rio Cotia",
+              street: "Rua Matrix",
+              street_number: "9999",
+              zipcode: "06714360"
+            }
+          },
+          items: [
+            {
+              id: "r123",
+              title: "Red pill",
+              unit_price: 10000,
+              quantity: 1,
+              tangible: true
+            },
+            {
+              id: "b123",
+              title: "Blue pill",
+              unit_price: 10000,
+              quantity: 1,
+              tangible: true
+            }
+
+          ]
+        })
+        transaction.charge
+      end
+
+      # boleto_url = transaction.boleto_url     # => boleto's URL
+      # boleto_barcode =  transaction.boleto_barcode # => boleto's barcode
     end
 
     def cred_card_transaction
