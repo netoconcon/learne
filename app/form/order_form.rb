@@ -173,14 +173,11 @@ class OrderForm
 
           ]
         })
-        raise
         transaction.charge
       end
 
-      boleto_url = transaction.boleto_url     # => boleto's URL
-      boleto_barcode =  transaction.boleto_barcode # => boleto's barcode
-
-      # TODO ENVIAR ESSAS INFOS POR MAILER
+      # boleto_url = transaction.boleto_url     # => boleto's URL
+      # boleto_barcode =  transaction.boleto_barcode # => boleto's barcode
     end
 
     def cred_card_transaction
