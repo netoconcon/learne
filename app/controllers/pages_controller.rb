@@ -9,6 +9,9 @@ class PagesController < ApplicationController
     boleto_generated
   end
 
+  def thanks
+  end
+
   def date_overview
     if @date.present?
       @all_prices = []

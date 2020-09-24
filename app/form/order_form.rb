@@ -40,21 +40,20 @@ class OrderForm
     order.assign_attributes order_attributes
     order.customer = customer
     order.address = address
-    order.price = kit.price + 1
+    order.price = kit.price.to_i + 1
 
     pagarme_customer # create customer on pagarme's db
 
-    # if subscription
+    if order.plan
       create_subscription
-    # else
-      if payment_method
+    else
+      unless payment_method
         cred_card_transaction
       else
         boleto_transaction
       end
-    # end
+    end
     order.save!
-    redirect_to root_path
   end
 
   def order
