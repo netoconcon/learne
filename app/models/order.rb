@@ -1,7 +1,7 @@
 class Order < ApplicationRecord
-  include Validation 
+  include Validation
 
-  after_create :send_email
+  # after_create :send_email
 
   belongs_to :kit
   belongs_to :address
