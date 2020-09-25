@@ -49,7 +49,6 @@ class OrderForm
     # else
 
       unless self.credit_card_cpf.empty?
-        raise
         cred_card_transaction
       else
         boleto_transaction
@@ -83,8 +82,8 @@ class OrderForm
 
     def pagarme_customer
       customer_phone = phone.gsub("(","").gsub(")","").gsub("-","").gsub(" ","")
-      customer_cpf = credit_card_cpf.gsub(".","").gsub("-","") unless credit_card_cpf.nil?
-      customer_cpf = bank_slip_cpf .gsub(".","").gsub("-","") unless bank_slip_cpf.nil?
+      customer_cpf = credit_card_cpf.gsub(".","").gsub("-","") unless credit_card_cpf.empty?
+      customer_cpf = bank_slip_cpf .gsub(".","").gsub("-","") unless bank_slip_cpf.empty?
 
       pagarme_customer = PagarMe::Customer.create(
         name: customer.first_name + ' ' + customer.last_name,
