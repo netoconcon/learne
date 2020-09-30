@@ -7,9 +7,9 @@ class Admin::ChartsController < ApplicationController
     boleto_paid = Order.where(payment_method: false).group_by_day(:created_at, last:7, format: "%d/%m").sum('orders.price')
     render json: [
       {name: "Cartao", data: card},
-      {name: "Boleto pagos", data: boleto_paid},
-      {name: "Estorno", data: 0},
-      {name: "Chargeback", data: 0}
+      {name: "Boleto pagos", data: boleto_paid, color: ["#187321"]},
+      {name: "Estorno", data: 0,},
+      {name: "Chargeback", data: 0, color: ["#f20707"]}
     ]
   end
 end

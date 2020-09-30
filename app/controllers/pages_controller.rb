@@ -12,6 +12,8 @@ class PagesController < ApplicationController
   def thanks
   end
 
+  private
+
   def date_overview
     if @date.present?
       @all_prices = []
