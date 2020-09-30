@@ -121,7 +121,7 @@
                             <%= f.input :credit_card_expiration_month, label: false, as: :select, collection: month_number_list, prompt: "Mês" %>
                           </div>
                           <div class="col-6">
-                            <%= f.input :credit_card_expiration_year, label: false, placeholder: "Ano", input_html: { data: { js: "numbers" } }, maxlength: 2 %>
+                            <%= f.input :credit_card_expiration_year, label: false, as: :select, collection: year_list, prompt:"Ano" %>
                           </div>
                         </div>
                       </div>
