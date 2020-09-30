@@ -8,7 +8,5 @@ class Product < ApplicationRecord
   has_many :kits, through: :kit_products
 
   monetize :price_cents
-
-  normalize_attributes :price_cents, with: [:decimal]
   
 end
