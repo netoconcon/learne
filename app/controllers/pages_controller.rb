@@ -22,8 +22,11 @@ class PagesController < ApplicationController
         @all_prices  << order.price
       end
     else
-      @all_day_orders = []
-      @all_prices = [0]
+      @all_prices = []
+      @all_day_orders = Order.all
+      @all_day_orders.each  do |order|
+        @all_prices  << order.price
+      end
     end
   end
 
@@ -36,7 +39,7 @@ class PagesController < ApplicationController
       @cards_prices << order.price
     end
     else
-      @orders_card = Order.all
+      @orders_card = Order.all.where(payment_method: true)
       @cards_prices = [0]
     end
   end
@@ -49,7 +52,7 @@ class PagesController < ApplicationController
         @boletos_prices << order.price
       end
     else
-      @orders_boleto = []
+      @orders_boleto = Order.all.where(payment_method: false)
       @boletos_prices = [0]
     end
   end

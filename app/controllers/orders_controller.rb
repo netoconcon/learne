@@ -49,4 +49,6 @@ layout "public"
     )
   end
 
+  # Kit.where(id: SellingPage.find_by(url: params[:selling_page_url]).kit_id)
+
 end
