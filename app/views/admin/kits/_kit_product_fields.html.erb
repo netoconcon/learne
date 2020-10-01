@@ -1,9 +1,9 @@
 <div class="nested-fields">
-  <div class="field form-kit-products" data-controller="form">
+  <div class="field form-kit-products" data-controller="kit">
     <div class="form-products">
-      <%= f.association :product, as: :select, label: "Produto", input_html: { "data-target" => "form.product", "data-action" => "event -> form#pricefill" } %>
+      <%= f.association :product, as: :select, label: "Produto", input_html: { "data-target" => "kit.product", "data-action" => "event -> kit#pricefill" } %>
       <div class="form-fields">  
-        <%= f.input :quantity, label: "Quantidade", input_html: { "data-target" => "form.quantity", "data-action" => "event -> form#quantity" } %>
+        <%= f.input :quantity, label: "Quantidade", input_html: { "data-target" => "kit.quantity", "data-action" => "event -> kit#quantity" } %>
       </div>
     </div>
       <%= link_to_remove_association "Remover produto", f %>
