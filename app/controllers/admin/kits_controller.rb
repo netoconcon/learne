@@ -24,6 +24,7 @@ class Admin::KitsController < ApplicationController
   end
 
   def edit
+    @plans = Plan.all
     gon.products = products
     @kit = Kit.find(params[:id])
     @kit_product = KitProduct.new

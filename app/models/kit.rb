@@ -2,6 +2,7 @@ class Kit < ApplicationRecord
 
   validates :name, :standard_installments, :maximum_installments, :height, :weight, :width, :length, presence: true
 
+  belongs_to :plan, {optional: true}
   has_many :selling_pages, dependent: :destroy
   has_many :kit_products, dependent: :destroy
   has_many :products, through: :kit_products, dependent: :destroy
