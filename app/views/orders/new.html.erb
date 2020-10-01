@@ -1,3 +1,4 @@
+
 <div data-controller="zipcode masks payment-method">
   <%= simple_form_for @order, url: orders_path, method: :post do |f| %>
     <%= f.input :kit_id, as: :hidden %>
@@ -134,6 +135,7 @@
                     </div>
                   </div>
                 </div>
+                <%= f.submit "Finalizar Pedido", name:"card", class: "btn btn-success submit-button", style: "color: #fff; background-color: #28a745; border-color: #28a745" %>
               </div>
 
               <div id="bank-slip" data-target="payment-method.bankSlip" hidden="hidden">
@@ -161,8 +163,8 @@
                     </div>
                   </div>
                 </div>
+                <%= f.submit "Finalizar Pedido", name:"boleto", class: "btn btn-success submit-button", style: "color: #fff; background-color: #28a745; border-color: #28a745" %>
               </div>
-              <%= f.button :submit, "Finalizar Pedido", class: "btn btn-success submit-button", style: "color: #fff; background-color: #28a745; border-color: #28a745" %>
             </div>
           </div>
           <div class="card-footer bg-transparent">
