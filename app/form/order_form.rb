@@ -13,6 +13,7 @@ class OrderForm
       :installments,
       :price,
       :kit_id,
+      :visit_id,
       :id,
       :phone,
       :email,
@@ -48,13 +49,15 @@ class OrderForm
       # create_subscription
     # else
 
-      unless self.credit_card_cpf.empty?
-        cred_card_transaction
-      else
-        boleto_transaction
-      end
-    # end
-    order.save!
+    unless self.credit_card_cpf.empty?
+      cred_card_transaction
+    else
+      boleto_transaction
+    end
+
+    if order.save
+      update_visit
+    end
   end
 
   def order
@@ -267,50 +270,54 @@ class OrderForm
       end
     end
 
-  def create_credit_card(order)
-    # to save user credit card on pagarme and recieve a card hash
-    # create a credit card on pagarme
-    pagarme_card = PagarMe::Card.new({
-      card_number: credit_card_number.gsub(" ",""),
-      card_holder_name: credit_card_name,
-      card_expiration_month: credit_card_expiration_month,
-      card_expiration_year: credit_card_expiration_year,
-      card_cvv: credit_card_cvv
-    })
-
-    pagarme_card.create
-  end
-
-  def create_subscription
-
-    # get infos we need to subscription
-    customer = pagarme_customer
-    card = create_credit_card(@order)
-    # TO DO get plan on order.product
-
-    ActiveRecord::Base.transaction do
-      subscription = PagarMe::Subscription.new({
-        plan_id: plan,
-        payment_method: 'credit_card',
-        card_id: card.id,
-        # postback_url: ,
-        customer: {
-            name: credit_card_name,
-            document_number: credit_card_cpf,
-            email: current_user.email,
-            address: {
-                street: current_user.street,
-                neighborhood: current_user.neighborhood,
-                zipcode: current_user.zipcode,
-                street_number: current_user.street_number
-            },
-            phone: {
-                ddd: current_user.phone_ddd,
-                number: current_user.phone_number
-            },
-        },
+    def create_credit_card(order)
+      # to save user credit card on pagarme and recieve a card hash
+      # create a credit card on pagarme
+      pagarme_card = PagarMe::Card.new({
+        card_number: credit_card_number.gsub(" ",""),
+        card_holder_name: credit_card_name,
+        card_expiration_month: credit_card_expiration_month,
+        card_expiration_year: credit_card_expiration_year,
+        card_cvv: credit_card_cvv
       })
-      subscription.create
+
+      pagarme_card.create
     end
-  end
+
+    def create_subscription
+
+      # get infos we need to subscription
+      customer = pagarme_customer
+      card = create_credit_card(@order)
+      # TO DO get plan on order.product
+
+      ActiveRecord::Base.transaction do
+        subscription = PagarMe::Subscription.new({
+          plan_id: plan,
+          payment_method: 'credit_card',
+          card_id: card.id,
+          # postback_url: ,
+          customer: {
+              name: credit_card_name,
+              document_number: credit_card_cpf,
+              email: current_user.email,
+              address: {
+                  street: current_user.street,
+                  neighborhood: current_user.neighborhood,
+                  zipcode: current_user.zipcode,
+                  street_number: current_user.street_number
+              },
+              phone: {
+                  ddd: current_user.phone_ddd,
+                  number: current_user.phone_number
+              },
+          },
+        })
+        subscription.create
+      end
+    end
+
+    def update_visit
+      Visit.find(visit_id).update order_id: order.id
+    end
 end

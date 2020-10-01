@@ -6,6 +6,7 @@ class Order < ApplicationRecord
   belongs_to :kit
   belongs_to :address
   belongs_to :customer
+  has_many :visits
 
   normalize_attributes :phone, with: [:phone]
   normalize_attributes :zipcode, with: [:numbers]

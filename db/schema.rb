@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_25_152021) do
+ActiveRecord::Schema.define(version: 2020_09_30_234200) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -197,8 +197,24 @@ ActiveRecord::Schema.define(version: 2020_09_25_152021) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "admin", default: false
+    t.string "cpf"
+    t.date "birthday"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "visits", force: :cascade do |t|
+    t.bigint "order_id"
+    t.string "fbid"
+    t.string "utm_source"
+    t.string "utm_campaign"
+    t.string "utm_medium"
+    t.string "utm_term"
+    t.string "utm_content"
+    t.string "pubid"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["order_id"], name: "index_visits_on_order_id"
   end
 
   add_foreign_key "addresses", "customers"
@@ -211,4 +227,5 @@ ActiveRecord::Schema.define(version: 2020_09_25_152021) do
   add_foreign_key "orders", "kits"
   add_foreign_key "products", "companies"
   add_foreign_key "selling_pages", "kits"
+  add_foreign_key "visits", "orders"
 end
