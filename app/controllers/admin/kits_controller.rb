@@ -32,6 +32,7 @@ class Admin::KitsController < ApplicationController
     respond_to do |format|
       format.html
       format.json {render json: { kits: @kits}}
+    raise
     end
   end
 
