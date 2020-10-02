@@ -29,6 +29,10 @@ class Admin::KitsController < ApplicationController
     @kit = Kit.find(params[:id])
     @kit_product = KitProduct.new
     @products = Product.all
+    respond_to do |format|
+      format.html
+      format.json {render json: { kits: @kits}}
+    end
   end
 
   def update

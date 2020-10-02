@@ -3,8 +3,9 @@
     <div class="form-products">
       <%= f.association :product, as: :select, label: "Produto", input_html: { "data-target" => "kit.product", "data-action" => "event -> kit#pricefill" } %>
       <div class="form-fields">  
-        <%= f.input :quantity, label: "Quantidade", input_html: { "data-target" => "kit.quantity", "data-action" => "event -> kit#quantity" } %>
+        <%= f.input :quantity, label: "Quantidade", input_html: { "data-target" => "kit.quantity", "data-action" => "event -> kit#pricefill" } %>
       </div>
+      <%= f.hidden_field :price_cents, label: "Preço total",  input_html: {"data-target" => "kit.sumprice" } %>
     </div>
       <%= link_to_remove_association "Remover produto", f %>
   </div>
