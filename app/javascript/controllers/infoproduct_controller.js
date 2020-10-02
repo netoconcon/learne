@@ -5,7 +5,6 @@ export default class extends Controller {
 
   selection(e) {
     const state = e.currentTarget.value;
-    console.log(state)
 		if (state == 'true') {
 			this.specsTarget.style.display = "none";
 			this.vurlTarget.style.display = "block";

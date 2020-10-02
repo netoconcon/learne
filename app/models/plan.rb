@@ -1,6 +1,6 @@
 class Plan < ApplicationRecord
 
-  belongs_to :kit, {optional: true}
+  belongs_to :kit, optional: true
 
   def set_pagarme_plan
     # Create a Plan in Pagarme's DB
