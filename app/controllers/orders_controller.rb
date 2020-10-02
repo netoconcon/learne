@@ -24,6 +24,7 @@ layout "public"
         :installments,
         :price,
         :kit_id,
+        :visit_id,
         :id,
         :phone,
         :email,
