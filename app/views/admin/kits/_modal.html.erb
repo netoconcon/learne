@@ -18,9 +18,9 @@
                 <div class="col-md-1"> image </div>
                 <div class="col-md-2"><%= products.find(kit_product.product_id).name %></div>
                 <div class="col-md-3">Quantidade: <%= kit_product.quantity %></div>
-                <div class="col-md-3">Unit. : R$ <%= products.find(kit_product.product_id).price_cents %></div>
-                <div class="col-md-3">Total: R$ <%= products.find(kit_product.product_id).price_cents * kit_product.quantity %></div>
-                <% total_price << products.find(kit_product.product_id).price_cents * kit_product.quantity %>
+                <div class="col-md-3">Unit. : R$ <%= products.find(kit_product.product_id).price %></div>
+                <div class="col-md-3">Total: R$ <%= products.find(kit_product.product_id).price * kit_product.quantity %></div>
+                <% total_price << products.find(kit_product.product_id).price * kit_product.quantity %>
             </div>
           <% end %>
           <div class="row justify-content-end">

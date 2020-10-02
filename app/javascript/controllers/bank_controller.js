@@ -9,6 +9,9 @@ export default class extends Controller {
 	  const bankNum = y[0];
 	  const bankName = y[1];
 	  this.labelTarget.value = bankName;
-	  //checar o .value
+	}
+
+	search() {
+
 	}
 }

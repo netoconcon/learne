@@ -18,10 +18,10 @@
         </div>
         <div class="columns">
           <div>
-            <%= f.input :virtual, label: 'Infoproduto', input_html: { "data-action" => "change -> infoproduct#selection" }, as: :select, colletion: [["Nao", false], ["Sim", true]], include_blank: false, disabled: true %>
+            <%= f.input :virtual, label: 'Infoproduto', input_html: { "data-action" => "change -> infoproduct#selection" },:as => :select, :collection => [['Nao',false],['Sim',true]], :include_blank => false, disabled: true %>
           </div>
           <div>
-            <%= f.input :price_cents, label: 'Preco de venda', as: :string %>
+            <%= f.input :price, label: 'Preco de venda' %>
           </div>
         </div>
       </div>

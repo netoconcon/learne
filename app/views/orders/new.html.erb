@@ -122,7 +122,7 @@
                             <%= f.input :credit_card_expiration_month, label: false, as: :select, collection: month_number_list, prompt: "Mês" %>
                           </div>
                           <div class="col-6">
-                            <%= f.input :credit_card_expiration_year, label: false, placeholder: "Ano", input_html: { data: { js: "numbers" } }, maxlength: 2 %>
+                            <%= f.input :credit_card_expiration_year, label: false, as: :select, collection: year_list, prompt:"Ano" %>
                           </div>
                         </div>
                       </div>
@@ -135,6 +135,7 @@
                     </div>
                   </div>
                 </div>
+                <%= f.submit "Finalizar Pedido", name:"card", class: "btn btn-success submit-button", style: "color: #fff; background-color: #28a745; border-color: #28a745" %>
               </div>
 
               <div id="bank-slip" data-target="payment-method.bankSlip" hidden="hidden">
@@ -166,8 +167,8 @@
                     </div>
                   </div>
                 </div>
+                <%= f.submit "Finalizar Pedido", name:"boleto", class: "btn btn-success submit-button", style: "color: #fff; background-color: #28a745; border-color: #28a745" %>
               </div>
-              <%= f.button :submit, "Finalizar Pedido", class: "btn btn-success submit-button", style: "color: #fff; background-color: #28a745; border-color: #28a745" %>
             </div>
           </div>
           <div class="card-footer bg-transparent">
@@ -181,13 +182,13 @@
   <div class="container-fluid mb-3">
     <div class="footer row no-gutters">
       <div class="col-12 col-md-6 text-center text-md-right">
-        <a href="https://vmd.appmax.com.br/policy/privacy" target="_blank">Política de privacidade</a> |
-        <a href="https://vmd.appmax.com.br/policy/return" target="_blank">Termos de compra</a>
+        <a href="#" target="_blank">Política de privacidade</a> |
+        <a href="#" target="_blank">Termos de compra</a>
       </div>
 
       <div class="col-12 col-md-6 text-center text-md-left">
         &nbsp;<span class="d-none d-md-inline-block">|</span>
-        Esta compra será processada pela Appmax
+        Esta compra será processada pelo Pagarme
       </div>
     </div>
   </div>

@@ -24,10 +24,15 @@ class Admin::KitsController < ApplicationController
   end
 
   def edit
+    @plans = Plan.all
     gon.products = products
     @kit = Kit.find(params[:id])
     @kit_product = KitProduct.new
     @products = Product.all
+    respond_to do |format|
+      format.html
+      format.json {render json: { kits: @kits}}
+    end
   end
 
   def update
@@ -55,6 +60,44 @@ class Admin::KitsController < ApplicationController
   private
 
   def kit_params
-    params.require(:kit).permit(:name, :description, :payment_type, :standard_installments, :maximum_installments, :shipment_cost, :allow_free_shipment, :weight, :height, :length, :width, kit_products_attributes:[:id, :product_id, :kit_id, :quantity, :price_cents, :_destroy, product_attributes:[:id, :company_id, :name, :sku, :price, :description, :external_id, :weight, :height, :length, :virtual_url]])
+    params.require(:kit).permit(
+      :name,
+      :description,
+      :payment_type,
+      :standard_installments,
+      :maximum_installments,
+      :shipment_cost,
+      :allow_free_shipment,
+      :weight,
+      :height,
+      :length,
+      :width,
+      :plan_id,
+      kit_products_attributes:[
+        :id,
+        :product_id,
+        :kit_id,
+        :quantity,
+        :price_cents,
+        :_destroy,
+        product_attributes:[
+          :id,
+          :company_id,
+          :name,
+          :sku,
+          :price,
+          :description,
+          :external_id,
+          :weight,
+          :height,
+          :length,
+          :virtual_url
+    ]])
+  end
+
+  def kit_price
+    @kit.kit_products.each do |kit_product|
+
+    end
   end
 end

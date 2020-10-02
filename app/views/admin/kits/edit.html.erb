@@ -3,18 +3,21 @@
   <%= simple_form_for [:admin, @kit] do |f| %>
     <div class="styler">
       <div>
-      <%= f.input :name, label: 'Nome do kit' %>
-      <%= f.input :description, label: 'Descricao' %>
+        <%= f.input :name, label: 'Nome do kit' %>
+        <%= f.input :description, label: 'Descricao' %>
       </div>
       Pagamento
       <div class="payments">
-        <div class="payment-fields">
-          <%= f.input :payment_type, label: 'Tipo de pagamento', collection: Kit.payment_types.keys %>
+        <div class="payment-fields" data-controller="kit">
+          <%= f.input :payment_type, label: 'Tipo de pagamento',:as => :select, :collection => [['Único',Kit.payment_types.keys[0]],['Assinatura',Kit.payment_types.keys[1]]], :include_blank => false, disabled: true %>
+          <div data-target="kit.plan">
+            <%= f.association :plan, value_method: :id, label: 'Plano', disabled: true %>
+          </div>
           <%= f.input :standard_installments, label: 'Parcela padrao', input_html: {value: f.object.standard_installments || '12'} %>
           <%= f.input :maximum_installments, label: 'Parcela maxima', input_html: {value: f.object.maximum_installments || '12'} %>
         </div>
         <div class="payment-fields-ship">
-          <%= f.input :allow_free_shipment, label: 'Permitir frete gratis', as: :select, colletion: [['Nao', false], ['Sim', true]], include_blank: false %>
+          <%= f.input :allow_free_shipment, label: 'Permitir frete gratis',:as => :select, :collection => [['Nao',false],['Sim',true]], :include_blank => false, disabled: true %>
           <div class="bbb">
           <%= f.input :shipment_cost, label: 'Frete' %>
           </div>
@@ -38,10 +41,6 @@
     </div>
     <div class="form-total-price">
       <%= f.button :submit, 'Salvar alterações', class: "btn btn-primary submit-product" %>
-      <div style="width: 15%;" data-controller="form">
-        Preço total
-        <input type="text" data-target="sumvalue">
-      </div>
     </div>
   <% end %>
 </div>

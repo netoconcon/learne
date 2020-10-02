@@ -8,4 +8,7 @@ class KitProduct < ApplicationRecord
   accepts_nested_attributes_for :product, reject_if: :all_blank, allow_destroy: true
 
   default_scope {order(created_at: :asc)}
+
+  monetize :price_cents
+  
 end
