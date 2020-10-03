@@ -775,4 +775,8 @@ module BanklistHelper
       }
     ]
   end
+
+  def banks_name
+    @banks_name = banklist.map{ |obj| "#{obj[:label]}" }
+  end
 end
