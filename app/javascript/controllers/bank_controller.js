@@ -8,7 +8,7 @@ export default class extends Controller {
 	  const y = x.split("-");
 	  const bankNum = y[0];
 	  const bankName = y[1];
-	  this.labelTarget.value = bankName;
+	  this.labelTarget.value = parseInt(bankNum);
 	}
 
 	search() {

@@ -775,10 +775,4 @@ module BanklistHelper
       }
     ]
   end
-
-  def bank_code_name
-    @banks.each_with_object({}) do |bcode, bname|
-      bname[bcode[:value]] = bcode[:label]
-    end
-  end
 end
