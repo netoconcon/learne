@@ -43,6 +43,8 @@ class OrderForm
     order.address = address
     order.price = kit.price.to_i + 1
 
+    raise
+
     pagarme_customer # create customer on pagarme's db
 
     # if order.plan
@@ -104,7 +106,6 @@ class OrderForm
 
 
     def boleto_transaction
-
       ActiveRecord::Base.transaction do
         transaction  = PagarMe::Transaction.new({
           amount: 100,
@@ -178,8 +179,8 @@ class OrderForm
         transaction.charge
       end
 
-      # boleto_url = transaction.boleto_url     # => boleto's URL
-      # boleto_barcode =  transaction.boleto_barcode # => boleto's barcode
+      boleto_url = transaction.boleto_url     # => boleto's URL
+      boleto_barcode =  transaction.boleto_barcode # => boleto's barcode
     end
 
     def cred_card_transaction
