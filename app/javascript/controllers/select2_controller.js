@@ -7,9 +7,9 @@ import Select2 from "select2"
 
 
 export default class extends Controller {
-  static targets = [ "bank" ]
+  static targets = [ "select2" ]
 	
 	connect() {
-    $(this.currentTarget).select2();
+    $(this.select2Target).select2();
   }
 }
