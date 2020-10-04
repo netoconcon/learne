@@ -46,16 +46,21 @@ class OrderForm
     pagarme_customer # create customer on pagarme's db
 
     if order.kit.payment_type == "single"
-      unless self.credit_card_cpf.empty?
-        cred_card_transaction
+      if self.payment_method
+        transaction = cred_card_transaction
       else
-        boleto_transaction
+        transaction = boleto_transaction
+
+        transaction_infos = PagarMe::Transaction.find_by_id(transaction.id)
+
+        order.boleto_url = transaction_infos.boleto_url     # => boleto's URL
+        order.boleto_bar_code =  transaction_infos.boleto_barcode # => boleto's barcode
       end
     else
-      create_subscription
+      transaction = create_subscription
     end
 
-
+    order.pagarme_transaction_id = transaction.id
 
     if order.save
       update_visit
@@ -179,12 +184,9 @@ class OrderForm
         transaction.charge
       end
 
-      boleto_url = transaction.boleto_url     # => boleto's URL
-      boleto_barcode =  transaction.boleto_barcode # => boleto's barcode
     end
 
     def cred_card_transaction
-      raise
       order = self
       card = create_credit_card(order)
 
@@ -216,15 +218,15 @@ class OrderForm
             # birthday: order.customer.birthday.to_s
           },
           billing: {
-            name: "Trinity Moss",
+            name: order.first_name + " " + order.last_name,
             address: {
               country: "br",
-              state: "sp",
-              city: "Cotia",
-              neighborhood: "Rio Cotia",
-              street: "Rua Matrix",
-              street_number: "9999",
-              zipcode: "06714360"
+              state: order.state,
+              city: order.city,
+              neighborhood: order.neighborhood,
+              street: order.street,
+              street_number: order.number,
+              zipcode: order.zipcode.gsub("-","")
             }
           },
           shipping: {
@@ -242,24 +244,18 @@ class OrderForm
               zipcode: order.zipcode.gsub("-","")
             }
           },
-          items: [
-            {
-              id: "r123",
-              title: "Red pill",
-              unit_price: 10000,
-              quantity: 1,
-              tangible: true
-            },
-            {
-              id: "b123",
-              title: "Blue pill",
-              unit_price: 10000,
-              quantity: 1,
-              tangible: true
-            }
-
-          ]
+          items: []
         })
+
+        order.kit.kit_products.each do |order_product|
+          transaction.items.push({
+              id: order_product.product_id.to_s,
+              title: order_product.product.name,
+              unit_price: order_product.price_cents,
+              quantity: order_product.quantity,
+              tangible: true
+            })
+        end
         transaction.charge
       end
     end
