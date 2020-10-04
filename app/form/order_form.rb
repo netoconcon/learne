@@ -43,19 +43,19 @@ class OrderForm
     order.address = address
     order.price = kit.price.to_i + 1
 
-    raise
-
     pagarme_customer # create customer on pagarme's db
 
-    # if order.plan
-      # create_subscription
-    # else
-
-    unless self.credit_card_cpf.empty?
-      cred_card_transaction
+    if order.kit.payment_type == "single"
+      unless self.credit_card_cpf.empty?
+        cred_card_transaction
+      else
+        boleto_transaction
+      end
     else
-      boleto_transaction
+      create_subscription
     end
+
+
 
     if order.save
       update_visit
@@ -184,6 +184,7 @@ class OrderForm
     end
 
     def cred_card_transaction
+      raise
       order = self
       card = create_credit_card(order)
 
@@ -227,18 +228,18 @@ class OrderForm
             }
           },
           shipping: {
-            name: "Neo Reeves",
-            fee: 1000,
+            name: order.first_name + " " + order.last_name,
+            fee: order.kit.shipment_cost,
             delivery_date: "2000-12-21",
             expedited: true,
             address: {
               country: "br",
-              state: "sp",
-              city: "Cotia",
-              neighborhood: "Rio Cotia",
-              street: "Rua Matrix",
-              street_number: "9999",
-              zipcode: "06714360"
+              state: order.state,
+              city: order.city,
+              neighborhood: order.neighborhood,
+              street: order.street,
+              street_number: order.number,
+              zipcode: order.zipcode.gsub("-","")
             }
           },
           items: [
@@ -286,6 +287,7 @@ class OrderForm
     end
 
     def create_subscription
+      raise
 
       # get infos we need to subscription
       customer = pagarme_customer
