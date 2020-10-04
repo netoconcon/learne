@@ -283,35 +283,38 @@ class OrderForm
     end
 
     def create_subscription
-      raise
 
       # get infos we need to subscription
       customer = pagarme_customer
       card = create_credit_card(@order)
       # TO DO get plan on order.product
+      plan = Plan.find(order.kit.plan_id)
+      plan_id = PagarMe::Plan.find(plan.pagarme_id)
 
       ActiveRecord::Base.transaction do
         subscription = PagarMe::Subscription.new({
-          plan_id: plan,
+          plan_id: plan.pagarme_id.to_i,
           payment_method: 'credit_card',
           card_id: card.id,
           # postback_url: ,
           customer: {
               name: credit_card_name,
               document_number: credit_card_cpf,
-              email: current_user.email,
+              email: self.email,
               address: {
-                  street: current_user.street,
-                  neighborhood: current_user.neighborhood,
-                  zipcode: current_user.zipcode,
-                  street_number: current_user.street_number
+                  street: self.street,
+                  neighborhood: self.neighborhood,
+                  zipcode: self.zipcode,
+                  street_number: self.number
               },
               phone: {
-                  ddd: current_user.phone_ddd,
-                  number: current_user.phone_number
+                  ddd: self.phone[1..2],
+                  number: self.phone[5..-1].gsub("-","")
               },
           },
         })
+
+        raise
         subscription.create
       end
     end
