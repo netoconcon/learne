@@ -1,5 +1,5 @@
 module BanklistHelper
-  def banklist
+  def all_banks
     @banks = [
       {
         "value": "001",
@@ -776,7 +776,7 @@ module BanklistHelper
     ]
   end
 
-  def banks_name
-    @banks_name = banklist.map{ |obj| "#{obj[:label]}" }
+  def banklist
+    all_banks.map{ |obj| "#{obj[:value]} - #{obj[:label]}" }
   end
 end
