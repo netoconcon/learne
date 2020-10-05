@@ -22,23 +22,24 @@
         </div>
         <div class="payment-fields-ship">
           <%= f.input :allow_free_shipment, label: 'Permitir frete gratis',:as => :select, :collection => [['Nao',false],['Sim',true]], :include_blank => false %>
-          <div class="bbb">
+          <div class="shippingcost">
           <%= f.input :shipment_cost, label: 'Frete' %>
           </div>
         </div>
       </div>
-        <div class="utm">
-          <%= f.input :weight, label: 'Peso' %>
-          <%= f.input :height, label: 'Altura' %>
-          <%= f.input :width, label: 'Largura' %>
-          <%= f.input :length, label: 'Comprimento' %>
-        </div>
-
+      <div class="payment-fields-ship">
+        <%= f.input :upsell, as: :select, label: 'Upsell de produto?', :collection => [['Nao',false],['Sim',true]] %>
+      </div>
+      <div class="utm">
+        <%= f.input :weight, label: 'Peso' %>
+        <%= f.input :height, label: 'Altura' %>
+        <%= f.input :width, label: 'Largura' %>
+        <%= f.input :length, label: 'Comprimento' %>
+      </div>
       <h4>Adicionar produtos</h4>
       <%= f.fields_for :kit_products do |kit_product| %>
         <%= render 'kit_product_fields', f: kit_product %>
       <% end %>
-
       <div class="links">
         <%= link_to_add_association "Adicionar produto", f, :kit_products %>
       </div>

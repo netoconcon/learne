@@ -3,6 +3,7 @@ layout "public"
 
   def new
     @order = OrderForm.new
+    tot_price
   end
 
   def create

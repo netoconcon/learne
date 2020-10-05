@@ -176,7 +176,7 @@
 
                       <div class="form-group row">
                         <h5 class="col-12 col-md-12">
-                          <%= "Produtos: R$ #{KitProduct.find_by(kit_id: @order.kit_id).price}" %>
+                          <%= "Produtos: #{order_single(@order)}" %>
                         </h5>
                         <div class="col-12 col-md-12">
                           <%= f.input :bank_slip_cpf, label: "CPF (Para emissão da Nota Fiscal)", input_html: { data: { js: "cpf" } }, maxlength: 14 %>
@@ -210,4 +210,4 @@
       </div>
     </div>
   </div>
-</div>
+</div>t

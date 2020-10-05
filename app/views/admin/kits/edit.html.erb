@@ -25,7 +25,7 @@
         </div>
         <div class="payment-fields-ship">
           <%= f.input :allow_free_shipment, label: 'Permitir frete gratis',:as => :select, :collection => [['Nao',false],['Sim',true]], :include_blank => false, disabled: true %>
-          <div class="bbb">
+          <div class="shippingcost">
           <%= f.input :shipment_cost, label: 'Frete' %>
           </div>
         </div>
