@@ -105,6 +105,26 @@
                 <div class="tab-content mt-4">
                   <div class="tab-pane fade show active">
                     <div class="form-group row">
+                      <div class="col-12 text-center">
+                        <span class="d-inline-block align-middle">
+                          <%= image_tag("visa.png") %>
+                        </span>
+                        <span class="d-inline-block align-middle">
+                          <%= image_tag("mastercard.png") %>
+                        </span>
+                        <span class="d-inline-block align-middle">
+                          <%= image_tag("amex.png") %>
+                        </span>
+                        <span class="d-inline-block align-middle">
+                          <%= image_tag("dinners-club.png") %>
+                        </span>
+                        <span class="d-inline-block align-middle">
+                          <%= image_tag("elo.png") %>
+                        </span>
+                        <span class="d-inline-block align-middle">
+                          <%= image_tag("hipercard.png") %>
+                        </span>
+                      </div>
                       <div class="col-12 mb-1">
                         <%= f.input :credit_card_number, label: "Número do cartão", input_html: { data: { js: "creditCard" } }, maxlength: 19 %>
                       </div>
