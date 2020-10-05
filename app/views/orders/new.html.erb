@@ -142,7 +142,7 @@
                   <div class="tab-pane fade show active">
                     <div class="row w-100">
                       <div class="col-12 mb-2">
-                        <%= image_tag "Boleto.jpg" %>
+                        <%= image_tag("Boleto.jpg", class: "img-fluid d-block mx-auto") %>
                       </div>
                       <div class="col-12">
                         <ol>
@@ -155,6 +155,9 @@
                       </div>
 
                       <div class="form-group row">
+                        <h5 class="col-12 col-md-12">
+                          <%= "Produtos: R$ #{KitProduct.find_by(kit_id: @order.kit_id).price}" %>
+                        </h5>
                         <div class="col-12 col-md-12">
                           <%= f.input :bank_slip_cpf, label: "CPF (Para emissão da Nota Fiscal)", input_html: { data: { js: "cpf" } }, maxlength: 14 %>
                         </div>
@@ -167,7 +170,7 @@
             </div>
           </div>
           <div class="card-footer bg-transparent">
-            <img src="https://vmd.appmax.com.br/checkout-public/one-checkout/monetizze/images/secure.jpg" class="img-fluid d-block mx-auto">
+            <%= image_tag("secure.jpg", class: "img-fluid d-block mx-auto") %>
           </div>
         </div>
         <h6 class="text-black-50 mt-2"><small>Taxa de 2,99% a.m.</small></h6>
