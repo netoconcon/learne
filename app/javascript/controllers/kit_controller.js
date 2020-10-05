@@ -1,7 +1,7 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-  static targets = [ "product", "quantity", "sumprice", "valor", "plan", "price" ]
+  static targets = [ "product", "quantity", "sumprice", "valor", "plan", "price", "installments" ]
 
   pricefill() {
   	const hash = gon.products;
@@ -26,11 +26,12 @@ export default class extends Controller {
 
 	plans (e) {
 		const type = e.target.value
-		console.log(type)
 		if (type == "subscription") {
 			this.planTarget.style.display = "block"
+			this.installmentsTarget.style.display = "none"
 		} else if (type == "single") {
 			this.planTarget.style.display = "none"
+			this.installmentsTarget.style.display = "flex"
 		}
 
 	}

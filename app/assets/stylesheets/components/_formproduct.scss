@@ -83,7 +83,7 @@
 }
 .payment-fields {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 
 .payment-fields-ship {
@@ -93,4 +93,8 @@
 .bbb {
   width: 30%;
   margin-left: 15%;
+}
+
+.type-space {
+  margin-right: 15px;
 }
