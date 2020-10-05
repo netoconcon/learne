@@ -8,6 +8,7 @@ class Admin::KitsController < ApplicationController
 
   def new
     @kit = Kit.new
+    gon.products = products
     deactivated_plans
     if(params.has_key?(:aux))
       @test = Product.find(params[:aux])
@@ -30,10 +31,6 @@ class Admin::KitsController < ApplicationController
     @kit = Kit.find(params[:id])
     @kit_product = KitProduct.new
     @products = Product.all
-    respond_to do |format|
-      format.html
-      format.json {render json: { kits: @kits}}
-    end
   end
 
   def update
@@ -99,11 +96,4 @@ class Admin::KitsController < ApplicationController
   def deactivated_plans
     Plan.all.find_by(active: false)
   end
-
-  # def method_name
-  #   @kit = Kit.find(params[:id])
-  #   if @kit.payment_method == 'subscription'
-      
-  #   end
-  # end
 end
