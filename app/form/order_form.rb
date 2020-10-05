@@ -137,50 +137,44 @@ class OrderForm
             # birthday: order.customer.birthday.to_s
           },
           billing: {
-            name: "Trinity Moss",
+            name: order.first_name + " " + order.last_name,
             address: {
               country: "br",
-              state: "sp",
-              city: "Cotia",
-              neighborhood: "Rio Cotia",
-              street: "Rua Matrix",
-              street_number: "9999",
-              zipcode: "06714360"
+              state: order.state,
+              city: order.city,
+              neighborhood: order.neighborhood,
+              street: order.street,
+              street_number: order.number,
+              zipcode: order.zipcode.gsub("-","")
             }
           },
           shipping: {
-            name: "Neo Reeves",
-            fee: 1000,
+            name: order.first_name + " " + order.last_name,
+            fee: order.kit.shipment_cost,
             delivery_date: "2000-12-21",
             expedited: true,
             address: {
               country: "br",
-              state: "sp",
-              city: "Cotia",
-              neighborhood: "Rio Cotia",
-              street: "Rua Matrix",
-              street_number: "9999",
-              zipcode: "06714360"
+              state: order.state,
+              city: order.city,
+              neighborhood: order.neighborhood,
+              street: order.street,
+              street_number: order.number,
+              zipcode: order.zipcode.gsub("-","")
             }
           },
-          items: [
-            {
-              id: "r123",
-              title: "Red pill",
-              unit_price: 10000,
-              quantity: 1,
-              tangible: true
-            },
-            {
-              id: "b123",
-              title: "Blue pill",
-              unit_price: 10000,
-              quantity: 1,
-              tangible: true
-            }
-
-          ]
+          items: []
         })
+
+        order.kit.kit_products.each do |order_product|
+          transaction.items.push({
+              id: order_product.product_id.to_s,
+              title: order_product.product.name,
+              unit_price: order_product.price_cents,
+              quantity: order_product.quantity,
+              tangible: true
+            })
+        end
         transaction.charge
       end
 
