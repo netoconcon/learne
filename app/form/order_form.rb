@@ -315,8 +315,6 @@ class OrderForm
               },
           },
         })
-
-        raise
         subscription.create
       end
     end
