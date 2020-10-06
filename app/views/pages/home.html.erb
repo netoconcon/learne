@@ -25,7 +25,7 @@
           </div>
         </div>
         <div>
-          <h3>Resumo de vendas do dia <%= params[:sales_date] %></h3>
+          <h3>Resumo de vendas <%= params[:sales_date] %></h3>
           <div>
             <%= form_tag root_path, method: :get do %>
               <%= date_field_tag 'sales_date', Date.today %>
