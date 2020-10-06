@@ -198,16 +198,27 @@
     </div>
   <% end %>
   <div class="container-fluid mb-3">
-    <div class="footer row no-gutters">
-      <div class="col-12 col-md-6 text-center text-md-right">
-        <a href="#" target="_blank">Política de privacidade</a> |
-        <a href="#" target="_blank">Termos de compra</a>
+    <div class="container ">
+      <div class="footer-checkout">
+        <div class="col-md-4">
+          <h5>FORMAS DE PAGAMENTO</h5>
+          <%= image_tag "pagamentos.png"%>
+        </div>
+        <div class="col-md-4">
+          <h5>PAGAMENTO SEGURO</h5>
+          <%= image_tag "seguro.png"%>
+        </div>
+        <div class="col-md-4">
+          <h5>TERMOS</h5>
+          <div style="display: grid">
+            <a href="#" target="_blank">Política de privacidade</a>
+            <a href="#" target="_blank">Termos de compra</a>
+          </div>
+        </div>
       </div>
-
-      <div class="col-12 col-md-6 text-center text-md-left">
-        &nbsp;<span class="d-none d-md-inline-block">|</span>
-        Esta compra será processada pelo Pagarme
+      <div class="footer-detail">
+        Essa compra sera processada pelo Pagarme.
       </div>
     </div>
   </div>
-</div>t
+</div>
