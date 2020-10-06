@@ -61,4 +61,6 @@ class PagesController < ApplicationController
     @boletos = Order.all.where(payment_method: false).where(paid: false)
   end
 
+  def developedby
+  end
 end
