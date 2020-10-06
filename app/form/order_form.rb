@@ -114,6 +114,7 @@ class OrderForm
       ActiveRecord::Base.transaction do
         transaction  = PagarMe::Transaction.new({
           amount: 100,
+          installments: order.installments.to_i,
           payment_method: "boleto",
           # card_number: order.credit_card_number.gsub(" ",""),
           # card_holder_name: order.credit_card_name,
@@ -189,6 +190,7 @@ class OrderForm
       ActiveRecord::Base.transaction do
         transaction  = PagarMe::Transaction.new({
           amount: 100,
+          installments: order.installments.to_i,
           payment_method: "credit_card",
           card_number: order.credit_card_number.gsub(" ",""),
           card_holder_name: order.credit_card_name,
@@ -285,10 +287,16 @@ class OrderForm
       plan = Plan.find(order.kit.plan_id)
       plan_id = PagarMe::Plan.find(plan.pagarme_id)
 
+      if self.payment_method
+        transaction_type = 'credit_card'
+      else
+        transaction_type = 'boleto'
+      end
+
       ActiveRecord::Base.transaction do
         subscription = PagarMe::Subscription.new({
           plan_id: plan.pagarme_id.to_i,
-          payment_method: 'credit_card',
+          payment_method: transaction_type,
           card_id: card.id,
           # postback_url: ,
           customer: {
