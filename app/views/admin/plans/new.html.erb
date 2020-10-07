@@ -30,7 +30,7 @@
 
           <p>Método de Pagamento</p>
 
-          <%= f.input :payment_methods, label: false %>
+          <%= f.input :payment_methods, collection: ['boleto', 'cartão', "boleto e cartão"], label: false %>
           <br>
 
           <p>Charges</p>

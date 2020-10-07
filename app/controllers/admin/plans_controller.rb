@@ -1,6 +1,7 @@
 class Admin::PlansController < ApplicationController
-  before_action :check_admin
-
+  # before_action :check_admin
+  layout 'admin'
+  
   def index
     @plans = Plan.all
   end

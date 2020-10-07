@@ -1,11 +1,12 @@
 class Order < ApplicationRecord
-  include Validation 
+  include Validation
 
-  after_create :send_email
+  # after_create :send_email
 
   belongs_to :kit
   belongs_to :address
   belongs_to :customer
+  has_many :visits
 
   normalize_attributes :phone, with: [:phone]
   normalize_attributes :zipcode, with: [:numbers]
@@ -14,7 +15,7 @@ class Order < ApplicationRecord
   private
 
   def send_email
-    OrderMailer.confirmation(self).deliver_now
+    OrderMailer.confirmation.deliver_now
   end
 
 end

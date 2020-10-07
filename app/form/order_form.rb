@@ -13,6 +13,7 @@ class OrderForm
       :installments,
       :price,
       :kit_id,
+      :visit_id,
       :id,
       :phone,
       :email,
@@ -40,21 +41,30 @@ class OrderForm
     order.assign_attributes order_attributes
     order.customer = customer
     order.address = address
-    order.price = kit.price + 1
+    order.price = kit.price.to_i + 1
 
     pagarme_customer # create customer on pagarme's db
 
-    # if subscription
-      create_subscription
-    # else
-      if payment_method
-        cred_card_transaction
+    if order.kit.payment_type == "single"
+      if self.payment_method
+        transaction = cred_card_transaction
       else
-        boleto_transaction
+        transaction = boleto_transaction
+
+        transaction_infos = PagarMe::Transaction.find_by_id(transaction.id)
+
+        order.boleto_url = transaction_infos.boleto_url     # => boleto's URL
+        order.boleto_bar_code =  transaction_infos.boleto_barcode # => boleto's barcode
       end
-    # end
-    order.save!
-    redirect_to root_path
+    else
+      transaction = create_subscription
+    end
+
+    order.pagarme_transaction_id = transaction.id
+
+    if order.save
+      update_visit
+    end
   end
 
   def order
@@ -82,6 +92,9 @@ class OrderForm
 
     def pagarme_customer
       customer_phone = phone.gsub("(","").gsub(")","").gsub("-","").gsub(" ","")
+      customer_cpf = credit_card_cpf.gsub(".","").gsub("-","") unless credit_card_cpf.empty?
+      customer_cpf = bank_slip_cpf .gsub(".","").gsub("-","") unless bank_slip_cpf.empty?
+
       pagarme_customer = PagarMe::Customer.create(
         name: customer.first_name + ' ' + customer.last_name,
         email: customer.email,
@@ -90,7 +103,7 @@ class OrderForm
         country: 'br',
         # birthday: birthday.to_s unless customer.birthday.nil?,
         documents: [
-        {"type": "cpf", "number": credit_card_cpf.gsub(".","").gsub("-","")}
+        {"type": "cpf", "number": customer_cpf}
         ],
         phone_numbers: ["+55#{customer_phone}"]
       )
@@ -98,16 +111,74 @@ class OrderForm
 
 
     def boleto_transaction
-      boleto = PagarMe::Transaction.new(
-        amount:  order.amount, #TO DO get value in cents
-        payment_method: 'boleto'
-      )
-      boleto.charge
+      ActiveRecord::Base.transaction do
+        transaction  = PagarMe::Transaction.new({
+          amount: 100,
+          installments: order.installments.to_i,
+          payment_method: "boleto",
+          # card_number: order.credit_card_number.gsub(" ",""),
+          # card_holder_name: order.credit_card_name,
+          # card_expiration_date: credit_card_expiration_month + credit_card_expiration_year,
+          # card_cvv: order.credit_card_cvv,
+          postback_url: "http://requestb.in/pkt7pgpk",
+          customer: {
+            external_id: order.customer.id.to_s,
+            name: self.first_name + ' ' + self.last_name,
+            type: "individual",
+            country: "br",
+            email: self.email,
+            documents: [
+              {
+                type: "cpf",
+                number: self.bank_slip_cpf.gsub(".","").gsub("-","")
 
-      boleto_url = boleto.boleto_url     # => boleto's URL
-      boleto_barcode =  boleto.boleto_barcode # => boleto's barcode
+              }
+            ],
+            phone_numbers: ["+55" + self.phone.gsub("(","").gsub(")","").gsub(" ","").gsub("-","")],
+            # birthday: order.customer.birthday.to_s
+          },
+          billing: {
+            name: order.first_name + " " + order.last_name,
+            address: {
+              country: "br",
+              state: order.state,
+              city: order.city,
+              neighborhood: order.neighborhood,
+              street: order.street,
+              street_number: order.number,
+              zipcode: order.zipcode.gsub("-","")
+            }
+          },
+          shipping: {
+            name: order.first_name + " " + order.last_name,
+            fee: order.kit.shipment_cost,
+            delivery_date: "2000-12-21",
+            expedited: true,
+            address: {
+              country: "br",
+              state: order.state,
+              city: order.city,
+              neighborhood: order.neighborhood,
+              street: order.street,
+              street_number: order.number,
+              zipcode: order.zipcode.gsub("-","")
+            }
+          },
+          items: []
+        })
 
-      # TODO ENVIAR ESSAS INFOS POR MAILER
+        order.kit.kit_products.each do |order_product|
+          transaction.items.push({
+              id: order_product.product_id.to_s,
+              title: order_product.product.name,
+              unit_price: order_product.price_cents,
+              quantity: order_product.quantity,
+              tangible: true
+            })
+        end
+        transaction.charge
+      end
+
     end
 
     def cred_card_transaction
@@ -119,6 +190,7 @@ class OrderForm
       ActiveRecord::Base.transaction do
         transaction  = PagarMe::Transaction.new({
           amount: 100,
+          installments: order.installments.to_i,
           payment_method: "credit_card",
           card_number: order.credit_card_number.gsub(" ",""),
           card_holder_name: order.credit_card_name,
@@ -142,50 +214,44 @@ class OrderForm
             # birthday: order.customer.birthday.to_s
           },
           billing: {
-            name: "Trinity Moss",
+            name: order.first_name + " " + order.last_name,
             address: {
               country: "br",
-              state: "sp",
-              city: "Cotia",
-              neighborhood: "Rio Cotia",
-              street: "Rua Matrix",
-              street_number: "9999",
-              zipcode: "06714360"
+              state: order.state,
+              city: order.city,
+              neighborhood: order.neighborhood,
+              street: order.street,
+              street_number: order.number,
+              zipcode: order.zipcode.gsub("-","")
             }
           },
           shipping: {
-            name: "Neo Reeves",
-            fee: 1000,
+            name: order.first_name + " " + order.last_name,
+            fee: order.kit.shipment_cost,
             delivery_date: "2000-12-21",
             expedited: true,
             address: {
               country: "br",
-              state: "sp",
-              city: "Cotia",
-              neighborhood: "Rio Cotia",
-              street: "Rua Matrix",
-              street_number: "9999",
-              zipcode: "06714360"
+              state: order.state,
+              city: order.city,
+              neighborhood: order.neighborhood,
+              street: order.street,
+              street_number: order.number,
+              zipcode: order.zipcode.gsub("-","")
             }
           },
-          items: [
-            {
-              id: "r123",
-              title: "Red pill",
-              unit_price: 10000,
-              quantity: 1,
-              tangible: true
-            },
-            {
-              id: "b123",
-              title: "Blue pill",
-              unit_price: 10000,
-              quantity: 1,
-              tangible: true
-            }
-
-          ]
+          items: []
         })
+
+        order.kit.kit_products.each do |order_product|
+          transaction.items.push({
+              id: order_product.product_id.to_s,
+              title: order_product.product.name,
+              unit_price: order_product.price_cents,
+              quantity: order_product.quantity,
+              tangible: true
+            })
+        end
         transaction.charge
       end
     end
@@ -198,50 +264,62 @@ class OrderForm
       end
     end
 
-  def create_credit_card(order)
-    # to save user credit card on pagarme and recieve a card hash
-    # create a credit card on pagarme
-    pagarme_card = PagarMe::Card.new({
-      card_number: credit_card_number.gsub(" ",""),
-      card_holder_name: credit_card_name,
-      card_expiration_month: credit_card_expiration_month,
-      card_expiration_year: credit_card_expiration_year,
-      card_cvv: credit_card_cvv
-    })
-
-    pagarme_card.create
-  end
-
-  def create_subscription
-
-    # get infos we need to subscription
-    customer = pagarme_customer
-    card = create_credit_card(@order)
-    # TO DO get plan on order.product
-
-    ActiveRecord::Base.transaction do
-      subscription = PagarMe::Subscription.new({
-        plan_id: plan,
-        payment_method: 'credit_card',
-        card_id: card.id,
-        # postback_url: ,
-        customer: {
-            name: credit_card_name,
-            document_number: credit_card_cpf,
-            email: current_user.email,
-            address: {
-                street: current_user.street,
-                neighborhood: current_user.neighborhood,
-                zipcode: current_user.zipcode,
-                street_number: current_user.street_number
-            },
-            phone: {
-                ddd: current_user.phone_ddd,
-                number: current_user.phone_number
-            },
-        },
+    def create_credit_card(order)
+      # to save user credit card on pagarme and recieve a card hash
+      # create a credit card on pagarme
+      pagarme_card = PagarMe::Card.new({
+        card_number: credit_card_number.gsub(" ",""),
+        card_holder_name: credit_card_name,
+        card_expiration_month: credit_card_expiration_month,
+        card_expiration_year: credit_card_expiration_year,
+        card_cvv: credit_card_cvv
       })
-      subscription.create
+
+      pagarme_card.create
     end
-  end
+
+    def create_subscription
+
+      # get infos we need to subscription
+      customer = pagarme_customer
+      card = create_credit_card(@order)
+      # TO DO get plan on order.product
+      plan = Plan.find(order.kit.plan_id)
+      plan_id = PagarMe::Plan.find(plan.pagarme_id)
+
+      if self.payment_method
+        transaction_type = 'credit_card'
+      else
+        transaction_type = 'boleto'
+      end
+
+      ActiveRecord::Base.transaction do
+        subscription = PagarMe::Subscription.new({
+          plan_id: plan.pagarme_id.to_i,
+          payment_method: transaction_type,
+          card_id: card.id,
+          # postback_url: ,
+          customer: {
+              name: credit_card_name,
+              document_number: credit_card_cpf,
+              email: self.email,
+              address: {
+                  street: self.street,
+                  neighborhood: self.neighborhood,
+                  zipcode: self.zipcode,
+                  street_number: self.number
+              },
+              phone: {
+                  ddd: self.phone[1..2],
+                  number: self.phone[5..-1].gsub("-","")
+              },
+          },
+        })
+        subscription.create
+      end
+    end
+
+    def update_visit
+      Visit.find(visit_id).update order_id: order.id
+    end
 end

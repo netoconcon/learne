@@ -27,6 +27,6 @@ class Admin::KitProductsController < ApplicationController
   private
 
   def kit_product_params
-    params.require(:kit_product).permit(:product_id, :kit_id, :quantity, :price_cents)
+    params.require(:kit_product).permit(:product_id, :kit_id, :quantity, :price)
   end
 end
