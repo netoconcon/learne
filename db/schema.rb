@@ -10,7 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 2020_10_05_105833) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -134,6 +136,9 @@ ActiveRecord::Schema.define(version: 2020_10_05_105833) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "address_id", null: false
     t.bigint "customer_id", null: false
+    t.string "pagarme_transaction_id"
+    t.string "boleto_url"
+    t.string "boleto_bar_code"
     t.index ["address_id"], name: "index_orders_on_address_id"
     t.index ["customer_id"], name: "index_orders_on_customer_id"
     t.index ["kit_id"], name: "index_orders_on_kit_id"
@@ -204,6 +209,20 @@ ActiveRecord::Schema.define(version: 2020_10_05_105833) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "visits", force: :cascade do |t|
+    t.bigint "order_id"
+    t.string "fbid"
+    t.string "utm_source"
+    t.string "utm_campaign"
+    t.string "utm_medium"
+    t.string "utm_term"
+    t.string "utm_content"
+    t.string "pubid"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["order_id"], name: "index_visits_on_order_id"
+  end
+
   add_foreign_key "addresses", "customers"
   add_foreign_key "bank_accounts", "companies"
   add_foreign_key "campaigns", "selling_pages"
@@ -215,4 +234,5 @@ ActiveRecord::Schema.define(version: 2020_10_05_105833) do
   add_foreign_key "orders", "kits"
   add_foreign_key "products", "companies"
   add_foreign_key "selling_pages", "kits"
+  add_foreign_key "visits", "orders"
 end

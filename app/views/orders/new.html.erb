@@ -1,11 +1,12 @@
 <div data-controller="zipcode masks payment-method">
   <%= simple_form_for @order, url: orders_path, method: :post do |f| %>
     <%= f.input :kit_id, as: :hidden %>
+    <%= f.input :visit_id, as: :hidden %>
     <div class="mt-4 mb-4">
-      <%= image_tag "banner_vmd3.png", width: "1070px", height: "300px" %>
+      <%= image_tag "banner_vmd3.png", width: "1070px", height: "300px", style: "" %>
     </div>
 
-    <div class="row mb-4">
+    <div class="row mb-4 w-100">
       <div class="col-12 col-md-6">
         <div class="card mb-4">
           <div class="card-header text-center">
@@ -173,7 +174,6 @@
                             a caixa de SPAM)</li>
                         </ol>
                       </div>
-
                       <div class="form-group row">
                         <h5 class="col-12 col-md-12">
                           <%= "Produtos: #{order_single(@order)}" %>
