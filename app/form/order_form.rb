@@ -160,7 +160,7 @@ class OrderForm
               city: order.city,
               neighborhood: order.neighborhood,
               street: order.street,
-              street_number: order.number,
+              street_number: order.number.to_s,
               zipcode: order.zipcode.gsub("-","")
             }
           },
