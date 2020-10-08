@@ -115,12 +115,12 @@ class OrderForm
         transaction  = PagarMe::Transaction.new({
           amount: 100,
           installments: order.installments.to_i,
+          postback_url: "http://requestb.in/pkt7pgpk",
           payment_method: "boleto",
           # card_number: order.credit_card_number.gsub(" ",""),
           # card_holder_name: order.credit_card_name,
           # card_expiration_date: credit_card_expiration_month + credit_card_expiration_year,
           # card_cvv: order.credit_card_cvv,
-          postback_url: "http://requestb.in/pkt7pgpk",
           customer: {
             external_id: order.customer.id.to_s,
             name: self.first_name + ' ' + self.last_name,
@@ -182,62 +182,61 @@ class OrderForm
     end
 
     def cred_card_transaction
-      order = self
       card = create_credit_card(order)
 
-      card_number = order.credit_card_number.gsub(" ","")
+      card_number = self.credit_card_number.gsub(" ","")
 
       ActiveRecord::Base.transaction do
         transaction  = PagarMe::Transaction.new({
           amount: 100,
-          installments: order.installments.to_i,
+          installments: self.installments.to_i,
           payment_method: "credit_card",
-          card_number: order.credit_card_number.gsub(" ",""),
-          card_holder_name: order.credit_card_name,
+          card_number: self.credit_card_number.gsub(" ",""),
+          card_holder_name: self.credit_card_name,
           card_expiration_date: credit_card_expiration_month + credit_card_expiration_year,
-          card_cvv: order.credit_card_cvv,
+          card_cvv: self.credit_card_cvv,
           postback_url: "http://requestb.in/pkt7pgpk",
           customer: {
-            external_id: order.customer.id.to_s,
-            name: order.credit_card_name,
+            external_id: self.customer.id.to_s,
+            name: self.credit_card_name,
             type: "individual",
             country: "br",
-            email: order.email,
+            email: self.email,
             documents: [
               {
                 type: "cpf",
-                number: order.credit_card_cpf.gsub(".","").gsub("-","")
+                number: self.credit_card_cpf.gsub(".","").gsub("-","")
 
               }
             ],
-            phone_numbers: ["+55" + order.phone.gsub("(","").gsub(")","").gsub(" ","").gsub("-","")],
+            phone_numbers: ["+55" + self.phone.gsub("(","").gsub(")","").gsub(" ","").gsub("-","")],
             # birthday: order.customer.birthday.to_s
           },
           billing: {
-            name: order.first_name + " " + order.last_name,
+            name: self.first_name + " " + self.last_name,
             address: {
               country: "br",
-              state: order.state,
-              city: order.city,
-              neighborhood: order.neighborhood,
-              street: order.street.to_s,
-              street_number: order.number.to_s,
-              zipcode: order.zipcode.gsub("-","")
+              state: self.state,
+              city: self.city,
+              neighborhood: self.neighborhood,
+              street: self.street.to_s,
+              street_number: self.number.to_s,
+              zipcode: self.zipcode.gsub("-","")
             }
           },
           shipping: {
-            name: order.first_name + " " + order.last_name,
-            fee: order.kit.shipment_cost,
+            name: self.first_name + " " + self.last_name,
+            fee: self.kit.shipment_cost,
             delivery_date: "2000-12-21",
             expedited: true,
             address: {
               country: "br",
-              state: order.state,
-              city: order.city,
-              neighborhood: order.neighborhood,
-              street: order.street.to_s,
-              street_number: order.number.to_s,
-              zipcode: order.zipcode.gsub("-","")
+              state: self.state,
+              city: self.city,
+              neighborhood: self.neighborhood,
+              street: self.street.to_s,
+              street_number: self.number.to_s,
+              zipcode: self.zipcode.gsub("-","")
             }
           },
           items: []
