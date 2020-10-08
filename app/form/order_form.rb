@@ -145,7 +145,7 @@ class OrderForm
               city: order.city,
               neighborhood: order.neighborhood,
               street: order.street,
-              street_number: order.number,
+              street_number: order.number.to_s,
               zipcode: order.zipcode.gsub("-","")
             }
           },
@@ -159,8 +159,8 @@ class OrderForm
               state: order.state,
               city: order.city,
               neighborhood: order.neighborhood,
-              street: order.street,
-              street_number: order.number,
+              street: order.street.to_s,
+              street_number: order.to_s,
               zipcode: order.zipcode.gsub("-","")
             }
           },
@@ -220,8 +220,8 @@ class OrderForm
               state: order.state,
               city: order.city,
               neighborhood: order.neighborhood,
-              street: order.street,
-              street_number: order.number,
+              street: order.street.to_s,
+              street_number: order.number.to_s,
               zipcode: order.zipcode.gsub("-","")
             }
           },
@@ -235,8 +235,8 @@ class OrderForm
               state: order.state,
               city: order.city,
               neighborhood: order.neighborhood,
-              street: order.street,
-              street_number: order.number,
+              street: order.street.to_s,
+              street_number: order.number.to_s,
               zipcode: order.zipcode.gsub("-","")
             }
           },
@@ -304,7 +304,7 @@ class OrderForm
               document_number: credit_card_cpf,
               email: self.email,
               address: {
-                  street: self.street,
+                  street: self.street.to_s,
                   neighborhood: self.neighborhood,
                   zipcode: self.zipcode,
                   street_number: self.number
