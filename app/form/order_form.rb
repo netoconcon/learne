@@ -138,30 +138,30 @@ class OrderForm
             # birthday: order.customer.birthday.to_s
           },
           billing: {
-            name: order.first_name + " " + order.last_name,
+            name: self.first_name + " " + self.last_name,
             address: {
               country: "br",
-              state: order.state,
-              city: order.city,
-              neighborhood: order.neighborhood,
-              street: order.street,
-              street_number: order.number.to_s,
-              zipcode: order.zipcode.gsub("-","")
+              state: self.state,
+              city: self.city,
+              neighborhood: self.neighborhood,
+              street: self.street,
+              street_number: self.number.to_s,
+              zipcode: self.zipcode.gsub("-","")
             }
           },
           shipping: {
-            name: order.first_name + " " + order.last_name,
-            fee: order.kit.shipment_cost,
+            name: self.first_name + " " + self.last_name,
+            fee: self.kit.shipment_cost,
             delivery_date: "2000-12-21",
             expedited: true,
             address: {
               country: "br",
-              state: order.state,
-              city: order.city,
-              neighborhood: order.neighborhood,
-              street: order.street.to_s,
-              street_number: order.to_s,
-              zipcode: order.zipcode.gsub("-","")
+              state: self.state,
+              city: self.city,
+              neighborhood: self.neighborhood,
+              street: self.street.to_s,
+              street_number: self.to_s,
+              zipcode: self.zipcode.gsub("-","")
             }
           },
           items: []
