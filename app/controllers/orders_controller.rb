@@ -4,6 +4,7 @@ skip_before_action :authenticate_user!
 
   def new
     @order = OrderForm.new
+    tot_price
   end
 
   def create
@@ -50,7 +51,5 @@ skip_before_action :authenticate_user!
         :payment_method
     )
   end
-
-  # Kit.where(id: SellingPage.find_by(url: params[:selling_page_url]).kit_id)
 
 end

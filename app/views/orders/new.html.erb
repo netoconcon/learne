@@ -106,6 +106,26 @@
                 <div class="tab-content mt-4">
                   <div class="tab-pane fade show active">
                     <div class="form-group row">
+                      <div class="col-12 text-center">
+                        <span class="d-inline-block align-middle">
+                          <%= image_tag("visa.png") %>
+                        </span>
+                        <span class="d-inline-block align-middle">
+                          <%= image_tag("mastercard.png") %>
+                        </span>
+                        <span class="d-inline-block align-middle">
+                          <%= image_tag("amex.png") %>
+                        </span>
+                        <span class="d-inline-block align-middle">
+                          <%= image_tag("dinners-club.png") %>
+                        </span>
+                        <span class="d-inline-block align-middle">
+                          <%= image_tag("elo.png") %>
+                        </span>
+                        <span class="d-inline-block align-middle">
+                          <%= image_tag("hipercard.png") %>
+                        </span>
+                      </div>
                       <div class="col-12 mb-1">
                         <%= f.input :credit_card_number, label: "Número do cartão", input_html: { data: { js: "creditCard" } }, maxlength: 19 %>
                       </div>
@@ -143,9 +163,7 @@
                   <div class="tab-pane fade show active">
                     <div class="row w-100">
                       <div class="col-12 mb-2">
-                        <div class="w-100 text-center">
-                          <%= image_tag "Boleto.jpg" %>
-                        </div>
+                        <%= image_tag("Boleto.jpg", class: "img-fluid d-block mx-auto") %>
                       </div>
                       <div class="col-12">
                         <ol>
@@ -156,12 +174,12 @@
                             a caixa de SPAM)</li>
                         </ol>
                       </div>
-
-                      <div class="form-group">
+                      <div class="form-group row">
+                        <h5 class="col-12 col-md-12">
+                          <%= "Produtos: #{order_single(@order)}" %>
+                        </h5>
                         <div class="col-12 col-md-12">
-                          <div>
-                            <%= f.input :bank_slip_cpf, label: "CPF (Para emissão da Nota Fiscal)", input_html: { data: { js: "cpf" } }, maxlength: 14 %>
-                          </div>
+                          <%= f.input :bank_slip_cpf, label: "CPF (Para emissão da Nota Fiscal)", input_html: { data: { js: "cpf" } }, maxlength: 14 %>
                         </div>
                       </div>
                     </div>
@@ -172,7 +190,7 @@
             </div>
           </div>
           <div class="card-footer bg-transparent">
-            <img src="https://vmd.appmax.com.br/checkout-public/one-checkout/monetizze/images/secure.jpg" class="img-fluid d-block mx-auto">
+            <%= image_tag("secure.jpg", class: "img-fluid d-block mx-auto") %>
           </div>
         </div>
         <h6 class="text-black-50 mt-2"><small>Taxa de 2,99% a.m.</small></h6>
@@ -180,15 +198,26 @@
     </div>
   <% end %>
   <div class="container-fluid mb-3">
-    <div class="footer row no-gutters">
-      <div class="col-12 col-md-6 text-center text-md-right">
-        <a href="#" target="_blank">Política de privacidade</a> |
-        <a href="#" target="_blank">Termos de compra</a>
+    <div class="container ">
+      <div class="footer-checkout">
+        <div class="col-md-4">
+          <h5>FORMAS DE PAGAMENTO</h5>
+          <%= image_tag "pagamentos.png"%>
+        </div>
+        <div class="col-md-4">
+          <h5>PAGAMENTO SEGURO</h5>
+          <%= image_tag "seguro.png"%>
+        </div>
+        <div class="col-md-4">
+          <h5>TERMOS</h5>
+          <div style="display: grid">
+            <a href="#" target="_blank">Política de privacidade</a>
+            <a href="#" target="_blank">Termos de compra</a>
+          </div>
+        </div>
       </div>
-
-      <div class="col-12 col-md-6 text-center text-md-left">
-        &nbsp;<span class="d-none d-md-inline-block">|</span>
-        Esta compra será processada pelo Pagarme
+      <div class="footer-detail">
+        Essa compra sera processada pelo Pagarme.
       </div>
     </div>
   </div>

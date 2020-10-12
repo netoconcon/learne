@@ -39,8 +39,11 @@ class PagesController < ApplicationController
       @cards_prices << order.price
     end
     else
+      @cards_prices = []
       @orders_card = Order.all.where(payment_method: true)
-      @cards_prices = [0]
+      @orders_card.each do |order|
+        @cards_prices << order.price
+      end
     end
   end
 
@@ -52,8 +55,11 @@ class PagesController < ApplicationController
         @boletos_prices << order.price
       end
     else
+      @boletos_prices = []
       @orders_boleto = Order.all.where(payment_method: false)
-      @boletos_prices = [0]
+      @orders_boleto.each do |order|
+        @boletos_prices << order.price
+      end
     end
   end
 

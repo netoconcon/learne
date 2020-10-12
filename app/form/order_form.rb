@@ -38,11 +38,15 @@ class OrderForm
   )
 
   def save
+    total_price = []
     order.assign_attributes order_attributes
     order.customer = customer
     order.address = address
-    order.price = kit.price.to_i + 1
-
+    KitProduct.where(kit_id: order.kit_id).each do |order|
+      total_price << order.price.to_i
+    end
+    order.price = total_price.sum
+    # order.price = KitProduct.where(kit_id: order.kit_id).price.to_i + 1
     pagarme_customer # create customer on pagarme's db
 
     if order.kit.payment_type == "single"

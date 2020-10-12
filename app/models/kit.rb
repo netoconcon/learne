@@ -1,6 +1,9 @@
 class Kit < ApplicationRecord
 
-  validates :name, :standard_installments, :payment_type, :maximum_installments, :height, :weight, :width, :length, presence: true
+  validates :name, :payment_type, :height, :weight, :width, :length, presence: true
+
+  validates :plan, presence: true, if: -> {self.payment_type == 'subscription'}
+  validates :standard_installments, :maximum_installments, presence: true, if: -> {self.payment_type == 'single'}
 
   belongs_to :plan, optional: true
   has_many :orders, dependent: :destroy
@@ -16,4 +19,5 @@ class Kit < ApplicationRecord
   def price
     products.map(&:price).sum
   end
+
 end
