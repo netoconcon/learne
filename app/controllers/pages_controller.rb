@@ -2,6 +2,7 @@ class PagesController < ApplicationController
   layout "admin"
 
   def home
+    initial_date
     @date = params[:sales_date]
     date_overview
     order_card
@@ -13,6 +14,12 @@ class PagesController < ApplicationController
   end
 
   private
+
+  def initial_date
+    if params[:sales_date] == nil
+      params[:sales_date] = Date.today
+    end
+  end
 
   def date_overview
     if @date.present?

@@ -155,7 +155,7 @@ class OrderForm
           },
           shipping: {
             name: self.first_name + " " + self.last_name,
-            fee: self.kit.shipment_cost,
+            fee: self.kit.shipment_cost_cents,
             delivery_date: "2000-12-21",
             expedited: true,
             address: {
@@ -230,7 +230,7 @@ class OrderForm
           },
           shipping: {
             name: self.first_name + " " + self.last_name,
-            fee: self.kit.shipment_cost,
+            fee: self.kit.shipment_cost_cents,
             delivery_date: "2000-12-21",
             expedited: true,
             address: {
