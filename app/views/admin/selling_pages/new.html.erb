@@ -9,8 +9,11 @@
         </div>
         <div>
           <%= f.input :url, label: 'Url' %>
-          <%= f.input :description, label: 'Descricao' %>
+          <%= f.input :description, label: 'Descrição' %>
         </div>
+      </div>
+      <div class="columns">
+        <%= f.input :confirmation_page, label: 'Pagina de confirmação do pedido', placeholder: "Incluir http://" %>
       </div>
     </div>
     <%= f.button :submit, 'Cadastrar nova pagina', class: "btn btn-primary submit-product" %>
