@@ -10,9 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 2020_10_05_105833) do
-
+ActiveRecord::Schema.define(version: 2020_10_16_115209) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -111,7 +109,6 @@ ActiveRecord::Schema.define(version: 2020_10_05_105833) do
     t.integer "payment_type"
     t.integer "standard_installments"
     t.integer "maximum_installments"
-    t.integer "shipment_cost"
     t.string "shipment_description"
     t.boolean "allow_free_shipment", default: false
     t.integer "weight"
@@ -122,6 +119,7 @@ ActiveRecord::Schema.define(version: 2020_10_05_105833) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "plan_id"
     t.boolean "upsell"
+    t.integer "shipment_cost_cents", default: 0, null: false
     t.index ["plan_id"], name: "index_kits_on_plan_id"
   end
 
@@ -187,6 +185,7 @@ ActiveRecord::Schema.define(version: 2020_10_05_105833) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "slug"
     t.bigint "kit_id", null: false
+    t.string "confirmation_page"
     t.index ["kit_id"], name: "index_selling_pages_on_kit_id"
     t.index ["slug"], name: "index_selling_pages_on_slug", unique: true
   end
