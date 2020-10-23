@@ -30,7 +30,7 @@
           </div>
         </div>
       </div>
-        <div class="utm">
+        <div class="size">
           <%= f.input :weight, label: 'Peso' %>
           <%= f.input :height, label: 'Altura' %>
           <%= f.input :width, label: 'Largura' %>
@@ -44,6 +44,9 @@
 
       <div class="links">
         <%= link_to_add_association "Adicionar produto", f, :kit_products %>
+      </div>
+      <div class="discount" data-controller="kitprice">
+        <%= f.input :discount, label: "Porcentagem de desconto para esse kit", placeholder: "Digitar um numero de 0 a 100", input_html: { "data-target" => "kitprice.discount", "data-action" => "event -> kitprice#discount" } %>
       </div>
     </div>
     <div class="form-total-price">

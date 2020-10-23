@@ -1,7 +1,6 @@
 class Kit < ApplicationRecord
 
   validates :name, :payment_type, :height, :weight, :width, :length, :shipment_cost_cents, presence: true
-
   validates :plan, presence: true, if: -> {self.payment_type == 'subscription'}
   validates :standard_installments, :maximum_installments, presence: true, if: -> {self.payment_type == 'single'}
   validates :shipment_cost_cents, presence: true, if: -> {self.allow_free_shipment == false}

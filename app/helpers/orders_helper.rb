@@ -3,6 +3,7 @@ module OrdersHelper
     if Kit.find_by(id: order.kit_id).payment_type == "single"
       installments = []
       total_price = []
+      raise
       KitProduct.where(kit_id: order.kit_id).each do |order|
         total_price << order.price.to_i
       end
@@ -28,5 +29,11 @@ module OrdersHelper
       total_price << order.price.to_i
     end
     total_price = number_to_currency(total_price.sum, unit: "R$ ", separator: ",")
+  end
+  
+  def discount(order)
+    if Kit.find_by(id: order.kit_id).discount.nil?
+      (1 - Kit.find_by(id: order.kit_id).discount.to_f / 100)
+    end
   end
 end

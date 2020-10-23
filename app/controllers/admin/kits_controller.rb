@@ -71,6 +71,7 @@ class Admin::KitsController < ApplicationController
       :length,
       :width,
       :plan_id,
+      :discount,
       kit_products_attributes:[
         :id,
         :product_id,

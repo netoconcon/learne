@@ -4,7 +4,6 @@ skip_before_action :authenticate_user!
 
   def new
     @order = OrderForm.new
-    tot_price
   end
 
   def create
