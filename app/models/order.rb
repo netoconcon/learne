@@ -11,7 +11,7 @@ class Order < ApplicationRecord
   normalize_attributes :phone, with: [:phone]
   normalize_attributes :zipcode, with: [:numbers]
   normalize_attributes :cpf, with: [:cpf]
-
+  
   private
 
   def send_email

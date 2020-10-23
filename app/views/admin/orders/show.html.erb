@@ -2,8 +2,8 @@
   <h2>Detalhes</h2>
   <div>
     <h5>Pedido N° <%= @order.id %></h5>
-    <p>Usuário: <%= @order.user.full_name %></p>
-    <p>Email: <%= @order.user.email %></p>
-    <p>Valor: <%= @order.price %></p>
+    <p>Usuário: <%= "#{@order.customer.first_name} #{@order.customer.last_name}"%></p>
+    <p>Email: <%= @order.customer.email %></p>
+    <p>Valor: <%= number_to_currency(@order.price, unit: "R$ ", separator: ",") %></p>
   </div>
 </div>
