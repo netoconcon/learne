@@ -15,7 +15,8 @@ skip_before_action :authenticate_user!
       @order.payment_method = false
     end
     @order.save
-    redirect_to(SellingPage.find_by(kit_id: @order.kit_id).confirmation_page)
+    redirect_to root_path
+    # redirect_to(SellingPage.find_by(kit_id: @order.kit_id).confirmation_page)
   end
 
   private
