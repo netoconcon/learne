@@ -94,6 +94,14 @@ class OrderForm
       end
     end
 
+    def set_price
+      price = 0
+      @order.kit.kit_products.each do |kit_product|
+        price += (kit_product.quantity * kit_product.price_cents)
+      end
+      total_price = price + @order.kit.shipment_cost_cents
+    end
+
     def pagarme_customer
       customer_phone = phone.gsub("(","").gsub(")","").gsub("-","").gsub(" ","")
       customer_cpf = credit_card_cpf.gsub(".","").gsub("-","") unless credit_card_cpf.empty?
@@ -117,7 +125,7 @@ class OrderForm
     def boleto_transaction
       ActiveRecord::Base.transaction do
         transaction  = PagarMe::Transaction.new({
-          amount: 100,
+          amount: set_price,
           installments: order.installments.to_i,
           postback_url: "http://requestb.in/pkt7pgpk",
           payment_method: "boleto",

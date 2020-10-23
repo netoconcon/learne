@@ -13,17 +13,19 @@
           <%= f.input :name, label: false %>
           <br>
 
-          <p>Valor em Centavos</p>
+          <p>Valor do Plano em Centavos</p>
 
           <%= f.input :price, label: false %>
           <br>
 
-          <p>Dias</p>
+          <p>Prazo, em dias, para cobrança das parcelas</p>
 
           <%= f.input :days, label: false %>
           <br>
 
           <p>Dias de Trial</p>
+
+          <p>0 para não ter teste gratuito do produto. Valor começará a ser cobrado no dia Dia de Trial + 1 (exemplo se Dias de trial = 5, o valor será cobrado no sexto dia</p>
 
           <%= f.input :trial_days, label: false %>
           <br>
@@ -35,15 +37,21 @@
 
           <p>Charges</p>
 
+          <p>Número de cobranças que poderão ser feitas nesse plano. Ex: Plano cobrado 1x por ano, válido por no máximo 3 anos. Nesse caso, nossos parâmetros serão: days = 365, installments = 1, charges=2 (cartão de crédito) ou charges=3 (boleto). OBS: No caso de cartão de crédito, a cobrança feita na ativação da assinatura não é considerada. OBS: deixar vazio irá cobrar o usuário indefinidamente, ou até o plano ser cancelado</p>
+
           <%= f.input :charges, label: false %>
           <br>
 
-          <p>Installments</p>
+          <p>Parcelas - Installments</p>
+
+          <p>Número de parcelas entre cada cobrança (charges). Ex: Plano anual, válido por 2 anos, sendo que cada transação será dividida em 12 vezes. Nesse caso, nossos parâmetros serão: days = 365, installments = 12, charges=2 (cartão de crédito) ou charges=3 (boleto). OBS: Boleto sempre terá installments = 1</p>
 
           <%= f.input :installments, label: false %>
           <br>
 
           <p>Invoice Reminder</p>
+
+          <p>Define em até quantos dias antes o cliente será avisado sobre o vencimento do boleto.</p>
 
           <%= f.input :invoice_reminder, label: false %>
           <br>
