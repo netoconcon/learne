@@ -96,7 +96,6 @@ class OrderForm
 
     def set_price
       @order.kit.kit_products.first.price_cents + @order.kit.shipment_cost_cents
-      raise
     end
 
     def pagarme_customer
