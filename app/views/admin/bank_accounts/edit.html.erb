@@ -1,10 +1,10 @@
-<div data-controller="masks bank">
+<div data-controller="masks select2 filter">
   <div class="container">
     <h1>Editar conta bancaria</h1>
     <%= simple_form_for [:admin, @company, :admin, @bank_account], url: admin_company_bank_account_path, method: :patch do |f| %>
       <%= f.input :international, :as => :select, :collection => [['Nao',false],['Sim',true]], :include_blank => false, disabled: true %>
-      <%= f.input :bank_code, label: 'Codigo do banco', collection: banklist.map{ |obj| "#{obj[:value]} - #{obj[:label]}" }, input_html: { "data-action" => "change -> bank#name" } %>
-      <%= f.input :bank_name, label: 'Banco', input_html: { "data-target" => "bank.label" }, readonly: true %>
+      <%= f.input :bank_code, label: 'Codigo do banco', input_html: { "data-taget" => "filter.bcode" } %>
+      <%= f.input :bank_name, label: 'Banco', collection: banklist, input_html: { "data-target" => 'select2.select2 filter.filter', 'data-action' => 'change->filter#connect' } %>
       <%= f.input :agency_number, label: 'Agencia', input_html: { "data-js" => "agency", maxlength: 5} %>
       <%= f.input :account_number, label: 'Conta' %>
       <%= f.button :submit, 'Editar', class: "btn btn-primary" %>

@@ -38,11 +38,15 @@ class OrderForm
   )
 
   def save
+    total_price = []
     order.assign_attributes order_attributes
     order.customer = customer
     order.address = address
-    order.price = kit.price.to_i + 1
-
+    KitProduct.where(kit_id: order.kit_id).each do |order|
+      total_price << order.price.to_i
+    end
+    order.price = total_price.sum
+    # order.price = KitProduct.where(kit_id: order.kit_id).price.to_i + 1
     pagarme_customer # create customer on pagarme's db
 
     if order.kit.payment_type == "single"
@@ -90,6 +94,14 @@ class OrderForm
       end
     end
 
+    def set_price
+      price = 0
+      @order.kit.kit_products.each do |kit_product|
+        price += (kit_product.quantity * kit_product.price_cents)
+      end
+      total_price = price + @order.kit.shipment_cost_cents
+    end
+
     def pagarme_customer
       customer_phone = phone.gsub("(","").gsub(")","").gsub("-","").gsub(" ","")
       customer_cpf = credit_card_cpf.gsub(".","").gsub("-","") unless credit_card_cpf.empty?
@@ -113,7 +125,7 @@ class OrderForm
     def boleto_transaction
       ActiveRecord::Base.transaction do
         transaction  = PagarMe::Transaction.new({
-          amount: 100,
+          amount: set_price,
           installments: order.installments.to_i,
           postback_url: "http://requestb.in/pkt7pgpk",
           payment_method: "boleto",
@@ -151,7 +163,7 @@ class OrderForm
           },
           shipping: {
             name: self.first_name + " " + self.last_name,
-            fee: self.kit.shipment_cost,
+            fee: self.kit.shipment_cost_cents,
             delivery_date: "2000-12-21",
             expedited: true,
             address: {
@@ -226,7 +238,7 @@ class OrderForm
           },
           shipping: {
             name: self.first_name + " " + self.last_name,
-            fee: self.kit.shipment_cost,
+            fee: self.kit.shipment_cost_cents,
             delivery_date: "2000-12-21",
             expedited: true,
             address: {

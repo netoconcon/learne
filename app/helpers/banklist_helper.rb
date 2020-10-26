@@ -1,5 +1,5 @@
 module BanklistHelper
-  def banklist
+  def all_banks
     @banks = [
       {
         "value": "001",
@@ -776,9 +776,7 @@ module BanklistHelper
     ]
   end
 
-  def bank_code_name
-    @banks.each_with_object({}) do |bcode, bname|
-      bname[bcode[:value]] = bcode[:label]
-    end
+  def banklist
+    all_banks.map{ |obj| "#{obj[:value]} - #{obj[:label]}" }
   end
 end

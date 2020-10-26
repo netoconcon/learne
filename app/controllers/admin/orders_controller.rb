@@ -2,7 +2,7 @@ class Admin::OrdersController < ApplicationController
   layout "admin"
 
   def index
-    @orders = Order.all.sort_by(&:created_at)
+    @orders = Order.all.order('created_at DESC')
   end
 
   def show

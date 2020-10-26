@@ -4,6 +4,7 @@ skip_before_action :authenticate_user!
 
   def new
     @order = OrderForm.new
+    tot_price
   end
 
   def create
@@ -14,8 +15,8 @@ skip_before_action :authenticate_user!
       @order.payment_method = false
     end
     @order.save
-
-    render "orders/thank_you"
+    # redirect_to root_path
+    redirect_to(SellingPage.find_by(kit_id: @order.kit_id).confirmation_page)
   end
 
   private
@@ -50,7 +51,5 @@ skip_before_action :authenticate_user!
         :payment_method
     )
   end
-
-  # Kit.where(id: SellingPage.find_by(url: params[:selling_page_url]).kit_id)
 
 end
