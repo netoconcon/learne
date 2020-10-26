@@ -95,11 +95,8 @@ class OrderForm
     end
 
     def set_price
-      price = 0
-      @order.kit.kit_products.each do |kit_product|
-        price += (kit_product.quantity * kit_product.price_cents / 10)
-      end
-      total_price = price + @order.kit.shipment_cost_cents
+      @order.kit.kit_products.first.price_cents + @order.kit.shipment_cost_cents
+      raise
     end
 
     def pagarme_customer
