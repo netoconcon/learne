@@ -200,7 +200,7 @@ class OrderForm
 
       ActiveRecord::Base.transaction do
         transaction  = PagarMe::Transaction.new({
-          amount: 100,
+          amount: set_price,
           installments: self.installments.to_i,
           payment_method: "credit_card",
           card_number: self.credit_card_number.gsub(" ",""),
