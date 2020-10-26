@@ -202,12 +202,12 @@ class OrderForm
       ActiveRecord::Base.transaction do
         transaction  = PagarMe::Transaction.new({
           amount: set_price,
-          installments: self.installments.to_i,
+          installments: installments.to_i + 1,
           payment_method: "credit_card",
-          card_number: self.credit_card_number.gsub(" ",""),
-          card_holder_name: self.credit_card_name,
+          card_number: credit_card_number.gsub(" ",""),
+          card_holder_name: credit_card_name,
           card_expiration_date: credit_card_expiration_month + credit_card_expiration_year,
-          card_cvv: self.credit_card_cvv,
+          card_cvv: credit_card_cvv,
           postback_url: "http://requestb.in/pkt7pgpk",
           customer: {
             external_id: self.customer.id.to_s,
