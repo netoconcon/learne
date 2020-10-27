@@ -43,12 +43,12 @@ class OrderForm
     order.customer = customer
     order.address = address
     KitProduct.where(kit_id: order.kit_id).each do |order|
-      total_price << order.price.to_i
+      total_price << order.price
     end
-    order.price = total_price.sum
+    order.price = total_price.sum + @order.kit.shipment_cost
     # order.price = KitProduct.where(kit_id: order.kit_id).price.to_i + 1
     pagarme_customer # create customer on pagarme's db
-
+    raise
     if order.kit.payment_type == "single"
       if self.payment_method
         transaction = cred_card_transaction
@@ -63,7 +63,6 @@ class OrderForm
     else
       transaction = create_subscription
     end
-
     order.pagarme_transaction_id = transaction.id
 
     if order.save

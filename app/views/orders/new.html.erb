@@ -150,6 +150,17 @@
                         <%= f.input :credit_card_cvv, label: "Cód. de segurança", placeholder: "3 ou 4 dígitos", input_html: { data: { js: "numbers" } }, maxlength: 4 %>
                       </div>
                     </div>
+                    <h5 class="col-12 col-md-12">
+                      <div>
+                        <%= "Produtos: #{products(@order)}" %>                       
+                      </div>
+                      <div>
+                        <%= "Frete: #{order_shipping(@order)}" %>                            
+                      </div>
+                      <div>
+                        <%= "Total: #{order_total_price(@order)}" %>
+                      </div>
+                    </h5>
                     <div class="form-group w-100">
                       <%= f.input :installments, label: "Parcelamento", as: :select, collection: order_installments(@order) %>
                     </div>
@@ -157,7 +168,6 @@
                 </div>
                 <%= f.submit "Finalizar Pedido", name:"card", class: "btn btn-success submit-button", style: "color: #fff; background-color: #28a745; border-color: #28a745" %>
               </div>
-
               <div id="bank-slip" data-target="payment-method.bankSlip" hidden="hidden">
                 <div class="tab-content mt-4">
                   <div class="tab-pane fade show active">
@@ -176,7 +186,12 @@
                       </div>
                       <div class="form-group row">
                         <h5 class="col-12 col-md-12">
-                          <%= "Produtos: #{order_single(@order)}" %>
+                          <div>
+                            <%= "Produtos: #{order_single(@order)}" %>                            
+                          </div>
+                          <div>
+                            <%= "Frete: #{order_shipping(@order)}" %>                            
+                          </div>
                         </h5>
                         <div class="col-12 col-md-12">
                           <%= f.input :bank_slip_cpf, label: "CPF (Para emissão da Nota Fiscal)", input_html: { data: { js: "cpf" } }, maxlength: 14 %>
