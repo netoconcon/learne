@@ -7,14 +7,19 @@
         <%= f.input :description, label: 'Descrição' %>
       </div>
 
-      <div id="teste">
-        <div id="upsell">
-          <%= f.fields_for :upsells do |upsell| %>
-            <%= render 'upsell_fields', f: upsell %>
-          <% end %>
-        </div>
-          <%= link_to_add_association "Adicionar produto para o upsell", f, :upsells %>
+      <div>
+        <%= f.input :upsell, label: 'Esse kit tera upsell de produto?', as: :select %>
       </div>
+
+      <div>
+        te
+        <%= f.fields_for :upsells do |a| %>
+          <%= a.input :description %>
+          <%= a.association :product %>
+        <% end %>
+        ste
+      </div>
+
       Pagamento
       <div class="payments">
         <div class="payment-fields" data-controller="kit">
@@ -63,9 +68,3 @@
     </div>
   <% end %>
 </div>
-
-<script>
-  document.getElementById('teste').addEventListener('cocoon:before-insert', () => {
-    console.log('teste')
-  })
-</script>

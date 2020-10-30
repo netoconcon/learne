@@ -1,11 +1,11 @@
 class Admin::UpsellsController < ApplicationController
   def index
-    @kit_products = KitProduct.all
-    @list_products = @kit_products.where(kit_id: params["format"])
+    @upsell = Upsell.all
   end
 
   def new
     @upsell = Upsell.new
+    @upsell.products_options.build
   end
 
   def create
