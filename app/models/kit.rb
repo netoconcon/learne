@@ -10,7 +10,11 @@ class Kit < ApplicationRecord
   has_many :selling_pages, dependent: :destroy
   has_many :kit_products, dependent: :destroy
   has_many :products, through: :kit_products, dependent: :destroy
+  has_many :upsells, dependent: :destroy
+  has_many :products, through: :upsells, dependent: :destroy
+
   accepts_nested_attributes_for :kit_products, reject_if: :all_blank, allow_destroy: :true
+  accepts_nested_attributes_for :upsells, reject_if: :all_blank, allow_destroy: :true
 
   default_scope {order(created_at: :asc)}
 
