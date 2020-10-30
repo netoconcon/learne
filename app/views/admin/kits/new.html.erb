@@ -2,12 +2,14 @@
   <h2>Novo kit</h2>
   <%= simple_form_for [:admin, @kit] do |f| %>
     <div class="styler">
-      <div>
+      <div class="kit-row">
         <%= f.input :name, label: 'Nome do kit' %>
         <%= f.input :description, label: 'Descrição' %>
       </div>
-      Pagamento
-      <div class="payments">
+      <div class="kit-row">
+        <div class="titles">
+          Pagamento
+        </div>
         <div class="payment-fields" data-controller="kit">
           <div class="type-space">
             <%= f.input :payment_type, label: 'Tipo de pagamento',:as => :select, :collection => [['Único',Kit.payment_types.keys[0]],['Assinatura',Kit.payment_types.keys[1]]], input_html: { data: { action: "event -> kit#plans"}} %>
@@ -27,18 +29,39 @@
           </div>
         </div>
       </div>
-      <div class="size">
-        <%= f.input :weight, label: 'Peso' %>
-        <%= f.input :height, label: 'Altura' %>
-        <%= f.input :width, label: 'Largura' %>
-        <%= f.input :length, label: 'Comprimento' %>
+      <div class="kit-row">
+        <div class="titles">
+          Dimensões
+        </div>
+        <div class="size">
+          <%= f.input :weight, label: 'Peso' %>
+          <%= f.input :height, label: 'Altura' %>
+          <%= f.input :width, label: 'Largura' %>
+          <%= f.input :length, label: 'Comprimento' %>
+        </div>
       </div>
-      <h4>Adicionar produtos</h4>
-      <%= f.fields_for :kit_products do |kit_product| %>
-        <%= render 'kit_product_fields', f: kit_product %>
-      <% end %>
-      <div class="links">
-        <%= link_to_add_association "Adicionar produto", f, :kit_products %>
+      <div class="kit-row" data-controller="upsell">
+        <div class="titles">
+          Upsell
+        </div>
+        <div>
+          <%= f.input :upsell, label: 'Esse kit tera upsell de produto?', :collection => [['Não',false],['Sim',true]], :include_blank => false, input_html: { "data-action" => "event -> upsell#fields"} %>
+        </div>
+        <div>
+          <%= f.fields_for :upsells, @kit.upsells.build do |a| %>
+            <%= a.association :product, label: 'Produto para o upsell' %>
+            <%= a.input :description, label: 'Descrição'  %>
+          <% end %>
+        </div>
+      </div>
+      <div class="kit-row">
+        <h4>Adicionar produtos ao kit</h4>
+        <%= f.fields_for :kit_products do |kit_product| %>
+          <%= render 'kit_product_fields', f: kit_product %>
+        <% end %>
+        <div class="links">
+          <%= link_to_add_association "Adicionar produto", f, :kit_products %>
+        </div>
       </div>
     </div>
     <div class="form-total-price">

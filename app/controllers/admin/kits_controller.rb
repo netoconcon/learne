@@ -29,7 +29,6 @@ class Admin::KitsController < ApplicationController
     @plans = Plan.all
     gon.products = products
     @kit = Kit.find(params[:id])
-    @kit.upsells.build
     @kit_product = KitProduct.new
     @products = Product.all
   end
@@ -94,7 +93,7 @@ class Admin::KitsController < ApplicationController
           :virtual_url
         ]
       ],
-      upsell_attributes:[
+      upsells_attributes:[
         :id,
         :product_id,
         :kit_id,

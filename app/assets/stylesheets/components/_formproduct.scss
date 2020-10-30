@@ -30,6 +30,8 @@
 
 .size {
   display: flex;
+  margin-bottom: 4px;
+  margin-top: 4px;
 }
 
 .size input {
@@ -71,11 +73,10 @@
   padding-right: 50px;
 }
 
-.payments {
+.kit-row {
   border-bottom: 1px solid #bfbfbf;
   border-top: 1px solid #bfbfbf;
-  margin-bottom: 4px;
-  margin-top: 4px;
+  margin: 10px;
 }
 
 .payments input {
@@ -99,6 +100,6 @@
   margin-right: 15px;
 }
 
-.discount {
-  
+.titles {
+  font-weight: bold;
 }
