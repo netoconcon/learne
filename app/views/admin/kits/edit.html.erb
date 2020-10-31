@@ -8,16 +8,7 @@
       </div>
 
       <div>
-        <%= f.input :upsell, label: 'Esse kit tera upsell de produto?', as: :select %>
-      </div>
-
-      <div>
-        te
-        <%= f.fields_for :upsells do |a| %>
-          <%= a.input :description %>
-          <%= a.association :product %>
-        <% end %>
-        ste
+        <%= f.input :possale, label: 'Esse kit tera upsell de produto?', as: :select %>
       </div>
 
       Pagamento

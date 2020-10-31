@@ -72,6 +72,7 @@ class Admin::KitsController < ApplicationController
       :width,
       :plan_id,
       :discount,
+      :possale,
       kit_products_attributes:[
         :id,
         :product_id,
@@ -91,29 +92,7 @@ class Admin::KitsController < ApplicationController
           :height,
           :length,
           :virtual_url
-        ]
-      ],
-      upsells_attributes:[
-        :id,
-        :product_id,
-        :kit_id,
-        :description,
-        :_destroy,
-        product_attributes:[
-          :id,
-          :company_id,
-          :name,
-          :sku,
-          :price,
-          :description,
-          :external_id,
-          :weight,
-          :height,
-          :length,
-          :virtual_url
-        ]
-      ]
-    )
+        ]])
   end
 
   def deactivated_plans

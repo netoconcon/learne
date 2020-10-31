@@ -45,14 +45,14 @@
           Upsell
         </div>
         <div>
-          <%= f.input :upsell, label: 'Esse kit tera upsell de produto?', :collection => [['Não',false],['Sim',true]], :include_blank => false, input_html: { "data-action" => "event -> upsell#fields"} %>
+          <%= f.input :possale, label: 'Esse kit tera upsell de produto?', :collection => [['Não',false],['Sim',true]], input_html: { "data-action" => "event -> upsell#fields"} %>
         </div>
-        <div>
-          <%= f.fields_for :upsells, @kit.upsells.build do |a| %>
+<!--         <div>
+          <%= f.fields_for :upsell do |a| %>
             <%= a.association :product, label: 'Produto para o upsell' %>
             <%= a.input :description, label: 'Descrição'  %>
           <% end %>
-        </div>
+        </div> -->
       </div>
       <div class="kit-row">
         <h4>Adicionar produtos ao kit</h4>
