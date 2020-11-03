@@ -32,6 +32,25 @@
   justify-content: flex-start;
 }
 
+.upsell-selection {
+  
+}
+.upsell-selection label {
+  display: block;
+  float: left;
+  padding-right: 10px;
+  white-space: nowrap;
+  font-weight: bold;
+}
+
+.upsell-selection input {
+  vertical-align: middle;
+}
+
+.upsell-selection span {
+  vertical-align: middle;
+}
+
 .upsell-image {
   justify-content: center;
   align-content: center;

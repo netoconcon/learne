@@ -48,7 +48,6 @@ class OrderForm
     order.price = total_price.sum + @order.kit.shipment_cost
     # order.price = KitProduct.where(kit_id: order.kit_id).price.to_i + 1
     pagarme_customer # create customer on pagarme's db
-    raise
     if order.kit.payment_type == "single"
       if self.payment_method
         transaction = cred_card_transaction
