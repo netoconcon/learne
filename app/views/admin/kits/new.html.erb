@@ -45,17 +45,16 @@
           Upsell
         </div>
         <div>
-          <%= f.input :possale, label: 'Esse kit tera upsell de produto?', :collection => [['Não',false],['Sim',true]], input_html: { "data-action" => "event -> upsell#fields"} %>
+          <%= f.input :possale, label: 'Esse kit tera upsell de produto?', :collection => [['Não',false],['Sim',true]], input_html: { "data-action" => "event -> upsell#upsell" } %>
+          <div data-target="upsell.collection" style="display: none;">
+            <%= f.input :upsell, collection: @list %>
+          </div>
         </div>
-<!--         <div>
-          <%= f.fields_for :upsell do |a| %>
-            <%= a.association :product, label: 'Produto para o upsell' %>
-            <%= a.input :description, label: 'Descrição'  %>
-          <% end %>
-        </div> -->
       </div>
       <div class="kit-row">
-        <h4>Adicionar produtos ao kit</h4>
+        <div class="titles">
+          Adicionar produtos ao kit
+        </div>
         <%= f.fields_for :kit_products do |kit_product| %>
           <%= render 'kit_product_fields', f: kit_product %>
         <% end %>

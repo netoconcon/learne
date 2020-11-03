@@ -2,17 +2,14 @@
   <h2>Editar kit</h2>
   <%= simple_form_for [:admin, @kit] do |f| %>
     <div class="styler">
-      <div>
+      <div class="kit-row">
         <%= f.input :name, label: 'Nome do kit' %>
         <%= f.input :description, label: 'Descrição' %>
       </div>
-
-      <div>
-        <%= f.input :possale, label: 'Esse kit tera upsell de produto?', as: :select %>
-      </div>
-
-      Pagamento
-      <div class="payments">
+      <div class="kit-row">
+        <div class="titles">
+          Pagamento 
+        </div>
         <div class="payment-fields" data-controller="kit">
           <div class="type-space">
             <%= f.input :payment_type, label: 'Tipo de pagamento',:as => :select, :collection => [['Único',Kit.payment_types.keys[0]],['Assinatura',Kit.payment_types.keys[1]]], input_html: { data: { action: "event -> kit#plans"}}, disabled: true %>
@@ -35,20 +32,40 @@
           </div>
         </div>
       </div>
+      <div class="kit-row">
+        <div class="titles">
+          Dimensões
+        </div>
         <div class="size">
           <%= f.input :weight, label: 'Peso' %>
           <%= f.input :height, label: 'Altura' %>
           <%= f.input :width, label: 'Largura' %>
           <%= f.input :length, label: 'Comprimento' %>
         </div>
-
-      <h4>Adicionar produtos</h4>
-      <%= f.fields_for :kit_products do |kit_product| %>
-        <%= render 'kit_product_fields', f: kit_product %>
-      <% end %>
-
-      <div class="links">
-        <%= link_to_add_association "Adicionar produto", f, :kit_products %>
+      </div>
+      <div class="kit-row" data-controller="upsell">
+        <div class="titles">
+          Upsell
+        </div>
+        <div>
+          <%= f.input :possale, label: 'Esse kit tera upsell de produto?', :collection => [['Não',false],['Sim',true]], input_html: { "data-action" => "event -> upsell#upsell" }, disabled: true %>
+          <% if @kit.possale == true %>
+            <div>
+              <%= f.input :upsell, collection: @products %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="kit-row">
+        <div class="titles">
+          Adicionar produtos ao kit
+        </div>
+        <%= f.fields_for :kit_products do |kit_product| %>
+          <%= render 'kit_product_fields', f: kit_product %>
+        <% end %>
+        <div class="links">
+          <%= link_to_add_association "Adicionar produto", f, :kit_products %>
+        </div>
       </div>
       <div class="discount" data-controller="kitprice">
         <%= f.input :discount, label: "Porcentagem de desconto para esse kit", placeholder: "Digitar um numero de 0 a 100", input_html: { "data-target" => "kitprice.discount", "data-action" => "event -> kitprice#discount" } %>

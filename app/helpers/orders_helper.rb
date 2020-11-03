@@ -50,7 +50,4 @@ module OrdersHelper
     number_to_currency(order.kit.shipment_cost + products_price.sum, unit: "R$ ", separator: ",")
   end
 
-  def discount?(order)
-    (1 - Kit.find_by(id: order.kit_id).discount.to_f / 100)
-  end
 end

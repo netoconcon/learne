@@ -49,5 +49,5 @@ skip_before_action :authenticate_user!
         :payment_method
     )
   end
-
+  
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_31_084127) do
+ActiveRecord::Schema.define(version: 2020_11_03_090143) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -121,6 +121,7 @@ ActiveRecord::Schema.define(version: 2020_10_31_084127) do
     t.boolean "possale"
     t.integer "shipment_cost_cents", default: 0, null: false
     t.integer "discount"
+    t.string "upsell"
     t.index ["plan_id"], name: "index_kits_on_plan_id"
   end
 

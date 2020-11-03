@@ -20,8 +20,29 @@
   margin: 20px;
 }
 
+.upsell {
+  background-color: #DA7D30;
+  height: 13rem;
+  width: 100%;
+  border-style: dashed;
+}
+
+.upsell-content {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.upsell-image {
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+  width: 12rem;
+}
+
 .footer-checkout {
   display: flex;
+  margin: 10px;
+  padding-top: 15px;
 }
 
 .footer-checkout h5 {

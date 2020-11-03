@@ -91,7 +91,6 @@
           </div>
         </div>
       </div>
-
       <div class="col-12 col-md-6">
         <div class="card">
           <div class="card-header text-center">
@@ -211,9 +210,33 @@
         <h6 class="text-black-50 mt-2"><small>Taxa de 2,99% a.m.</small></h6>
       </div>
     </div>
+    <div class="row mb-4 w-100 justify-content-end">
+      <div class="col-md-6">
+        <div class="upsell">
+          <div class="upsell-content">
+            <div class="upsell-image">
+              image
+            </div>
+            <div>
+              <div>
+                <h4>
+                  Não perca essa oportunidade, adicione esse produto ao carrinho: <%= @upsell.name %> 
+                </h4> 
+              </div>
+              <div>
+                Pelo preço de <%= number_to_currency(@upsell.price, unit: "R$ ") %> você adicionara ao check-out: <%= @upsell.name %>
+              </div>
+              <div>
+                Selection box
+              </div>
+            </div>        
+          </div>
+        </div>
+      </div>
+    </div>
   <% end %>
   <div class="container-fluid mb-3">
-    <div class="container ">
+    <div class="container">
       <div class="footer-checkout">
         <div class="col-md-4">
           <h5>FORMAS DE PAGAMENTO</h5>
