@@ -34,7 +34,8 @@ class OrderForm
       :credit_card_expiration_year,
       :credit_card_cvv,
       :installments,
-      :bank_slip_cpf
+      :bank_slip_cpf,
+      :upsell_product
   )
 
   def save
