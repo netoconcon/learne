@@ -13,7 +13,6 @@ skip_before_action :authenticate_user!
     elsif params[:boleto]
       @order.payment_method = false
     end
-    raise
     @order.save
     redirect_to(SellingPage.find_by(kit_id: @order.kit_id).confirmation_page)
   end
