@@ -2,6 +2,7 @@ class Order < ApplicationRecord
   include Validation
 
   # after_create :send_email
+  # after_update :send_update_email
 
   belongs_to :kit
   belongs_to :address
@@ -18,4 +19,7 @@ class Order < ApplicationRecord
     OrderMailer.confirmation.deliver_now
   end
 
+  # def send_update_email
+  #   OrderMailer.update.deliver_now
+  # end
 end
