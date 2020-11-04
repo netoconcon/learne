@@ -108,7 +108,7 @@ class OrderForm
     def pagarme_customer
       customer_phone = phone.gsub("(","").gsub(")","").gsub("-","").gsub(" ","")
       customer_cpf = credit_card_cpf.gsub(".","").gsub("-","") unless credit_card_cpf.empty?
-      customer_cpf = bank_slip_cpf .gsub(".","").gsub("-","") unless bank_slip_cpf.empty?
+      customer_cpf = bank_slip_cpf.gsub(".","").gsub("-","") unless bank_slip_cpf.empty?
 
       begin
         pagarme_customer = PagarMe::Customer.create(
