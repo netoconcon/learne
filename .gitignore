@@ -40,4 +40,4 @@ yarn-debug.log*
 *.swp
 .DS_Store
 .env*
-/config/local_env.yml
+/config/local_env.yml.env*

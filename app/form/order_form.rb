@@ -124,74 +124,81 @@ class OrderForm
 
 
     def boleto_transaction
-      ActiveRecord::Base.transaction do
-        transaction  = PagarMe::Transaction.new({
-          amount: set_price,
-          installments: order.installments.to_i,
-          postback_url: "http://requestb.in/pkt7pgpk",
-          payment_method: "boleto",
-          # card_number: order.credit_card_number.gsub(" ",""),
-          # card_holder_name: order.credit_card_name,
-          # card_expiration_date: credit_card_expiration_month + credit_card_expiration_year,
-          # card_cvv: order.credit_card_cvv,
-          customer: {
-            external_id: order.customer.id.to_s,
-            name: self.first_name + ' ' + self.last_name,
-            type: "individual",
-            country: "br",
-            email: self.email,
-            documents: [
-              {
-                type: "cpf",
-                number: self.bank_slip_cpf.gsub(".","").gsub("-","")
+      begin
+        ActiveRecord::Base.transaction do
+          transaction  = PagarMe::Transaction.new({
+            amount: set_price,
+            installments: order.installments.to_i,
+            postback_url: "http://requestb.in/pkt7pgpk",
+            payment_method: "boleto",
+            # card_number: order.credit_card_number.gsub(" ",""),
+            # card_holder_name: order.credit_card_name,
+            # card_expiration_date: credit_card_expiration_month + credit_card_expiration_year,
+            # card_cvv: order.credit_card_cvv,
+            customer: {
+              external_id: order.customer.id.to_s,
+              name: self.first_name + ' ' + self.last_name,
+              type: "individual",
+              country: "br",
+              email: self.email,
+              documents: [
+                {
+                  type: "cpf",
+                  number: self.bank_slip_cpf.gsub(".","").gsub("-","")
 
+                }
+              ],
+              phone_numbers: ["+55" + self.phone.gsub("(","").gsub(")","").gsub(" ","").gsub("-","")],
+              # birthday: order.customer.birthday.to_s
+            },
+            billing: {
+              name: self.first_name + " " + self.last_name,
+              address: {
+                country: "br",
+                state: self.state,
+                city: self.city,
+                neighborhood: self.neighborhood,
+                street: self.street,
+                street_number: self.number.to_s,
+                zipcode: self.zipcode.gsub("-","")
               }
-            ],
-            phone_numbers: ["+55" + self.phone.gsub("(","").gsub(")","").gsub(" ","").gsub("-","")],
-            # birthday: order.customer.birthday.to_s
-          },
-          billing: {
-            name: self.first_name + " " + self.last_name,
-            address: {
-              country: "br",
-              state: self.state,
-              city: self.city,
-              neighborhood: self.neighborhood,
-              street: self.street,
-              street_number: self.number.to_s,
-              zipcode: self.zipcode.gsub("-","")
-            }
-          },
-          shipping: {
-            name: self.first_name + " " + self.last_name,
-            fee: self.kit.shipment_cost_cents,
-            delivery_date: "2000-12-21",
-            expedited: true,
-            address: {
-              country: "br",
-              state: self.state,
-              city: self.city,
-              neighborhood: self.neighborhood,
-              street: self.street.to_s,
-              street_number: self.to_s,
-              zipcode: self.zipcode.gsub("-","")
-            }
-          },
-          items: []
-        })
+            },
+            shipping: {
+              name: self.first_name + " " + self.last_name,
+              fee: self.kit.shipment_cost_cents,
+              delivery_date: "2000-12-21",
+              expedited: true,
+              address: {
+                country: "br",
+                state: self.state,
+                city: self.city,
+                neighborhood: self.neighborhood,
+                street: self.street.to_s,
+                street_number: self.to_s,
+                zipcode: self.zipcode.gsub("-","")
+              }
+            },
+            items: []
+          })
 
-        order.kit.kit_products.each do |order_product|
-          transaction.items.push({
-              id: order_product.product_id.to_s,
-              title: order_product.product.name,
-              unit_price: order_product.price_cents,
-              quantity: order_product.quantity,
-              tangible: true
-            })
+          order.kit.kit_products.each do |order_product|
+            transaction.items.push({
+                id: order_product.product_id.to_s,
+                title: order_product.product.name,
+                unit_price: order_product.price_cents,
+                quantity: order_product.quantity,
+                tangible: true
+              })
+          end
+          charged_transaction = transaction.charge
+          transaction_body = JSON.parse(charged_transaction)
+
+
         end
-        transaction.charge
+      rescue RestClient::Exception => e
+        puts e
+        return nil
       end
-
     end
 
     def cred_card_transaction
