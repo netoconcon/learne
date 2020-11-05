@@ -14,13 +14,20 @@ skip_before_action :authenticate_user!
     elsif params[:boleto]
       @order.payment_method = false
     end
-    if @order.save
-      flash[:notice] = "Sua compra foi aprovada"
-      redirect_to(SellingPage.find_by(kit_id: @order.kit_id).confirmation_page)
-    else
-      render :new
-      flash[:notice] = "Favor conferir seus dados"
+
+    begin
+      if @order.save
+        flash[:notice] = "Sua compra foi aprovada"
+        redirect_to(SellingPage.find_by(kit_id: @order.kit_id).confirmation_page)
+      else
+        render :new
+        flash[:notice] = "#{order.erros}"
+      end
+    rescue => e
+      puts e.response
+      return nil
     end
+
   end
 
   private
