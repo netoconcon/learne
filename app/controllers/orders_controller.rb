@@ -24,7 +24,7 @@ skip_before_action :authenticate_user!
         flash[:notice] = "Não foi possível realizar sua compra"
       end
     rescue => e
-      puts e.response
+      puts e
       return nil
     end
 
