@@ -123,12 +123,11 @@ class OrderForm
           ],
           phone_numbers: ["+55#{customer_phone}"]
         )
-      rescue RestClient::Exception => e
+      rescue => e
         puts e
         return nil
       end
     end
-
 
     def boleto_transaction
       begin
@@ -200,7 +199,7 @@ class OrderForm
           charged_transaction = transaction.charge
           # flash[:notice] = "Não funcionou"
         end
-      rescue RestClient::Exception => e
+      rescue => e
         puts e
         return nil
       end
@@ -279,7 +278,7 @@ class OrderForm
           end
           charged_transaction = transaction.charge
         end
-      rescue RestClient::Exception => e
+      rescue => e
         puts e
         return nil
       end
@@ -306,7 +305,7 @@ class OrderForm
       })
 
       pagarme_card.create
-      rescue RestClient::Exception => e
+      rescue => e
         puts e
         return nil
       end
