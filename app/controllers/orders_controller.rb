@@ -21,7 +21,7 @@ skip_before_action :authenticate_user!
         redirect_to(SellingPage.find_by(kit_id: @order.kit_id).confirmation_page)
       else
         render :new
-        flash[:notice] = "#{order.erros}"
+        flash[:notice] = "Não foi possível realizar sua compra"
       end
     rescue => e
       puts e.response
