@@ -283,7 +283,6 @@ class OrderForm
         end
       rescue => e
         puts e.response
-        raise
         return nil
       end
     end
@@ -320,7 +319,6 @@ class OrderForm
       # get infos we need to subscription
       customer = pagarme_customer
       card = create_credit_card(@order)
-      # TO DO get plan on order.product
       plan = Plan.find(order.kit.plan_id)
       plan_id = PagarMe::Plan.find(plan.pagarme_id)
 
