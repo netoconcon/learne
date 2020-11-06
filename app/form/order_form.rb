@@ -62,11 +62,6 @@ class OrderForm
     if transaction
 
       order.pagarme_transaction_id = transaction.id
-      transaction_infos = PagarMe::Transaction.find_by_id(order.pagarme_transaction_id.to_i)
-      order.refused_reason = transaction_infos.refuse_reason if transaction_infos.refused_reason
-      order.status = transaction_infos.status
-      order.boleto_url = transaction_infos.boleto_url if transaction_infos.boleto_url    # => boleto's URL
-      order.boleto_bar_code =  transaction_infos.boleto_barcode if transaction_infos.boleto_barcode # => boleto's barcode
       if order.save
         update_visit
       end
