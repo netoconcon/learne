@@ -67,7 +67,7 @@ class OrderForm
     if transaction
 
       order.pagarme_transaction_id = transaction.id
-      transaction_infos = PagarMe::Transaction.find_by_id(order.pagarme_transaction_id)
+      transaction_infos = PagarMe::Transaction.find_by_id(order.pagarme_transaction_id.to_i)
       order.refused_reason = transaction_infos.refuse_reason if transaction_infos.refused_reason
       order.status = transaction_infos.status
       if order.save
