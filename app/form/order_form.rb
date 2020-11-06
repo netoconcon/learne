@@ -45,7 +45,7 @@ class OrderForm
     KitProduct.where(kit_id: order.kit_id).each do |order|
       total_price << order.price.to_i
     end
-    order.price = total_price.sum
+    order.price = total_price.sum.to_i
     # order.price = KitProduct.where(kit_id: order.kit_id).price.to_i + 1
     pagarme_customer # create customer on pagarme's db
 

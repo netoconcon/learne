@@ -22,6 +22,7 @@ class Order < ApplicationRecord
     self.status = transaction_infos.status
     self.boleto_url = transaction_infos.boleto_url if transaction_infos.boleto_url    # => boleto's URL
     self.boleto_bar_code =  transaction_infos.boleto_barcode if transaction_infos.boleto_barcode # => boleto's barcode
+    self.save
   end
 
   def send_email
