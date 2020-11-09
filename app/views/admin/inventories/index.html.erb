@@ -1,11 +1,14 @@
 <div class="container">
+  <p>
+    <%= link_to "Adicionar produto ao inventario", new_admin_inventory_path, class: "btn btn-primary" %>
+  </p>
   <table class="table" id="myTable" data-target="table.table">
     <thead>
       <th scope="col">ID</th>
       <th scope="col">Produto</th>
-      <th scope="col">Nome</th>
       <th scope="col">Preço unit.</th>
       <th scope="col">Preço total</th>
+      <th scope="col">Quantidade</th>
       <th scope="col">Editar</th>
       <th scope="col">Apagar</th>
     </thead>
@@ -14,7 +17,20 @@
         <% @inventories.each do |inventory| %>
           <tr class="<%= cycle('list_line_odd', 'list_line_even') -%>">
             <th scope="row"><%= inventory.id %></th>
-            <td><%= inventory.product.name %></td>          
+            <td><%= inventory.product.name %></td>
+            <td>R$ <%= inventory.product.price %></td>
+            <td>R$ <%= inventory.product.price * inventory.quantity %></td>
+            <td><%= inventory.quantity %></td>
+            <td>
+              <%= link_to  edit_admin_inventory_path(inventory) do %>
+                <i class="far fa-edit"></i>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to admin_inventory_path(inventory), method: :delete, data: { confirm: 'Você tem certeza que deseja apagar o produto?' } do %>
+                <i class="fa fa-trash"></i>
+              <% end %>
+            </td>
           </tr>
         <% end %>
       <% end %>
