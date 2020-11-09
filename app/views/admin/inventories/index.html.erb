@@ -1,0 +1,23 @@
+<div class="container">
+  <table class="table" id="myTable" data-target="table.table">
+    <thead>
+      <th scope="col">ID</th>
+      <th scope="col">Produto</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Preço unit.</th>
+      <th scope="col">Preço total</th>
+      <th scope="col">Editar</th>
+      <th scope="col">Apagar</th>
+    </thead>
+    <tbody>
+      <% if @inventories %>
+        <% @inventories.each do |inventory| %>
+          <tr class="<%= cycle('list_line_odd', 'list_line_even') -%>">
+            <th scope="row"><%= inventory.id %></th>
+            <td><%= inventory.product.name %></td>          
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>

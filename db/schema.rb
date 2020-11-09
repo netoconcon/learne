@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_16_115209) do
+ActiveRecord::Schema.define(version: 2020_11_09_063808) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -92,6 +92,14 @@ ActiveRecord::Schema.define(version: 2020_10_16_115209) do
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
   end
 
+  create_table "inventories", force: :cascade do |t|
+    t.bigint "product_id", null: false
+    t.integer "quantity"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_id"], name: "index_inventories_on_product_id"
+  end
+
   create_table "kit_products", force: :cascade do |t|
     t.bigint "product_id", null: false
     t.bigint "kit_id", null: false
@@ -118,8 +126,10 @@ ActiveRecord::Schema.define(version: 2020_10_16_115209) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "plan_id"
-    t.boolean "upsell"
+    t.boolean "possale"
     t.integer "shipment_cost_cents", default: 0, null: false
+    t.integer "discount"
+    t.string "upsell"
     t.index ["plan_id"], name: "index_kits_on_plan_id"
   end
 
@@ -129,7 +139,7 @@ ActiveRecord::Schema.define(version: 2020_10_16_115209) do
     t.bigint "kit_id", null: false
     t.boolean "payment_method"
     t.decimal "price", precision: 8, scale: 2, null: false
-    t.string "CPF"
+    t.string "bank_slip_cpf"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "address_id", null: false
@@ -137,6 +147,8 @@ ActiveRecord::Schema.define(version: 2020_10_16_115209) do
     t.string "pagarme_transaction_id"
     t.string "boleto_url"
     t.string "boleto_bar_code"
+    t.boolean "upsell_product"
+    t.string "credit_card_cpf"
     t.index ["address_id"], name: "index_orders_on_address_id"
     t.index ["customer_id"], name: "index_orders_on_customer_id"
     t.index ["kit_id"], name: "index_orders_on_kit_id"
@@ -190,6 +202,14 @@ ActiveRecord::Schema.define(version: 2020_10_16_115209) do
     t.index ["slug"], name: "index_selling_pages_on_slug", unique: true
   end
 
+  create_table "upsells", force: :cascade do |t|
+    t.bigint "product_id", null: false
+    t.string "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_id"], name: "index_upsells_on_product_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
     t.string "encrypted_password", default: "", null: false
@@ -225,6 +245,7 @@ ActiveRecord::Schema.define(version: 2020_10_16_115209) do
   add_foreign_key "addresses", "customers"
   add_foreign_key "bank_accounts", "companies"
   add_foreign_key "campaigns", "selling_pages"
+  add_foreign_key "inventories", "products"
   add_foreign_key "kit_products", "kits"
   add_foreign_key "kit_products", "products"
   add_foreign_key "kits", "plans"
@@ -233,5 +254,6 @@ ActiveRecord::Schema.define(version: 2020_10_16_115209) do
   add_foreign_key "orders", "kits"
   add_foreign_key "products", "companies"
   add_foreign_key "selling_pages", "kits"
+  add_foreign_key "upsells", "products"
   add_foreign_key "visits", "orders"
 end
