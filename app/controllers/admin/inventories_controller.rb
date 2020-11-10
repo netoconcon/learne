@@ -19,6 +19,11 @@ class Admin::InventoriesController < ApplicationController
     end
   end
 
+  def show
+    @inventory = Inventory.find(params[:id])
+    @updating
+  end
+
   def edit
     @inventory = Inventory.find(params[:id])
   end
@@ -44,4 +49,5 @@ class Admin::InventoriesController < ApplicationController
   def inventory_params
     params.require(:inventory).permit(:product_id, :quantity)
   end
+
 end

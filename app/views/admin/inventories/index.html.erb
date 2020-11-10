@@ -9,6 +9,7 @@
       <th scope="col">Preço unit.</th>
       <th scope="col">Preço total</th>
       <th scope="col">Quantidade</th>
+      <th scope="col">Detalhes</th>
       <th scope="col">Editar</th>
       <th scope="col">Apagar</th>
     </thead>
@@ -19,8 +20,9 @@
             <th scope="row"><%= inventory.id %></th>
             <td><%= inventory.product.name %></td>
             <td>R$ <%= inventory.product.price %></td>
-            <td>R$ <%= inventory.product.price * inventory.quantity %></td>
+            <td>R$ <%= inventory.product.price * inventory.quantity if inventory.quantity  %></td>
             <td><%= inventory.quantity %></td>
+            <td><%= link_to "Detalhes", admin_inventory_path(inventory) %></td>
             <td>
               <%= link_to  edit_admin_inventory_path(inventory) do %>
                 <i class="far fa-edit"></i>
