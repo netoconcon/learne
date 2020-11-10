@@ -42,6 +42,7 @@ gem 'groupdate'
 gem 'gon'
 gem 'friendly_id', '~> 5.4.0'
 gem 'postmark-rails'
+gem 'paper_trail'
 
 group :development, :test do  
   gem 'pry-byebug'
