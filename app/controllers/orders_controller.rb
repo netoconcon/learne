@@ -8,6 +8,7 @@ skip_before_action :authenticate_user!
   end
 
   def create
+    flash[:notice] = "Estamos processando sua compra"
     @order = OrderForm.new(order_params)
     if params[:card]
       @order.payment_method = true
@@ -17,8 +18,7 @@ skip_before_action :authenticate_user!
 
     # begin
     if @order.save
-
-
+        sleep(10)
         transaction = PagarMe::Transaction.find_by_id(@order.pagarme_transaction_id)
         @order.status = transaction.status
         @order.price = @order.price.to_i
@@ -29,7 +29,7 @@ skip_before_action :authenticate_user!
 
         # processing, authorized, paid, refunded, waiting_payment, pending_refund, refused
         if @order.status == "refused"
-          flash[:notice] = "Recusada pelo #{transaction.refuse_reason}"
+          flash[:notice] = "Compra recusada pelo #{transaction.refuse_reason}. Favor entrar em contato com seu banco"
           render :new
         else
           redirect_to thanks_path(@order)

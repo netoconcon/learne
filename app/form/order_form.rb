@@ -49,14 +49,16 @@ class OrderForm
     # order.price = KitProduct.where(kit_id: order.kit_id).price.to_i + 1
     pagarme_customer # create customer on pagarme's db
 
-    if order.kit.payment_type == "single"
-      if self.payment_method
-        transaction = cred_card_transaction
+    if @order.id.nil?
+      if order.kit.payment_type == "single"
+        if self.payment_method
+          transaction = cred_card_transaction
+        else
+          transaction = boleto_transaction
+        end
       else
-        transaction = boleto_transaction
+        transaction = create_subscription
       end
-    else
-      transaction = create_subscription
     end
 
     if transaction
