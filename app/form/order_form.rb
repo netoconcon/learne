@@ -105,7 +105,7 @@ class OrderForm
       @order.kit.kit_products.each do |kit_product|
         total_price += kit_product.price_cents
       end
-      total_price + @order.kit.shipment_cost_cents
+      total_price.to_i + @order.kit.shipment_cost_cents.to_i
     end
 
     def pagarme_customer
