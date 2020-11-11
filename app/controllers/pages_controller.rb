@@ -11,6 +11,7 @@ class PagesController < ApplicationController
   end
 
   def thanks
+    @order = Order.find(params["format"])
   end
 
   private

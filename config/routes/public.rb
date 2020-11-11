@@ -1,2 +1,3 @@
 resources :orders, only: [:new, :create]
 resources :selling_pages, only: [:show]
+get "thanks", to: "pages#thanks"

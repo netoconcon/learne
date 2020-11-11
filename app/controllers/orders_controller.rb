@@ -15,18 +15,37 @@ skip_before_action :authenticate_user!
       @order.payment_method = false
     end
 
-    begin
-      if @order.save
-        flash[:notice] = "Sua compra foi aprovada"
-        redirect_to(SellingPage.find_by(kit_id: @order.kit_id).confirmation_page)
+    # begin
+    if @order.save
+
+
+        transaction = PagarMe::Transaction.find_by_id(@order.pagarme_transaction_id)
+        @order.status = transaction.status
+        @order.price = @order.price.to_i
+        @order.refused_reason = transaction.refused_reason
+        @order.boleto_url = transaction.boleto_url
+        @order.boleto_bar_code = transaction.boleto_barcode
+        @order.save
+
+        # processing, authorized, paid, refunded, waiting_payment, pending_refund, refused
+        if @order.status == "refused"
+          flash[:notice] = "Recusada pelo #{transaction.refuse_reason}"
+          render :new
+        else
+          redirect_to thanks_path(@order)
+          flash[:notice] = "Sua compra foi aprovada"
+        end
+
+        # raise
+        # redirect_to(SellingPage.find_by(kit_id: @order.kit_id).confirmation_page)
       else
         render :new
-        flash[:notice] = "Não foi possível realizar sua compra"
+        flash[:notice] = "Existem erros no formulário"
       end
-    rescue => e
-      puts e
-      return nil
-    end
+    # rescue => e
+    #   puts e
+    #   return nil
+    # end
 
   end
 
