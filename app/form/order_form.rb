@@ -136,7 +136,7 @@ class OrderForm
       begin
         ActiveRecord::Base.transaction do
           transaction  = PagarMe::Transaction.new({
-            amount: set_price,
+            amount: set_price.to_i,
             installments: order.installments.to_i,
             postback_url: "http://requestb.in/pkt7pgpk",
             payment_method: "boleto",
@@ -216,7 +216,7 @@ class OrderForm
       begin
         ActiveRecord::Base.transaction do
           transaction  = PagarMe::Transaction.new({
-            amount: set_price,
+            amount: set_price.to_i,
             installments: installments.to_i + 1,
             payment_method: "credit_card",
             card_number: credit_card_number.gsub(" ",""),
