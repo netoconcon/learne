@@ -45,7 +45,7 @@ class OrderForm
     KitProduct.where(kit_id: order.kit_id).each do |order|
       total_price << order.price.to_i
     end
-    order.price = total_price.sum
+    order.price = total_price.sum.to_i
     # order.price = KitProduct.where(kit_id: order.kit_id).price.to_i + 1
     pagarme_customer # create customer on pagarme's db
 
@@ -54,11 +54,6 @@ class OrderForm
         transaction = cred_card_transaction
       else
         transaction = boleto_transaction
-
-        transaction_infos = PagarMe::Transaction.find_by_id(transaction.id)
-
-        order.boleto_url = transaction_infos.boleto_url     # => boleto's URL
-        order.boleto_bar_code =  transaction_infos.boleto_barcode # => boleto's barcode
       end
     else
       transaction = create_subscription
@@ -67,9 +62,6 @@ class OrderForm
     if transaction
 
       order.pagarme_transaction_id = transaction.id
-      transaction_infos = PagarMe::Transaction.find_by_id(order.pagarme_transaction_id)
-      order.refused_reason = transaction_infos.refuse_reason if transaction_infos.refused_reason
-      order.status = transaction_infos.status
       if order.save
         update_visit
       end
