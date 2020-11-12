@@ -132,7 +132,7 @@ class OrderForm
           transaction  = PagarMe::Transaction.new({
             amount: set_price.to_i,
             installments: order.installments.to_i,
-            postback_url: "http://requestb.in/pkt7pgpk",
+            postback_url: "http://www.pay.learne.com.br/orders/#{@order.id}/postback/",
             payment_method: "boleto",
             # card_number: order.credit_card_number.gsub(" ",""),
             # card_holder_name: order.credit_card_name,

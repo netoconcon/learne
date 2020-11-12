@@ -18,7 +18,6 @@ skip_before_action :authenticate_user!
 
     # begin
     if @order.save
-        sleep(10)
         transaction = PagarMe::Transaction.find_by_id(@order.pagarme_transaction_id)
         @order.status = transaction.status
         @order.price = @order.price.to_i
@@ -48,6 +47,66 @@ skip_before_action :authenticate_user!
     # end
 
   end
+
+  def thanks
+    @order = Order.find(params["format"])
+
+    transaction = PagarMe::Transaction.find_by_id(@order.pagarme_transaction_id)
+
+    @order.status = transaction.status
+    @order.refused_reason = transaction.refused_reason
+    @order.boleto_url = transaction.boleto_url
+    @order.boleto_bar_code = transaction.boleto_barcode
+    @order.price = @order.price.to_i
+    @order.save
+
+    if @order.status == "refused"
+      flash[:notice] = "Sua compra foi recusada pelo #{@order.refused_reason}. Favor entrar em contato com o banco"
+      render :new
+    end
+  end
+
+  # def postback
+  #   postback_body = request.raw_post
+  #   signature = request.headers["X-Hub-Signature"]
+  #   puts postback_body
+  #   puts signature
+
+  #   puts "Validando postback"
+
+  #   if PagarMe::Postback.valid_request_signature?(postback_body, signature)
+  #     puts "Postback autorizado"
+  #     @order = Order.find_by(pagarme_transaction_id: params["id"])
+
+  #     if params["payload"]
+  #       ary = URI.decode_www_form(  params["payload"]  )
+  #       payload = Hash[ary]
+
+  #       @postback = Postback.create!(order: @order,
+  #                                    pagarme_model: params["model"],
+  #                                    pagarme_model_id: params["model_id"],
+  #                                    headers: params["headers"],
+  #                                    payload: payload,
+  #                                    retries: params["retries"],
+  #                                    pagarme_postback_id: params["id"]
+  #                                    )
+
+  #       current_status = payload["current_status"]
+  #     else
+  #       @postback = Postback.create!(order: @order,
+  #                                    pagarme_model: params["object"],
+  #                                    headers: request.headers,
+  #                                    payload: params["transaction"],
+  #                                    pagarme_postback_id: params["fingerprint"]
+  #                                    )
+
+  #       current_status = params["current_status"]
+  #     end
+  #     @order.change_status!(status: current_status)
+  #   else
+  #     puts "Postback não autorizado"
+  #   end
+  # end
 
   private
 
