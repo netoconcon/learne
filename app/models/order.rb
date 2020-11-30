@@ -1,14 +1,16 @@
 class Order < ApplicationRecord
   include Validation
 
-  # after_create :get_pagarmes_infos
-  # after_create :send_email
-  # after_update :send_update_email
-
   belongs_to :kit
   belongs_to :address
   belongs_to :customer
   has_many :visits
+
+  enum status: {
+      pending_payment: 0,   # User completed the checkout, we must wait confirmation
+      completed: 1,         # Everything went fine.
+      failed: 2,            # Unfortunately something went wrong
+  }
 
   normalize_attributes :phone, with: [:phone]
   normalize_attributes :zipcode, with: [:numbers]
@@ -19,8 +21,4 @@ class Order < ApplicationRecord
   def send_email
     OrderMailer.confirmation.deliver_now
   end
-
-  # def send_update_email
-  #   OrderMailer.update.deliver_now
-  # end
 end
