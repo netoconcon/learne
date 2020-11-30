@@ -4,7 +4,6 @@ skip_before_action :authenticate_user!
 
   def new
     @order = OrderForm.new
-    tot_price
   end
 
   def create
@@ -16,51 +15,24 @@ skip_before_action :authenticate_user!
       @order.payment_method = false
     end
 
-    # begin
     if @order.save
-        transaction = PagarMe::Transaction.find_by_id(@order.pagarme_transaction_id)
-        @order.status = transaction.status
-        @order.price = @order.price.to_i
-        @order.refused_reason = transaction.refused_reason
-        @order.boleto_url = transaction.boleto_url
-        @order.boleto_bar_code = transaction.boleto_barcode
-        @order.save
-
-        # processing, authorized, paid, refunded, waiting_payment, pending_refund, refused
-        if @order.status == "refused"
-          flash[:notice] = "Compra recusada pelo #{transaction.refuse_reason}. Favor entrar em contato com seu banco"
-          render :new
-        else
-          redirect_to thanks_path(@order)
-          flash[:notice] = "Sua compra foi aprovada"
-        end
-
-        # raise
-        # redirect_to(SellingPage.find_by(kit_id: @order.kit_id).confirmation_page)
-      else
+      if @order.failed?
+        flash[:notice] = "Compra recusada pelo #{transaction.refuse_reason}. Favor entrar em contato com seu banco"
         render :new
-        flash[:notice] = "Existem erros no formulário"
+      else
+        redirect_to thanks_path(@order)
+        flash[:notice] = "Sua compra foi aprovada"
       end
-    # rescue => e
-    #   puts e
-    #   return nil
-    # end
-
+    else
+      render :new
+      flash[:notice] = "Existem erros no formulário"
+    end
   end
 
   def thanks
     @order = Order.find(params["format"])
 
-    transaction = PagarMe::Transaction.find_by_id(@order.pagarme_transaction_id)
-
-    @order.status = transaction.status
-    @order.refused_reason = transaction.refused_reason
-    @order.boleto_url = transaction.boleto_url
-    @order.boleto_bar_code = transaction.boleto_barcode
-    @order.price = @order.price.to_i
-    @order.save
-
-    if @order.status == "refused"
+    if @order.failed?
       flash[:notice] = "Sua compra foi recusada pelo #{@order.refused_reason}. Favor entrar em contato com o banco"
       render :new
     end
