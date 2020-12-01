@@ -1,0 +1,17 @@
+<h1>obrigado</h1>
+
+<br>
+
+Preço em centavos: <%= @order.price.to_i %>
+Status: <%= @order.status %>
+
+<br>
+<br>
+
+Informações de compras por boleto:
+
+<br>
+
+Url do Boleto: <%= @order.boleto_url %>
+Código de barras do Boleto: <%= @order.boleto_bar_code %>
+

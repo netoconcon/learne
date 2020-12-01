@@ -14,7 +14,7 @@ class Api::V1::OrdersController < Api::V1::BaseController
         payload = Hash[ary]
 
         # dealing with order
-          order = ORder.find(params[:id])
+          order = Order.find(params[:id])
           order.status = payload.status
         #
       end
