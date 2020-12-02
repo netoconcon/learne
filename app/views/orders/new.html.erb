@@ -1,4 +1,4 @@
-<div data-controller="zipcode masks payment-method">
+ <div data-controller="zipcode masks payment-method">
   <%= simple_form_for @order, url: orders_path, method: :post do |f| %>
     <%= f.input :kit_id, as: :hidden %>
     <%= f.input :visit_id, as: :hidden %>
@@ -48,7 +48,7 @@
               </div>
             </div>
 
-            <div id="address-form" data-target="zipcode.address" hidden="hidden">
+            <div id="address-form" data-target="zipcode.address">
               <div class="form-group row">
                 <div class="col-8">
                   <div class="form-group">
@@ -57,7 +57,7 @@
                 </div>
                 <div class="col-4">
                   <div class="form-group">
-                    <%= f.input :number, label: "Número" %>
+                    <%= f.input :number, label: "Número", as: :numeric %>
                   </div>
                 </div>
               </div>

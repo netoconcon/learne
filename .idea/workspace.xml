@@ -20,30 +20,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a6a2dfd0-2648-4959-a01b-9530d60eae5b" name="Default Changelist" comment="fixes">
-      <change afterPath="$PROJECT_DIR$/app/controllers/concerns/RegisterVisit.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/helpers/campaigns_helper.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/javascript/controllers/clipboard_controller.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/models/visit.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/admin/campaigns/show.html.erb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/db/migrate/20200930231244_create_visits.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/db/migrate/20200930234200_remove_user_from_address.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/models/visit_test.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/checkout-app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/checkout-app.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/services/pm/adapter/card.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/services/pm/adapter/customer.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/services/pm/adapter/subscription.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/services/pm/adapter/transaction.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/services/pm/api_error.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/services/pm/card.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/services/pm/customer.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/services/pm/subscription.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/services/pm/transaction.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/db/migrate/20201130061621_change_order_status_to_enum.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/db/migrate/20201130062413_fix_cpf_column_name.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gemfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/admin/campaigns_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/admin/campaigns_controller.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/orders_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/orders_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/selling_pages_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/selling_pages_controller.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/form/order_form.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/form/order_form.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/campaign.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/campaign.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/models/order.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/order.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/campaigns/index.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/campaigns/index.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/order/validation.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/order/validation.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/orders/new.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/orders/new.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/selling_pages/index.html.erb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/selling_pages/show.html.erb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/shared/_sidebar.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/shared/_sidebar.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/schema.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/schema.rb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -76,7 +69,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/javascript/controllers" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/services/pm/adapter" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -87,16 +80,16 @@
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode.JavaScript" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/app/javascript/controllers" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/services/pm/adapter" />
+      <recent name="$PROJECT_DIR$/app/services/pm" />
       <recent name="$PROJECT_DIR$/app/javascript/controllers" />
       <recent name="$PROJECT_DIR$/app/views/layouts/companies" />
       <recent name="$PROJECT_DIR$/app/helpers" />
-      <recent name="$PROJECT_DIR$/app/assets/images" />
-      <recent name="$PROJECT_DIR$/app/views/layouts" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/app/javascript/controllers" />
     </key>
   </component>
   <component name="RunManager" selected="Rails.Development: checkout-app">
@@ -228,6 +221,9 @@
       <workItem from="1600686772390" duration="17000" />
       <workItem from="1600971104835" duration="611000" />
       <workItem from="1601507316890" duration="7146000" />
+      <workItem from="1606234341162" duration="8132000" />
+      <workItem from="1606353500067" duration="1754000" />
+      <workItem from="1606716512364" duration="3164000" />
     </task>
     <task id="LOCAL-00001" summary="added attribute_normalizer">
       <created>1596900125181</created>
@@ -450,19 +446,16 @@
     <option name="LAST_COMMIT_MESSAGE" value="fixes" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="174" y="54" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1596581574962">
-      <screen x="67" y="27" width="1299" height="741" />
-    </state>
-    <state x="174" y="54" key="#com.intellij.execution.impl.EditConfigurationsDialog/67.27.1299.741@67.27.1299.741" timestamp="1596581574962" />
-    <state x="427" y="198" width="650" height="396" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1601511078760">
-      <screen x="67" y="27" width="1299" height="741" />
+    <state x="581" y="270" width="650" height="396" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1606306312087">
+      <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="427" y="198" width="650" height="396" key="#com.intellij.fileTypes.FileTypeChooser/67.27.1299.741@67.27.1299.741" timestamp="1601511078760" />
-    <state x="167" y="125" width="1099" height="543" key="DiffContextDialog" timestamp="1598399908650">
-      <screen x="67" y="27" width="1299" height="741" />
+    <state x="581" y="270" key="#com.intellij.fileTypes.FileTypeChooser/67.27.1853.1053/1920.0.1366.768@67.27.1853.1053" timestamp="1606306312087" />
+    <state x="210" y="166" width="1568" height="772" key="DiffContextDialog" timestamp="1606719677343">
+      <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="167" y="125" width="1099" height="543" key="DiffContextDialog/67.27.1299.741/1366.0.1360.768@67.27.1299.741" timestamp="1595289945625" />
     <state x="167" y="125" width="1099" height="543" key="DiffContextDialog/67.27.1299.741@67.27.1299.741" timestamp="1598399908650" />
+    <state x="210" y="166" width="1568" height="772" key="DiffContextDialog/67.27.1853.1053/1920.0.1366.768@67.27.1853.1053" timestamp="1606719677343" />
     <state width="1253" height="175" key="GridCell.Tab.0.bottom" timestamp="1598507834423">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
@@ -510,20 +503,17 @@
     <state x="477" y="113" width="472" height="566" key="VcsDiffUtil.ChangesDialog" timestamp="1598372408299">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
-    <state x="477" y="113" width="468" height="566" key="VcsDiffUtil.ChangesDialog/67.27.1299.741/1366.0.1360.768@67.27.1299.741" timestamp="1595289920873" />
     <state x="477" y="113" width="472" height="566" key="VcsDiffUtil.ChangesDialog/67.27.1299.741@67.27.1299.741" timestamp="1598372408299" />
-    <state x="167" y="125" width="1099" height="543" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1597755080544">
-      <screen x="67" y="27" width="1299" height="741" />
-    </state>
-    <state x="167" y="125" width="1099" height="543" key="com.intellij.history.integration.ui.views.FileHistoryDialog/67.27.1299.741@67.27.1299.741" timestamp="1597755080544" />
-    <state x="407" y="135" width="618" height="548" key="find.popup" timestamp="1598501538366">
-      <screen x="67" y="27" width="1299" height="741" />
+    <state x="552" y="180" width="882" height="779" key="find.popup" timestamp="1606717667430">
+      <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="407" y="135" width="618" height="548" key="find.popup/67.27.1299.741@67.27.1299.741" timestamp="1598501538366" />
-    <state x="379" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1601519692901">
-      <screen x="67" y="27" width="1299" height="741" />
+    <state x="552" y="180" width="882" height="779" key="find.popup/67.27.1853.1053/1920.0.1366.768@67.27.1853.1053" timestamp="1606717667430" />
+    <state x="512" y="115" width="959" height="964" key="search.everywhere.popup" timestamp="1606718242226">
+      <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="379" y="89" width="672" height="678" key="search.everywhere.popup/67.27.1299.741@67.27.1299.741" timestamp="1601519692901" />
+    <state x="512" y="115" width="959" height="964" key="search.everywhere.popup/67.27.1853.1053/1920.0.1366.768@67.27.1853.1053" timestamp="1606718242226" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/checkout_app@Development__checkout_app.rcov" NAME="Development: checkout-app Coverage Results" MODIFIED="1598507828286" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="checkout-app" />
