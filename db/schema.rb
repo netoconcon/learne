@@ -10,7 +10,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
 ActiveRecord::Schema.define(version: 2020_11_30_062413) do
 
   # These are extensions that must be enabled in order to support this database
@@ -127,10 +126,8 @@ ActiveRecord::Schema.define(version: 2020_11_30_062413) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "plan_id"
-    t.boolean "possale"
+    t.boolean "upsell"
     t.integer "shipment_cost_cents", default: 0, null: false
-    t.integer "discount"
-    t.string "upsell"
     t.index ["plan_id"], name: "index_kits_on_plan_id"
   end
 
@@ -203,14 +200,6 @@ ActiveRecord::Schema.define(version: 2020_11_30_062413) do
     t.index ["slug"], name: "index_selling_pages_on_slug", unique: true
   end
 
-  create_table "upsells", force: :cascade do |t|
-    t.bigint "product_id", null: false
-    t.string "description"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["product_id"], name: "index_upsells_on_product_id"
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
     t.string "encrypted_password", default: "", null: false
@@ -225,8 +214,6 @@ ActiveRecord::Schema.define(version: 2020_11_30_062413) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "admin", default: false
-    t.string "cpf"
-    t.date "birthday"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -267,6 +254,5 @@ ActiveRecord::Schema.define(version: 2020_11_30_062413) do
   add_foreign_key "orders", "kits"
   add_foreign_key "products", "companies"
   add_foreign_key "selling_pages", "kits"
-  add_foreign_key "upsells", "products"
   add_foreign_key "visits", "orders"
 end
