@@ -9,7 +9,7 @@ class Order < ApplicationRecord
   enum status: {
       pending_payment: 0,   # User completed the checkout, we must wait confirmation
       completed: 1,         # Everything went fine.
-      failed: 2,            # Unfortunately something went wrong
+      refused: 2,            # Unfortunately something went wrong
   }
 
   normalize_attributes :phone, with: [:phone]
