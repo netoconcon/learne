@@ -1,7 +1,6 @@
 <div data-controller="masks select2 filter">
   <div class="container">
     <h2>Adiconar conta bancaria da <%= @company.name %></h2>
-
     <%= simple_form_for [:admin, @company, :admin, @bank_account], url: admin_company_bank_accounts_path do |f| %>
       <%= f.input :international, :as => :select, :collection => [['Nao',false],['Sim',true]], :include_blank => false %>
       <%= f.input :bank_code, label: 'Codigo do banco', input_html: { "data-taget" => "filter.bcode" } %>

@@ -4,7 +4,7 @@
     <div class="styler">
       <div>
         <%= f.input :name, label: 'Nome do kit' %>
-        <%= f.input :description, label: 'Descricao' %>
+        <%= f.input :description, label: 'Descrição' %>
       </div>
       Pagamento
       <div class="payments">
@@ -21,7 +21,7 @@
           </div>
         </div>
         <div class="payment-fields-ship">
-          <%= f.input :allow_free_shipment, label: 'Permitir frete gratis',:as => :select, :collection => [['Nao',false],['Sim',true]], :include_blank => false %>
+          <%= f.input :allow_free_shipment, label: 'Permitir frete grátis',:as => :select, :collection => [['Nao',false],['Sim',true]], :include_blank => false %>
           <div class="shippingcost">
           <%= f.input :shipment_cost, label: 'Frete' %>
           </div>
@@ -30,7 +30,7 @@
       <div class="payment-fields-ship">
         <%= f.input :upsell, as: :select, label: 'Upsell de produto?', :collection => [['Nao',false],['Sim',true]] %>
       </div>
-      <div class="utm">
+      <div class="size">
         <%= f.input :weight, label: 'Peso' %>
         <%= f.input :height, label: 'Altura' %>
         <%= f.input :width, label: 'Largura' %>
