@@ -1,0 +1,15 @@
+<div class="container">
+  <%= simple_form_for [:admin, @product, @inventory] do |f| %>
+    <div class="styler">
+      <div class="columns">
+        <div>
+          <%= f.association :product, value_method: :id, label: "Produto" %>
+        </div>
+        <div>
+          <%= f.input :quantity, label: "Quantidade" %> 
+        </div>
+        <%= f.button :submit, 'Cadastrar', class: "btn btn-primary submit-product" %>
+      </div>
+    </div>
+  <% end %>
+</div>

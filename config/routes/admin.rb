@@ -8,6 +8,7 @@ namespace :admin do
   resources :kit_products
   resources :campaigns
   resources :selling_pages
+  resources :inventories
 
   namespace :charts do
     get "values"

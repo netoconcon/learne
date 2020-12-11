@@ -1,0 +1,10 @@
+<div class="container">
+  <div>
+    <%= originator(@inventory) %>
+  </div>
+  <% @inventory.versions.reverse_each do |version| %>
+    <div>
+      <%= inventory_info(version) %>
+    </div>
+  <% end %>
+</div>
