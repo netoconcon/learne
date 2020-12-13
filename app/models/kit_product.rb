@@ -2,6 +2,8 @@ class KitProduct < ApplicationRecord
 
   validates :quantity, :price_cents, presence: true
   
+  validates_numericality_of :quantity, :greater_than_or_equal_to => 0
+
   belongs_to :product
   belongs_to :kit
 

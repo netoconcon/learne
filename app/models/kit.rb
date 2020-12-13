@@ -6,6 +6,8 @@ class Kit < ApplicationRecord
   validates :standard_installments, :maximum_installments, presence: true, if: -> {self.payment_type == 'single'}
   validates :shipment_cost_cents, presence: true, if: -> {self.allow_free_shipment == false}
 
+  validates_numericality_of :shipment_cost_cents, :greater_than_or_equal_to => 0
+
   belongs_to :plan, optional: true
   has_many :orders, dependent: :destroy
   has_many :selling_pages, dependent: :destroy
