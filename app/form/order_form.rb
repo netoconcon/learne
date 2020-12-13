@@ -52,7 +52,7 @@ class OrderForm
       end
     end
 
-    order.status = transaction.status == "refused" ? :failed : :completed
+    order.status = transaction.status == "refused" ? :refused : :completed
     order.refused_reason = transaction.refused_reason
     order.boleto_url = transaction.boleto_url
     order.boleto_bar_code = transaction.boleto_barcode
