@@ -1,4 +1,4 @@
-<div class="container" style="padding-bottom: 15px;">
+<div data-controller="masks" class="container" style="padding-bottom: 15px;">
   <h2>Novo kit</h2>
   <%= simple_form_for [:admin, @kit] do |f| %>
     <div class="styler">
@@ -6,7 +6,7 @@
         <%= f.input :name, label: 'Nome do kit' %>
         <%= f.input :description, label: 'Descrição' %>
         <div class="payment-fields-ship">
-            <%= f.input :amount_cents, label: 'Valor do Kit' %>
+            <%= f.input :amount_cents, label: 'Valor do Kit em Centavos' %>
         </div>
       </div>
       Pagamento

@@ -126,10 +126,9 @@ ActiveRecord::Schema.define(version: 2020_12_14_185024) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "plan_id"
-    t.boolean "possale"
+    t.boolean "upsell"
     t.integer "shipment_cost_cents", default: 0, null: false
-    t.integer "discount"
-    t.string "upsell"
+    t.integer "price"
     t.integer "amount_cents", default: 0, null: false
     t.index ["plan_id"], name: "index_kits_on_plan_id"
   end
@@ -150,7 +149,6 @@ ActiveRecord::Schema.define(version: 2020_12_14_185024) do
     t.string "refused_reason"
     t.integer "status", default: 0
     t.string "cpf", null: false
-    t.boolean "upsell_product"
     t.index ["address_id"], name: "index_orders_on_address_id"
     t.index ["customer_id"], name: "index_orders_on_customer_id"
     t.index ["kit_id"], name: "index_orders_on_kit_id"
@@ -202,14 +200,6 @@ ActiveRecord::Schema.define(version: 2020_12_14_185024) do
     t.string "confirmation_page"
     t.index ["kit_id"], name: "index_selling_pages_on_kit_id"
     t.index ["slug"], name: "index_selling_pages_on_slug", unique: true
-  end
-
-  create_table "upsells", force: :cascade do |t|
-    t.bigint "product_id", null: false
-    t.string "description"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["product_id"], name: "index_upsells_on_product_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -266,6 +256,5 @@ ActiveRecord::Schema.define(version: 2020_12_14_185024) do
   add_foreign_key "orders", "kits"
   add_foreign_key "products", "companies"
   add_foreign_key "selling_pages", "kits"
-  add_foreign_key "upsells", "products"
   add_foreign_key "visits", "orders"
 end

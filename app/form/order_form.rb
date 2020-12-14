@@ -89,13 +89,14 @@ class OrderForm
 
     def price
       @price ||= begin
-        total_price = 0
-        # @order.kit.kit_products.first.price_cents + @order.kit.shipment_cost_cents
-        kit.kit_products.each do |kit_product|
-          total_price += kit_product.price_cents
-        end
-        total_price.to_i + kit.shipment_cost_cents.to_i
-      end
+      #   total_price = 0
+      #   # @order.kit.kit_products.first.price_cents + @order.kit.shipment_cost_cents
+      #   kit.kit_products.each do |kit_product|
+      #     total_price += kit_product.price_cents
+      #   end
+      #   total_price.to_i + kit.shipment_cost_cents.to_i
+       end
+      kit.amount_cents.to_i
     end
 
     def cpf

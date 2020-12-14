@@ -176,7 +176,7 @@
                       </div>
                       <div class="form-group row">
                         <h5 class="col-12 col-md-12">
-                          <%= "Produtos: #{order_single(@order)}" %>
+                          <%= "Produtos: R$ #{ ((@order.kit.amount_cents / 100.0).round(2)).to_s.gsub(".", ",") }" %>
                         </h5>
                         <div class="col-12 col-md-12">
                           <%= f.input :bank_slip_cpf, label: "CPF (Para emissão da Nota Fiscal)", input_html: { data: { js: "cpf" } }, maxlength: 14 %>

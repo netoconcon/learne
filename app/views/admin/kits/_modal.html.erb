@@ -26,7 +26,7 @@
           <div class="row justify-content-end">
             <div class="col-4">
               <p><em>Preco Produtos: R$ <%= total_price.sum %></em></p>
-              <p><strong>Preço do Kit: R$ <%= kit.amount_cents %></strong></p>
+              <p><strong>Preço do Kit: R$ <%= humanized_money_with_symbol(kit.amount) %></strong></p>
             </div>
           </div>
         </div>
