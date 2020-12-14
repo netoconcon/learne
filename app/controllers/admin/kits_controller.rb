@@ -61,7 +61,7 @@ class Admin::KitsController < ApplicationController
     params.require(:kit).permit(
       :name,
       :description,
-      :price,
+      :amount_cents,
       :payment_type,
       :standard_installments,
       :maximum_installments,
