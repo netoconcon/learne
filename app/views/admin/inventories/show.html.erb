@@ -1,15 +1,4 @@
 <div class="container">
-  <div>
-    <%= originator(@inventory) %>
-  </div>
-  <% @inventory.versions.reverse_each do |version| %>
-    <div>
-      <%= inventory_info(version) %>
-    </div>
-  <% end %>
-</div>
-
-<div class="container">
   <table class="table" id="myTable" data-target="table.table">
     <thead>
       <th scope="col">ID</th>
@@ -19,8 +8,7 @@
       <% @inventory.versions.reverse_each do |version|  %>
         <tr class="<%= cycle('inventory_line_odd', 'inventory_line_even') %>">
           <th scope="row"><%= version.id %></th>
-          <td><%= User.find(version.whodunnit).email %></td>
-          <td>R$ <%= inventory_info(version) %></td>
+          <td><%= inventory_info(version) %></td>
         </tr>
       <% end %>
     </tbody>
