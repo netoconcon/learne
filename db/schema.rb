@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_03_124832) do
+ActiveRecord::Schema.define(version: 2020_11_30_062413) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -92,6 +92,14 @@ ActiveRecord::Schema.define(version: 2020_11_03_124832) do
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
   end
 
+  create_table "inventories", force: :cascade do |t|
+    t.bigint "product_id", null: false
+    t.integer "quantity"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_id"], name: "index_inventories_on_product_id"
+  end
+
   create_table "kit_products", force: :cascade do |t|
     t.bigint "product_id", null: false
     t.bigint "kit_id", null: false
@@ -131,7 +139,6 @@ ActiveRecord::Schema.define(version: 2020_11_03_124832) do
     t.bigint "kit_id", null: false
     t.boolean "payment_method"
     t.decimal "price", precision: 8, scale: 2, null: false
-    t.string "CPF"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "address_id", null: false
@@ -139,6 +146,9 @@ ActiveRecord::Schema.define(version: 2020_11_03_124832) do
     t.string "pagarme_transaction_id"
     t.string "boleto_url"
     t.string "boleto_bar_code"
+    t.string "refused_reason"
+    t.integer "status", default: 0
+    t.string "cpf", null: false
     t.boolean "upsell_product"
     t.index ["address_id"], name: "index_orders_on_address_id"
     t.index ["customer_id"], name: "index_orders_on_customer_id"
@@ -219,6 +229,16 @@ ActiveRecord::Schema.define(version: 2020_11_03_124832) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "versions", force: :cascade do |t|
+    t.string "item_type", null: false
+    t.bigint "item_id", null: false
+    t.string "event", null: false
+    t.string "whodunnit"
+    t.text "object"
+    t.datetime "created_at"
+    t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
+  end
+
   create_table "visits", force: :cascade do |t|
     t.bigint "order_id"
     t.string "fbid"
@@ -236,6 +256,7 @@ ActiveRecord::Schema.define(version: 2020_11_03_124832) do
   add_foreign_key "addresses", "customers"
   add_foreign_key "bank_accounts", "companies"
   add_foreign_key "campaigns", "selling_pages"
+  add_foreign_key "inventories", "products"
   add_foreign_key "kit_products", "kits"
   add_foreign_key "kit_products", "products"
   add_foreign_key "kits", "plans"
