@@ -8,3 +8,21 @@
     </div>
   <% end %>
 </div>
+
+<div class="container">
+  <table class="table" id="myTable" data-target="table.table">
+    <thead>
+      <th scope="col">ID</th>
+      <th scope="col">Detalhes</th>
+    </thead>
+    <tbody>
+      <% @inventory.versions.reverse_each do |version|  %>
+        <tr class="<%= cycle('inventory_line_odd', 'inventory_line_even') %>">
+          <th scope="row"><%= version.id %></th>
+          <td><%= User.find(version.whodunnit).email %></td>
+          <td>R$ <%= inventory_info(version) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
