@@ -4,10 +4,13 @@ class Product < ApplicationRecord
   validates_numericality_of :price_cents, :greater_than_or_equal_to => 0
 
   belongs_to :company
-  has_one :inventory
+  belongs_to :upsell, optional: true
 
   has_many :kit_products, dependent: :destroy
   has_many :kits, through: :kit_products
+
+  has_many :upsells, dependent: :destroy
+  has_many :kits, through: :upsells
 
   monetize :price_cents
   

@@ -10,6 +10,7 @@ class Admin::KitsController < ApplicationController
     @kit = Kit.new
     gon.products = products
     deactivated_plans
+    @list = Product.all
     if(params.has_key?(:aux))
       @test = Product.find(params[:aux])
     end
@@ -71,6 +72,9 @@ class Admin::KitsController < ApplicationController
       :length,
       :width,
       :plan_id,
+      :discount,
+      :possale,
+      :upsell,
       kit_products_attributes:[
         :id,
         :product_id,
@@ -90,7 +94,7 @@ class Admin::KitsController < ApplicationController
           :height,
           :length,
           :virtual_url
-    ]])
+        ]])
   end
 
   def deactivated_plans

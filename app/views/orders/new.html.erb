@@ -91,7 +91,6 @@
           </div>
         </div>
       </div>
-
       <div class="col-12 col-md-6">
         <div class="card">
           <div class="card-header text-center">
@@ -150,6 +149,17 @@
                         <%= f.input :credit_card_cvv, label: "Cód. de segurança", placeholder: "3 ou 4 dígitos", input_html: { data: { js: "numbers" } }, maxlength: 4 %>
                       </div>
                     </div>
+                    <h5 class="col-12 col-md-12">
+                      <div>
+                        <%= "Produtos: #{products(@order)}" %>                       
+                      </div>
+                      <div>
+                        <%= "Frete: #{order_shipping(@order)}" %>                            
+                      </div>
+                      <div>
+                        <%= "Total: #{order_total_price(@order)}" %>
+                      </div>
+                    </h5>
                     <div class="form-group w-100">
                       <%= f.input :installments, label: "Parcelamento", as: :select, collection: order_installments(@order) %>
                     </div>
@@ -157,7 +167,6 @@
                 </div>
                 <%= f.submit "Finalizar Pedido", name:"card", class: "btn btn-success submit-button", style: "color: #fff; background-color: #28a745; border-color: #28a745" %>
               </div>
-
               <div id="bank-slip" data-target="payment-method.bankSlip" hidden="hidden">
                 <div class="tab-content mt-4">
                   <div class="tab-pane fade show active">
@@ -176,7 +185,12 @@
                       </div>
                       <div class="form-group row">
                         <h5 class="col-12 col-md-12">
-                          <%= "Produtos: #{order_single(@order)}" %>
+                          <div>
+                            <%= "Produtos: #{order_single(@order)}" %>                            
+                          </div>
+                          <div>
+                            <%= "Frete: #{order_shipping(@order)}" %>                            
+                          </div>
                         </h5>
                         <div class="col-12 col-md-12">
                           <%= f.input :bank_slip_cpf, label: "CPF (Para emissão da Nota Fiscal)", input_html: { data: { js: "cpf" } }, maxlength: 14 %>
@@ -196,9 +210,35 @@
         <h6 class="text-black-50 mt-2"><small>Taxa de 2,99% a.m.</small></h6>
       </div>
     </div>
+    <% if @order.kit.possale %>
+      <div class="row mb-4 w-100 justify-content-end">
+        <div class="col-md-6">
+          <div class="upsell">
+            <div class="upsell-content">
+              <div class="upsell-image">
+                image
+              </div>
+              <div>
+                <div>
+                  <h4>
+                    Não perca essa oportunidade, adicione esse produto ao carrinho: <%= @upsell.name %> 
+                  </h4> 
+                </div>
+                <div>
+                  Pelo preço de <%= number_to_currency(@upsell.price, unit: "R$ ") %> você adicionara ao check-out: <%= @upsell.name %>
+                </div>
+                <div class="upsell-selection">
+                  <%= f.input :upsell_product, label: "Adicionar: " %>
+                </div>
+              </div>        
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
   <% end %>
   <div class="container-fluid mb-3">
-    <div class="container ">
+    <div class="container">
       <div class="footer-checkout">
         <div class="col-md-4">
           <h5>FORMAS DE PAGAMENTO</h5>

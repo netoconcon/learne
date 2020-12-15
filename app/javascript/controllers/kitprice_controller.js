@@ -1,7 +1,7 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-  static targets = [ "product", "quantity", "sumprice"]
+  static targets = [ "product", "quantity", "sumprice", "discount"]
 
   pricefill(e) {
   	const hash = gon.products;
@@ -11,5 +11,10 @@ export default class extends Controller {
   		return obj.id === prod_num;
   	})
   	this.sumpriceTarget.value = result.price_cents * quant_num;
+    console.log(this.sumpriceTarget.value)
 	}
+
+  discount(){
+    console.log(this.discountTarget.value)
+  }
 }

@@ -25,7 +25,12 @@
           <% end %>
           <div class="row justify-content-end">
             <div class="col-4">
-              <b>Preco total: R$ <%= total_price.sum %></b>
+              Frete: R$ <%= kit.shipment_cost %></b>
+            </div>
+          </div>
+          <div class="row justify-content-end">
+            <div class="col-4">
+              <b>Preço total: R$ <%= total_price.sum + kit.shipment_cost %></b>
             </div>
           </div> 
         </div>

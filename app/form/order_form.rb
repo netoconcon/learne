@@ -32,7 +32,8 @@ class OrderForm
       :credit_card_expiration_year,
       :credit_card_cvv,
       :installments,
-      :bank_slip_cpf
+      :bank_slip_cpf,
+      :upsell_product
   )
 
   def save
@@ -51,13 +52,13 @@ class OrderForm
         Pm::Subscription.create(self)
       end
     end
-
     order.status = transaction.status == "refused" ? :refused : :completed
     order.refused_reason = transaction.refused_reason
     order.boleto_url = transaction.boleto_url
     order.boleto_bar_code = transaction.boleto_barcode
     order.pagarme_transaction_id = transaction.id.to_i
     order.save!
+
   end
 
   def order

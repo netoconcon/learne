@@ -5,7 +5,7 @@
       <div class="form-fields">  
         <%= f.input :quantity, label: "Quantidade", input_html: { "data-target" => "kitprice.quantity", "data-action" => "event -> kitprice#pricefill" } %>
       </div>
-      <%= f.input :price_cents, as: :hidden, input_html: {"data-target" => "kitprice.sumprice" } %>
+      <%= f.input :price_cents,  input_html: {"data-target" => "kitprice.sumprice" }, as: :hidden %>
     </div>
       <%= link_to_remove_association "Remover produto", f %>
   </div>
