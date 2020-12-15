@@ -1,10 +1,13 @@
 class Kit < ApplicationRecord
 
+
   validates :name, :amount_cents,:payment_type, :height, :weight, :width, :length, :shipment_cost_cents, presence: true
 
   validates :plan, presence: true, if: -> {self.payment_type == 'subscription'}
   validates :standard_installments, :maximum_installments, presence: true, if: -> {self.payment_type == 'single'}
   validates :shipment_cost_cents, presence: true, if: -> {self.allow_free_shipment == false}
+  validates :possale, inclusion: { in: [true, false] }
+
 
   validates_numericality_of :shipment_cost_cents, :greater_than_or_equal_to => 0
 
@@ -13,7 +16,9 @@ class Kit < ApplicationRecord
   has_many :selling_pages, dependent: :destroy
   has_many :kit_products, dependent: :destroy
   has_many :products, through: :kit_products, dependent: :destroy
-  accepts_nested_attributes_for :kit_products, reject_if: :all_blank, allow_destroy: :true
+
+  accepts_nested_attributes_for :kit_products, reject_if: :all_blank, allow_destroy: true
+
 
   default_scope {order(created_at: :asc)}
 

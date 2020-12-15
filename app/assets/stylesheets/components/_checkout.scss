@@ -20,8 +20,48 @@
   margin: 20px;
 }
 
+.upsell {
+  background-color: #DA7D30;
+  height: 13rem;
+  width: 100%;
+  border-style: dashed;
+}
+
+.upsell-content {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.upsell-selection {
+  
+}
+.upsell-selection label {
+  display: block;
+  float: left;
+  padding-right: 10px;
+  white-space: nowrap;
+  font-weight: bold;
+}
+
+.upsell-selection input {
+  vertical-align: middle;
+}
+
+.upsell-selection span {
+  vertical-align: middle;
+}
+
+.upsell-image {
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+  width: 12rem;
+}
+
 .footer-checkout {
   display: flex;
+  margin: 10px;
+  padding-top: 15px;
 }
 
 .footer-checkout h5 {

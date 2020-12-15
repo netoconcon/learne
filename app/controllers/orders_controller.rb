@@ -67,8 +67,9 @@ skip_before_action :authenticate_user!
         :credit_card_cvv,
         :bank_slip_cpf,
         :installments,
-        :payment_method
+        :payment_method,
+        :upsell_product
     )
   end
-
+  
 end
