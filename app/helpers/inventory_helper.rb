@@ -6,7 +6,7 @@ module InventoryHelper
       if version.previous.object.nil?
         "Produto atualizado por #{User.find_by(id: version.whodunnit).email}. Para #{version.object.scan(/quantity: (.+)\n/).first.first if version.object} unidades. Modificado as #{version.object.scan(/updated_at: (.+) Z/).first.first.to_datetime.strftime("%H:%M - %d/%m/%Y")}."
       else
-        "Produto atualizado por #{User.find_by(id: version.whodunnit).email}. De unidades #{version.previous.object.scan(/quantity: (.+)\n/).first.first if version.previous && version.previous.object } para #{version.object.scan(/quantity: (.+)\n/).first.first if version.object} unidades. Modificado as #{version.object.scan(/updated_at: (.+) Z/).first.first.to_datetime.strftime("%H:%M - %d/%m/%Y")}."
+        "Produto atualizado por #{User.find_by(id: version.whodunnit).email}. De unidades #{version.previous.object.scan(/quantity: (.+)\n/).first.first if version.previous && version.previous.object } para #{version.object.scan(/quantity: (.+)\n/).first.first if version.object} unidades. Modificado as #{version.object.scan(/updated_at: (.+) Z/).first.first.to_datetime.strftime("%H:%M - %d/%m/%Y")}. #{ "Obs: #{version.object.scan(/observation: (.+)\n/).first.first}" unless version.object.scan(/observation: (.+)\n/).first.nil? }"
       end
     end
   end
