@@ -71,9 +71,6 @@
           <%= link_to_add_association "Adicionar produto", f, :kit_products %>
         </div>
       </div>
-      <div class="discount" data-controller="kitprice">
-        <%= f.input :discount, label: "Porcentagem de desconto para esse kit", placeholder: "Digitar um numero de 0 a 100", input_html: { "data-target" => "kitprice.discount", "data-action" => "event -> kitprice#discount" } %>
-      </div>
     </div>
     <div class="form-total-price">
       <%= f.button :submit, 'Salvar alterações', class: "btn btn-primary submit-product" %>
