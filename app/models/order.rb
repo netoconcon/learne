@@ -16,6 +16,13 @@ class Order < ApplicationRecord
   normalize_attributes :zipcode, with: [:numbers]
   normalize_attributes :cpf, with: [:cpf]
 
+  def order_status
+    transaction = PagarMe::Transaction.find_by_id(self.pagarme_transaction_id.to_i)
+    self.status = transaction["status"]
+  end
+
+  def
+
   private
 
   def send_email
