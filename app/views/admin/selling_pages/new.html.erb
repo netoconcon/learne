@@ -13,9 +13,15 @@
         </div>
       </div>
       <div class="columns">
+        <%= f.input :banner, as: :file %>
+      </div>
+      <div class="columns">
         <%= f.input :confirmation_page, label: 'Pagina de confirmação do pedido - Incluir http://', placeholder: "Incluir http://" %>
       </div>
     </div>
     <%= f.button :submit, 'Cadastrar nova pagina', class: "btn btn-primary submit-product" %>
   <% end %>
 </div>
+
+
+

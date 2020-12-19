@@ -53,6 +53,6 @@ class Admin::SellingPagesController < ApplicationController
   private
 
   def selling_page_params
-    params.require(:selling_page).permit(:kit_id, :name, :description, :url, :confirmation_page)
+    params.require(:selling_page).permit(:kit_id, :name, :description, :url, :confirmation_page, :banner)
   end
 end

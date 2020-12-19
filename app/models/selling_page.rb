@@ -4,4 +4,6 @@ class SellingPage < ApplicationRecord
 
   belongs_to :kit
   has_many :campaigns, dependent: :destroy
+
+	has_one_attached :banner
 end
