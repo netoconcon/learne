@@ -24,6 +24,6 @@ class Order < ApplicationRecord
   private
 
   def send_email
-    OrderMailer.confirmation.deliver_later
+    OrderMailer.confirmation.deliver_now
   end
 end
