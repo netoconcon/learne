@@ -1,4 +1,5 @@
 class PagesController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:developedby]
   layout "admin"
 
   def home
@@ -75,4 +76,7 @@ class PagesController < ApplicationController
     @boletos = Order.all.where(payment_method: false).where(paid: false)
   end
 
+  def developedby
+    layout "application"
+  end
 end
