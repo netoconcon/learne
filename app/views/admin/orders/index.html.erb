@@ -3,18 +3,24 @@
 
   <table class="table" id="myTable" data-target="table.table">
     <thead>
+    <th scope="col">ID</th>
     <th scope="col">Usuário</th>
+    <th scope="col">Data criada</th>
     <th scope="col">Endereço de entrega</th>
     <th scope="col">Valor</th>
+    <th scope="col">Criado em:</th>
     <th scope="col">Detalhes</th>
     </thead>
     <tbody>
-    <% unless @orders.present? %>
+    <% if @orders.present? %>
       <% @orders.each do |order|%>
         <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
-          <td><%= link_to order.user.email, admin_order_path(order) %></td>
+          <td><%= order.id %></td>
+          <td><%= link_to order.customer.email, admin_order_path(order) %></td>
+          <td><%= order.created_at.strftime("%d-%m-%Y") %></td>
           <td><%= humanized_address(order.address) %></td>
-          <td><%= order.price %></td>
+          <td><%= number_to_currency(order.kit.amount, unit: "R$ ", separator: ",")  %></td>
+          <td><%= order.created_at.strftime("%H:%M | %d-%m-%Y") %></td>
           <td>
             <%= link_to admin_order_path(order) do %>
               <i class="fa fa-info-circle"></i>

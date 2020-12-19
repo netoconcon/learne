@@ -2,6 +2,7 @@ class PagesController < ApplicationController
   layout "admin"
 
   def home
+    initial_date
     @date = params[:sales_date]
     date_overview
     order_card
@@ -10,9 +11,16 @@ class PagesController < ApplicationController
   end
 
   def thanks
+    @order = Order.find(params["format"])
   end
 
   private
+
+  def initial_date
+    if params[:sales_date] == nil
+      params[:sales_date] = Date.today
+    end
+  end
 
   def date_overview
     if @date.present?
@@ -39,8 +47,11 @@ class PagesController < ApplicationController
       @cards_prices << order.price
     end
     else
+      @cards_prices = []
       @orders_card = Order.all.where(payment_method: true)
-      @cards_prices = [0]
+      @orders_card.each do |order|
+        @cards_prices << order.price
+      end
     end
   end
 
@@ -52,8 +63,11 @@ class PagesController < ApplicationController
         @boletos_prices << order.price
       end
     else
+      @boletos_prices = []
       @orders_boleto = Order.all.where(payment_method: false)
-      @boletos_prices = [0]
+      @orders_boleto.each do |order|
+        @boletos_prices << order.price
+      end
     end
   end
 

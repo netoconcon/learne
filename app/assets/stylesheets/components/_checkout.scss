@@ -19,3 +19,75 @@
 .payment-box {
   margin: 20px;
 }
+
+.upsell {
+  background-color: #DA7D30;
+  height: 13rem;
+  width: 100%;
+  border-style: dashed;
+}
+
+.upsell-content {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.upsell-selection {
+  
+}
+.upsell-selection label {
+  display: block;
+  float: left;
+  padding-right: 10px;
+  white-space: nowrap;
+  font-weight: bold;
+}
+
+.upsell-selection input {
+  vertical-align: middle;
+}
+
+.upsell-selection span {
+  vertical-align: middle;
+}
+
+.upsell-image {
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+  width: 12rem;
+}
+
+.footer-checkout {
+  display: flex;
+  margin: 10px;
+  padding-top: 15px;
+}
+
+.footer-checkout h5 {
+  color: #4972A7;
+  font-size: 16px;
+  font-weight: bold;
+  font-family: sans-serif;
+  border-bottom: solid;
+}
+
+.footer-detail {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.products-price {
+  margin: 10px;
+}
+
+.shipping-price {
+  font-size: 16px;
+  margin: 10px;
+}
+
+.total-price {
+  padding: 10px;
+  font-weight: bold;
+  border-top: 2px solid;
+} 

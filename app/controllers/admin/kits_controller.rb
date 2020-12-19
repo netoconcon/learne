@@ -8,6 +8,9 @@ class Admin::KitsController < ApplicationController
 
   def new
     @kit = Kit.new
+    gon.products = products
+    deactivated_plans
+    @list = Product.all
     if(params.has_key?(:aux))
       @test = Product.find(params[:aux])
     end
@@ -29,10 +32,6 @@ class Admin::KitsController < ApplicationController
     @kit = Kit.find(params[:id])
     @kit_product = KitProduct.new
     @products = Product.all
-    respond_to do |format|
-      format.html
-      format.json {render json: { kits: @kits}}
-    end
   end
 
   def update
@@ -63,6 +62,7 @@ class Admin::KitsController < ApplicationController
     params.require(:kit).permit(
       :name,
       :description,
+      :amount_cents,
       :payment_type,
       :standard_installments,
       :maximum_installments,
@@ -73,6 +73,9 @@ class Admin::KitsController < ApplicationController
       :length,
       :width,
       :plan_id,
+      :discount,
+      :possale,
+      :upsell,
       kit_products_attributes:[
         :id,
         :product_id,
@@ -92,12 +95,10 @@ class Admin::KitsController < ApplicationController
           :height,
           :length,
           :virtual_url
-    ]])
+        ]])
   end
 
-  def kit_price
-    @kit.kit_products.each do |kit_product|
-
-    end
+  def deactivated_plans
+    Plan.all.find_by(active: false)
   end
 end

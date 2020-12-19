@@ -1,20 +1,41 @@
 class OrdersController < ApplicationController
 layout "public"
+skip_before_action :authenticate_user!
 
   def new
     @order = OrderForm.new
   end
 
   def create
+    flash[:notice] = "Estamos processando sua compra"
     @order = OrderForm.new(order_params)
     if params[:card]
       @order.payment_method = true
     elsif params[:boleto]
       @order.payment_method = false
     end
-    @order.save
 
-    render "orders/thank_you"
+    if @order.save
+      if @order.refused?
+        flash[:notice] = "Compra recusada pelo #{transaction.refuse_reason}. Favor entrar em contato com seu banco"
+        render :new
+      else
+        redirect_to thanks_path(@order)
+        flash[:notice] = "Sua compra foi aprovada"
+      end
+    else
+      render :new
+      flash[:notice] = "Existem erros no formulário"
+    end
+  end
+
+  def thanks
+    @order = Order.find(params["format"])
+
+    if @order.refused?
+      flash[:notice] = "Sua compra foi recusada pelo #{@order.refused_reason}. Favor entrar em contato com o banco"
+      render :new
+    end
   end
 
   private
@@ -46,10 +67,9 @@ layout "public"
         :credit_card_cvv,
         :bank_slip_cpf,
         :installments,
-        :payment_method
+        :payment_method,
+        :upsell_product
     )
   end
-
-  # Kit.where(id: SellingPage.find_by(url: params[:selling_page_url]).kit_id)
-
+  
 end

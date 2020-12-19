@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   draw :admin
   draw :public
   draw :payment
+  draw :api
   devise_for :users
   root to: 'pages#home'
   get "users", to: "pages#home"

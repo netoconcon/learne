@@ -28,11 +28,13 @@
   width: 95%;
 }
 
-.utm {
+.size {
   display: flex;
+  margin-bottom: 4px;
+  margin-top: 4px;
 }
 
-.utm input {
+.size input {
   width: 95%;
 }
 
@@ -71,11 +73,10 @@
   padding-right: 50px;
 }
 
-.payments {
+.kit-row {
   border-bottom: 1px solid #bfbfbf;
   border-top: 1px solid #bfbfbf;
-  margin-bottom: 4px;
-  margin-top: 4px;
+  margin: 10px;
 }
 
 .payments input {
@@ -83,14 +84,22 @@
 }
 .payment-fields {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 
 .payment-fields-ship {
   display: flex;
 }
 
-.bbb {
+.shippingcost {
   width: 30%;
   margin-left: 15%;
+}
+
+.type-space {
+  margin-right: 15px;
+}
+
+.titles {
+  font-weight: bold;
 }
