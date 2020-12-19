@@ -13,5 +13,6 @@ class Product < ApplicationRecord
   has_many :kits, through: :upsells
 
   monetize :price_cents
-  
+
+	has_one_attached :photo
 end
