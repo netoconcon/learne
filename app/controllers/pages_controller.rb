@@ -1,4 +1,5 @@
 class PagesController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:developedby]
   layout "admin"
 
   def home
@@ -76,5 +77,6 @@ class PagesController < ApplicationController
   end
 
   def developedby
+    layout "application"
   end
 end
