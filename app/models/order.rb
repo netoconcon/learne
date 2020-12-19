@@ -21,11 +21,9 @@ class Order < ApplicationRecord
     self.status = transaction["status"]
   end
 
-  def
-
   private
 
   def send_email
-    OrderMailer.confirmation.deliver_now
+    OrderMailer.confirmation.deliver_later
   end
 end

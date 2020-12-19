@@ -1,4 +1,4 @@
-module InterestsHelper
+module InterestHelper
   def order_interest(order)
   	amount = order.kit.amount_cents
   	max_installments = order.kit.maximum_installments
