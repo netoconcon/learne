@@ -4,6 +4,7 @@
       <%= f.association :product, value_method: :id, label: "Produto", disabled: true %>
       <%= f.input :quantity, label: "Quantidade" %>
       <%= f.input :observation, label: "Observação" %>
+      <%= f.input :flag_quantities, label: "Quantidade minima para alerta" %>
       <%= f.button :submit, 'Editar', class: "btn btn-primary submit-product" %>
     </div>
   <% end %>

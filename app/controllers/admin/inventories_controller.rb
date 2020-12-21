@@ -2,8 +2,7 @@ class Admin::InventoriesController < ApplicationController
   layout "admin"
 
   def index
-    @inventories = Inventory.all
-    # @products = Product.all.where(virtual: false)
+    @inventories = Inventory.all.order('created_at ASC')
   end
 
   def new
@@ -47,7 +46,7 @@ class Admin::InventoriesController < ApplicationController
   private
 
   def inventory_params
-    params.require(:inventory).permit(:product_id, :quantity, :observation)
+    params.require(:inventory).permit(:product_id, :quantity, :observation, :flag_quantities)
   end
 
 end

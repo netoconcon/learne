@@ -1,8 +1,12 @@
 <div class="container">
   <h2>Inventário</h2>
-  <p>
-    <%= link_to "Adicionar produto ao inventário", new_admin_inventory_path, class: "btn btn-primary" %>
-  </p>
+  <div style="display: flex; justify-content: space-between; padding-bottom: 20px;">
+    <div>
+      <p>
+        <%= link_to "Adicionar produto ao inventário", new_admin_inventory_path, class: "btn btn-primary" %>
+      </p>
+    </div>
+  </div>
   <table class="table" id="myTable" data-target="table.table">
     <thead>
       <th scope="col">ID</th>
