@@ -17,6 +17,7 @@
       <th scope="col">Detalhes</th>
       <th scope="col">Editar</th>
       <th scope="col">Apagar</th>
+      <th scope="col">Obs</th>
     </thead>
     <tbody>
       <% if @inventories %>
@@ -36,6 +37,11 @@
             <td>
               <%= link_to admin_inventory_path(inventory), method: :delete, data: { confirm: 'Você tem certeza que deseja apagar o produto?' } do %>
                 <i class="fa fa-trash"></i>
+              <% end %>
+            </td>
+            <td>
+              <% if inventory.flag_quantities >= inventory.quantity %>
+                <i class="fa fa-exclamation-triangle" aria-hidden="true" title="Repor estoque!"></i>
               <% end %>
             </td>
           </tr>

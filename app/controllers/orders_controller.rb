@@ -77,7 +77,9 @@ skip_before_action :authenticate_user!
     order.kit.kit_products.each do |kit_product|
       quantity = kit_product.quantity
       inventory_product = Inventory.find_by(product_id: kit_product.product_id)
-      inventory_product.update_attributes(quantity: inventory_product.quantity - quantity)
+      unless inventory_product.nil?
+        inventory_product.update_attributes(quantity: inventory_product.quantity - quantity)
+      end
     end
   end
 end

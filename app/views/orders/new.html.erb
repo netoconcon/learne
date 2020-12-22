@@ -157,7 +157,7 @@
                         <%= "Frete: #{order_shipping(@order)}" %>                            
                       </div>
                       <div>
-                        <%= "Total: R$ #{number_to_currency(@order.kit.amount + @order.kit.shipment_cost)}" %>
+                        <%= "Total: #{number_to_currency(@order.kit.amount + @order.kit.shipment_cost, unit: "R$ ")}" %>
                       </div>
                     </h5>
                     <div class="form-group w-100">
