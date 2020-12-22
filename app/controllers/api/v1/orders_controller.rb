@@ -16,6 +16,7 @@ class Api::V1::OrdersController < Api::V1::BaseController
         # dealing with order
           order = Order.find(params[:id])
           order.status = payload.status
+          order.save
         #
       end
     else
