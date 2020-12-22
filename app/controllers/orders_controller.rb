@@ -70,7 +70,8 @@ skip_before_action :authenticate_user!
         :installments,
         :payment_method,
         :upsell_product,
-        :insts
+        :insts,
+        :amount
     )
   end
   
