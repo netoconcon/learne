@@ -33,7 +33,8 @@ class OrderForm
       :credit_card_cvv,
       :installments,
       :bank_slip_cpf,
-      :upsell_product
+      :upsell_product,
+      :insts
   )
 
   def save
@@ -41,7 +42,9 @@ class OrderForm
     order.customer = customer
     order.address = address
     order.price = price.to_i
+    raise
     order.cpf = cpf
+    order.installments = insts.split[0].to_i
     order.save!
     update_visit
 

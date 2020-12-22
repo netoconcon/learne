@@ -23,7 +23,7 @@ module OrdersHelper
       interest_hash = order_interest(order)
       interest_hash = interest_hash["installments"]
       interest_hash.each do |key, value|
-         installments << ["#{key} X #{number_to_currency(value["installment_amount"] / 100.0, unit: "R$ ", separator: ",", delimiter: ".")}"]
+         installments << "#{key} X #{number_to_currency(value["installment_amount"] / 100.0, unit: "R$ ", separator: ",", delimiter: ".")}"
       end
       # order.kit.maximum_installments.times do |index|
       #   installment_price = total_price  / (index + 1)

@@ -161,7 +161,9 @@
                       </div>
                     </h5>
                     <div class="form-group w-100">
-                      <%= f.input :installments, label: "Parcelamento", as: :select, collection: order_installments(@order) %>
+
+                      <%= f.input :insts , label: "Parcelamento", as: :select, collection: order_installments(@order) %>
+                      <%#= f.input :installments, label: "Parcelamento", as: :select, collection: order_installments(@order) %>
                     </div>
                   </div>
                 </div>
