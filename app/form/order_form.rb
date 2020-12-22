@@ -42,11 +42,11 @@ class OrderForm
     order.customer = customer
     order.address = address
     order.price = price.to_i
-    raise
     order.cpf = cpf
     order.installments = insts.split[0].to_i
     order.save!
     update_visit
+
 
     transaction = begin
       if order.kit.payment_type == "single"
@@ -100,7 +100,15 @@ class OrderForm
       #   end
       #   total_price.to_i + kit.shipment_cost_cents.to_i
        end
-      kit.amount_cents.to_i
+      # kit.amount_cents.to_i
+      installments = self.insts.split[0]
+      amount_hash = calc_amount
+
+      raise
+    end
+
+    def calc_amount
+      raise
     end
 
     def cpf

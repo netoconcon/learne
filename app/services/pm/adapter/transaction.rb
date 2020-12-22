@@ -8,7 +8,7 @@ class Pm::Adapter::Transaction
   def payload
     @payload = {
         amount: @order.price.to_i,
-        installments: @order.installments,
+        installments: @order.insts.to_i,
         postback_url: "http://www.pay.learne.com.br/orders/#{@order.id}/postback/",
         payment_method: @order.payment_method ? "credit_card" : "boleto",
         customer: {
