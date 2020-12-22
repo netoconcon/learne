@@ -119,7 +119,7 @@ ActiveRecord::Schema.define(version: 2020_12_21_193130) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "observation"
-    t.integer "flag_quantities"
+    t.integer "flag_quantities", default: 10
     t.index ["product_id"], name: "index_inventories_on_product_id"
   end
 
@@ -153,6 +153,7 @@ ActiveRecord::Schema.define(version: 2020_12_21_193130) do
     t.integer "shipment_cost_cents", default: 0, null: false
     t.integer "discount"
     t.string "upsell"
+    t.integer "price"
     t.integer "amount_cents", default: 0, null: false
     t.index ["plan_id"], name: "index_kits_on_plan_id"
   end
@@ -171,9 +172,9 @@ ActiveRecord::Schema.define(version: 2020_12_21_193130) do
     t.string "boleto_url"
     t.string "boleto_bar_code"
     t.string "refused_reason"
+    t.boolean "upsell_product"
     t.integer "status", default: 0
     t.string "cpf", null: false
-    t.boolean "upsell_product"
     t.index ["address_id"], name: "index_orders_on_address_id"
     t.index ["customer_id"], name: "index_orders_on_customer_id"
     t.index ["kit_id"], name: "index_orders_on_kit_id"
