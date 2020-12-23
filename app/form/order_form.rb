@@ -44,10 +44,17 @@ class OrderForm
     order.customer = customer
     order.address = address
     order.price = price.to_i
-    order.amount = calc_amount
-    self.amount = calc_amount
+    if self.payment_method
+      order.amount = calc_amount 
+      self.amount = calc_amount
+      order.installments = insts.split[0].to_i 
+    else
+      order.amount = price.to_i 
+      self.amount = price.to_i
+      order.installments = 1
+    end
+
     order.cpf = cpf
-    order.installments = insts.split[0].to_i
     order.save!
     update_visit
 
@@ -114,6 +121,8 @@ class OrderForm
       })
       installments_result["installments"][self.insts.split.first]["amount"]
     end
+
+
 
     def cpf
       credit_card_cpf || bank_slip_cpf
