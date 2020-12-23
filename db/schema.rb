@@ -118,7 +118,6 @@ ActiveRecord::Schema.define(version: 2020_12_22_190803) do
     t.integer "quantity"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "observation"
     t.integer "flag_quantities", default: 10
     t.index ["product_id"], name: "index_inventories_on_product_id"
   end
@@ -149,7 +148,6 @@ ActiveRecord::Schema.define(version: 2020_12_22_190803) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "plan_id"
-    t.boolean "possale"
     t.integer "shipment_cost_cents", default: 0, null: false
     t.integer "discount"
     t.string "upsell"
@@ -171,8 +169,8 @@ ActiveRecord::Schema.define(version: 2020_12_22_190803) do
     t.string "pagarme_transaction_id"
     t.string "boleto_url"
     t.string "boleto_bar_code"
-    t.string "refused_reason"
     t.boolean "upsell_product"
+    t.string "refused_reason"
     t.integer "status", default: 0
     t.string "cpf", null: false
     t.string "insts"
