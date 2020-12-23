@@ -13,6 +13,12 @@ module InventoryHelper
 
   def originator(current_state)
     "Ultima atualizacao por #{User.find_by(id: current_state.paper_trail.originator).email}. De #{current_state.versions.last.object.scan(/quantity: (.+)\n/).first.first if current_state.versions.last.object} unidades para #{current_state.quantity} unidades. Modificado as #{current_state.updated_at.strftime("%H:%M - %d/%m/%Y")}"
+  end
 
+  def low_inventory
+    Inventory.all.each do |inventory|
+      return true if inventory.flag_quantities >= inventory.quantity
+    end
+    return false
   end
 end

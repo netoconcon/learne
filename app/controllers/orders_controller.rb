@@ -20,6 +20,7 @@ skip_before_action :authenticate_user!
         flash[:notice] = "Compra recusada pelo #{transaction.refuse_reason}. Favor entrar em contato com seu banco"
         render :new
       else
+        reduce_inventory(@order)
         redirect_to thanks_path(@order)
         flash[:notice] = "Sua compra foi aprovada"
       end
@@ -68,8 +69,19 @@ skip_before_action :authenticate_user!
         :bank_slip_cpf,
         :installments,
         :payment_method,
-        :upsell_product
+        :upsell_product,
+        :insts,
+        :amount
     )
   end
   
+  def reduce_inventory(order)
+    order.kit.kit_products.each do |kit_product|
+      quantity = kit_product.quantity
+      inventory_product = Inventory.find_by(product_id: kit_product.product_id)
+      unless inventory_product.nil?
+        inventory_product.update_attributes(quantity: inventory_product.quantity - quantity)
+      end
+    end
+  end
 end

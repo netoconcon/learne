@@ -33,7 +33,10 @@ class OrderForm
       :credit_card_cvv,
       :installments,
       :bank_slip_cpf,
-      :upsell_product
+      :upsell_product,
+      :insts,
+      :amount
+
   )
 
   def save
@@ -41,7 +44,10 @@ class OrderForm
     order.customer = customer
     order.address = address
     order.price = price.to_i
+    order.amount = calc_amount
+    self.amount = calc_amount
     order.cpf = cpf
+    order.installments = insts.split[0].to_i
     order.save!
     update_visit
 
@@ -98,6 +104,15 @@ class OrderForm
       #   total_price.to_i + kit.shipment_cost_cents.to_i
        end
       kit.amount_cents.to_i
+    end
+
+    def calc_amount
+      installments_result = PagarMe::Transaction.calculate_installments({
+        amount: self.price.to_i,
+        interest_rate: 2.99,
+        max_installments: self.insts.split.first
+      })
+      installments_result["installments"][self.insts.split.first]["amount"]
     end
 
     def cpf
