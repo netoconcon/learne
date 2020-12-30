@@ -152,6 +152,7 @@ ActiveRecord::Schema.define(version: 2020_12_30_134149) do
     t.integer "shipment_cost_cents", default: 0, null: false
     t.integer "discount"
     t.boolean "possale"
+    t.string "upsell"
     t.integer "price"
     t.integer "amount_cents", default: 0, null: false
     t.string "confirmation_page"
