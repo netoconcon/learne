@@ -19,7 +19,7 @@
           <th scope="row"><%= kit.id %></th>
           <td>imagem</td>
           <td><%= kit.name %></td>
-          <td><%= "http://pay.learne.com.br/#{kit.slug}" %></td>
+          <td><%= link_to "#{root_url}#{kit.slug}", "#{root_url}#{kit.slug}", target: "_blank", class: "text-decoration-none" %> </td>
           <td>
             <%= render partial: 'modal', :locals => {:kit => kit, :products => @products} %>
           </td>
