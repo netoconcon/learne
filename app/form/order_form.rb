@@ -47,7 +47,8 @@ class OrderForm
       order.amount = calc_amount 
       self.amount = calc_amount
     else
-      order.installments = 1
+      self.installments = 1
+      order.installments =1
       order.amount = calc_amount
       self.amount = calc_amount
     end
@@ -128,7 +129,8 @@ class OrderForm
         interest_rate: 2.99,
         max_installments: self.installments
       })
-      installments_result["installments"][self.installments]["amount"]
+      raise
+      installments_result["installments"][self.installments.to_s]["amount"]
     end
 
 
