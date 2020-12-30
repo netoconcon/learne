@@ -115,10 +115,11 @@ ActiveRecord::Schema.define(version: 2020_12_30_134149) do
 
   create_table "inventories", force: :cascade do |t|
     t.bigint "product_id", null: false
-    t.integer "quantity"
+    t.integer "quantity", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "observation"
+    t.integer "flag_quantities", default: 10
+    t.text "observation"
     t.index ["product_id"], name: "index_inventories_on_product_id"
   end
 
@@ -150,11 +151,11 @@ ActiveRecord::Schema.define(version: 2020_12_30_134149) do
     t.bigint "plan_id"
     t.integer "shipment_cost_cents", default: 0, null: false
     t.integer "discount"
+    t.boolean "possale"
     t.integer "price"
     t.integer "amount_cents", default: 0, null: false
     t.string "confirmation_page"
     t.string "slug", null: false
-    t.boolean "possale"
     t.bigint "upsell_product_id"
     t.index ["plan_id"], name: "index_kits_on_plan_id"
     t.index ["upsell_product_id"], name: "index_kits_on_upsell_product_id"

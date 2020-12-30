@@ -39,6 +39,7 @@ class OrderForm
   )
 
   def save
+    raise
     order.assign_attributes order_attributes
     order.customer = customer
     order.address = address
@@ -69,7 +70,6 @@ class OrderForm
     order.boleto_bar_code = transaction.boleto_barcode
     order.pagarme_transaction_id = transaction.id.to_i
     order.save!
-
   end
 
   def order
