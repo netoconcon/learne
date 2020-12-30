@@ -18,6 +18,8 @@ class Kit < ApplicationRecord
   has_many :kit_products, dependent: :destroy
   has_many :products, through: :kit_products, dependent: :destroy
 
+  has_one_attached :banner
+
   accepts_nested_attributes_for :kit_products, reject_if: :all_blank, allow_destroy: true
 
   before_save :update_slug
