@@ -7,6 +7,6 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   get "users", to: "pages#home"
   get 'developedby', to: 'pages#developedby'
-  get "/:selling_page_url", to: "selling_pages#show", as: "selling_page_public"
+  get "/:kit_slug", to: "orders#new", as: "new_order"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

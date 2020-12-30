@@ -1,24 +1,4 @@
 <div class="container">
-  <h2>Editar pagina</h2>
-  <%= simple_form_for [:admin, @selling_page] do |f| %>
-    <div class="styler">
-      <div class="columns">
-        <div>
-          <%= f.input :name, label: 'Nome da pagina' %>
-          <%= f.association :kit, label: 'Nome do kit' %>
-        </div>
-        <div>
-          <%= f.input :url, label: 'Url' %>
-          <%= f.input :description, label: 'Descricao' %>
-        </div>
-      </div>
-      <div class="columns">
-        <%= f.input :confirmation_page, label: 'Pagina de confirmação do pedido', placeholder: "Incluir http://" %>
-      </div>
-      <div class="columns">
-        <%= f.input :banner, as: :file %>
-      </div>
-    </div>
-    <%= f.button :submit, 'Editar pagina', class: "btn btn-primary submit-product" %>
-  <% end %>
+  <h2>Editar advetorial</h2>
+  <%= render "form", selling_page: @selling_page %>
 </div>

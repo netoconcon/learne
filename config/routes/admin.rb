@@ -7,7 +7,7 @@ namespace :admin do
   resources :kits
   resources :kit_products
   resources :campaigns
-  resources :selling_pages
+  resources :selling_pages, only: [:index, :new, :create, :edit, :update, :destroy]
   resources :inventories
 
   namespace :charts do
