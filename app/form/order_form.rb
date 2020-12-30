@@ -115,7 +115,7 @@ class OrderForm
     end
 
     def calc_amount
-      if add_upsell_product == "false" || self.add_upsell_product.empty?
+      if add_upsell_product == "false" || self.add_upsell_product.present?
         # sem upsell
         value = self.price.to_i
       else
