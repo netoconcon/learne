@@ -60,6 +60,7 @@ class Admin::KitsController < ApplicationController
 
   def kit_params
     params.require(:kit).permit(
+      :banner,
       :name,
       :description,
       :amount_cents,
