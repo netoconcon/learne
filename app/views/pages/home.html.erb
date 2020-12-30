@@ -25,7 +25,18 @@
           </div>
         </div>
         <div>
-          <h3>Resumo de vendas <%= params[:sales_date] %></h3>
+          <div class="inventory_notification">
+            <div>
+              <h3>Resumo de vendas <%= params[:sales_date] %></h3>
+            </div>
+            <% if low_inventory %>
+              <div>
+                <%= link_to admin_inventories_path do %>
+                  <i class="fa fa-exclamation-triangle" aria-hidden="true" title="Um ou mais produtos estão com nível baixo de estoque!"></i>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
           <div>
             <%= form_tag root_path, method: :get do %>
               <%= date_field_tag 'sales_date', Date.today %>

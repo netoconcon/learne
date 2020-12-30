@@ -4,3 +4,12 @@
   right: 16px;
   z-index: 1000;
 }
+
+.inventory_notification{
+  display:flex;
+  justify-content: space-between;
+}
+
+.fa-exclamation-triangle{
+  color: #E73329;
+}

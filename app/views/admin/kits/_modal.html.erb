@@ -23,16 +23,16 @@
                 <% total_price << products.find(kit_product.product_id).price * kit_product.quantity %>
             </div>
           <% end %>
-          <div class="row justify-content-end">
+<!--           <div class="row justify-content-end">
             <div class="col-4">
-              Frete: R$ <%= kit.shipment_cost %></b>
+              
             </div>
-          </div>
+          </div> -->
           <div class="row justify-content-end">
-            <div class="col-4">
-              <b>Preço total: R$ <%= total_price.sum + kit.shipment_cost %></b>
-              <p><em>Preco Produtos: R$ <%= total_price.sum %></em></p>
-              <p><strong>Preço do Kit: R$ <%= humanized_money_with_symbol(kit.amount) %></strong></p>
+            <div class="col-4" style="margin-top: 20px;">
+              <p>Preço Produtos: R$ <%= total_price.sum %></p>
+              <p>Frete: R$ <%= kit.shipment_cost %></p>
+              <p><strong>Preço do Kit: <%= humanized_money_with_symbol(kit.amount) %></strong></p>
             </div>
           </div>
         </div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_30_083820) do
+ActiveRecord::Schema.define(version: 2020_12_30_085657) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -154,6 +154,8 @@ ActiveRecord::Schema.define(version: 2020_12_30_083820) do
     t.integer "price"
     t.integer "amount_cents", default: 0, null: false
     t.string "confirmation_page"
+    t.string "slug", null: false
+    t.boolean "possale"
     t.index ["plan_id"], name: "index_kits_on_plan_id"
   end
 
@@ -174,6 +176,8 @@ ActiveRecord::Schema.define(version: 2020_12_30_083820) do
     t.string "refused_reason"
     t.integer "status", default: 0
     t.string "cpf", null: false
+    t.string "insts"
+    t.integer "amount"
     t.index ["address_id"], name: "index_orders_on_address_id"
     t.index ["customer_id"], name: "index_orders_on_customer_id"
     t.index ["kit_id"], name: "index_orders_on_kit_id"

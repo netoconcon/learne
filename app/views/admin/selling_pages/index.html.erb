@@ -5,8 +5,8 @@
   <table class="table">
     <thead>
       <th scope="col">ID</th>
-      <th scope="col">Título</th>
-      <th scope="col">Produto</th>
+      <th scope="col">Título do advetorial</th>
+      <th scope="col">Nome do produto</th>
       <th scope="col">URL</th>
       <th scope="col">Editar</th>
       <th scope="col">Apagar</th>
@@ -15,9 +15,9 @@
       <% @selling_pages.each do |selling_page| %>
         <tr class="<%= cycle('list_line_odd', 'list_line_even') -%>">
           <td><%= selling_page.id %></td>
-          <td><%= link_to selling_page.product.name, "http://#{selling_page.url}", style: "color: #1c54d6;", target: "_blank" %></td>
-          <td><%= selling_page.url %></td>
           <td><%= selling_page.name %></td>
+          <td><%= selling_page.product.name %></td>
+          <td><%= link_to selling_page.url, "http://#{selling_page.url}", style: "color: #1c54d6;", target: "_blank" %></td>
           <td>
             <%= link_to  edit_admin_selling_page_path(selling_page) do %>
               <i class="far fa-edit"></i>

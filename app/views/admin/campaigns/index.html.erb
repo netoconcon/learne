@@ -5,7 +5,8 @@
     <thead>
       <th scope="col">Nome</th>
       <th scope="col">Visitas</th>
-      <th scope="col">Url</th>
+      <th scope="col">Título do advetorial</th>
+      <th scope="col">Url de destino</th>
       <th scope="col">Ações</th>
     </thead>
     <tbody data-controller="clipboard">
@@ -13,6 +14,7 @@
         <tr class="<%= cycle('list_line_odd', 'list_line_even') -%>">
           <td><%= campaign.title %></td>
           <td><%= campaign.visits.count %></td>
+          <td><%= campaign.selling_page.name %></td>
           <td><%= campaign.selling_page.url %></td>
           <td><%= link_to "Editar", edit_admin_campaign_path(campaign)%></td>
           <td><%= link_to "Apagar", admin_campaign_path(campaign), method: :delete %></td>
