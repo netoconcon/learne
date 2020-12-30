@@ -159,6 +159,6 @@ class OrderForm
     end
 
     def update_visit
-      Visit.find(visit_id).update order: order
+      # Visit.find(visit_id).update order: order
     end
 end
