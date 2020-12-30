@@ -157,6 +157,7 @@ ActiveRecord::Schema.define(version: 2020_12_30_085657) do
     t.integer "amount_cents", default: 0, null: false
     t.string "confirmation_page"
     t.string "slug", null: false
+    t.bigint "upsell_product_id"
     t.index ["plan_id"], name: "index_kits_on_plan_id"
   end
 

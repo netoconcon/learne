@@ -33,8 +33,7 @@ class OrderForm
       :credit_card_cvv,
       :installments,
       :bank_slip_cpf,
-      :upsell_product,
-      :insts,
+      :add_upsell_product,
       :amount
 
   )
@@ -47,11 +46,10 @@ class OrderForm
     if self.payment_method
       order.amount = calc_amount 
       self.amount = calc_amount
-      order.installments = insts.split[0].to_i 
     else
-      order.amount = price.to_i 
-      self.amount = price.to_i
       order.installments = 1
+      order.amount = calc_amount
+      self.amount = calc_amount
     end
 
     order.cpf = cpf
@@ -71,7 +69,6 @@ class OrderForm
     order.boleto_bar_code = transaction.boleto_barcode
     order.pagarme_transaction_id = transaction.id.to_i
     order.save!
-
   end
 
   def order
@@ -82,6 +79,10 @@ class OrderForm
     unless kit_id.nil?
       @kit ||= Kit.find(kit_id)
     end
+  end
+
+  def upsell_product
+    kit.upsell_product
   end
 
   private
@@ -114,12 +115,20 @@ class OrderForm
     end
 
     def calc_amount
+      if add_upsell_product == "false" || self.add_upsell_product.empty?
+        # sem upsell
+        value = self.price.to_i
+      else
+        # com upsell
+        value = self.price.to_i + self.upsell_product.price_cents
+      end
+
       installments_result = PagarMe::Transaction.calculate_installments({
-        amount: self.price.to_i,
+        amount: value,
         interest_rate: 2.99,
-        max_installments: self.insts.split.first
+        max_installments: self.installments
       })
-      installments_result["installments"][self.insts.split.first]["amount"]
+      installments_result["installments"][self.installments]["amount"]
     end
 
 
