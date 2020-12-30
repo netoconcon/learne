@@ -129,7 +129,6 @@ class OrderForm
         interest_rate: 2.99,
         max_installments: self.installments
       })
-      raise
       installments_result["installments"][self.installments.to_s]["amount"]
     end
 
