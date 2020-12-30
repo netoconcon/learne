@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_30_085657) do
+ActiveRecord::Schema.define(version: 2020_12_30_134149) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -150,13 +150,14 @@ ActiveRecord::Schema.define(version: 2020_12_30_085657) do
     t.bigint "plan_id"
     t.integer "shipment_cost_cents", default: 0, null: false
     t.integer "discount"
-    t.string "upsell"
     t.integer "price"
     t.integer "amount_cents", default: 0, null: false
     t.string "confirmation_page"
     t.string "slug", null: false
     t.boolean "possale"
+    t.bigint "upsell_product_id"
     t.index ["plan_id"], name: "index_kits_on_plan_id"
+    t.index ["upsell_product_id"], name: "index_kits_on_upsell_product_id"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -281,6 +282,7 @@ ActiveRecord::Schema.define(version: 2020_12_30_085657) do
   add_foreign_key "kit_products", "kits"
   add_foreign_key "kit_products", "products"
   add_foreign_key "kits", "plans"
+  add_foreign_key "kits", "products", column: "upsell_product_id"
   add_foreign_key "orders", "addresses"
   add_foreign_key "orders", "customers"
   add_foreign_key "orders", "kits"

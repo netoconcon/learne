@@ -17,6 +17,7 @@ class Kit < ApplicationRecord
   has_many :selling_pages, dependent: :destroy
   has_many :kit_products, dependent: :destroy
   has_many :products, through: :kit_products, dependent: :destroy
+  belongs_to :upsell_product, class_name: "Product", optional: true
 
   accepts_nested_attributes_for :kit_products, reject_if: :all_blank, allow_destroy: true
 

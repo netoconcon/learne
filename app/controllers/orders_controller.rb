@@ -70,7 +70,7 @@ skip_before_action :authenticate_user!
         :bank_slip_cpf,
         :installments,
         :payment_method,
-        :upsell_product,
+        :add_upsell_product,
         :insts,
         :amount
     )
