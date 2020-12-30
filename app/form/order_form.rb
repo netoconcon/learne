@@ -39,7 +39,6 @@ class OrderForm
   )
 
   def save
-    raise
     order.assign_attributes order_attributes
     order.customer = customer
     order.address = address
@@ -48,9 +47,9 @@ class OrderForm
       order.amount = calc_amount 
       self.amount = calc_amount
     else
-      order.amount = price.to_i 
-      self.amount = price.to_i
       order.installments = 1
+      order.amount = calc_amount
+      self.amount = calc_amount
     end
 
     order.cpf = cpf
@@ -116,8 +115,16 @@ class OrderForm
     end
 
     def calc_amount
+      if add_upsell_product == "false" || self.add_upsell_product.empty?
+        # sem upsell
+        value = self.price.to_i
+      else
+        # com upsell
+        value = self.price.to_i + self.upsell_product.price_cents
+      end
+
       installments_result = PagarMe::Transaction.calculate_installments({
-        amount: self.price.to_i,
+        amount: value,
         interest_rate: 2.99,
         max_installments: self.installments
       })
