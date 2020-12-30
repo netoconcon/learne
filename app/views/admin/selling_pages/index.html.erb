@@ -17,7 +17,7 @@
           <td><%= selling_page.id %></td>
           <td><%= selling_page.name %></td>
           <td><%= selling_page.product.name %></td>
-          <td><%= link_to selling_page.url, "#{root_url}#{selling_page.url}", style: "color: #1c54d6;", target: "_blank" %></td>
+          <td><%= "#{root_url}#{selling_page.url}" %></td>
           <td>
             <%= link_to  edit_admin_selling_page_path(selling_page) do %>
               <i class="far fa-edit"></i>
