@@ -132,10 +132,9 @@ class OrderForm
       installments_result["installments"][self.installments.to_s]["amount"]
     end
 
-
-
     def cpf
-      credit_card_cpf || bank_slip_cpf
+      credit_card_cpf.present? ? credit_card_cpf : bank_slip_cpf 
+      # credit_card_cpf || bank_slip_cpf
     end
 
     def pagarme_customer
