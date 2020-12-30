@@ -15,7 +15,7 @@
           <td><%= campaign.title %></td>
           <td><%= campaign.visits.count %></td>
           <td><%= campaign.selling_page.name %></td>
-          <td><%= campaign.selling_page.url %></td>
+          <td><%= "#{root_url}#{campaign.selling_page.url}" %></td>
           <td><%= link_to "Editar", edit_admin_campaign_path(campaign)%></td>
           <td><%= link_to "Apagar", admin_campaign_path(campaign), method: :delete %></td>
           <td hidden="hidden" data-target="clipboard.hidden"><input type="text" data-target="clipboard.url" value="<%= campaign_url_for(campaign) %>"></td>

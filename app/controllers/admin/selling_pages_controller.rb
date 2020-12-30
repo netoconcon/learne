@@ -47,6 +47,6 @@ class Admin::SellingPagesController < ApplicationController
   private
 
   def selling_page_params
-    params.require(:selling_page).permit(:product_id, :name, :description, :url, :confirmation_page, :banner)
+    params.require(:selling_page).permit(:product_id, :name, :description, :url, :confirmation_page)
   end
 end

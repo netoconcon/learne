@@ -43,6 +43,7 @@ gem 'gon'
 gem 'friendly_id', '~> 5.4.0'
 gem 'postmark-rails'
 gem 'paper_trail'
+gem 'cloudinary', '~> 1.16.0'
 
 group :development, :test do  
   gem 'pry-byebug'
