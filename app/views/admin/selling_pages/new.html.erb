@@ -1,26 +1,6 @@
 <div class="container">
-  <h2>Nova pagina</h2>
-  <%= simple_form_for [:admin, @selling_page] do |f| %>
-    <div class="styler">
-      <div class="columns">
-        <div>
-          <%= f.input :name, label: 'Nome da pagina' %>
-          <%= f.association :kit, label: 'Nome do kit' %>
-        </div>
-        <div>
-          <%= f.input :url, label: 'Url' %>
-          <%= f.input :description, label: 'Descrição' %>
-        </div>
-      </div>
-      <div class="columns">
-        <%#= f.input :banner, as: :file %>
-      </div>
-      <div class="columns">
-        <%= f.input :confirmation_page, label: 'Pagina de confirmação do pedido - Incluir http://', placeholder: "Incluir http://" %>
-      </div>
-    </div>
-    <%= f.button :submit, 'Cadastrar nova pagina', class: "btn btn-primary submit-product" %>
-  <% end %>
+  <h2>Novo advetorial</h2>
+  <%= render "form", selling_page: @selling_page %>
 </div>
 
 

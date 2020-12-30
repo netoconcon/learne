@@ -3,7 +3,8 @@ layout "public"
 skip_before_action :authenticate_user!
 
   def new
-    @order = OrderForm.new
+    kit = Kit.find_by_slug(params[:kit_slug])
+    @order = OrderForm.new(kit_id: kit.id)
   end
 
   def create

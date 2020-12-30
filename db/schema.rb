@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_23_180917) do
+ActiveRecord::Schema.define(version: 2020_12_30_085657) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -115,11 +115,10 @@ ActiveRecord::Schema.define(version: 2020_12_23_180917) do
 
   create_table "inventories", force: :cascade do |t|
     t.bigint "product_id", null: false
-    t.integer "quantity", default: 0
+    t.integer "quantity"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "flag_quantities", default: 10
-    t.text "observation"
+    t.string "observation"
     t.index ["product_id"], name: "index_inventories_on_product_id"
   end
 
@@ -151,10 +150,12 @@ ActiveRecord::Schema.define(version: 2020_12_23_180917) do
     t.bigint "plan_id"
     t.integer "shipment_cost_cents", default: 0, null: false
     t.integer "discount"
-    t.boolean "possale"
     t.string "upsell"
     t.integer "price"
     t.integer "amount_cents", default: 0, null: false
+    t.string "confirmation_page"
+    t.string "slug", null: false
+    t.boolean "possale"
     t.index ["plan_id"], name: "index_kits_on_plan_id"
   end
 
@@ -224,9 +225,8 @@ ActiveRecord::Schema.define(version: 2020_12_23_180917) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "slug"
-    t.bigint "kit_id", null: false
-    t.string "confirmation_page"
-    t.index ["kit_id"], name: "index_selling_pages_on_kit_id"
+    t.bigint "product_id", null: false
+    t.index ["product_id"], name: "index_selling_pages_on_product_id"
     t.index ["slug"], name: "index_selling_pages_on_slug", unique: true
   end
 
@@ -267,17 +267,10 @@ ActiveRecord::Schema.define(version: 2020_12_23_180917) do
   end
 
   create_table "visits", force: :cascade do |t|
-    t.bigint "order_id"
-    t.string "fbid"
-    t.string "utm_source"
-    t.string "utm_campaign"
-    t.string "utm_medium"
-    t.string "utm_term"
-    t.string "utm_content"
-    t.string "pubid"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["order_id"], name: "index_visits_on_order_id"
+    t.bigint "campaign_id"
+    t.index ["campaign_id"], name: "index_visits_on_campaign_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
@@ -292,7 +285,6 @@ ActiveRecord::Schema.define(version: 2020_12_23_180917) do
   add_foreign_key "orders", "customers"
   add_foreign_key "orders", "kits"
   add_foreign_key "products", "companies"
-  add_foreign_key "selling_pages", "kits"
+  add_foreign_key "selling_pages", "products"
   add_foreign_key "upsells", "products"
-  add_foreign_key "visits", "orders"
 end

@@ -7,6 +7,7 @@ class Kit < ApplicationRecord
   validates :standard_installments, :maximum_installments, presence: true, if: -> {self.payment_type == 'single'}
   validates :shipment_cost_cents, presence: true, if: -> {self.allow_free_shipment == false}
   validates :possale, inclusion: { in: [true, false] }
+  validates :name, uniqueness: true
 
 
   validates_numericality_of :shipment_cost_cents, :greater_than_or_equal_to => 0
@@ -18,6 +19,8 @@ class Kit < ApplicationRecord
   has_many :products, through: :kit_products, dependent: :destroy
 
   accepts_nested_attributes_for :kit_products, reject_if: :all_blank, allow_destroy: true
+
+  before_save :update_slug
 
 
   default_scope {order(created_at: :asc)}
@@ -31,4 +34,7 @@ class Kit < ApplicationRecord
     products.map(&:price).sum
   end
 
+  def update_slug
+    self.slug = name.parameterize
+  end
 end

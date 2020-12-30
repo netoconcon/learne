@@ -5,18 +5,12 @@ class Admin::SellingPagesController < ApplicationController
     @selling_pages = SellingPage.all.order('created_at ASC')
   end
 
-  def show
-    @selling_page = SellingPage.find(params[:id])
-    @instances = KitProduct.where(id: @selling_page.kit.id)
-  end
-
   def new
     @selling_page = SellingPage.new
   end
 
   def create
     @selling_page = SellingPage.new(selling_page_params)
-    @company = params[:company_id]
     if @selling_page.save
       redirect_to admin_selling_pages_path
     else
@@ -53,6 +47,6 @@ class Admin::SellingPagesController < ApplicationController
   private
 
   def selling_page_params
-    params.require(:selling_page).permit(:kit_id, :name, :description, :url, :confirmation_page, :banner)
+    params.require(:selling_page).permit(:product_id, :name, :description, :url, :confirmation_page, :banner)
   end
 end

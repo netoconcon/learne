@@ -1,18 +1,12 @@
 <div class="container">
-  <h2>Links de redirecionamento</h2>
-  <p> <%= link_to "Gerar link de redirecionamento", new_admin_campaign_path, class: "btn btn-primary" %> </p>
+  <h2>Campanhas</h2>
+  <p> <%= link_to "Nova campanha", new_admin_campaign_path, class: "btn btn-primary" %> </p>
   <table class="table">
     <thead>
       <th scope="col">Nome</th>
       <th scope="col">Visitas</th>
-      <th scope="col">Pedidos</th>
-      <th scope="col">fbid</th>
-      <th scope="col">utm_source</th>
-      <th scope="col">utm_campaign</th>
-      <th scope="col">utm_medium</th>
-      <th scope="col">utm_term</th>
-      <th scope="col">utm_content</th>
-      <th scope="col">pubid</th>
+      <th scope="col">Título do advetorial</th>
+      <th scope="col">Url de destino</th>
       <th scope="col">Ações</th>
     </thead>
     <tbody data-controller="clipboard">
@@ -20,15 +14,8 @@
         <tr class="<%= cycle('list_line_odd', 'list_line_even') -%>">
           <td><%= campaign.title %></td>
           <td><%= campaign.visits.count %></td>
-          <td><%= campaign.orders.count %></td>
-          <td><%= campaign.fbid %></td>
-          <td><%= campaign.utm_source %></td>
-          <td><%= campaign.utm_campaign %></td>
-          <td><%= campaign.utm_medium %></td>
-          <td><%= campaign.utm_term %></td>
-          <td><%= campaign.utm_content %></td>
-          <td><%= campaign.pubid %></td>
-          <td><%= button_tag "Copiar url", data: { action: "click->clipboard#copy", target: "clipboard.copy", url: campaign_url_for(campaign) } %></td>
+          <td><%= campaign.selling_page.name %></td>
+          <td><%= campaign.selling_page.url %></td>
           <td><%= link_to "Editar", edit_admin_campaign_path(campaign)%></td>
           <td><%= link_to "Apagar", admin_campaign_path(campaign), method: :delete %></td>
           <td hidden="hidden" data-target="clipboard.hidden"><input type="text" data-target="clipboard.url" value="<%= campaign_url_for(campaign) %>"></td>
