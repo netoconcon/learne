@@ -77,6 +77,7 @@ class Admin::KitsController < ApplicationController
       :discount,
       :possale,
       :upsell,
+      :upsell_product_id,
       kit_products_attributes:[
         :id,
         :product_id,
