@@ -60,7 +60,7 @@
         <div>
           <%= f.input :possale, label: 'Esse kit tera upsell de produto?', :collection => [['Não',false],['Sim',true]], input_html: { "data-action" => "event -> upsell#upsell" } %>
           <div data-target="upsell.collection" style="display: none;">
-            <%= f.input :upsell, collection: @list %>
+            <%#= f.association :upsell_product, collection: @list %>
           </div>
         </div>
       </div>
