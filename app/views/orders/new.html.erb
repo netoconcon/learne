@@ -164,8 +164,10 @@
                       <div class="col-md-12">
                         <div class="upsell ml-3">
                           <div class="upsell-content p-2">
-                            <div class="upsell-image">
-                              image
+                            <div class="upsell-image mr-4">
+                              <% if @order.upsell_product.photo.attached? %>
+                                <%= cl_image_tag @order.upsell_product.photo.key, width: "140px", height: "220px", style: "" %>
+                              <% end %>
                             </div>
                             <div>
                               <div>
@@ -234,8 +236,10 @@
                           <div class="col-md-12">
                             <div class="upsell ml-3">
                               <div class="upsell-content p-2">
-                                <div class="upsell-image">
-                                  image
+                                <div class="upsell-image mr-4">
+                                  <% if @order.upsell_product.photo.attached? %>
+                                    <%= cl_image_tag @order.upsell_product.photo.key, width: "140px", height: "220px", style: "" %>
+                                  <% end %>
                                 </div>
                                 <div>
                                   <div>
