@@ -172,11 +172,14 @@
                             <div>
                               <div>
                                 <h5>
-                                  Não perca essa oportunidade, adicione esse produto ao carrinho: <%= @order.upsell_product.name %>
+                                  <%= @order.upsell_product.name.capitalize %>
                                 </h5> 
+                                <h6>
+                                  <%= @order.kit.copy %>
+                                </h6>
                               </div>
                               <div>
-                                Pelo preço de <%= number_to_currency(@order.upsell_product.price, unit: "R$ ") %> você adicionara ao check-out: <%= @order.upsell_product.name %>
+                                Pelo preço de <%= number_to_currency(@order.upsell_product.price, unit: "R$ ") %> você adicionara ao check-out: <%= @order.upsell_product.name.capitalize %>
                               </div>
                               <div class="upsell-selection">
                                 <%= f.input :add_upsell_product, label: "Adicionar: ", collection: [["Sim", true], ["Não", false]], input_html: { data: { action: "input->upsell#update", price: (@order.upsell_product.price_cents / 100) } } %>
@@ -244,12 +247,16 @@
                                 <div>
                                   <div>
                                     <h5>
-                                      Não perca essa oportunidade, adicione esse produto ao carrinho: <%= @order.upsell_product.name %>
+                                      <%= @order.upsell_product.name.capitalize %>
                                     </h5> 
+                                    <h6>
+                                      <%= @order.kit.copy %>
+                                    </h6>
                                   </div>
                                   <div>
-                                    Pelo preço de <%= number_to_currency(@order.upsell_product.price, unit: "R$ ") %> você adicionara ao check-out: <%= @order.upsell_product.name %>
+                                    Pelo preço de <%= number_to_currency(@order.upsell_product.price, unit: "R$ ") %> você adicionara ao check-out: <%= @order.upsell_product.name.capitalize %>
                                   </div>
+
                                   <div class="upsell-selection">
                                     <%= f.input :add_upsell_product, label: "Adicionar: ", collection: [["Sim", true], ["Não", false]], input_html: { data: { action: "input->upsell#update", price: (@order.upsell_product.price_cents / 100) } } %>
                                   </div>
