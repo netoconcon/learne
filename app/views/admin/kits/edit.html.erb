@@ -1,5 +1,5 @@
 <div data-controller="masks" class="container" style="padding-bottom: 15px;">
-  <h2>Novo kit</h2>
+  <h2>Editar kit</h2>
   <%= simple_form_for [:admin, @kit] do |f| %>
     <div class="styler">
       <div class="kit-row">
@@ -77,7 +77,7 @@
       </div>
     </div>
     <div class="form-total-price">
-      <%= f.button :submit, 'Cadastrar', class: "btn btn-primary submit-product" %>
+      <%= f.button :submit, 'Editar', class: "btn btn-primary submit-product" %>
     </div>
   <% end %>
 </div>
