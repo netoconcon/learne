@@ -1,9 +1,11 @@
 ActionMailer::Base.smtp_settings = {
-  address: ENV['POSTMARK_SMTP_SERVER'],
-  port: '25',
-  domain: 'heroku.com',
-  user_name: ENV['POSTMARK_API_KEY'],
-  password: ENV['POSTMARK_API_TOKEN'],
-  authentication: :cram_md5,
-  enable_starttls_auto: true
+  :address => "smtp.sendgrid.net",
+  :port => 587,
+  :domain => "northern.com.br",
+  :authentication => :plain,
+  :user_name => ENV['SENDGRID_USERNAME'],
+  :password => ENV['SENDGRID_PASSWORD'],
+  :enable_starttls_auto => true 
 }
+
+ActionMailer::Base.delivery_method = :smtp
