@@ -5,6 +5,6 @@ class CampaignsController < ApplicationController
   def show
     campaign = Campaign.find(params[:id])
     campaign.register_visit!
-    redirect_to "https://#{campaign.selling_page.url}"
+    redirect_to campaign.selling_page.url
   end
 end
