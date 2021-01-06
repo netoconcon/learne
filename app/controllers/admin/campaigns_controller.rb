@@ -7,6 +7,7 @@ class Admin::CampaignsController < ApplicationController
 
   def show
     @campaign = Campaign.find(params[:id])
+  #  comment
   end
 
   def new

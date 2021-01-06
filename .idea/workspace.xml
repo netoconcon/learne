@@ -20,15 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a6a2dfd0-2648-4959-a01b-9530d60eae5b" name="Default Changelist" comment="fixes">
-      <change afterPath="$PROJECT_DIR$/db/migrate/20201230134149_fix_upsell_in_kit.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/checkout-app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/checkout-app.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/orders_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/orders_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/form/order_form.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/form/order_form.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/helpers/orders_helper.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/helpers/orders_helper.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/javascript/controllers/upsell_controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/controllers/upsell_controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/kit.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/kit.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/orders/new.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/orders/new.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/schema.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/schema.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/campaigns/index.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/campaigns/index.html.erb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -220,6 +214,8 @@
       <workItem from="1606353500067" duration="1754000" />
       <workItem from="1606716512364" duration="3164000" />
       <workItem from="1609316951561" duration="3154000" />
+      <workItem from="1609433944298" duration="417000" />
+      <workItem from="1609938950458" duration="896000" />
     </task>
     <task id="LOCAL-00001" summary="added attribute_normalizer">
       <created>1596900125181</created>

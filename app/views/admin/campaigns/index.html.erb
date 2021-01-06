@@ -7,6 +7,7 @@
       <th scope="col">Visitas</th>
       <th scope="col">Título do advetorial</th>
       <th scope="col">Url da campanha</th>
+      <th scope="col">Url da redirecionamento</th>
       <th scope="col">Ações</th>
     </thead>
     <tbody data-controller="clipboard">
@@ -15,7 +16,8 @@
           <td><%= campaign.title %></td>
           <td><%= campaign.visits.count %></td>
           <td><%= campaign.selling_page.name %></td>
-          <td><%= "#{root_url}#{campaign.selling_page.url}" %></td>
+          <td><%= link_to campaign_url(campaign), campaign_url(campaign), target: "_blank" %></td>
+          <td><%= link_to "http://#{campaign.selling_page.url}", "http://#{campaign.selling_page.url}", target: "_blank" %></td>
           <td><%= link_to "Editar", edit_admin_campaign_path(campaign)%></td>
           <td><%= link_to "Apagar", admin_campaign_path(campaign), method: :delete %></td>
           <td hidden="hidden" data-target="clipboard.hidden"><input type="text" data-target="clipboard.url" value="<%= campaign_url_for(campaign) %>"></td>
