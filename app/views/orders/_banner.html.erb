@@ -1,5 +1,5 @@
-<div class="mt-4 mb-4">
-  <% if @order.kit.banner.attached? %>
+<% if @order.kit.banner.attached? %>
+  <div class="mt-4 mb-4">
     <%= cl_image_tag @order.kit.banner.key, width: :auto %>
-  <% end %>
-</div>
+  </div>
+<% end %>
