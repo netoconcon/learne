@@ -1,7 +1,0 @@
-<div class="mt-4 mb-4">
-  <% if @order.kit.banner.attached? %>
-    <%= cl_image_tag @order.kit.banner.key, width: "1070px", height: "300px" %>
-  <% else %>
-    <%= image_tag "banner_vmd3.png",  width: "1070px", height: "300px" %>
-  <% end %>
-</div>

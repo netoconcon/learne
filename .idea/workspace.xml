@@ -19,12 +19,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a6a2dfd0-2648-4959-a01b-9530d60eae5b" name="Default Changelist" comment="fixed selling page redirection">
-      <change afterPath="$PROJECT_DIR$/app/views/orders/_upsell.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/assets/stylesheets/components/_checkout.scss" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/stylesheets/components/_checkout.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/orders/_banner.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/orders/_banner.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/orders/new.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/orders/new.html.erb" afterDir="false" />
+    <list default="true" id="a6a2dfd0-2648-4959-a01b-9530d60eae5b" name="Default Changelist" comment="fix upsell view">
+      <change beforePath="$PROJECT_DIR$/app/views/orders/_banner.html+desktop.erb" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -218,6 +214,7 @@
       <workItem from="1609316951561" duration="3154000" />
       <workItem from="1609433944298" duration="417000" />
       <workItem from="1609938950458" duration="896000" />
+      <workItem from="1610139995139" duration="290000" />
     </task>
     <task id="LOCAL-00001" summary="added attribute_normalizer">
       <created>1596900125181</created>
@@ -401,7 +398,14 @@
       <option name="project" value="LOCAL" />
       <updated>1609954876288</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="fix upsell view">
+      <created>1610140173475</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1610140173475</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -452,7 +456,8 @@
     <MESSAGE value="fixed login" />
     <MESSAGE value="fixes" />
     <MESSAGE value="fixed selling page link" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed selling page link" />
+    <MESSAGE value="fix upsell view" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix upsell view" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/checkout_app@Development__checkout_app.rcov" NAME="Development: checkout-app Coverage Results" MODIFIED="1598507828286" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="checkout-app" />
