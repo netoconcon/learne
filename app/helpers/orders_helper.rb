@@ -45,5 +45,4 @@ module OrdersHelper
     end
     number_to_currency(order.kit.shipment_cost + products_price.sum, unit: "R$ ", separator: ",")
   end
-
 end

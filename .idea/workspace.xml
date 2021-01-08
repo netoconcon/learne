@@ -19,7 +19,21 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a6a2dfd0-2648-4959-a01b-9530d60eae5b" name="Default Changelist" comment="fixed selling page link" />
+    <list default="true" id="a6a2dfd0-2648-4959-a01b-9530d60eae5b" name="Default Changelist" comment="fixed selling page redirection">
+      <change afterPath="$PROJECT_DIR$/app/controllers/concerns/set_platform.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/controllers/concerns/set_variant.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/models/current.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/models/platform_agent.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/orders/_banner.html+desktop.erb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/orders/_banner.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/checkout-app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/checkout-app.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gemfile" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gemfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/application_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/application_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/helpers/orders_helper.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/helpers/orders_helper.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/orders/new.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/orders/new.html.erb" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -50,7 +64,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/javascript/controllers" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/views/orders" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -62,11 +76,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/views/orders" />
+      <recent name="$PROJECT_DIR$/app/controllers/concerns" />
+      <recent name="$PROJECT_DIR$/app/models" />
       <recent name="$PROJECT_DIR$/app/javascript/controllers" />
       <recent name="$PROJECT_DIR$/app/helpers" />
-      <recent name="$PROJECT_DIR$/app/services/pm/adapter" />
-      <recent name="$PROJECT_DIR$/app/services/pm" />
-      <recent name="$PROJECT_DIR$/app/views/layouts/companies" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
