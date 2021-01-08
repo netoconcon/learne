@@ -147,45 +147,15 @@
                       <div class="col-12 col-sm-6">
                         <%= f.input :credit_card_cvv, label: "Cód. de segurança", placeholder: "3 ou 4 dígitos", input_html: { data: { js: "numbers" } }, maxlength: 4 %>
                       </div>
+                      <%= render "upsell", order: @order, f: f %>
+
                     </div>
 
 
                     <hr>
                     <br>
 
-                  <% if @order.kit.possale %>
-                    <% if @order.upsell_product %>
-                      <div class="row mb-2 w-100 justify-content-center">
-                        <div class="col-md-12">
-                          <div class="upsell ml-3">
-                            <div class="upsell-content p-2">
-                              <div class="upsell-image mr-4">
-                                <% if @order.upsell_product.photo.attached? %>
-                                  <%= cl_image_tag @order.upsell_product.photo.key, width: "140px", height: "220px", style: "" %>
-                                <% end %>
-                              </div>
-                              <div>
-                                <div>
-                                  <h5>
-                                    <%= @order.upsell_product.name.capitalize %>
-                                  </h5>
-                                  <h6>
-                                    <%= @order.kit.copy %>
-                                  </h6>
-                                </div>
-                                <div>
-                                  Pelo preço de <%= number_to_currency(@order.upsell_product.price, unit: "R$ ") %> você adicionara ao check-out: <%= @order.upsell_product.name.capitalize %>
-                                </div>
-                                <div class="upsell-selection">
-                                  <%= f.input :add_upsell_product, label: "Adicionar: ", collection: [["Sim", true], ["Não", false]], input_html: { data: { action: "input->upsell#update", price: (@order.upsell_product.price_cents / 100) } } %>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    <% end %>
-                  <% end %>
+
 
 
 
