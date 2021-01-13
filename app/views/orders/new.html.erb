@@ -3,7 +3,7 @@
     <%= f.input :kit_id, as: :hidden %>
     <%= f.input :visit_id, as: :hidden %>
 
-    <div class="mt-4 mb-4">
+    <div class="mt-4 mb-4 checkout-banner">
       <% if @order.kit.banner.attached? %>
         <%= cl_image_tag @order.kit.banner.key, width: "1070px", height: "300px", style: "" %>
       <% else %>
@@ -11,8 +11,9 @@
       <% end %>
     </div>
 
-    <div class="row mb-4 w-100">
-      <div class="col-12 col-md-6">
+    <div class="center-content">
+    <div class="row mb-4 w-100 checkout-group">
+      <div class="col-sm-12 col-md-6 checkout-columns">
         <div class="card mb-4">
           <div class="card-header text-center">
             <h4>1 - Para Onde Enviamos Seu Pedido?</h4>
@@ -96,7 +97,7 @@
           </div>
         </div>
       </div>
-      <div class="col-12 col-md-6">
+      <div class="col-sm-12 col-md-6 checkout-columns">
         <div class="card">
           <div class="card-header text-center">
             <h4>2 - Selecionar Pagamento</h4>
@@ -139,7 +140,7 @@
                       <div class="col-12 col-sm-6 mb-1">
                         <%= f.input :credit_card_cpf, label: "CPF do titular", placeholder: "Para envio da nota fiscal", input_html: { data: { js: "cpf" } }, maxlength: 14 %>
                       </div>
-                      <div class="col-12 col-sm-6 mb-1">
+                      <div class="col-sm-12 col-sm-6 mb-1">
                         <div class="row no-gutters">
                           <label class="string optional" for="order_credit_card_expiration_month">Data de expiração</label>
                           <div class="col-6">
@@ -155,8 +156,6 @@
                       </div>
                     </div>
 
-
-                    <hr>
                     <br>
 
                   <% if @order.kit.possale %>
@@ -201,10 +200,10 @@
 
                     <h5 class="col-12 col-md-12">
                       <h5 class="col-12 col-md-12" data-target="upsell.creditCardProductPrice" data-product-price="<%= @order.kit.amount %>">
-                        <%= "Produtos: #{number_to_currency(@order.kit.amount, unit: "R$ ")}" %>
+                        <%="Produtos: #{number_to_currency(@order.kit.amount, unit: "R$ ")}" %>
                       </h5>
-                      <div>
                         <%= "Frete: #{order_shipping(@order)}" %>                            
+                      <div>
                       </div>
                       <div data-target="upsell.creditCardTotal" data-total="<%= @order.kit.amount + @order.kit.shipment_cost %>">
                         <%= "Total: #{number_to_currency(@order.kit.amount + @order.kit.shipment_cost, unit: "R$ ")}" %>
@@ -304,6 +303,7 @@
         </div>
         <h6 class="text-black-50 mt-2"><small>Taxa de 2,99% a.m.</small></h6>
       </div>
+    </div>
     </div>
 
 
