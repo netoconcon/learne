@@ -42,3 +42,4 @@ yarn-debug.log*
 .env*
 /config/local_env.yml.env*
 sendgrid.env
+.env*

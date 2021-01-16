@@ -32,6 +32,11 @@
   justify-content: flex-start;
 }
 
+.card-image{
+    width: 35px;
+    margin: 5px;
+  }
+
 .upsell-selection {
   
 }
@@ -102,6 +107,11 @@
   .tab-pane{
     width: 100%;
     margin: auto;
+  }
+
+  .card-image{
+    width: 25px;
+    margin: 5px;
   }
 
   .card {
