@@ -1,8 +1,11 @@
- <div data-controller="zipcode masks payment-method upsell">
-  <%= simple_form_for @order, url: orders_path, method: :post do |f| %>
+<%= render "banner", order: @order %>
+
+<div data-controller="zipcode masks payment-method upsell">
+  <%= simple_form_for @order, url: orders_path, method: :post, html: { class: "w-100" } do |f| %>
     <%= f.input :kit_id, as: :hidden %>
     <%= f.input :visit_id, as: :hidden %>
 
+<<<<<<< HEAD
     <div class="mt-4 mb-4 checkout-banner">
       <% if @order.kit.banner.attached? %>
         <%= cl_image_tag @order.kit.banner.key, width: "1070px", height: "300px", style: "" %>
@@ -14,6 +17,10 @@
     <div class="center-content">
     <div class="row mb-4 w-100 checkout-group">
       <div class="col-sm-12 col-md-6 checkout-columns">
+=======
+    <div class="row mb-4 w-100">
+      <div class="col-12 col-md-6">
+>>>>>>> master
         <div class="card mb-4">
           <div class="card-header text-center">
             <h4>1 - Para Onde Enviamos Seu Pedido?</h4>
@@ -152,43 +159,13 @@
                       <div class="col-12 col-sm-6">
                         <%= f.input :credit_card_cvv, label: "Cód. de segurança", placeholder: "3 ou 4 dígitos", input_html: { data: { js: "numbers" } }, maxlength: 4 %>
                       </div>
+                      <%= render "upsell", order: @order, f: f %>
+
                     </div>
 
                     <br>
 
-                  <% if @order.kit.possale %>
-                    <% if @order.upsell_product %>
-                      <div class="row mb-2 w-100 justify-content-center">
-                        <div class="col-md-12">
-                          <div class="upsell ml-3">
-                            <div class="upsell-content p-2">
-                              <div class="upsell-image mr-4">
-                                <% if @order.upsell_product.photo.attached? %>
-                                  <%= cl_image_tag @order.upsell_product.photo.key, width: "140px", height: "220px", style: "" %>
-                                <% end %>
-                              </div>
-                              <div>
-                                <div>
-                                  <h5>
-                                    <%= @order.upsell_product.name.capitalize %>
-                                  </h5> 
-                                  <h6>
-                                    <%= @order.kit.copy %>
-                                  </h6>
-                                </div>
-                                <div>
-                                  Pelo preço de <%= number_to_currency(@order.upsell_product.price, unit: "R$ ") %> você adicionara ao check-out: <%= @order.upsell_product.name.capitalize %>
-                                </div>
-                                <div class="upsell-selection">
-                                  <%= f.input :add_upsell_product, label: "Adicionar: ", collection: [["Sim", true], ["Não", false]], input_html: { data: { action: "input->upsell#update", price: (@order.upsell_product.price_cents / 100) } } %>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    <% end %>
-                  <% end %>
+
 
 
 
@@ -200,8 +177,13 @@
                       <h5 class="col-12 col-md-12" style="margin-left: -14px" data-target="upsell.creditCardProductPrice" data-product-price="<%= @order.kit.amount %>">
                         <%="Produtos: #{number_to_currency(@order.kit.amount, unit: "R$ ")}" %>
                       </h5>
+<<<<<<< HEAD
                         <%= "Frete: #{order_shipping(@order)}" %>                            
                       <div>
+=======
+                      <div>
+                        <%= "Frete: #{order_shipping(@order)}" %>
+>>>>>>> master
                       </div>
                       <div data-target="upsell.creditCardTotal" data-total="<%= @order.kit.amount + @order.kit.shipment_cost %>">
                         <%= "Total: #{number_to_currency(@order.kit.amount + @order.kit.shipment_cost, unit: "R$ ")}" %>
@@ -248,7 +230,7 @@
                                     <div>
                                       <h5>
                                         <%= @order.upsell_product.name.capitalize %>
-                                      </h5> 
+                                      </h5>
                                       <h6>
                                         <%= @order.kit.copy %>
                                       </h6>
@@ -275,9 +257,15 @@
                           <h5 class="col-12 col-md-12" style="margin-left: 30px" data-target="upsell.bankSlipProductPrice" data-product-price="<%= @order.kit.amount %>">
                             <%= "Produtos: #{number_to_currency(@order.kit.amount, unit: "R$ ")}" %>
                           </h5>
+<<<<<<< HEAD
                           <div style="margin-left: 0px;">
                             <div style="margin-left: 45px;" >
                               <%= "Frete: #{order_shipping(@order)}" %>                            
+=======
+                          <div style="margin-left: 30px;">
+                            <div>
+                              <%= "Frete: #{order_shipping(@order)}" %>
+>>>>>>> master
                             </div>
                             <div style="margin-left: 45px;" data-target="upsell.bankSlipTotal" data-total="<%= @order.kit.amount + @order.kit.shipment_cost %>">
                               <%= "Total: #{number_to_currency(@order.kit.amount + @order.kit.shipment_cost, unit: "R$ ")}" %>
@@ -311,18 +299,16 @@
 
 
   <% end %>
-  <div class="container-fluid mb-3">
-    <div class="container">
-      <div class="footer-checkout">
-        <div class="col-md-4">
+      <div class="footer-checkout row">
+        <div class="col-12 col-md-4 mb-3">
           <h5>FORMAS DE PAGAMENTO</h5>
           <%= image_tag "pagamentos.png"%>
         </div>
-        <div class="col-md-4">
+        <div class="col-12 col-md-4 mb-3">
           <h5>PAGAMENTO SEGURO</h5>
           <%= image_tag "seguro.png"%>
         </div>
-        <div class="col-md-4">
+        <div class="col-12 col-md-4 mb-3">
           <h5>TERMOS</h5>
           <div style="display: grid">
             <a href="#" target="_blank">Política de privacidade</a>
@@ -334,5 +320,3 @@
         Essa compra sera processada pelo Pagarme.
       </div>
     </div>
-  </div>
-</div>
