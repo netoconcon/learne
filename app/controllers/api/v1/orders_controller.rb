@@ -14,14 +14,35 @@ class Api::V1::OrdersController < Api::V1::BaseController
         payload = Hash[ary]
         pagarme_id = pagarme_transaction_id.to_i
 
-        # dealing with order
-          order = Order.find_by(pagarme_id)
-          order.status = payload.status
-          order.save
-        #
+        postback_status = payload.status
+
+        case postback_status
+       
+        when "paid"
+          order.status = "completed"
+        when "pending_payment"
+          order.status = "pending_payment"
+        when "unpaid"
+          order.status = "refused"
+        when "canceled"
+          order.status = "refused"
+        else
+          order.status = "refused"
+        end
       end
+
     else
       puts "Postback não autorizado"
     end
   end
 end
+
+
+
+# processing, waiting_retry, pending_retry, failed, success
+
+  # enum status: {
+  #     pending_payment: 0,   # User completed the checkout, we must wait confirmation
+  #     completed: 1,         # Everything went fine.
+  #     refused: 2,            # Unfortunately something went wrong
+  # }
