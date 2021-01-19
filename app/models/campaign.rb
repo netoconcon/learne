@@ -1,5 +1,8 @@
 class Campaign < ApplicationRecord
 
+  delegate :product, to: :selling_page, prefix: true
+  attr_accessor :product_id
+
   validates :title, presence: true
 
   belongs_to :selling_page
