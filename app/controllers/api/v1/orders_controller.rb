@@ -13,12 +13,29 @@ class Api::V1::OrdersController < Api::V1::BaseController
         ary = URI.decode_www_form(params["payload"])
         payload = Hash[ary]
 
-        # dealing with order
+        if params[:order_id].nil?
           order = Order.find(params[:id])
-          order.status = payload.status
-          order.save
-        #
+        else
+          order = Order.find(params[:order_id])
+        end
+
+        postback_status = payload.status
+
+        case postback_status
+       
+        when "paid"
+          order.status = "completed"
+        when "pending_payment"
+          order.status = "pending_payment"
+        when "unpaid"
+          order.status = "refused"
+        when "canceled"
+          order.status = "refused"
+        else
+          order.status = "refused"
+        end
       end
+
     else
       puts "Postback não autorizado"
     end

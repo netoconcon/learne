@@ -20,5 +20,4 @@ namespace :admin do
     get '/deactivate_plan', to: 'plans#deactivate_plan', as: :deactivate_plan
   end
   patch '/plans/:id', to: "plans#update", as: "update_plan"
-
 end
