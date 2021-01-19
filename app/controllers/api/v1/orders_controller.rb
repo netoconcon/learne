@@ -12,7 +12,15 @@ class Api::V1::OrdersController < Api::V1::BaseController
       if params["payload"]
         ary = URI.decode_www_form(params["payload"])
         payload = Hash[ary]
-        pagarme_id = pagarme_transaction_id.to_i
+
+
+        if params[:order_id].nil?
+          order = Order.find(params[:id])
+        else
+          order = Order.find(params[:order_id])
+        end
+
+        
 
         postback_status = payload.status
 
@@ -36,13 +44,3 @@ class Api::V1::OrdersController < Api::V1::BaseController
     end
   end
 end
-
-
-
-# processing, waiting_retry, pending_retry, failed, success
-
-  # enum status: {
-  #     pending_payment: 0,   # User completed the checkout, we must wait confirmation
-  #     completed: 1,         # Everything went fine.
-  #     refused: 2,            # Unfortunately something went wrong
-  # }
