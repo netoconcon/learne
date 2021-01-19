@@ -13,14 +13,11 @@ class Api::V1::OrdersController < Api::V1::BaseController
         ary = URI.decode_www_form(params["payload"])
         payload = Hash[ary]
 
-
         if params[:order_id].nil?
           order = Order.find(params[:id])
         else
           order = Order.find(params[:order_id])
         end
-
-        
 
         postback_status = payload.status
 
