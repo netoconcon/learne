@@ -20,7 +20,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a6a2dfd0-2648-4959-a01b-9530d60eae5b" name="Default Changelist" comment="fix upsell view">
-      <change beforePath="$PROJECT_DIR$/app/views/orders/_banner.html+desktop.erb" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/admin/campaigns/_campaign_variables.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/admin/campaigns_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/admin/campaigns_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/campaign.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/campaign.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/product.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/product.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/campaigns/_form.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/campaigns/_form.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/campaigns/new.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/campaigns/new.html.erb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

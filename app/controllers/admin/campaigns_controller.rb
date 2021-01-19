@@ -11,6 +11,7 @@ class Admin::CampaignsController < ApplicationController
 
   def new
     @campaign = Campaign.new
+    @products = Product.all.map { |product| [product.name, product.id] }
   end
 
   def create
@@ -18,6 +19,11 @@ class Admin::CampaignsController < ApplicationController
     if @campaign.save
       redirect_to admin_campaigns_path
     else
+      if @campaign.product_id.present?
+        @selling_pages = Product.find(campaign_params[:product_id]).selling_pages
+        @campaign.errors.delete(:title)
+        @campaign.errors.delete(:selling_page)
+      end
       render :new
     end
   end
@@ -32,6 +38,7 @@ class Admin::CampaignsController < ApplicationController
     if @campaign.save
       redirect_to admin_campaigns_path
     else
+      @product
       render :new
     end
   end
@@ -45,6 +52,6 @@ class Admin::CampaignsController < ApplicationController
   private
 
   def campaign_params
-    params.require(:campaign).permit(:selling_page_id, :fbid, :utm_source, :utm_campaign, :utm_term,:utm_medium, :utm_medium, :utm_content, :pubid, :title)
+    params.require(:campaign).permit(:selling_page_id, :fbid, :utm_source, :utm_campaign, :utm_term,:utm_medium, :utm_medium, :utm_content, :pubid, :title, :product_id)
   end
 end

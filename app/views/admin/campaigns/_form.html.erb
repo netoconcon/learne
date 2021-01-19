@@ -2,18 +2,11 @@
   <div class="styler">
     <div class="rows">
       <div>
-        <%= f.input :title, label: 'Titulo' %>
-        <%= f.association :selling_page, label: 'Pagina de destino' %>
+        <%= f.input :product_id, as: :select, collection: products, label: "Escolha o produto da campanha" unless campaign.product_id.present? || campaign.selling_page_id? %>
       </div>
-      <div class="utm">
-        <%= f.input :utm_source, label: 'utm_source', disabled: campaign.persisted? %>
-        <%= f.input :utm_campaign, label: 'utm_campaign', disabled: campaign.persisted? %>
-        <%= f.input :utm_medium, label: 'utm_medium', disabled: campaign.persisted? %>
-        <%= f.input :utm_term, label: 'utm_term', disabled: campaign.persisted? %>
-        <%= f.input :utm_content, label: 'utm_content', disabled: campaign.persisted? %>
-      </div>
-      <%= f.input :fbid, label: 'fbid', disabled: campaign.persisted? %>
-      <%= f.input :pubid, label: 'pubid', disabled: campaign.persisted? %>
+
+      <%= render "campaign_variables", f: f, campaign: campaign if campaign.product_id.present? || campaign.selling_page_id? %>
+
     </div>
   </div>
   <%= f.button :submit, 'Salvar', class: "btn btn-primary submit-product" %>
