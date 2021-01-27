@@ -9,6 +9,9 @@ class PagesController < ApplicationController
     order_card
     order_boleto
     boleto_generated
+
+    @current_month = Date.today.month
+    
   end
 
   def thanks
