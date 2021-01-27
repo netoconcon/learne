@@ -70,7 +70,7 @@ class Pm::Adapter::Transaction
 
   private
     def order_items
-      kit_price = @order.amount_cents
+      kit_price = @order.amount
       
       @order.kit.kit_products.map do |order_product|
         quantity = order_product.quantity
