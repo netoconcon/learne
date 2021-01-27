@@ -15,11 +15,12 @@
     <tbody>
     <% if @orders.present? %>
       <% @orders.each do |order|%>
+        <% order.order_status %>
         <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
           <td><%= order.id %></td>
           <td><%= link_to order.customer.email, admin_order_path(order) %></td>
           <td><%= order.created_at.strftime("%d-%m-%Y") %></td>
-          <td><%= order.order_status %></td>
+          <td><%= humanize_order_status(order.status) %></td>
           <!-- <td><%= humanized_address(order.address) %></td> -->
           <td><%= number_to_currency(order.kit.amount, unit: "R$ ", separator: ",")  %></td>
           <td><%= order.created_at.strftime("%H:%M | %d-%m-%Y") %></td>
