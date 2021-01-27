@@ -3,15 +3,44 @@ class PagesController < ApplicationController
   layout "admin"
 
   def home
-    initial_date
-    @date = params[:sales_date]
-    date_overview
-    order_card
-    order_boleto
-    boleto_generated
+    if params[:start_date] || params[:end_date]
+      @start_date = params[:start_date]
+      @end_date = params[:end_date]
+    else
+      current_month = Date.today.at_beginning_of_month
+      @start_date = Date.today.at_beginning_of_month
+      @end_date = Date.today.end_of_month
+    end
 
-    @current_month = Date.today.month
+    @orders = get_order_from_period(@start_date, @end_date)
+    @total_sold = total_orders_sum(@orders)
+    @average_ticket = @total_sold / @orders.count unless @orders.count.zero?
+
+  
+
+
     
+  end
+
+  def total_orders_sum(orders)
+    sum = 0
+    orders.each do |order|
+      sum += order.amount
+    end
+    sum
+  end
+
+  def get_order_from_period(start_date, end_date)
+    orders = Order.all
+
+    unless start_date.nil?
+      orders = orders.select { |order| order.created_at >= start_date}
+    end
+
+    unless end_date.nil?
+      orders = orders.select { |order| order.created_at <= end_date}
+    end
+    orders
   end
 
   def thanks
@@ -19,6 +48,9 @@ class PagesController < ApplicationController
   end
 
   private
+
+  def dash_filter
+  end
 
   def initial_date
     if params[:sales_date] == nil

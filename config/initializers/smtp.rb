@@ -1,7 +1,7 @@
 ActionMailer::Base.smtp_settings = {
   :address => "smtp.sendgrid.net",
   :port => 587,
-  :domain => "northern.com.br",
+  :domain => "learne.com.br",
   :authentication => :plain,
   :user_name => ENV['SENDGRID_USERNAME'],
   :password => ENV['SENDGRID_PASSWORD'],
