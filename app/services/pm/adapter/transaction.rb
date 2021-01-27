@@ -6,9 +6,11 @@ class Pm::Adapter::Transaction
   end
 
   def payload
+    final_price = @order.amount.to_i + @order.kit.shipment_cost_cents
+
     @payload = {
-        amount: @order.amount.to_i,
-        installments: @order.insts.to_i,
+        amount: final_price.to_i,
+        installments: @order.installments.to_i,
         postback_url: "http://www.pay.learne.com.br/orders/#{@order.id}/postback/",
         payment_method: @order.payment_method ? "credit_card" : "boleto",
         customer: {
@@ -68,11 +70,16 @@ class Pm::Adapter::Transaction
 
   private
     def order_items
+      kit_price = @order.amount_cents
+      
       @order.kit.kit_products.map do |order_product|
+        quantity = order_product.quantity
+        item_price = kit_price / quantity
+
         {
             id: order_product.product_id.to_s,
             title: order_product.product.name,
-            unit_price: order_product.price_cents.to_i,
+            unit_price: item_price.to_i,
             quantity: order_product.quantity,
             tangible: true
         }
