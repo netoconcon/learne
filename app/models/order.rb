@@ -18,21 +18,23 @@ class Order < ApplicationRecord
 
   def order_status
     transaction = PagarMe::Transaction.find_by_id(self.pagarme_transaction_id.to_i)
-    self.status = transaction["status"]
-    self.save
+    pagarme_status = transaction["status"]
+    
 
-    case self.status
+    case pagarme_status
     when "paid"
-      order.status = "completed"
+      self.status = "completed"
+      self.paid = true
     when "pending_payment"
-      order.status = "pending_payment"
+      self.status = "pending_payment"
     when "unpaid"
-      order.status = "refused"
+      self.status = "refused"
     when "canceled"
-      order.status = "refused"
+      self.status = "refused"
     else
-      order.status = "refused"
+      self.status = "refused"
     end
+    self.save
   end
 
   private
