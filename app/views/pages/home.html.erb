@@ -1,213 +1,58 @@
-<!-- <div class="main">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-6">
-        <div class="row spacing">
-          <div class="col-5">
-            <div class="card withdrawl">
-              <div class="card-body details">
-                <div style="width: 80%;">
-                  <h5 class="card-title"> Disponivel para saque </h5>
-                  R$ <%= 0 %>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-5">
-            <div class="card release">
-              <div class="card-body details release">
-                <div style="width: 80%;">
-                  <h5 class="card-title"> A liberar </h5>
-                  R$ <%= 0 %>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div>
-          <div class="inventory_notification">
-            <div>
-              <h3>Resumo de vendas <%= params[:sales_date] %></h3>
-            </div>
-            <% if low_inventory %>
-              <div>
-                <%= link_to admin_inventories_path do %>
-                  <i class="fa fa-exclamation-triangle" aria-hidden="true" title="Um ou mais produtos estão com nível baixo de estoque!"></i>
-                <% end %>
-              </div>
-            <% end %>
-          </div>
-          <div>
-            <%= form_tag root_path, method: :get do %>
-              <%= date_field_tag 'sales_date', Date.today %>
-              <%= submit_tag 'Procurar' %>
-            <% end %>
-          </div>
-        </div>
-        <div class="row spacing">
-          <div class="col-6">
-            <div class="card">
-              <div class="card-body details">
-                <div style="width: 80%;">
-                  <h5 class="card-title"> Vendas totais: <%= @all_day_orders.size %> </h5>
-                  R$ <%= @all_prices.sum  %>
-                </div>
-                <div>
-                  <img src="<%= asset_path( 'dolar-sign.png' ) %>" alt="Cifrao" class="img-fluid d-block mx-auto">
-                </div>
-              </div>
-              <div class="card-text">
-                <div class="details">
-                    <div>Site:</div>
-                    <div><%= 0 %></div>
-                    <div>R$ <%= 0 %></div>
-                </div>
-                <div class="details">
-                  <div>Call center:</div>
-                  <div><%= 0 %></div>
-                  <div>R$ <%= 0 %></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-6">
-            <div class="card">
-              <div class="card-body details">
-                <div style="width: 80%;">
-                  <h5 class="card-title"> Vendas cartao: <%= @orders_card.size %> </h5>
-                  R$ <%= @cards_prices.sum  %>
-                </div>
-                <div>
-                  <img src="<%= asset_path( 'cc.png' ) %>" alt="cc" class="img-fluid d-block mx-auto">
-                </div>
-              </div>
-              <div class="card-text">
-                <div class="details">
-                    <div>Site:</div>
-                    <div><%= 0 %></div>
-                    <div>R$ <%= 0 %></div>
-                </div>
-                <div class="details">
-                  <div>Call center:</div>
-                  <div><%= 0 %></div>
-                  <div>R$ <%= 0 %></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row spacing">
-          <div class="col-6">
-            <div class="card">
-              <div class="card-body details">
-                <div style="width: 80%;">
-                  <h5 class="card-title"> Boleto pagos: <%= @orders_boleto.size %> </h5>
-                  R$ <%= @boletos_prices.sum  %>
-                </div>
-                <div>
-                  <img src="<%= asset_path( 'boleto-icon.png' ) %>" alt="Boleto" class="img-fluid d-block mx-auto">
-                </div>
-              </div>
-              <div class="card-text">
-                <div class="details">
-                    <div>Site:</div>
-                    <div><%= 0 %></div>
-                    <div>R$ <%= 0 %></div>
-                </div>
-                <div class="details">
-                  <div>Call center:</div>
-                  <div><%= 0 %></div>
-                  <div>R$ <%= 0 %></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-6">
-            <div class="card">
-              <div class="card-body details">
-                <div style="width: 80%;">
-                  <h5 class="card-title"> Boletos gerados: <%= @boletos.size %> </h5>
-                  <%= 0 %>
-                </div>
-                <div>
-                  <img src="<%= asset_path( 'boleto-icon.png' ) %>" alt="Cartao" class="img-fluid d-block mx-auto">
-                </div>
-              </div>
-              <div class="card-text">
-                <div class="details">
-                    <div>Site:</div>
-                    <div><%= 0 %></div>
-                </div>
-                <div class="details">
-                  <div>Call center:</div>
-                  <div><%= 0 %></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row spacing">
-          <div class="col-6">
-            <div class="card">
-              <div class="card-body details">
-                <div style="width: 80%;">
-                  <h5 class="card-title"> Reembolsos: <%= 0 %> </h5>
-                  R$ <%= 0  %>
-                </div>
-                <div>
-                  <img src="<%= asset_path( 'refund-icon.png' ) %>" alt="Refund" class="img-fluid d-block mx-auto">
-                </div>
-              </div>
-              <div class="card-text">
-                <div class="details">
-                    <div>Estorno:</div>
-                    <div><%= 0 %></div>
-                    <div>R$ <%= 0 %></div>
-                </div>
-                <div class="details">
-                  <div>Chargeback:</div>
-                  <div><%= 0 %></div>
-                  <div>R$ <%= 0 %></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-6">
-            <div class="card">
-              <div class="card-body details">
-                <div style="width: 80%;">
-                  <h5 class="card-title"> SMS </h5>
-                </div>
-                <div>
-                  <img src="<%= asset_path( 'sms.png' ) %>" alt="Refund" class="img-fluid d-block mx-auto">
-                </div>
-              </div>
-              <div class="card-text">
-                <div class="details">
-                    <div>Total:</div>
-                    <div><%= 0 %></div>
-                    <div>R$ <%= 0 %></div>
-                </div>
-              </div>
-            </div>
-          </div> 
-        </div>
-      </div>
-      <div class="col-6" data-controller="chart">
-        <div>
-          <h4>Vendas </h4>
-          <%= area_chart admin_charts_values_path, ytitle: 'Total', legend: true, prefix: 'R$', thousands: ".",  label: "value" %>
-        </div>
-        <div>
-          <div class="col-6">
-            
-          </div>
-          <div class="col-6">
-            
-          </div>
-        </div>
-      </div>
-    </div>
+<div class="text-center">
+  <h1>Dashboard de Vendas</h1>
+</div>
+
+
+<div class="control-panel d-flex pt-3 justify-content-between">
+  <div class="current-month">
+    <h4 class="pl-4">Dados de: <%= @start_date %> até <%= @end_date %></h4>
+  </div>
+  <div class="filter-form pr-4">
+    <form action="/" method="get">
+      <input type="date" name="start_date" placeholder="Data Inicial">
+      <input type="date" name="end_date" placeholder="Data Final">
+       <input type="submit">
+    </form>
   </div>
 </div>
- -->
+
+
+<div class="kpi-grid text-center">
+  <div class="main-kpi p-4">
+    <h5>R$ <%= @total_sold %> </h5>
+    <h6>Vendas</h6>
+  </div>
+  <div class="main-kpi p-4">
+    <h5>R$ <%= @average_ticket %></h5>
+    <h6>Ticket Médio</h6>
+  </div>
+  <div class="main-kpi p-4">
+    <h5><%= @paid_orders.count %></h5>
+    <h6>Pedidos Pagos</h6>
+  </div>
+
+  <div class="main-kpi p-4">
+    <h5><%= @orders.count %></h5>
+    <h6>Pedidos Totais</h6>
+  </div>
+</div>
+
+<div class="chart-grid">
+  <div class="first-column">
+    <div class="chart-item">
+      <%= pie_chart({"Cartão" => @period_card, "Boleto" => @period_boleto}, donut: true, title: "Cartão x Boleto", legend: "bottom", width: "240px", height: "200px", thousands: ".", decimal: ",", library: {backgroundColor: "#ffffff"} )%>
+    </div>
+    <div class="chart-item">
+      <%= pie_chart({"Pagos" => @paid_orders.count, "Em Aberto" => (@orders.count - @paid_orders.count)}, donut: true, title: "Pedidos em Aberto", legend: "bottom", width: "240px", height: "200px", thousands: ".", decimal: ",", library: {backgroundColor: "#ffffff"} )%>
+    </div>
+  </div>
+
+  <div class="large-chart-item">
+    <%= column_chart @last_sales, title: "Evolução das Vendas" , width: "650px", height: "400px", thousands: ".", decimal: ",", library: {backgroundColor: "#ffffff"} %>
+  </div>
+
+
+</div>
+
+
+

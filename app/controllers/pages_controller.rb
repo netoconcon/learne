@@ -3,12 +3,61 @@ class PagesController < ApplicationController
   layout "admin"
 
   def home
-    initial_date
-    @date = params[:sales_date]
-    date_overview
-    order_card
-    order_boleto
-    boleto_generated
+    if params[:start_date] || params[:end_date]
+      @start_date = params[:start_date]
+      @end_date = params[:end_date]
+    else
+      current_month = Date.today.at_beginning_of_month
+      @start_date = Date.today.at_beginning_of_month
+      @end_date = Date.today.end_of_month
+    end
+
+    @orders = get_order_from_period(@start_date, @end_date)
+    @paid_orders = @orders.select { |order| order.status == "completed" }
+    @total_sold = total_orders_sum(@paid_orders)
+    @average_ticket = @total_sold / @paid_orders.count unless @paid_orders.count.zero?
+
+    @period_card = period_card(@orders)
+    @period_boleto = period_boleto(@orders)
+
+    @last_sales = Order.where(status == "completed").group_by_month(:created_at, last:5, format: "%d/%m").sum('orders.amount')
+  end
+
+  def period_card(orders)
+    sum = 0
+    orders.each do |order|
+      sum += order.amount if order.payment_method
+    end
+    sum
+  end
+
+  def period_boleto(orders)
+    sum = 0
+    orders.each do |order|
+      sum += order.amount unless order.payment_method
+    end
+    sum
+  end
+
+  def total_orders_sum(orders)
+    sum = 0
+    orders.each do |order|
+      sum += order.amount
+    end
+    sum / 100 unless sum.zero?
+  end
+
+  def get_order_from_period(start_date, end_date)
+    orders = Order.all
+
+    unless start_date.nil?
+      orders = orders.select { |order| order.created_at >= start_date}
+    end
+
+    unless end_date.nil?
+      orders = orders.select { |order| order.created_at <= end_date}
+    end
+    orders
   end
 
   def thanks
@@ -16,6 +65,9 @@ class PagesController < ApplicationController
   end
 
   private
+
+  def dash_filter
+  end
 
   def initial_date
     if params[:sales_date] == nil
