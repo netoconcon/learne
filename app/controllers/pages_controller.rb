@@ -13,13 +13,30 @@ class PagesController < ApplicationController
     end
 
     @orders = get_order_from_period(@start_date, @end_date)
-    @total_sold = total_orders_sum(@orders)
-    @average_ticket = @total_sold / @orders.count unless @orders.count.zero?
+    @paid_orders = @orders.select { |order| order.status == "completed" }
+    @total_sold = total_orders_sum(@paid_orders)
+    @average_ticket = @total_sold / @paid_orders.count unless @paid_orders.count.zero?
 
-  
+    @period_card = period_card(@orders)
+    @period_boleto = period_boleto(@orders)
 
+    @last_sales = Order.where(status == "completed").group_by_month(:created_at, last:5, format: "%d/%m").sum('orders.amount')
+  end
 
-    
+  def period_card(orders)
+    sum = 0
+    orders.each do |order|
+      sum += order.amount if order.payment_method
+    end
+    sum
+  end
+
+  def period_boleto(orders)
+    sum = 0
+    orders.each do |order|
+      sum += order.amount unless order.payment_method
+    end
+    sum
   end
 
   def total_orders_sum(orders)
@@ -27,7 +44,7 @@ class PagesController < ApplicationController
     orders.each do |order|
       sum += order.amount
     end
-    sum
+    sum / 100 unless sum.zero?
   end
 
   def get_order_from_period(start_date, end_date)

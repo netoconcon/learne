@@ -24,7 +24,6 @@ class Order < ApplicationRecord
       case pagarme_status
       when "paid"
         self.status = "completed"
-        # self.paid = true
       when "pending_payment"
         self.status = "pending_payment"
       when "unpaid"
@@ -36,10 +35,6 @@ class Order < ApplicationRecord
       end
       self.save
     end
-  end
-
-  def humanize_status
-    raise
   end
 
   private
