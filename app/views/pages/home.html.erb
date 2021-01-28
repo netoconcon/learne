@@ -40,10 +40,10 @@
 <div class="chart-grid">
   <div class="first-column">
     <div class="chart-item">
-      <%= pie_chart({"Cartão" => @period_card, "Boleto" => @period_boleto}, donut: true, title: "Cartão x Boleto", legend: "bottom", width: "240px", height: "200px", thousands: ".", decimal: ",", library: {backgroundColor: "#ffffff"} )%>
+      <%= pie_chart({"Cartão" => @period_card, "Boleto" => @period_boleto}, donut: true, title: "Cartão x Boleto", legend: "bottom", width: "230px", height: "200px", thousands: ".", decimal: ",", library: {backgroundColor: "#ffffff"} )%>
     </div>
     <div class="chart-item">
-      <%= pie_chart({"Pagos" => @paid_orders.count, "Em Aberto" => (@orders.count - @paid_orders.count)}, donut: true, title: "Pedidos em Aberto", legend: "bottom", width: "240px", height: "200px", thousands: ".", decimal: ",", library: {backgroundColor: "#ffffff"} )%>
+      <%= pie_chart({"Pagos" => @paid_orders.count, "Em Aberto" => (@orders.count - @paid_orders.count)}, donut: true, title: "Pedidos em Aberto", legend: "bottom", width: "230px", height: "200px", thousands: ".", decimal: ",", library: {backgroundColor: "#ffffff"} )%>
     </div>
   </div>
 
