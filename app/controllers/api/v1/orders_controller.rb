@@ -35,6 +35,7 @@ class Api::V1::OrdersController < Api::V1::BaseController
           order.status = "refused"
         end
       end
+        order.save
 
     else
       puts "Postback não autorizado"

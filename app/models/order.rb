@@ -17,24 +17,24 @@ class Order < ApplicationRecord
   normalize_attributes :cpf, with: [:cpf]
 
   def order_status
-    unless self.pagarme_transaction_id.nil?
-      transaction = PagarMe::Transaction.find_by_id(self.pagarme_transaction_id.to_i) 
-      pagarme_status = transaction["status"]
+    # unless self.pagarme_transaction_id.nil?
+    #   transaction = PagarMe::Transaction.find_by_id(self.pagarme_transaction_id.to_i) 
+    #   pagarme_status = transaction["status"]
 
-      case pagarme_status
-      when "paid"
-        self.status = "completed"
-      when "pending_payment"
-        self.status = "pending_payment"
-      when "unpaid"
-        self.status = "refused"
-      when "canceled"
-        self.status = "refused"
-      else
-        self.status = "refused"
-      end
-      self.save
-    end
+    #   case pagarme_status
+    #   when "paid"
+    #     self.status = "completed"
+    #   when "pending_payment"
+    #     self.status = "pending_payment"
+    #   when "unpaid"
+    #     self.status = "refused"
+    #   when "canceled"
+    #     self.status = "refused"
+    #   else
+    #     self.status = "refused"
+    #   end
+    #   self.save
+    # end
   end
 
   private
