@@ -37,7 +37,7 @@
   }
 
 .upsell-selection {
-  
+
 }
 
 
@@ -96,14 +96,46 @@
   padding: 10px;
   font-weight: bold;
   border-top: 2px solid;
-} 
+}
+
+.card-trip {
+  overflow: hidden;
+  background: white;
+  width: 97%;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  margin-bottom: 20px;
+}
+
+.card-trip > img {
+  height: 300px;
+  width: 100%;
+  object-fit: cover;
+}
 
 
 @media(max-width: 992px) {
 
+  .card-trip {
+    overflow: hidden;
+    background: white;
+    width: 95%;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    margin: auto;
+    margin-bottom: 20px;
+  }
+
 }
 
 @media(max-width: 768px) {
+
+  .card-trip {
+    overflow: hidden;
+    background: white;
+    width: 92%;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    margin: auto;
+    margin-bottom: 20px;
+  }
 
   .tab-pane{
     width: 100%;
