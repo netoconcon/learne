@@ -21,6 +21,8 @@ class PagesController < ApplicationController
     @period_boleto = period_boleto(@orders)
 
     @last_sales = Order.where(status == "completed").group_by_month(:created_at, last:5, format: "%d/%m").sum('orders.amount / 100')
+
+    @low_inventories = Inventory.where('flag_quantities > quantity')
   end
 
   def period_card(orders)
