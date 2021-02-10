@@ -41,16 +41,16 @@
           <%= order.customer.email %>
         </div>
         <div class="order-medium-item">
-          <%= order.paid %>
+          <%= humanize_order_paid(order.paid)  %>
         </div>
         <div class="order-medium-item">
-          <%= order.status %>
+          <%= humanize_order_status(order.status)  %>
         </div>
         <div class="order-medium-item">
-          <%= order.payment_method %>
+          <%= humanize_order_payment_method(order.payment_method)  %>
         </div>
         <div class="order-medium-item">
-          REVISAR
+          <%= humanize_order_total_value(order) %>
         </div>
         <div class="order-small-item">
           <%= link_to admin_order_path(order) do %>
