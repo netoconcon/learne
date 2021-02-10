@@ -1,3 +1,72 @@
+<div class="container">
+  <h2>Pedidos</h2>
+
+  <div class="card-product-header">
+    <div class="order-small-item">
+      <strong>Id</strong>
+    </div>
+    <div class="order-medium-item">
+      <strong>Usuário</strong>
+    </div>
+    <div class="order-medium-item">
+      <strong>Email</strong>
+    </div>
+    <div class="order-medium-item">
+      <strong>Status - NOVO</strong>
+    </div>
+    <div class="order-medium-item">
+      <strong>Status</strong>
+    </div>
+    <div class="order-medium-item">
+      <strong>Pagamento</strong>
+    </div>
+    <div class="order-medium-item">
+      <strong>Valor Total</strong>
+    </div>
+    <div class="order-small-item">
+      <strong>Infos</strong>
+    </div>
+  </div>
+
+  <% if @orders.present? %>
+    <% @orders.each do |order| %>
+      <div class="card-product">
+        <div class="order-small-item">
+          <%= order.id %>
+        </div>
+        <div class="order-medium-item">
+          <%= order.customer.name %>
+        </div>
+        <div class="order-medium-item">
+          <%= order.customer.email %>
+        </div>
+        <div class="order-medium-item">
+          <%= humanize_order_paid(order.paid)  %>
+        </div>
+        <div class="order-medium-item">
+          <%= humanize_order_status(order.status)  %>
+        </div>
+        <div class="order-medium-item">
+          <%= humanize_order_payment_method(order.payment_method)  %>
+        </div>
+        <div class="order-medium-item">
+          <%= humanize_order_total_value(order) %>
+        </div>
+        <div class="order-small-item">
+          <%= link_to admin_order_path(order) do %>
+            <i class="fa fa-info-circle"></i>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
+
+
+
+
+
 <div class="container" data-controller="table">
   <h2>Pedidos</h2>
 

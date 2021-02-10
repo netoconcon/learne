@@ -50,9 +50,28 @@
   <div class="large-chart-item">
     <%= column_chart @last_sales, title: "Evolução das Vendas" , width: "650px", height: "400px", thousands: ".", decimal: ",", library: {backgroundColor: "#ffffff"} %>
   </div>
-
-
 </div>
+
+<div class="kpi-grid text-center">
+  <div class="main-kpi p-4">
+    <h5><strong>Estoque de Emergência</strong> </h5>
+    <!-- <h6>Vendas</h6> -->
+  </div>
+  <div class="main-kpi p-4">
+    <h5><strong>A Retirar Pagarme</strong> </h5>
+  </div>
+  <div class="main-kpi p-4">
+<!--     <h5><%= @paid_orders.count %></h5>
+    <h6>Pedidos Pagos</h6> -->
+  </div>
+
+  <div class="main-kpi p-4">
+<!--     <h5><%= @orders.count %></h5>
+    <h6>Pedidos Totais</h6> -->
+  </div>
+</div>
+
+<%= @low_inventories.first.product.name %>
 
 
 

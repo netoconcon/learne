@@ -5,9 +5,17 @@
 
     <div class="mt-4 mb-4 checkout-banner">
       <% if @order.kit.banner.attached? %>
-        <%= cl_image_tag @order.kit.banner.key, width: "1070px", height: "300px", style: "" %>
+        <%#= cl_image_tag @order.kit.banner.key, style: "" %>
       <% else %>
-        <%= image_tag "banner_vmd3.png", width: "1070px", height: "300px", style: "" %>
+        <%#= image_tag "banner_vmd3.png", width: "1070px", height: "300px", style: "" %>
+      <% end %>
+    </div>
+
+    <div class="card-trip">
+      <% if @order.kit.banner.attached? %>
+        <%= cl_image_tag @order.kit.banner.key, style: "" %>
+      <% else %>
+        <%#= image_tag "banner_vmd3.png", width: "1070px", height: "300px", style: "" %>
       <% end %>
     </div>
 
@@ -147,7 +155,7 @@
                       <div class="col-12 col-sm-6 mb-1">
                         <%= f.input :credit_card_expiration_year, label: "Ano de expiração do cartão", as: :select, collection: year_list, prompt:"Ano" %>
                       </div>
-                    
+
 
                       <div class="col-12 col-sm-6">
                         <%= f.input :credit_card_cvv, label: "Cód. de segurança", placeholder: "3 ou 4 dígitos", input_html: { data: { js: "numbers" } }, maxlength: 4 %>
@@ -171,7 +179,7 @@
                                 <div>
                                   <h5>
                                     <%= @order.upsell_product.name.capitalize %>
-                                  </h5> 
+                                  </h5>
                                   <h6>
                                     <%= @order.kit.copy %>
                                   </h6>
@@ -200,7 +208,7 @@
                       <h5 class="col-12 col-md-12" style="margin-left: -14px" data-target="upsell.creditCardProductPrice" data-product-price="<%= @order.kit.amount %>">
                         <%="Produtos: #{number_to_currency(@order.kit.amount, unit: "R$ ")}" %>
                       </h5>
-                        <%= "Frete: #{order_shipping(@order)}" %>                            
+                        <%= "Frete: #{order_shipping(@order)}" %>
                       <div>
                       </div>
                       <div data-target="upsell.creditCardTotal" data-total="<%= @order.kit.amount + @order.kit.shipment_cost %>">
@@ -248,7 +256,7 @@
                                     <div>
                                       <h5>
                                         <%= @order.upsell_product.name.capitalize %>
-                                      </h5> 
+                                      </h5>
                                       <h6>
                                         <%= @order.kit.copy %>
                                       </h6>
@@ -277,7 +285,7 @@
                           </h5>
                           <div style="margin-left: 0px;">
                             <div style="margin-left: 45px;" >
-                              <%= "Frete: #{order_shipping(@order)}" %>                            
+                              <%= "Frete: #{order_shipping(@order)}" %>
                             </div>
                             <div style="margin-left: 45px;" data-target="upsell.bankSlipTotal" data-total="<%= @order.kit.amount + @order.kit.shipment_cost %>">
                               <%= "Total: #{number_to_currency(@order.kit.amount + @order.kit.shipment_cost, unit: "R$ ")}" %>
