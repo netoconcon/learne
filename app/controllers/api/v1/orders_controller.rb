@@ -16,6 +16,7 @@ class Api::V1::OrdersController < Api::V1::BaseController
         case postback_status
         when "paid"
           order.status = "completed"
+          order.paid = true
         when "waiting_payment"
           order.status = "pending_payment"
         when "unpaid"
