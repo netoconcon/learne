@@ -12,10 +12,13 @@
       <strong>Email</strong>
     </div>
     <div class="order-medium-item">
+      <strong>Status - NOVO</strong>
+    </div>
+    <div class="order-medium-item">
       <strong>Status</strong>
     </div>
     <div class="order-medium-item">
-      <strong>Tipo de Pagamento</strong>
+      <strong>Pagamento</strong>
     </div>
     <div class="order-medium-item">
       <strong>Valor Total</strong>
@@ -36,6 +39,9 @@
         </div>
         <div class="order-medium-item">
           <%= order.customer.email %>
+        </div>
+        <div class="order-medium-item">
+          <%= order.paid %>
         </div>
         <div class="order-medium-item">
           <%= order.status %>
