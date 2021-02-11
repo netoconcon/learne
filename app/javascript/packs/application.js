@@ -15,7 +15,7 @@ require("chart.js")
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
-
+import { filterByName } from '../components/filter_order';
 
 // ----------------------------------------------------
 // Note(lewagon): ABOVE IS RAILS DEFAULT CONFIGURATION
