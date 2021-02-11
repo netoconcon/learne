@@ -11,7 +11,8 @@ class Pm::Adapter::Transaction
     @payload = {
         amount: final_price.to_i,
         installments: @order.installments.to_i,
-        postback_url: "http://www.pay.learne.com.br/orders/#{@order.id}/postback/",
+        postback_url: "https://www.learnesaude.com.br/orders/#{@order.id}/postback/",
+        # postback_url: 'https://480fdb49561698f4ad2a5e50eef83365.m.pipedream.net',
         payment_method: @order.payment_method ? "credit_card" : "boleto",
         customer: {
             external_id: @order.customer.id.to_s,
@@ -21,9 +22,8 @@ class Pm::Adapter::Transaction
             email: @order.customer.email,
             documents: [
                 {
-                    type: "cpf",
-                    number: @order.cpf.gsub(".","").gsub("-","")
-
+                  type: "cpf",
+                  number: @order.cpf.gsub(".","").gsub("-","")
                 }
             ],
             phone_numbers: ["+55" + @order.customer.phone.gsub("(","").gsub(")","").gsub(" ","").gsub("-","")],
@@ -71,7 +71,7 @@ class Pm::Adapter::Transaction
   private
     def order_items
       kit_price = @order.amount
-      
+
       @order.kit.kit_products.map do |order_product|
         quantity = order_product.quantity
         item_price = kit_price / quantity
@@ -84,7 +84,7 @@ class Pm::Adapter::Transaction
             tangible: true
         }
 
-        # hash << upsell 
+        # hash << upsell
       end
     end
 end
