@@ -13,6 +13,9 @@ class Api::V1::OrdersController < Api::V1::BaseController
         order = Order.find(params[:id])
         postback_status = payload['current_status']
         # postback_old_status = payload['old_status']
+        order.boleto_url = payload['boleto_url']
+        order.boleto_bar_code = payload['boleto_bar_code']
+
         case postback_status
         when "paid"
           order.status = "completed"
