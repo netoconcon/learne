@@ -1,22 +1,19 @@
 const downcaseAndNoAccents = text => text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
 const filterByName = (event) => {
-  const orders = document.querySelectorAll('.product-item');
+  const orders = document.querySelectorAll('.card-product');
+  console.log(orders)
   const name_to_find = downcaseAndNoAccents(event.currentTarget.value);
-  orders.forEach(ticket => {
-    const customer = downcaseAndNoAccents(ticket.dataset.customerName) + downcaseAndNoAccents(ticket.dataset.customerEmail);
+  console.log(name_to_find);
+  orders.forEach(order => {
+    const customer = downcaseAndNoAccents(order.dataset.customerName) + downcaseAndNoAccents(order.dataset.customerEmail) + downcaseAndNoAccents(order.dataset.orderId) + downcaseAndNoAccents(order.dataset.newStatus) + downcaseAndNoAccents(order.dataset.orderStatus) + downcaseAndNoAccents(order.dataset.paymentMethod) ;
     // const locator = downcaseAndNoAccents(ticket.dataset.ticketLocator);
     if ((customer).search(name_to_find) === -1) {
-      ticket.classList.add('d-none');
+      order.classList.add('d-none');
     } else {
-      ticket.classList.remove('d-none');
+      order.classList.remove('d-none');
     }
   })
 };
-
-
-const filterByDate = () => {
-
-}
 
 export { filterByName };
