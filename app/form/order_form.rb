@@ -68,6 +68,9 @@ class OrderForm
     order.refused_reason = transaction.refused_reason
     order.boleto_url = transaction.boleto_url
     order.boleto_bar_code = transaction.boleto_barcode
+    if order.status == "completed" && order.payment_method
+      order.paid = true
+    end
     order.pagarme_transaction_id = transaction.id.to_i
     order.save!
   end
