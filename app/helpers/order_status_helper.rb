@@ -6,7 +6,7 @@ module OrderStatusHelper
       else
         "Pendente"
       end
-  	elsif status == "pending_payment"
+  	elsif order.status == "pending_payment"
   		"Não Processado"
   	else
   		"Recusada"
