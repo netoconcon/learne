@@ -1,0 +1,28 @@
+<div class="container">
+  <%= transaction = PagarMe::Transaction.find_by_id(@order.pagarme_transaction_id.to_i) %>
+
+  <%= simple_form_for [:admin, @order] do |f| %>
+    <%= f.input :paid %>
+    <%= f.input :installments %>
+    <%= f.input :kit_id %>
+    <%= f.input :payment_method %>
+    <%= f.input :price %>
+    <%= f.input :address_id %>
+    <%= f.input :customer_id %>
+    <%= f.input :pagarme_transaction_id %>
+    <%= f.input :boleto_url %>
+    <%= f.input :boleto_bar_code %>
+    <%= f.input :upsell_product %>
+    <%= f.input :refused_reason %>
+    <%= f.input :status %>
+    <%= f.input :cpf %>
+    <%= f.input :insts %>
+    <%= f.input :amount %>
+    <%= f.input :expiration_date %>
+    <%= f.submit  %>
+  <% end %>
+</div>
+
+
+
+
