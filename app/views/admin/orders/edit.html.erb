@@ -1,5 +1,8 @@
 <div class="container">
-  <%= transaction = PagarMe::Transaction.find_by_id(@order.pagarme_transaction_id.to_i) %>
+  <%= PagarMe::Transaction.find_by_id(@order.pagarme_transaction_id.to_i) %>
+
+
+  <hr>
 
   <%= simple_form_for [:admin, @order] do |f| %>
     <%= f.input :paid %>
