@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  mount RailsAdmin::Engine => '/boss', as: 'rails_admin'
   draw :admin
   draw :public
   draw :payment
