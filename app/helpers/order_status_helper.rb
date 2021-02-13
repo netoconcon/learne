@@ -1,16 +1,16 @@
 module OrderStatusHelper
   def humanize_order_status(order)
-  	if order.status == "completed"
-  		if order.paid
-        "Paga"
+  	if order.paid
+      "Paga"
+    else
+      if order.status == "completed"
+        "Em Aberto"
+      elsif order.status == "pending_payment"
+        "Em aberto"
       else
-        "Pendente"
+        "Recusada"
       end
-  	elsif order.status == "pending_payment"
-  		"Não Processado"
-  	else
-  		"Recusada"
-  	end
+    end
   end
 
   def humanize_order_paid(paid)
