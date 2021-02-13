@@ -1,5 +1,5 @@
 <div class="container">
-  <%= PagarMe::Transaction.find_by_id(@order.pagarme_transaction_id.to_i) %>
+  <%= PagarMe::Transaction.find_by_id(@order.pagarme_transaction_id.to_i).status %>
 
 
   <hr>
