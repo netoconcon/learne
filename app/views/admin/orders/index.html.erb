@@ -36,7 +36,7 @@
 
   <% if @orders.present? %>
     <% @orders.each do |order| %>
-      <div class="card-product" data-customer-name="<%= order.customer.name %>" data-customer-email="<%= order.customer.email %>" data-order-id="<%= order.id %>" data-new-status="<%= humanize_order_paid(order.paid) %>" data-order-status="<%= humanize_order_status(order.status) %>" data-payment-method="<%=humanize_order_payment_method(order.payment_method) %>">
+      <div class="card-product" data-customer-name="<%= order.customer.name %>" data-customer-email="<%= order.customer.email %>" data-order-id="<%= order.id %>" data-new-status="<%= humanize_order_paid(order.paid) %>" data-order-status="<%= humanize_order_status(order) %>" data-payment-method="<%=humanize_order_payment_method(order.payment_method) %>">
         <div class="order-small-item">
           <%= order.id %>
         </div>
