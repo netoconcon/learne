@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
-layout "public"
-skip_before_action :authenticate_user!
+  layout "public"
+  skip_before_action :authenticate_user!
+  before_action :get_infos, only: :thanks
 
   def new
     kit = Kit.find_by_slug(params[:kit_slug])
@@ -42,6 +43,12 @@ skip_before_action :authenticate_user!
 
   private
 
+  def get_infos
+    order = Order.find(params[:format].to_i)
+    order.get_order_infos
+  end
+
+
   def order_params
     params.require(:order).permit(
         :installments,
@@ -75,7 +82,7 @@ skip_before_action :authenticate_user!
         :amount
     )
   end
-  
+
   def reduce_inventory(order)
     order.kit.kit_products.each do |kit_product|
       quantity = kit_product.quantity
