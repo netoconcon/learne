@@ -1,5 +1,5 @@
 namespace :admin do
-  resources :orders, only: [:index, :show]
+  resources :orders, only: [:index, :show, :edit, :update]
   resources :companies do
     resources :bank_accounts
   end
