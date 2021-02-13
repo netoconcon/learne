@@ -15,7 +15,7 @@ class Admin::OrdersController < ApplicationController
 
   def update
     @order = Order.find(params[:id])
-    if @order.update
+    if @order.update(order_params)
       redirect_to admin_order_path(@order)
     else
       render :edit
@@ -25,6 +25,7 @@ class Admin::OrdersController < ApplicationController
   private
 
   def order_params
-
+    params.require(:order).permit(:paid, :installments, :kit_id, :payment_method, :price, :address_id, :customer_id, :pagarme_transaction_id, :boleto_url, :boleto_bar_code, :upsell_product, :refused_reason, :status, :cpf, :insts, :amount, :expiration_date)
   end
 end
+
