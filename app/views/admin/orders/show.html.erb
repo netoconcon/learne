@@ -1,12 +1,47 @@
+<div class="order-container">
+  <h1 class="pl-4">Detalhes do Pedido</h1>
+  <div class="d-flex">
+    <div class="product-info">
+      <h3>Informações do Produto:</h3>
+      
+      <h4><%= @order.kit.name.capitalize %></h4>
+
+      <br>
+      <p>Valor do Kit: <%= number_to_currency(@order.amount.fdiv(100) , unit: "R$ ", separator: ",")  %></p>
+      <p>Frete: <%= number_to_currency( (@order.kit.shipment_cost_cents.fdiv(100)) , unit: "R$ ", separator: ",")  %></p>
+      <p>Total:  <%= number_to_currency( ((@order.amount.to_i + @order.kit.shipment_cost_cents).fdiv(100)) , unit: "R$ ", separator: ",")  %> </p>      
+    </div>
+    <div class="order-info">
+      <h3>Informações do Pedido:</h3>
+      <br>
+      <h5>Pedido N° <%= @order.id %></h5>
+      <p>Número de Parcelas: <%= @order.installments %></p>
+
+      <% unless @order.payment_method %>
+        <p>Forma de Pagamento: Boleto</p>
+
+        <p>Código de Barra: <%= @order.boleto_bar_code %></p>
+
+        <%= link_to "Ver Boleto", @order.boleto_url, target:"_blank", class:"btn btn-primary" %>
+      <% else %>
+        <p>Forma de pagamento: Cartão de Crédito</p>
+      <% end %>
+      <br>
+      <br>
+      <p>Horário: <%= @order.created_at.strftime("%H:%m do dia %d-%m-%Y") %></p>
+      <p>Status: <%= humanize_order_status(@order) %></p>
+    </div>
+  </div>
+</div>
+
+
 <div class="container">
-  <h2>Detalhes</h2>
+  <h2>Informações do Usuário:</h2>
   <div>
-    <h5>Pedido N° <%= @order.id %></h5>
-    <p>Criado as <%= @order.created_at.strftime("%H:%m do dia %d-%m-%Y") %></p>
     <p>Usuário: <%= "#{@order.customer.first_name} #{@order.customer.last_name}"%></p>
     <p>Email: <%= @order.customer.email %></p>
-    <p>Status: <%= humanize_order_status(@order.status) %></p>
-    <p>Valor: <%= number_to_currency(@order.kit.amount, unit: "R$ ", separator: ",") %></p>
+    
+  
     <div>
       <p>Rua: <%= Address.find(@order.address_id).street %></p>
       <p>Numero: <%= Address.find(@order.address_id).number %></p>
