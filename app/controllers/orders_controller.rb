@@ -49,7 +49,6 @@ class OrdersController < ApplicationController
       transaction = PagarMe::Transaction.find_by_id(order.pagarme_transaction_id.to_i)
       order.boleto_url = transaction["boleto_url"]
       order.boleto_bar_code = transaction["boleto_barcode"]
-      order.expiration_date = transaction["boleto_expiration_date"]
       order.save
     end
   end
