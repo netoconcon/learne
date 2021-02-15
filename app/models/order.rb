@@ -6,6 +6,8 @@ class Order < ApplicationRecord
   belongs_to :customer
   has_many :visits
 
+  after_create :get_order_infos
+
   enum status: {
       pending_payment: 0,   # User completed the checkout, we must wait confirmation
       completed: 1,         # Everything went fine.
@@ -21,7 +23,6 @@ class Order < ApplicationRecord
       transaction = PagarMe::Transaction.find_by_id(self.pagarme_transaction_id.to_i)
       self.boleto_url = transaction["boleto_url"]
       self.boleto_bar_code = transaction["boleto_barcode"]
-      self.expiration_date = transaction["boleto_expiration_date"]
       self.save
     end
   end
