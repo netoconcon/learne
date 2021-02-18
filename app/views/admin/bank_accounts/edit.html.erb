@@ -7,7 +7,7 @@
       <%= f.input :bank_name, label: 'Banco', collection: banklist, input_html: { "data-target" => 'select2.select2 filter.filter', 'data-action' => 'change->filter#connect' } %>
       <%= f.input :agency_number, label: 'Agencia', input_html: { "data-js" => "agency", maxlength: 5} %>
       <%= f.input :account_number, label: 'Conta' %>
-      <%= f.button :submit, 'Editar', class: "btn btn-primary" %>
+      <%= f.button :submit, 'Salvar', class: "btn btn-primary" %>
     <% end %>
   </div>
 </div>
