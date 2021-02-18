@@ -44,7 +44,7 @@
           <%= order.customer.email %>
         </div>
         <div class="order-medium-item">
-          <%= humanize_order_status(order)  %>
+          <%= render 'tags', status: humanize_order_status(order) %>
         </div>
         <div class="order-medium-item">
           <%= humanize_order_payment_method(order.payment_method)  %>
