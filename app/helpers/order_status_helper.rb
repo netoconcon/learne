@@ -6,7 +6,7 @@ module OrderStatusHelper
       if order.status == "completed"
         "Em Aberto"
       elsif order.status == "pending_payment"
-        "Em aberto"
+        "Em Aberto"
       else
         "Recusada"
       end
