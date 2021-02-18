@@ -1,0 +1,23 @@
+.order-status-tag{
+  margin: 1px 5px;
+}
+
+.status-paid{
+  background-color: $success;
+  color: white;
+}
+
+.status-waiting{
+  background-color: $primary;
+  color: white;
+}
+
+.status-refused{
+  background-color: $danger;
+  color: white;
+}
+
+.status-vencida{
+  background-color: $warning;
+  color: white;
+}
