@@ -17,7 +17,7 @@
       <% @kits.each do |kit| %>
         <tr class="<%= cycle('list_line_odd', 'list_line_even') -%>">
           <th scope="row"><%= kit.id %></th>
-          <td>imagem</td>
+          <td><%= image_tag kit.banner, height: 75 if kit.banner.attached? %></td>
           <td><%= kit.name %></td>
           <td><%= link_to "#{root_url}#{kit.slug}", "#{root_url}#{kit.slug}", target: "_blank", class: "text-decoration-none" %> </td>
           <td>

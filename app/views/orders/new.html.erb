@@ -206,13 +206,13 @@
 
                     <!-- <h5 class="col-12 col-md-12"> -->
                       <h5 class="col-12 col-md-12" style="margin-left: -14px" data-target="upsell.creditCardProductPrice" data-product-price="<%= @order.kit.amount %>">
-                        <%="Produtos: #{number_to_currency(@order.kit.amount, unit: "R$ ")}" %>
+                        <%#="Produtos: #{number_to_currency(@order.kit.amount, unit: "R$ ")}" %>
                       </h5>
-                        <%= "Frete: #{order_shipping(@order)}" %>
+                        <%#= "Frete: #{order_shipping(@order)}" %>
                       <div>
                       </div>
                       <div data-target="upsell.creditCardTotal" data-total="<%= @order.kit.amount + @order.kit.shipment_cost %>">
-                        <%= "Total: #{number_to_currency(@order.kit.amount + @order.kit.shipment_cost, unit: "R$ ")}" %>
+                        <%#= "Total: #{number_to_currency(@order.kit.amount + @order.kit.shipment_cost, unit: "R$ ")}" %>
                       </div>
                     <!-- </h5> -->
                     <div class="form-group w-100">
