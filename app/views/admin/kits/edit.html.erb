@@ -15,7 +15,7 @@
         </div> 
         <div class="size">
           <% if @kit.banner.attached? %>
-            <%= image_tag @kit.banner %>
+            <%= image_tag @kit.banner, height: 100, class: "mr-5" %>
           <% end %>
           <%= f.input :banner, as: :file, label: "Foto do Banner largura:1070px, altura: 300px" %>
         </div>       
