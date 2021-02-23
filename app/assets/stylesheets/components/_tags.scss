@@ -8,16 +8,16 @@
 }
 
 .status-waiting{
-  background-color: $primary;
+  background-color: $warning;
   color: white;
 }
 
 .status-refused{
-  background-color: $danger;
+  background-color: $info;
   color: white;
 }
 
 .status-vencida{
-  background-color: $warning;
+  background-color: $danger;
   color: white;
 }
