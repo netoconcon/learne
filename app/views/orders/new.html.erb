@@ -24,7 +24,7 @@
       <div class="col-sm-12 col-md-6 checkout-columns">
         <div class="card mb-4">
           <div class="card-header text-center">
-            <h4>1 - Para Onde Enviamos Seu Pedido?</h4>
+            <h4><strong>1 - Para Onde Enviamos Seu Pedido?</strong></h4>
           </div>
 
           <div class="card-body">
@@ -108,13 +108,13 @@
       <div class="col-sm-12 col-md-6 checkout-columns">
         <div class="card">
           <div class="card-header text-center">
-            <h4>2 - Selecionar Pagamento</h4>
+            <h4><Strong>2 - Selecionar Pagamento</Strong></h4>
           </div>
 
           <div class="card-body">
             <div class="nav nav-tabs">
-              <p class="nav-link active show border" data-action="click->payment-method#creditCard" data-target="payment-method.cardBtn">Cartão de Crédito</p>
-              <p class="nav-link show border" data-action="click->payment-method#bankSlip" data-target="payment-method.slipBtn">Boleto</p>
+              <p class="nav-link active show border" data-action="click->payment-method#creditCard" data-target="payment-method.cardBtn"><strong>Cartão de Crédito</strong></p>
+              <p class="nav-link show border" data-action="click->payment-method#bankSlip" data-target="payment-method.slipBtn"><strong>Boleto</strong></p>
               <div id="credit-card" data-target="payment-method.creditCard">
                 <div class="tab-content mt-4">
                   <div class="tab-pane fade show active">
@@ -162,8 +162,6 @@
                       </div>
                     </div>
 
-                    <br>
-
                   <% if @order.kit.possale %>
                     <% if @order.upsell_product %>
                       <div class="row mb-2 w-100 justify-content-center">
@@ -197,12 +195,6 @@
                       </div>
                     <% end %>
                   <% end %>
-
-
-
-
-
-                    <hr>
 
                     <!-- <h5 class="col-12 col-md-12"> -->
                       <h5 class="col-12 col-md-12" style="margin-left: -14px" data-target="upsell.creditCardProductPrice" data-product-price="<%= @order.kit.amount %>">
