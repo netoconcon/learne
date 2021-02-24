@@ -5,14 +5,13 @@ class OrderForm
   include Address::Validation, User::Validation, Order::Validation
   #TO DO CHANGE LINE 5 FOR CUSTOMER AND CREATE A CUSTOMER VALIDATION
 
-  delegate :model_name, :to_param, :persisted?, to: :order
+  delegate :model_name, :to_param, :persisted?, :id, to: :order
   delegate_missing_to :order
 
   attr_accessor(
       :installments,
       :kit_id,
       :visit_id,
-      :id,
       :phone,
       :email,
       :first_name,
@@ -58,12 +57,13 @@ class OrderForm
     update_visit
 
     transaction = begin
-      if order.kit.payment_type == "single"
-        Pm::Transaction.create(self)
-      else
-        Pm::Subscription.create(self)
-      end
-    end
+                    if order.kit.payment_type == "single"
+                      Pm::Transaction.create(self)
+                    else
+                      Pm::Subscription.create(self)
+                    end
+                  end
+    debugger
     order.status = transaction.status == "refused" ? :refused : :completed
     order.refused_reason = transaction.refused_reason
     order.boleto_url = transaction.boleto_url
