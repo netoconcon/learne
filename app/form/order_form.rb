@@ -63,7 +63,6 @@ class OrderForm
                       Pm::Subscription.create(self)
                     end
                   end
-    debugger
     order.status = transaction.status == "refused" ? :refused : :completed
     order.refused_reason = transaction.refused_reason
     order.boleto_url = transaction.boleto_url
