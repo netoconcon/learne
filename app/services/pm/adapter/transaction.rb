@@ -12,7 +12,6 @@ class Pm::Adapter::Transaction
         amount: final_price.to_i,
         installments: @order.installments.to_i,
         postback_url: "https://www.learnesaude.com.br/orders/#{@order.id}/postback/",
-        # postback_url: 'https://480fdb49561698f4ad2a5e50eef83365.m.pipedream.net',
         payment_method: @order.payment_method ? "credit_card" : "boleto",
         customer: {
             external_id: @order.customer.id.to_s,
