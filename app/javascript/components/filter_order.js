@@ -6,7 +6,7 @@ const filterByName = (event) => {
   const name_to_find = downcaseAndNoAccents(event.currentTarget.value);
   console.log(name_to_find);
   orders.forEach(order => {
-    const customer = downcaseAndNoAccents(order.dataset.customerName) + downcaseAndNoAccents(order.dataset.customerEmail) + downcaseAndNoAccents(order.dataset.orderId) + downcaseAndNoAccents(order.dataset.newStatus) + downcaseAndNoAccents(order.dataset.orderStatus) + downcaseAndNoAccents(order.dataset.paymentMethod) ;
+    const customer = downcaseAndNoAccents(order.dataset.customerName) + downcaseAndNoAccents(order.dataset.customerEmail) + downcaseAndNoAccents(order.dataset.orderId) + downcaseAndNoAccents(order.dataset.customerCpf) + downcaseAndNoAccents(order.dataset.newStatus) + downcaseAndNoAccents(order.dataset.orderStatus) + downcaseAndNoAccents(order.dataset.paymentMethod) ;
     // const locator = downcaseAndNoAccents(ticket.dataset.ticketLocator);
     if ((customer).search(name_to_find) === -1) {
       order.classList.add('d-none');
