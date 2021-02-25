@@ -3,6 +3,35 @@ class Admin::OrdersController < ApplicationController
 
   def index
     @orders = Order.all.order('created_at DESC')
+    status = params[:status]
+    payment = params[:payment]
+    start_date = params[:start_date]
+    end_date = params[:end_date]
+
+    if status.present?
+      if status == "Em Aberto"
+        @orders = @orders.reject { |order| order.paid }
+        @orders = @orders.select { |order| order.status == "completed" || order.status == "pending_payment" }
+      elsif status == "Paga"
+        @orders = @orders.select { |order| order.paid }
+      elsif status == "Recusada"
+        @orders = @orders.reject { |order| order.paid }
+        @orders = @orders.reject { |order| order.status == "completed" || order.status == "pending_payment" }
+      end
+    end
+    if payment.present?
+      if payment == "cartao"
+        @orders = @orders.select { |order| order.payment_method }
+      else
+        @orders = @orders.reject { |order| order.payment_method }
+      end
+    end
+    if start_date.present?
+      @orders = @orders.select {|order| order.created_at >= start_date}
+    end
+    if end_date.present?
+      @orders = @orders.select {|order| order.created_at <= end_date}
+    end
   end
 
   def show
