@@ -3,7 +3,26 @@
 
   <hr>
   <div class="d-flex">
-    <input type="text" id="filter_by_name" placeholder="id, nome, email, status, pagamento ..." class="form-control mr-sm-2">
+    <form action="/admin/orders" class="inline-form">
+      <select name="status">
+          <option value="" disabled selected hidden>Status</option>
+          <option value="Paga">Paga</option>
+          <option value="Em Aberto">Em Aberto</option>
+          <option value="Recusada">Recusada</option>
+      </select>
+      <select name="payment">
+          <option  value="" disabled selected hidden>Meio de Pagamento</option>
+          <option value="boleto">Boleto</option>
+          <option value="cartao">Cartão</option>
+      </select>
+      <input type="date" name="start_date" placeholder="">
+      <input type="date" name="end_date" placeholder="">
+      <input type="submit" class="btn btn-primary btn-sm">
+    </form>
+  </div>
+  <hr>
+  <div class="d-flex"> 
+    <input type="text" id="filter_by_name" placeholder="id, nome, email, status, cpf, pagamento ..." class="form-control mr-sm-2">
   </div>
   <hr>
 
@@ -16,6 +35,9 @@
     </div>
     <div class="order-large-item">
       <strong>Email</strong>
+    </div>
+    <div class="order-medium-item">
+      <strong>CPF</strong>
     </div>
     <div class="order-medium-item">
       <strong>Status</strong>
@@ -33,7 +55,7 @@
 
   <% if @orders.present? %>
     <% @orders.each do |order| %>
-      <div class="card-product" data-customer-name="<%= order.customer.name %>" data-customer-email="<%= order.customer.email %>" data-order-id="<%= order.id %>" data-new-status="<%= humanize_order_paid(order.paid) %>" data-order-status="<%= humanize_order_status(order) %>" data-payment-method="<%=humanize_order_payment_method(order.payment_method) %>">
+      <div class="card-product" data-customer-name="<%= order.customer.name %>" data-customer-email="<%= order.customer.email %>" data-customer-cpf="<%= order.customer.cpf %>" data-order-id="<%= order.id %>" data-new-status="<%= humanize_order_paid(order.paid) %>" data-order-status="<%= humanize_order_status(order) %>" data-payment-method="<%=humanize_order_payment_method(order.payment_method) %>">
         <div class="order-small-item">
           <%= order.id %>
         </div>
@@ -42,6 +64,9 @@
         </div>
         <div class="order-large-item">
           <%= order.customer.email %>
+        </div>
+        <div class="order-medium-item">
+          <%= order.customer.cpf %>
         </div>
         <div class="order-medium-item">
           <%= render 'tags', status: humanize_order_status(order) %>

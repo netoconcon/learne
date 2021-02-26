@@ -220,7 +220,11 @@
       <workItem from="1609938950458" duration="896000" />
       <workItem from="1610139995139" duration="290000" />
       <workItem from="1614026080969" duration="287000" />
+<<<<<<< HEAD
       <workItem from="1614211666738" duration="1396000" />
+=======
+      <workItem from="1614124851443" duration="840000" />
+>>>>>>> master
     </task>
     <task id="LOCAL-00001" summary="added attribute_normalizer">
       <created>1596900125181</created>
