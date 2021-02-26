@@ -19,9 +19,12 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a6a2dfd0-2648-4959-a01b-9530d60eae5b" name="Default Changelist" comment="fix upsell view">
-      <change beforePath="$PROJECT_DIR$/app/views/admin/kits/edit.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/kits/edit.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/kits/index.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/kits/index.html.erb" afterDir="false" />
+    <list default="true" id="a6a2dfd0-2648-4959-a01b-9530d60eae5b" name="Default Changelist" comment="fixed postback url">
+      <change afterPath="$PROJECT_DIR$/config/initializers/locale.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/locales/simple_form.pt.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/orders/new.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/orders/new.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/application.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/application.rb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +56,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/views/orders" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/config/locales" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -65,11 +68,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/config/locales" />
+      <recent name="$PROJECT_DIR$/config/initializers" />
       <recent name="$PROJECT_DIR$/app/views/orders" />
       <recent name="$PROJECT_DIR$/app/controllers/concerns" />
       <recent name="$PROJECT_DIR$/app/models" />
-      <recent name="$PROJECT_DIR$/app/javascript/controllers" />
-      <recent name="$PROJECT_DIR$/app/helpers" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
@@ -217,6 +220,7 @@
       <workItem from="1609938950458" duration="896000" />
       <workItem from="1610139995139" duration="290000" />
       <workItem from="1614026080969" duration="287000" />
+      <workItem from="1614211666738" duration="1396000" />
     </task>
     <task id="LOCAL-00001" summary="added attribute_normalizer">
       <created>1596900125181</created>

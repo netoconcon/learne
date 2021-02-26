@@ -3,19 +3,9 @@
     <%= f.input :kit_id, as: :hidden %>
     <%= f.input :visit_id, as: :hidden %>
 
-    <div class="mt-4 mb-4 checkout-banner">
-      <% if @order.kit.banner.attached? %>
-        <%#= cl_image_tag @order.kit.banner.key, style: "" %>
-      <% else %>
-        <%#= image_tag "banner_vmd3.png", width: "1070px", height: "300px", style: "" %>
-      <% end %>
-    </div>
-
     <div class="card-trip">
       <% if @order.kit.banner.attached? %>
         <%= cl_image_tag @order.kit.banner.key, style: "" %>
-      <% else %>
-        <%#= image_tag "banner_vmd3.png", width: "1070px", height: "300px", style: "" %>
       <% end %>
     </div>
 
@@ -97,7 +87,7 @@
                 </div>
                 <div class="col-4">
                   <div class="form-group">
-                    <%= f.input :state, label: "Estado", required: true, as: :select, collection: states_list, prompt: "Estado", input_html: { data: { target: "zipcode.state" } } %>
+                    <%= f.input :state, label: "Estado", as: :select, collection: states_list, prompt: "Estado", input_html: { data: { target: "zipcode.state" } } %>
                   </div>
                 </div>
               </div>
