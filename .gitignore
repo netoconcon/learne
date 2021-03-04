@@ -39,7 +39,6 @@ yarn-debug.log*
 # Ignore Mac and Linux file system files
 *.swp
 .DS_Store
-.env*
 /config/local_env.yml.env*
 sendgrid.env
-.env*
+
