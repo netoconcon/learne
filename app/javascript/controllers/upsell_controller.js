@@ -14,8 +14,7 @@ export default class extends Controller {
       this.bankSlipProductPriceTarget.innerText = `Produtos: ${newProductPrice}`
       this.creditCardProductPriceTarget.innerText = `Produtos: ${newProductPrice}`
       this.updateInstallments(newTotal)
-    }
-    else {
+    } else {
       this.creditCardTotalTarget.innerText = `Total: ${this.creditCardTotalTarget.dataset.total}`
       this.bankSlipTotalTarget.innerText = `Total: ${this.bankSlipTotalTarget.dataset.total}`
       this.bankSlipProductPriceTarget.innerText = `Produtos: ${this.creditCardProductPriceTarget.dataset.productPrice}`
