@@ -102,6 +102,6 @@ class Admin::KitsController < ApplicationController
   end
 
   def deactivated_plans
-    Plan.all.find_by(active: false)
+    Plan.all.where(active: false)
   end
 end

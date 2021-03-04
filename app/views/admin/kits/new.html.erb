@@ -58,11 +58,8 @@
           Upsell
         </div>
         <div>
-          <%= f.association :upsell_product, collection: @list, label:"ESSEE" %>
-          <%= f.input :possale, label: 'Esse kit tera upsell de produto?', :collection => [['Não',false],['Sim',true]], input_html: { "data-action" => "event -> upsell#upsell" } %>
           <%= f.input :copy, label: "Copy para o upsell" %>
           <div data-target="upsell.collection" style="display: none;">
-            <%#= f.association :upsell_product, collection: @list %>
           </div>
         </div>
       </div>
