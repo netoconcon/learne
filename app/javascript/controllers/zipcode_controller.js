@@ -1,7 +1,7 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-  static targets = [ "street", "city", "state", "neighborhood", "address" ]
+  static targets = [ "street", "city", "state", "neighborhood", "address", "shipment", "calculatingShipment" ]
 
 	search (e) {
   	if (e.target.value.length == 9) {
@@ -13,7 +13,13 @@ export default class extends Controller {
 				this.cityTarget.value = data["cidade"]
 				this.neighborhoodTarget.value = data["bairro"]
 				this.stateTarget.value = data["estado"]
-				this.addressTarget.hidden = false
+
+				this.calculatingShipmentTarget.hidden = false
+				setTimeout(() => {
+					this.calculatingShipmentTarget.hidden = true
+					this.shipmentTarget.hidden = false
+				}, 3000)
+
 			})
 		}
 	}
