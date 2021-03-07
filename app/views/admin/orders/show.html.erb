@@ -13,7 +13,7 @@
         <h6>Nome: <%= "#{@order.customer.first_name} #{@order.customer.last_name}"%></h6>
         <h6>Email: <%= @order.customer.email %> </h6>
         <h6>CPF: <%= @order.customer.cpf %></h6>
-        <h6>Data de Nascimento: <%= @order.customer.birthday %></h6>
+<!--         <h6>Data de Nascimento: <%= @order.customer.birthday %></h6> -->
         <h6>Endereço: <%= @order.customer.addresses.last.street %></h6>
         <h6>Número: <%= @order.customer.addresses.last.number %> </h6>
         <h6>Bairro: <%= @order.customer.addresses.last.neighborhood %> </h6>
@@ -59,13 +59,18 @@
   <div class="order-info-box">
     <div class="order-info-data order-info-customer">
       <div class="order-info-section-header">
-        <h5>Compras Anteriores:</h5>
+        <h5>Compras Anteriores de <%= @order.customer.first_name.capitalize %>:</h5>
       </div>
-      <% @order.customer.orders.each do |order| %>
-        <div class="order_info-order-card">
-          <%= render 'order_card', order: order %>
-        </div>
-      <% end %>
+      <div class="order_info-order-header">
+        <%= render 'order_card_header' %>
+      </div>  
+      <div class="order-info-customer-purchase">   
+        <% @order.customer.orders.each do |order| %>
+          <div class="order_info-order-card text-left">
+            <%= render 'order_card', order: order %>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
   <div class="order-info-box">

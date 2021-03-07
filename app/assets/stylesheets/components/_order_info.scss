@@ -38,3 +38,45 @@
   background-size: cover;
 }
 
+.order-info-kit-image-list{
+  width: 70px;
+  height: 70px;
+  background-position: center;
+  background-size: cover;
+}
+
+.order-info-kit-image-header{
+  width: 70px;
+  height: 20px;
+}
+
+.order-cards-area{
+  height: 90%;
+  overflow: scroll;
+}
+
+.order_info-order-card{
+  margin: 3px;
+  box-shadow: 2px 2px 2px rgba(0,0,0,0.2); 
+  display: flex;
+  justify-content: space-between;
+}
+
+.order_info-order-header{
+  margin: 3px; 
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid gray;
+}
+
+.order-info-kit-name{
+  max-width: 10%;
+  min-width: 10%;
+}
+
+.order-info-customer-purchase{
+  overflow: scroll;
+  height: 80%;
+}
+
+

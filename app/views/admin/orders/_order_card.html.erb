@@ -1,1 +1,28 @@
-<%= order.kit.name %>
+<div class="order-info-kit-image-list" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @order.kit.banner.key, height: 50, crop: :fill %>')">
+</div>
+<div class="order-info-kit-name">
+  <%= order.kit.name.capitalize %>
+</div>
+<div class="order-info-kit-name">
+  <%= order.kit.amount %>
+</div>
+<div class="order-info-kit-name">
+  <%= order.kit.shipment_cost_cents %>
+</div>
+<div class="order-info-kit-name">
+  <!-- Valor Total -->515,5
+</div>
+<div class="order-info-kit-name">
+  <%= order.payment_method %>
+</div>
+<div class="order-info-kit-name">
+  <%= order.status %>
+</div>
+<div class="order-info-kit-name">
+  <!-- UTM Source:  %> -->UTM
+</div>
+<div class="order-info-kit-name">
+  <!-- UTM Campaign:  %> -->CPGN
+</div>
+
+
