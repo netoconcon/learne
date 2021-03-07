@@ -75,9 +75,7 @@ class Admin::KitsController < ApplicationController
       :width,
       :plan_id,
       :discount,
-      :possale,
-      :upsell,
-      :copy,
+      :upsell_message,
       :upsell_product_id,
       kit_products_attributes:[
         :id,
@@ -85,6 +83,7 @@ class Admin::KitsController < ApplicationController
         :kit_id,
         :quantity,
         :price_cents,
+        :upsell,
         :_destroy,
         product_attributes:[
           :id,

@@ -58,7 +58,7 @@
           Upsell
         </div>
         <div>
-          <%= f.input :copy, label: "Copy para o upsell" %>
+          <%= f.input :upsell_message, label: "Copy para o upsell" %>
           <div data-target="upsell.collection" style="display: none;">
           </div>
         </div>
@@ -76,7 +76,7 @@
       </div>
     </div>
     <div class="form-total-price">
-      <%= f.button :submit, 'Cadastrar', class: "btn btn-primary submit-product" %>
+      <%= f.button :submit, 'Salvar', class: "btn btn-primary submit-product" %>
     </div>
   <% end %>
 </div>

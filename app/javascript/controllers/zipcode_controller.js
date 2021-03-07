@@ -1,3 +1,4 @@
+import { Collapse } from "bootstrap"
 import { Controller } from "stimulus"
 
 export default class extends Controller {
@@ -14,10 +15,16 @@ export default class extends Controller {
 				this.neighborhoodTarget.value = data["bairro"]
 				this.stateTarget.value = data["estado"]
 
-				this.calculatingShipmentTarget.hidden = false
+				this.calculatingShipmentTargets.forEach((target) => {
+					target.hidden = false
+				});
 				setTimeout(() => {
-					this.calculatingShipmentTarget.hidden = true
-					this.shipmentTarget.hidden = false
+					this.calculatingShipmentTargets.forEach((target) => {
+						target.hidden = true
+					});
+					this.shipmentTargets.forEach((target) => {
+						target.hidden = false
+					});
 				}, 3000)
 
 			})

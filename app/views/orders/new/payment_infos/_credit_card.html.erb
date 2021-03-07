@@ -28,8 +28,13 @@
                 </div>
             </div>
             
-            <%= render "orders/new/shared/shipment", f: f, order: order %>
-
+            <%= render "orders/new/shared/calculating_shipment", f: f, order: order %>
+            <div data-target="zipcode.shipment" hidden>
+                <div class="d-flex align-items-center mb-3">
+                    <%= radio_button_tag "shipment-credit-card", :shipment, true, style: "width: fit-content", class: "mr-3" %>
+                    <%= label_tag "shipment-credit-card", number_to_currency(order.kit.shipment_cost, unit: "R$"), style: "margin-bottom: 0" %>
+                </div>
+            </div>
             <%= render "orders/new/shared/upsell", f: f, order: order %>
 
             <div class="form-group w-100">

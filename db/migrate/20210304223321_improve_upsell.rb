@@ -10,7 +10,8 @@ class ImproveUpsell < ActiveRecord::Migration[6.0]
       kit_product.update! upsell: kit_product.present?
     end
 
-    remove_column :kits, :upsell_product_id, :integer
-    remove_column :kits, :possale, :integer
+    remove_column :kits, :upsell_product_id
+    remove_column :kits, :possale
+    remove_column :kits, :copy
   end
 end

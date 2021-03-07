@@ -159,12 +159,12 @@ ActiveRecord::Schema.define(version: 2021_03_07_140847) do
     t.bigint "plan_id"
     t.integer "shipment_cost_cents", default: 0, null: false
     t.integer "discount"
-    t.boolean "possale"
     t.integer "price"
     t.integer "amount_cents", default: 0, null: false
     t.string "confirmation_page"
     t.string "slug", null: false
     t.text "copy"
+    t.string "upsell_message"
     t.index ["plan_id"], name: "index_kits_on_plan_id"
   end
 
