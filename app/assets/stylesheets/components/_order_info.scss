@@ -60,6 +60,7 @@
   box-shadow: 2px 2px 2px rgba(0,0,0,0.2); 
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .order_info-order-header{
@@ -70,8 +71,9 @@
 }
 
 .order-info-kit-name{
-  max-width: 10%;
-  min-width: 10%;
+  max-width: 11%;
+  min-width: 11%;
+  font-size: 14px;
 }
 
 .order-info-customer-purchase{

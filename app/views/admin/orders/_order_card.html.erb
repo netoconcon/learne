@@ -4,19 +4,23 @@
   <%= order.kit.name.capitalize %>
 </div>
 <div class="order-info-kit-name">
-  <%= order.kit.amount %>
+  <%= number_to_currency(order.amount.fdiv(100) , unit: "R$ ", separator: ",")  %>
 </div>
 <div class="order-info-kit-name">
-  <%= order.kit.shipment_cost_cents %>
+  <%= number_to_currency( (@order.kit.shipment_cost_cents.fdiv(100)) , unit: "R$ ", separator: ",")  %>
 </div>
 <div class="order-info-kit-name">
-  <!-- Valor Total -->515,5
+  <%= number_to_currency( (@order.amount.fdiv(100) + @order.kit.shipment_cost_cents.fdiv(100)) , unit: "R$ ", separator: ",")  %>
 </div>
 <div class="order-info-kit-name">
-  <%= order.payment_method %>
+  <% if order.payment_method %>
+    Cartão
+  <% else %>
+    Boleto
+  <% end %>
 </div>
-<div class="order-info-kit-name">
-  <%= order.status %>
+<div class="order-info-kit-name text-left">
+  <%= render 'tags', status: humanize_order_status(@order) %>
 </div>
 <div class="order-info-kit-name">
   <!-- UTM Source:  %> -->UTM
