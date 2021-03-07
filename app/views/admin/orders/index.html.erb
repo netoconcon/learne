@@ -15,8 +15,8 @@
           <option value="boleto">Boleto</option>
           <option value="cartao">Cartão</option>
       </select>
-      <input type="date" name="start_date" placeholder="">
-      <input type="date" name="end_date" placeholder="">
+      <input type="date" name="start_date" placeholder="" value="<%= @start_date %>">
+      <input type="date" name="end_date" placeholder="" value="<%= @end_date %>">
       <input type="submit" class="btn btn-primary btn-sm">
     </form>
   </div>
@@ -30,14 +30,17 @@
     <div class="order-small-item">
       <strong>Id</strong>
     </div>
-    <div class="order-large-item">
+    <div class="order-large-item text-left">
       <strong>Usuário</strong>
     </div>
-    <div class="order-large-item">
-      <strong>Email</strong>
+    <div class="order-medium-item">
+      <strong>Data da Compra</strong>
     </div>
     <div class="order-medium-item">
       <strong>CPF</strong>
+    </div>
+    <div class="order-small-item">
+      <strong>Origem</strong>
     </div>
     <div class="order-medium-item">
       <strong>Status</strong>
@@ -46,27 +49,42 @@
       <strong>Pagamento</strong>
     </div>
     <div class="order-medium-item">
-      <strong>Valor Total</strong>
+      <strong>Total Produtos</strong>
     </div>
     <div class="order-small-item">
-      <strong>Infos</strong>
+      <strong>Frete</strong>
     </div>
+    <div class="order-medium-item">
+      <strong>UTM Source</strong>
+    </div>
+    <div class="order-medium-item">
+      <strong>UTM Campaign</strong>
+    </div>
+<!--     <div class="order-small-item">
+      <strong>Infos</strong>
+    </div> -->
   </div>
 
   <% if @orders.present? %>
     <% @orders.each do |order| %>
       <div class="card-product" data-customer-name="<%= order.customer.name %>" data-customer-email="<%= order.customer.email %>" data-customer-cpf="<%= order.customer.cpf %>" data-order-id="<%= order.id %>" data-new-status="<%= humanize_order_paid(order.paid) %>" data-order-status="<%= humanize_order_status(order) %>" data-payment-method="<%=humanize_order_payment_method(order.payment_method) %>">
         <div class="order-small-item">
-          <%= order.id %>
+          <%= link_to admin_order_path(order) do %>
+            <%= order.id %>
+          <% end %>
         </div>
-        <div class="order-large-item">
-          <%= order.customer.name %>
+        <div class="order-large-item text-left">
+          <h5><strong><%= order.customer.name %></strong></h5>
+          <p><%= order.customer.email %></p>
         </div>
-        <div class="order-large-item">
-          <%= order.customer.email %>
+        <div class="order-medium-item">
+          <%= order.created_at.strftime('%d/%m/%y - %H:%M') %>
         </div>
         <div class="order-medium-item">
           <%= order.customer.cpf %>
+        </div>
+        <div class="order-small-item">
+          Site
         </div>
         <div class="order-medium-item">
           <%= render 'tags', status: humanize_order_status(order) %>
@@ -75,13 +93,22 @@
           <%= humanize_order_payment_method(order.payment_method)  %>
         </div>
         <div class="order-medium-item">
-          <%= number_to_currency( (order.amount.to_i + order.kit.shipment_cost_cents).fdiv(100) ) %>
+          <%= number_to_currency( (order.amount).fdiv(100) ).to_s.gsub(".",",") %>
         </div>
         <div class="order-small-item">
-          <%= link_to admin_order_path(order) do %>
-            <i class="fa fa-info-circle"></i>
-          <% end %>
+          <%= number_to_currency( (order.kit.shipment_cost) ) %>
         </div>
+        <div class="order-medium-item">
+          Source
+        </div>
+        <div class="order-medium-item">
+          Campaign
+        </div>
+        <!-- <div class="order-small-item"> -->
+          <%#= link_to admin_order_path(order) do %>
+            <!-- <i class="fa fa-info-circle"></i> -->
+          <%# end %>
+        <!-- </div> -->
       </div>
     <% end %>
   <% end %>
