@@ -1,0 +1,18 @@
+<div class="card">
+    <div class="card-header text-center">
+    <h4><Strong>2 - Selecionar Pagamento</Strong></h4>
+    </div>
+
+    <div class="card-body">
+        <div class="nav nav-tabs" style="border-bottom: 0">
+            <p class="nav-link active show border" data-action="click->payment-method#creditCard" data-target="payment-method.cardBtn"><strong>Cartão de Crédito</strong></p>
+            <p class="nav-link show border" data-action="click->payment-method#bankSlip" data-target="payment-method.slipBtn"><strong>Boleto</strong></p>
+        </div>
+        <%= render "orders/new/payment_infos/credit_card", f: f, order: order %>
+        <%= render "orders/new/payment_infos/bank_slip", f: f, order: order %>
+    </div>
+    <div class="card-footer bg-transparent">
+        <%= image_tag("secure.jpg", class: "img-fluid d-block mx-auto") %>
+    </div>
+</div>
+<h6 class="text-black-50 mt-2"><small>Taxa de 2,99% a.m.</small></h6>

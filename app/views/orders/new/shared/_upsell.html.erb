@@ -1,0 +1,42 @@
+<% if order.kit.upsell? %>
+        <div class="w-100 justify-content-center mb-4 text-truncate">
+                <div class=" py-4 px-5" style="border-radius: 1rem !important; width: fit-content; border: 2px solid #dee2e6!important">
+                        <div>
+                                <h5 class="font-weight-bold mb-3">Você está adquirindo</h5>
+                                <% order.kit.main_products.each do |product| %>
+                                        <div id="<%= dom_id product %>">
+                                                <div class="d-flex">
+                                                        <div class="d-flex align-items-center">
+                                                                <%= check_box_tag "product", :product, true, style: "width: fit-content", checked: true, disabled: true %>
+                                                                <%= cl_image_tag product.photo.url, width: 100, crop: :pad, class: "ml-4" %>
+                                                        </div>
+                                                        <div class="ml-3">
+                                                                <p class="text-wrap"><%= product.name %></p>
+                                                                <p class="text-success font-weight-bold">Por <%= number_to_currency(product.price, unit: "R$") %></p>
+                                                        </div>
+                                                </div>
+                                        </div>
+                                <% end %>
+                        </div>
+                        <div>
+                                <h5 class="font-weight-bold mt-3 mb-3"><%= order.kit.copy %></h5>
+                                <%= f.fields_for :kit_products do |kit_product| %>
+                                        <% order.kit.upsell_products.each do |product| %>
+                                                <div id="<%= dom_id product %>">
+                                                        <div class="d-flex">
+                                                                <div class="d-flex align-items-center">
+                                                                        <%= kit_product.input :product_id, as: :boolean, value: product.id, label: false, input_html: { style: "width: fit-content" } %>    
+                                                                        <%= cl_image_tag product.photo.url, width: 100, crop: :pad, class: "ml-3" %>
+                                                                </div>
+                                                                <div class="ml-3" style="max-width: 100px">
+                                                                        <p class="text-wrap"><%= product.name %></p>
+                                                                        <p class="text-success font-weight-bold">Por <%= number_to_currency(product.price, unit: "R$") %></p>
+                                                                </div>
+                                                        </div>
+                                                </div>
+                                        <% end %>
+                                <% end %>
+                        </div>
+                </div>
+        </div>
+<% end %>

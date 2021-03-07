@@ -1,0 +1,11 @@
+<div>
+    <div data-target="zipcode.calculatingShipment" hidden>
+        <p><%= image_tag "loading.gif", height: "24px" %> Calculando frete...</p>
+    </div>
+    <div data-target="zipcode.shipment" hidden>
+        <div class="d-flex align-items-center mb-3">
+            <%= radio_button_tag "shipment-credit-card", :shipment, true, style: "width: fit-content", class: "mr-3" %>
+            <%= label_tag "shipment-credit-card", number_to_currency(order.kit.shipment_cost, unit: "R$"), style: "margin-bottom: 0" %>
+        </div>
+    </div>
+</div>

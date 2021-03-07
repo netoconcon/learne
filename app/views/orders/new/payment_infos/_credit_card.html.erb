@@ -1,0 +1,41 @@
+<div id="credit-card" data-target="payment-method.creditCard">
+    <div class="tab-content">
+        <div class="tab-pane fade show active">
+            <div class="form-group row">
+                <div class="col-12">
+                    <div class="m-3">
+                        <%= render "orders/new/payment_infos/credit_card/logos" %>        
+                    </div>
+                </div>
+                <div class="col-12 mb-1">
+                    <%= f.input :credit_card_number, label: "Número do cartão", input_html: { data: { js: "creditCard" } }, maxlength: 19 %>
+                </div>
+                <div class="col-12 col-sm-6 mb-1">
+                    <%= f.input :credit_card_name, label: "Nome do titular", placeholder: "Como impresso no cartão" %>
+                </div>
+                <div class="col-12 col-sm-6 mb-1">
+                    <%= f.input :credit_card_cpf, label: "CPF do titular", placeholder: "Para envio da nota fiscal", input_html: { data: { js: "cpf" } }, maxlength: 14 %>
+                </div>
+
+                <div class="col-12 col-sm-6 mb-1">
+                    <%= f.input :credit_card_expiration_month, label: "Mês de expiração do cartão", as: :select, collection: month_number_list, prompt: "Mês" %>
+                </div>
+                <div class="col-12 col-sm-6 mb-1">
+                    <%= f.input :credit_card_expiration_year, label: "Ano de expiração do cartão", as: :select, collection: year_list, prompt:"Ano" %>
+                </div>
+                <div class="col-12 col-sm-6">
+                    <%= f.input :credit_card_cvv, label: "Cód. de segurança", placeholder: "3 ou 4 dígitos", input_html: { data: { js: "numbers" } }, maxlength: 4 %>
+                </div>
+            </div>
+            
+            <%= render "orders/new/shared/shipment", f: f, order: order %>
+
+            <%= render "orders/new/shared/upsell", f: f, order: order %>
+
+            <div class="form-group w-100">
+                <%= f.input :installments, label: "Parcelamento", as: :select, collection: order_installments(order), input_html: { data: { target: "upsell.installments" } } %>
+            </div>
+        </div>
+    </div>
+    <%= f.submit "Finalizar Pedido", name:"card", class: "btn btn-success submit-button", style: "color: #fff; background-color: #28a745; border-color: #28a745" %>
+</div>

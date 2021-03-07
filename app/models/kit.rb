@@ -17,7 +17,7 @@ class Kit < ApplicationRecord
   has_many :selling_pages, dependent: :destroy
   has_many :kit_products, dependent: :destroy
   has_many :products, through: :kit_products, dependent: :destroy
-  belongs_to :upsell_product, class_name: "Product", optional: true
+  
 
   has_one_attached :banner
 
@@ -25,8 +25,7 @@ class Kit < ApplicationRecord
 
   before_save :update_slug
 
-
-  default_scope {order(created_at: :asc)}
+  default_scope { order(created_at: :asc) }
 
   monetize :shipment_cost_cents
   monetize :amount_cents
@@ -39,5 +38,17 @@ class Kit < ApplicationRecord
 
   def update_slug
     self.slug = name.parameterize
+  end
+
+  def main_products
+    Product.includes(:kit_products).where(kit_products: { upsell: false, kit_id: id })
+  end
+
+  def upsell_products
+    Product.includes(:kit_products).where(kit_products: { upsell: true, kit_id: id })
+  end
+
+  def upsell?
+    upsell_products.any?
   end
 end
