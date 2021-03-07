@@ -1,0 +1,14 @@
+.order-highlights{
+  margin: 15px;
+  padding: 20px;
+  text-align: center;
+  background-color: white;
+  // border: 1px solid gray;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.8);
+}
+
+.order-info-box{
+  display: flex;
+  justify-content: space-between;
+}
