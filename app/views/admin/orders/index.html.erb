@@ -15,8 +15,8 @@
           <option value="boleto">Boleto</option>
           <option value="cartao">Cartão</option>
       </select>
-      <input type="date" name="start_date" placeholder="">
-      <input type="date" name="end_date" placeholder="">
+      <input type="date" name="start_date" placeholder="" value="<%= @start_date %>">
+      <input type="date" name="end_date" placeholder="" value="<%= @end_date %>">
       <input type="submit" class="btn btn-primary btn-sm">
     </form>
   </div>
@@ -60,9 +60,9 @@
     <div class="order-medium-item">
       <strong>UTM Campaign</strong>
     </div>
-    <div class="order-small-item">
+<!--     <div class="order-small-item">
       <strong>Infos</strong>
-    </div>
+    </div> -->
   </div>
 
   <% if @orders.present? %>
@@ -104,11 +104,11 @@
         <div class="order-medium-item">
           Campaign
         </div>
-        <div class="order-small-item">
-          <%= link_to admin_order_path(order) do %>
-            <i class="fa fa-info-circle"></i>
-          <% end %>
-        </div>
+        <!-- <div class="order-small-item"> -->
+          <%#= link_to admin_order_path(order) do %>
+            <!-- <i class="fa fa-info-circle"></i> -->
+          <%# end %>
+        <!-- </div> -->
       </div>
     <% end %>
   <% end %>

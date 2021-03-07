@@ -28,9 +28,13 @@ class Admin::OrdersController < ApplicationController
     end
     if start_date.present?
       @orders = @orders.select {|order| order.created_at >= start_date}
+    else
+      @start_date = Date.today    
     end
     if end_date.present?
       @orders = @orders.select {|order| order.created_at <= end_date}
+    else
+      @end_date = Date.today
     end
   end
 
