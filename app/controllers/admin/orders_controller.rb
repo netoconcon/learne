@@ -19,6 +19,9 @@ class Admin::OrdersController < ApplicationController
     cpf = params[:cpf]
     phone = params[:phone]
 
+
+    # FORMATER CPF CEP PHONE
+
     # PG SEARCH
     if name.present? || address.present? || cep.present? || cpf.present? || phone.present?
       # sql_query = [id, name, address, cep, cpf, phone].join(" ")
@@ -33,6 +36,14 @@ class Admin::OrdersController < ApplicationController
       @orders = @orders.select {|order| order.id == id.to_i}
     end
 
+    # BRUTE SEARCH
+    if origin.present?
+      if origin == "Site"
+        @orders
+      else
+        @orders = []
+      end
+    end
 
     # BRUTE SEARCH
     if status.present?
