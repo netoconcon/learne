@@ -106,15 +106,7 @@ class OrderForm
     end
 
     def price
-      @price ||= begin
-      #   total_price = 0
-      #   # @order.kit.kit_products.first.price_cents + @order.kit.shipment_cost_cents
-      #   kit.kit_products.each do |kit_product|
-      #     total_price += kit_product.price_cents
-      #   end
-      #   total_price.to_i + kit.shipment_cost_cents.to_i
-       end
-      kit.amount_cents.to_i
+      @price ||= kit.amount.to_i
     end
 
     def calc_amount
@@ -123,7 +115,7 @@ class OrderForm
         value = self.price.to_i
       else
         # com upsell
-        value = self.price.to_i + self.upsell_product.price_cents
+        value = self.price.to_i + self.upsell_product.price
       end
 
       installments_result = PagarMe::Transaction.calculate_installments({

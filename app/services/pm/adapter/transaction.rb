@@ -6,7 +6,7 @@ class Pm::Adapter::Transaction
   end
 
   def payload
-    final_price = @order.amount.to_i + @order.kit.shipment_cost_cents
+    final_price = @order.amount.to_i + @order.kit.shipment_cost
 
     @payload = {
         amount: final_price.to_i,
@@ -41,7 +41,7 @@ class Pm::Adapter::Transaction
         },
         shipping: {
             name: @order.customer.first_name + " " + @order.customer.last_name,
-            fee: @order.kit.shipment_cost_cents,
+            fee: @order.kit.shipment_cost,
             delivery_date: "2000-12-21",
             expedited: true,
             address: {

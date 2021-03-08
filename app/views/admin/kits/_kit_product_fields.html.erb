@@ -2,8 +2,9 @@
   <div class="field form-kit-products" data-controller="kitprice">
     <div class="form-products">
       <%= f.association :product, as: :select, label: "Produto", input_html: { "data-target" => "kitprice.product", "data-action" => "event -> kitprice#pricefill" } %>
-      <div class="form-fields">  
-        <%= f.input :quantity, label: "Quantidade", input_html: { "data-target" => "kitprice.quantity", "data-action" => "event -> kitprice#pricefill" } %>
+      <div class="form-fields mx-3">  
+        <%= f.input :price, label: "Preço" %>
+        <%= f.input :quantity, label: "Quantidade", input_html: { class: "mx-3", "data-target" => "kitprice.quantity", "data-action" => "event -> kitprice#pricefill" } %>
       </div>
     </div>
     <div class="form-check">

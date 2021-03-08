@@ -7,9 +7,9 @@
       <h4><%= @order.kit.name.capitalize %></h4>
 
       <br>
-      <p>Valor do Kit: <%= number_to_currency(@order.amount.fdiv(100) , unit: "R$ ", separator: ",")  %></p>
-      <p>Frete: <%= number_to_currency( (@order.kit.shipment_cost_cents.fdiv(100)) , unit: "R$ ", separator: ",")  %></p>
-      <p>Total:  <%= number_to_currency( ((@order.amount.to_i + @order.kit.shipment_cost_cents).fdiv(100)) , unit: "R$ ", separator: ",")  %> </p>      
+      <p>Valor do Kit: <%= number_to_currency(@order.amount , unit: "R$ ", separator: ",")  %></p>
+      <p>Frete: <%= number_to_currency( (@order.kit.shipment_cost) , unit: "R$ ", separator: ",")  %></p>
+      <p>Total:  <%= number_to_currency( (@order.amount.to_i + @order.kit.shipment_cost) , unit: "R$ ", separator: ",")  %> </p>      
     </div>
     <div class="order-info">
       <h3>Informações do Pedido:</h3>

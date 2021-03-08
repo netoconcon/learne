@@ -63,7 +63,7 @@ class Admin::KitsController < ApplicationController
       :banner,
       :name,
       :description,
-      :amount_cents,
+      :amount,
       :payment_type,
       :standard_installments,
       :maximum_installments,
@@ -82,7 +82,7 @@ class Admin::KitsController < ApplicationController
         :product_id,
         :kit_id,
         :quantity,
-        :price_cents,
+        :price,
         :upsell,
         :_destroy,
         product_attributes:[

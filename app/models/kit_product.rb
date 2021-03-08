@@ -1,6 +1,7 @@
 class KitProduct < ApplicationRecord
 
-  validates :quantity, :price_cents, presence: true
+  delegate :photo, :name, to: :product
+  validates :quantity, :price, presence: true
   
   validates_numericality_of :quantity, :greater_than_or_equal_to => 0
 
@@ -10,7 +11,5 @@ class KitProduct < ApplicationRecord
   accepts_nested_attributes_for :product, reject_if: :all_blank, allow_destroy: true
 
   default_scope {order(created_at: :asc)}
-
-  monetize :price_cents
   
 end

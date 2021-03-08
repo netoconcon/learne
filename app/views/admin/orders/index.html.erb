@@ -75,7 +75,7 @@
           <%= humanize_order_payment_method(order.payment_method)  %>
         </div>
         <div class="order-medium-item">
-          <%= number_to_currency( (order.amount.to_i + order.kit.shipment_cost_cents).fdiv(100) ) %>
+          <%= number_to_currency(order.amount.to_i + order.kit.shipment_cost) %>
         </div>
         <div class="order-small-item">
           <%= link_to admin_order_path(order) do %>

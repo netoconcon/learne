@@ -1,6 +1,6 @@
 <% if order.kit.upsell? %>
         <div class="w-100 d-flex justify-content-center mb-4 text-truncate">
-                <div class=" py-4 px-5" style="border-radius: 1rem !important; width: fit-content; border: 2px solid #dee2e6!important">
+                <div class=" py-4 px-4" style="border-radius: 1rem !important; width: fit-content; border: 2px solid #dee2e6!important">
                         <div>
                                 <h5 class="font-weight-bold mb-3">Você está adquirindo</h5>
                                 <% order.kit.main_products.each do |product| %>
@@ -19,13 +19,13 @@
                                 <% end %>
                         </div>
                         <div>
-                                <h5 class="font-weight-bold mt-3 mb-3"><%= order.kit.copy %></h5>
+                                <h5 class="font-weight-bold mt-3 mb-3"><%= order.kit.upsell_message %></h5>
                                 <%= f.fields_for :kit_products do |kit_product| %>
                                         <% order.kit.upsell_products.each do |product| %>
                                                 <div id="<%= dom_id product %>">
                                                         <div class="d-flex">
                                                                 <div class="d-flex align-items-center">
-                                                                        <%= kit_product.input :product_id, as: :boolean, value: product.id, label: false, input_html: { style: "width: fit-content" } %>    
+                                                                        <%= kit_product.input :product_id, as: :boolean, value: product.id, label: false, input_html: { style: "width: fit-content", data: { action: "input->upsell#update", price: product.price } } %>    
                                                                         <%= cl_image_tag product.photo.url, width: 100, crop: :pad, class: "ml-3" %>
                                                                 </div>
                                                                 <div class="ml-3" style="max-width: 100px">

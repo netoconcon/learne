@@ -30,7 +30,7 @@ module OrderStatusHelper
   end
 
   def humanize_order_total_value(order)
-    final_price = (order.amount.to_i + order.kit.shipment_cost_cents)
+    final_price = (order.amount.to_i + order.kit.shipment_cost)
     real_price = final_price / 100
     cents = (final_price - real_price).to_s.first(2)
     "R$ #{real_price},#{cents}"

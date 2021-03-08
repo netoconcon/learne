@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_07_140847) do
+ActiveRecord::Schema.define(version: 2021_03_07_210525) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -136,8 +136,8 @@ ActiveRecord::Schema.define(version: 2021_03_07_140847) do
     t.integer "quantity"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "price_cents", default: 0, null: false
     t.boolean "upsell", default: false, null: false
+    t.decimal "price", precision: 8, scale: 2
     t.index ["kit_id"], name: "index_kit_products_on_kit_id"
     t.index ["product_id"], name: "index_kit_products_on_product_id"
   end
@@ -157,14 +157,13 @@ ActiveRecord::Schema.define(version: 2021_03_07_140847) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "plan_id"
-    t.integer "shipment_cost_cents", default: 0, null: false
     t.integer "discount"
     t.integer "price"
-    t.integer "amount_cents", default: 0, null: false
     t.string "confirmation_page"
     t.string "slug", null: false
-    t.text "copy"
     t.string "upsell_message"
+    t.decimal "amount", precision: 8, scale: 2
+    t.decimal "shipment_cost", precision: 8, scale: 2
     t.index ["plan_id"], name: "index_kits_on_plan_id"
   end
 
@@ -224,7 +223,7 @@ ActiveRecord::Schema.define(version: 2021_03_07_140847) do
     t.string "virtual_url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "price_cents", default: 0, null: false
+    t.decimal "price", precision: 8, scale: 2
     t.index ["company_id"], name: "index_products_on_company_id"
   end
 
