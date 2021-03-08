@@ -4,6 +4,7 @@
   <hr>
   <div class="d-flex">
     <form action="/admin/orders" class="inline-form">
+      <input type="text" name="id" placeholder="Id">
       <select name="status">
           <option value="" disabled selected hidden>Status</option>
           <option value="Paga">Paga</option>
@@ -15,14 +16,27 @@
           <option value="boleto">Boleto</option>
           <option value="cartao">Cartão</option>
       </select>
+      <select name="origin">
+        <option  value="" disabled selected hidden>Meio de Pagamento</option>
+        <option value="boleto">Site</option>
+        <option value="cartao">Equipe Parceira</option>
+        <option value="cartao">Call Center</option>
+      </select>
+      <input type="text" name="name" placeholder="Nome">
+      <input type="text" name="phone" placeholder="Telefone">
+      <input type="text" name="cpf" placeholder="CPF">
+      <input type="text" name="zip" placeholder="CEP">
+      <input type="text" name="address" placeholder="Endereço">
+
       <input type="date" name="start_date" placeholder="" value="<%= @start_date %>">
       <input type="date" name="end_date" placeholder="" value="<%= @end_date %>">
       <input type="submit" class="btn btn-primary btn-sm">
+      <%= link_to "Limpar Filtro", admin_orders_path, class:"btn btn-success btn-sm text-white" %>
     </form>
   </div>
   <hr>
-  <div class="d-flex"> 
-    <input type="text" id="filter_by_name" placeholder="id, nome, email, status, cpf, pagamento ..." class="form-control mr-sm-2">
+  <div class="d-flex">
+    <input type="text" id="filter_by_name" placeholder="Pesquisar" class="form-control mr-sm-2">
   </div>
   <hr>
 

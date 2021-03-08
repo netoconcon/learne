@@ -2,12 +2,39 @@ class Admin::OrdersController < ApplicationController
   layout "admin"
 
   def index
-    @orders = Order.all.order('created_at DESC')
+    sql_query = ""
+
+    # select / reject params
     status = params[:status]
     payment = params[:payment]
     start_date = params[:start_date]
     end_date = params[:end_date]
+    origin = params[:origin]
+    id = params[:id]
 
+    # pg search params
+    name = params[:name]
+    address = params[:address]
+    cep = params[:zip]
+    cpf = params[:cpf]
+    phone = params[:phone]
+
+    # PG SEARCH
+    if name.present? || address.present? || cep.present? || cpf.present? || phone.present?
+      # sql_query = [id, name, address, cep, cpf, phone].join(" ")
+      sql_query = [id, name, address].join(" ")
+      @orders = Order.search_by_fields(sql_query)
+    else
+      @orders = Order.all.order('created_at DESC')
+    end
+
+    # BRUTE SEARCH
+    if id.present?
+      @orders = @orders.select {|order| order.id == id.to_i}
+    end
+
+
+    # BRUTE SEARCH
     if status.present?
       if status == "Em Aberto"
         @orders = @orders.reject { |order| order.paid }
@@ -19,6 +46,8 @@ class Admin::OrdersController < ApplicationController
         @orders = @orders.reject { |order| order.status == "completed" || order.status == "pending_payment" }
       end
     end
+
+    # BRUTE SEARCH
     if payment.present?
       if payment == "cartao"
         @orders = @orders.select { |order| order.payment_method }
@@ -26,10 +55,12 @@ class Admin::OrdersController < ApplicationController
         @orders = @orders.reject { |order| order.payment_method }
       end
     end
+
+    # BRUTE SEARCH
     if start_date.present?
       @orders = @orders.select {|order| order.created_at >= start_date}
     else
-      @start_date = Date.today    
+      @start_date = Date.today
     end
     if end_date.present?
       @orders = @orders.select {|order| order.created_at <= end_date}
