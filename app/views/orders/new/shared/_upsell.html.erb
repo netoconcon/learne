@@ -20,12 +20,12 @@
                         </div>
                         <div>
                                 <h5 class="font-weight-bold mt-3 mb-3"><%= order.kit.upsell_message %></h5>
-                                <%= f.fields_for :kit_products do |kit_product| %>
+                                <%= f.fields_for :kit_products do |fields_for| %>
                                         <% order.kit.upsell_products.each do |product| %>
                                                 <div id="<%= dom_id product %>">
                                                         <div class="d-flex">
                                                                 <div class="d-flex align-items-center">
-                                                                        <%= kit_product.input :product_id, as: :boolean, value: product.id, label: false, input_html: { style: "width: fit-content", data: { action: "input->upsell#update", price: product.price } } %>    
+                                                                        <%= fields_for.input product.id, as: :boolean, label: false, input_html: { style: "width: fit-content", data: { action: "input->upsell#update", price: product.price } } %>    
                                                                         <%= cl_image_tag product.photo.url, width: 100, crop: :pad, class: "ml-3" %>
                                                                 </div>
                                                                 <div class="ml-3" style="max-width: 100px">

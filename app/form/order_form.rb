@@ -41,8 +41,7 @@ class OrderForm
     order.assign_attributes order_attributes
     order.customer = customer
     order.address = address
-    order.price = price.to_i
-    if self.payment_method
+    if self.credit_card?
       order.amount = calc_amount 
       self.amount = calc_amount
     else
@@ -106,7 +105,7 @@ class OrderForm
     end
 
     def price
-      @price ||= kit.amount.to_i
+      @price ||= 
     end
 
     def calc_amount

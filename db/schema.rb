@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_07_210525) do
+ActiveRecord::Schema.define(version: 2021_03_08_035957) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -171,8 +171,6 @@ ActiveRecord::Schema.define(version: 2021_03_07_210525) do
     t.boolean "paid", default: false
     t.integer "installments"
     t.bigint "kit_id", null: false
-    t.boolean "payment_method"
-    t.decimal "price", precision: 8, scale: 2, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "address_id", null: false
@@ -185,8 +183,9 @@ ActiveRecord::Schema.define(version: 2021_03_07_210525) do
     t.integer "status", default: 0
     t.string "cpf", null: false
     t.string "insts"
-    t.integer "amount"
     t.datetime "expiration_date"
+    t.decimal "amount", precision: 8, scale: 2
+    t.integer "payment_method"
     t.index ["address_id"], name: "index_orders_on_address_id"
     t.index ["customer_id"], name: "index_orders_on_customer_id"
     t.index ["kit_id"], name: "index_orders_on_kit_id"

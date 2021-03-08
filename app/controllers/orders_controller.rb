@@ -9,7 +9,7 @@ class OrdersController < ApplicationController
   end
 
   def create
-    debugger
+    p params
     flash[:notice] = "Estamos processando sua compra"
     @order = OrderForm.new(order_params)
     if params[:card]
