@@ -17,17 +17,18 @@ export default class extends Controller {
   }
 
   updateInstallments (totalPrice) {
-    Array.from(this.installmentsTarget.children).forEach((child, index) => {
-      if (index === 0) {
-        child.innerText = ""
-      } else {
-        const cf = 0.0299 / (1-(1 / Math.pow(1+0.0299, index)))
-        console.log(index)
-        console.log(cf)
-        const installmentPrice = totalPrice * cf
-        child.innerText = `${index} X R$ ${installmentPrice.toFixed(2).replace(".", ",")}`
-      }
-    })
+    fetch(`/api/v1/installments?amount=${totalPrice * 100}`)
+      .then(response => response.json())
+      .then((installments) => {
+        Array.from(this.installmentsTarget.children).forEach((child, index) => {
+          if (index === 0) {
+            child.innerText = ""
+          } else {
+            const installmentPrice = installments["installments"][index]["installment_amount"] / 100
+            child.innerText = `${index} X R$ ${installmentPrice.toFixed(2).replace(".", ",")}`
+          }
+        })
+      });
   }
 
   updateBankSlip (productsPrice, totalPrice) {

@@ -17,7 +17,7 @@ module OrdersHelper
       interest_hash = order_interest(order)
       interest_hash = interest_hash["installments"]
       interest_hash.each do |key, value|
-         installments << ["#{key} X #{number_to_currency(value["installment_amount"], unit: "R$ ", separator: ",", delimiter: ".")}", key]
+         installments << ["#{key} X #{number_to_currency(value["installment_amount"].to_f / 100, unit: "R$ ", separator: ",", delimiter: ".")}", key]
       end
     else
       products_price = []
