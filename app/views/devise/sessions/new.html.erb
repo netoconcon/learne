@@ -14,7 +14,7 @@
     background-color: #6993CA;
     color: white;
   }
-
+ 
   .form-check {
     position: static
   }
@@ -38,7 +38,9 @@
             <%= f.input :password,
                         required: false, label: "Senha",
                         input_html: { autocomplete: "current-password", style: "border-radius: 8px" } %>
-            <%= f.input :remember_me, as: :boolean, label: "Lembrar de mim" if devise_mapping.rememberable? %>
+            <div style="max-width: 250px">
+              <%= f.input :remember_me, as: :boolean, label: "Lembrar de mim", input_html: { style: "width: inherit" } if devise_mapping.rememberable? %>
+            </div>
           </div>
 
           <div class="form-actions mt-3">
