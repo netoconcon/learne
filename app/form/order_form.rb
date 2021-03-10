@@ -105,7 +105,7 @@ class OrderForm
     end
 
     def price
-      @price ||= 
+      @price ||= kit.price
     end
 
     def calc_amount
