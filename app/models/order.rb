@@ -11,7 +11,7 @@ class Order < ApplicationRecord
   enum status: {
       pending_payment: 0,   # User completed the checkout, we must wait confirmation
       completed: 1,         # Everything went fine.
-      refused: 2,            # Unfortunately something went wrong
+      refused: 2,           # Unfortunately something went wrong
   }
 
   enum payment_method: { credit_card: 0, bank_slip: 1 }

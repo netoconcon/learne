@@ -33,8 +33,8 @@ class OrderForm
       :installments,
       :bank_slip_cpf,
       :add_upsell_product,
-      :amount
-
+      :amount,
+      :kit_products
   )
 
   def save
@@ -46,7 +46,7 @@ class OrderForm
       self.amount = calc_amount
     else
       self.installments = 1
-      order.installments =1
+      order.installments = 1
       order.amount = calc_amount
       self.amount = calc_amount
     end
@@ -56,7 +56,7 @@ class OrderForm
     update_visit
 
     transaction = begin
-                    if order.kit.payment_type == "single"
+                    if order.kit.single_payment?
                       Pm::Transaction.create(self)
                     else
                       Pm::Subscription.create(self)
@@ -83,10 +83,6 @@ class OrderForm
     end
   end
 
-  def upsell_product
-    kit.upsell_product
-  end
-
   private
     def order_attributes
       Order.attribute_names.index_with { |a| send(a) if respond_to?(a) }.compact
@@ -108,21 +104,22 @@ class OrderForm
       @price ||= kit.price
     end
 
-    def calc_amount
-      if add_upsell_product == "false" || !self.add_upsell_product.present?
-        # sem upsell
-        value = self.price.to_i
-      else
-        # com upsell
-        value = self.price.to_i + self.upsell_product.price
-      end
+    def upsell_products
+      @upsell_products ||= kit_products.present? ? kit_products.select { |_, value| value == "1" }.keys.map { |key| KitProduct.find(key) } : []
+    end
 
-      installments_result = PagarMe::Transaction.calculate_installments({
-        amount: value,
-        interest_rate: 2.99,
-        max_installments: self.installments
-      })
-      installments_result["installments"][self.installments.to_s]["amount"]
+    def calc_amount
+      @amount = begin
+                  value = (self.price * 100).to_i
+                  value += ((self.upsell_products.map(&:price).sum) * 100).to_i if upsell_products.any?
+
+                  installments_result = PagarMe::Transaction.calculate_installments({
+                                                                                      amount: value,
+                                                                                      interest_rate: 2.99,
+                                                                                      max_installments: self.installments
+                                                                                    })
+                  BigDecimal(installments_result["installments"][self.installments.to_s]["amount"]) / 100
+                end
     end
 
     def cpf
@@ -140,14 +137,6 @@ class OrderForm
         address = Address.create customer_id: customer.id, street: street, number: number, complement: complement, neighborhood: neighborhood, city: city, state: state, zipcode: zipcode unless address.present?
         address
       end
-    end
-
-    def pagarme_credit_card
-      @pagarme_card ||= Pm::Card.create(self)
-    end
-
-    def pagarme_subscription
-      @subscription ||= Pm::Subscription.create(self)
     end
 
     def update_visit

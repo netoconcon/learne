@@ -6,13 +6,13 @@ class Pm::Adapter::Transaction
   end
 
   def payload
-    final_price = @order.amount.to_i + @order.kit.shipment_cost
+    final_price = @order.amount + @order.kit.shipment_cost
 
     @payload = {
-        amount: final_price.to_i,
+        amount: (final_price * 100).to_i,
         installments: @order.installments.to_i,
         postback_url: "https://www.learnesaude.com.br/orders/#{@order.id}/postback/",
-        payment_method: @order.payment_method ? "credit_card" : "boleto",
+        payment_method: @order.payment_method,
         customer: {
             external_id: @order.customer.id.to_s,
             name: @order.customer.first_name + ' ' + @order.customer.last_name,
@@ -41,7 +41,7 @@ class Pm::Adapter::Transaction
         },
         shipping: {
             name: @order.customer.first_name + " " + @order.customer.last_name,
-            fee: @order.kit.shipment_cost,
+            fee: (@order.kit.shipment_cost * 100).to_i,
             delivery_date: "2000-12-21",
             expedited: true,
             address: {
@@ -82,8 +82,6 @@ class Pm::Adapter::Transaction
             quantity: order_product.quantity,
             tangible: true
         }
-
-        # hash << upsell
       end
     end
 end
