@@ -9,7 +9,7 @@
             <p class="nav-link show border" data-action="click->payment-method#bankSlip" data-target="payment-method.slipBtn"><strong>Boleto</strong></p>
         </div>
         <%= render "orders/new/payment_infos/credit_card", f: f, order: order %>
-        <%= render "orders/new/payment_infos/bank_slip", f: f, order: order %>
+        <%= render "orders/new/payment_infos/boleto", f: f, order: order %>
     </div>
     <div class="card-footer bg-transparent">
         <%= image_tag("secure.jpg", class: "img-fluid d-block mx-auto") %>

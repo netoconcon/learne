@@ -12,7 +12,7 @@ class Pm::Adapter::Transaction
         amount: (final_price * 100).to_i,
         installments: @order.installments.to_i,
         postback_url: "https://www.learnesaude.com.br/orders/#{@order.id}/postback/",
-        payment_method: @order.credit_card? ? "credit_card" : "boleto",
+        payment_method: @order.payment_method,
         customer: {
             external_id: @order.customer.id.to_s,
             name: @order.customer.first_name + ' ' + @order.customer.last_name,

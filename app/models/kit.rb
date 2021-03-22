@@ -1,5 +1,5 @@
 class Kit < ApplicationRecord
-  validates :name, :amount,:payment_type, :height, :weight, :width, :length, :shipment_cost, presence: true
+  validates :name,:payment_type, :height, :weight, :width, :length, :shipment_cost, presence: true
 
   validates :plan, presence: true, if: -> {self.payment_type == 'subscription'}
   validates :standard_installments, :maximum_installments, presence: true, if: -> {self.payment_type == 'single'}
@@ -25,10 +25,6 @@ class Kit < ApplicationRecord
   default_scope { order(created_at: :asc) }
 
   enum payment_type: { single: 0, subscription: 1 }, _suffix: :payment
-
-  def price
-    products.map(&:price).sum
-  end
 
   def update_slug
     self.slug = name.parameterize

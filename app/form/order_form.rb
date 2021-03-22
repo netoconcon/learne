@@ -31,7 +31,7 @@ class OrderForm
       :credit_card_expiration_year,
       :credit_card_cvv,
       :installments,
-      :bank_slip_cpf,
+      :boleto_cpf,
       :add_upsell_product,
       :amount,
       :kit_products
@@ -41,14 +41,17 @@ class OrderForm
     order.assign_attributes order_attributes
     order.customer = customer
     order.address = address
-    if self.credit_card?
-      order.amount = calc_amount 
-      self.amount = calc_amount
-    else
+    if self.boleto_cpf.present?
+      order.payment_method = :boleto
       self.installments = 1
       order.installments = 1
       order.amount = calc_amount
       self.amount = calc_amount
+    else
+      order.payment_method = :credit_card
+      order.amount = calc_amount
+      self.amount = calc_amount
+
     end
 
     order.cpf = cpf
@@ -94,7 +97,7 @@ class OrderForm
         if customer.present?
           customer.update phone: phone, first_name: first_name, last_name: last_name
         else
-          customer = Customer.create first_name: first_name, last_name: last_name, email: email, cpf: (credit_card_cpf || bank_slip_cpf), phone: phone
+          customer = Customer.create first_name: first_name, last_name: last_name, email: email, cpf: (credit_card_cpf || boleto_cpf), phone: phone
         end
         customer
       end
@@ -123,8 +126,8 @@ class OrderForm
     end
 
     def cpf
-      credit_card_cpf.present? ? credit_card_cpf : bank_slip_cpf 
-      # credit_card_cpf || bank_slip_cpf
+      credit_card_cpf.present? ? credit_card_cpf : boleto_cpf
+      # credit_card_cpf || boleto_cpf
     end
 
     def pagarme_customer

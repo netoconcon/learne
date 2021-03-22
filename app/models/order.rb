@@ -14,7 +14,7 @@ class Order < ApplicationRecord
       refused: 2,           # Unfortunately something went wrong
   }
 
-  enum payment_method: { credit_card: 0, bank_slip: 1 }
+  enum payment_method: { credit_card: 0, boleto: 1 }
 
   normalize_attributes :phone, with: [:phone]
   normalize_attributes :zipcode, with: [:numbers]

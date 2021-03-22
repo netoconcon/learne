@@ -2,7 +2,6 @@
   <%= simple_form_for @order, url: orders_path, method: :post do |f| %>
     <%= f.input :kit_id, as: :hidden %>
     <%= f.input :visit_id, as: :hidden %>
-    <%= f.input :payment_method, as: :hidden, value: :credit_card, input_html: { data: { target: "payment-method.input" } } %>
 
     <%= render "orders/new/banner", order: @order %>
 

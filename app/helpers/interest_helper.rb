@@ -3,10 +3,10 @@ module InterestHelper
   	amount = order.kit.price + order.kit.shipment_cost
   	max_installments = order.kit.maximum_installments
 
-	installments_result = PagarMe::Transaction.calculate_installments({
-		amount: (amount * 100).to_i,
-		interest_rate: 2.99,
-		max_installments: max_installments.to_s
-	})
+		installments_result = PagarMe::Transaction.calculate_installments({
+			amount: (amount * 100).to_i,
+			interest_rate: 2.99,
+			max_installments: max_installments.to_s
+		})
   end
 end
