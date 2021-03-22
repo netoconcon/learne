@@ -55,7 +55,6 @@ class OrderForm
     order.save!
     update_visit
 
-    debugger
     transaction = begin
                     if order.kit.single_payment?
                       Pm::Transaction.create(self)
