@@ -5,6 +5,7 @@ class Kit < ApplicationRecord
   validates :standard_installments, :maximum_installments, presence: true, if: -> {self.payment_type == 'single'}
   validates :shipment_cost, presence: true, if: -> {self.allow_free_shipment == false}
   validates :name, uniqueness: true
+  validates :price, presence: true
 
 
   validates_numericality_of :shipment_cost, :greater_than_or_equal_to => 0
