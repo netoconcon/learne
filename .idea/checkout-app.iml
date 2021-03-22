@@ -67,7 +67,7 @@
     <orderEntry type="library" scope="PROVIDED" name="nokogiri (v1.11.1, Remote: ruby-3.0.0-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="pagarme (v2.4.0, Remote: ruby-3.0.0-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="pg (v1.2.3, Remote: ruby-3.0.0-p0) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="postmark (v1.21.3, Remote: ruby-3.0.0-p0) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="pg_search (v2.3.5, Remote: ruby-3.0.0-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="postmark-rails (v0.20.0, Remote: ruby-3.0.0-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="public_suffix (v4.0.6, Remote: ruby-3.0.0-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rack (v2.2.3, Remote: ruby-3.0.0-p0) [gem]" level="application" />

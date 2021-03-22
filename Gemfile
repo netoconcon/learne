@@ -24,6 +24,7 @@ gem 'redis', '~> 4.0'
 gem 'pagarme'
 gem 'sendgrid-ruby'
 gem "useragent"
+gem 'pg_search', '~> 2.3.0'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
@@ -47,7 +48,7 @@ gem 'postmark-rails'
 gem 'paper_trail'
 gem 'cloudinary', '~> 1.16.0'
 
-group :development, :test do  
+group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'dotenv-rails'

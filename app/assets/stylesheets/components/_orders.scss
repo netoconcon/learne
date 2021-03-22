@@ -1,15 +1,14 @@
 .card-product {
   overflow: hidden;
-  height: 40px;
+  height: 60px;
   background: white;
   box-shadow: 0 0 2px rgba(0,0,0,0.5);
   display: flex;
   justify-content: space-between;
   align-items: center;
   text-align: center;
-  font-size: 12px;
-
   margin-bottom: 1px;
+  font-size: 12px;
 }
 
 .card-product-header {
@@ -22,29 +21,48 @@
   margin-bottom: 5px;
   justify-content: space-between;
   text-align: center;
+  font-size: 12px;
+  font-weight: bold;
 }
 
 .order-small-item{
   box-shadow: 0 0 2px rgba(0,0,0,0.2);
+  height: 60px;
   padding: 10px;
   width: 5.5%;
-  max-width: 5.5%;
-  min-width: 5.5%;
+  max-width: 4.5%;
+  min-width: 4.5%;
+  display: flex;
+  align-items: center;
+  justify-content: left;
 }
 
 .order-medium-item{
   box-shadow: 0 0 2px rgba(0,0,0,0.2);
+  height: 60px;
   padding: 10px;
   width: 13%;
-  max-width: 12%;
-  min-width: 12%;
+  max-width: 10%;
+  min-width: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: left;
 }
 
 .order-large-item{
   box-shadow: 0 0 2px rgba(0,0,0,0.2);
   padding: 10px;
+  height: 60px;
+  margin: auto;
   width: 24%;
-  max-width: 20%;
-  min-width: 20%;
+  max-width: 17%;
+  min-width: 17%;
+  h5{
+    font-size: 16px;
+    font-weight: 900 !important;
+  }
+  p {
+    font-size: 12px;
+  }
 }
 

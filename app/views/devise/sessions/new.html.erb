@@ -1,20 +1,57 @@
-<h2>Log in</h2>
+<style>
+  .forgot-password-button:link {
+    color: black;
+    font-size: 12px
+  }
 
-<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="form-inputs">
-    <%= f.input :email,
-                required: false,
-                autofocus: true,
-                input_html: { autocomplete: "email" } %>
-    <%= f.input :password,
-                required: false,
-                input_html: { autocomplete: "current-password" } %>
-    <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+  .log-in-button {
+    background-color: #336DBE;
+    color: white;
+    border-radius: 16px
+  }
+
+  .log-in-button:hover {
+    background-color: #6993CA;
+    color: white;
+  }
+ 
+  .form-check {
+    position: static
+  }
+
+</style>
+
+<div style="height: 100vh" class="d-flex align-items-center justify-content-center">
+  <div>
+    <div class="w-100 d-flex justify-content-around">
+      <%= image_tag "logo-learne.png", width: 254, height: 90 %>
+    </div>
+
+    <div class="w-100 d-flex justify-content-around mt-2">
+      <div class="w-100">
+        <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <div class="form-inputs">
+            <%= f.input :email,
+                        required: false,
+                        autofocus: true,
+                        input_html: { autocomplete: "email", style: "border-radius: 8px" } %>
+            <%= f.input :password,
+                        required: false, label: "Senha",
+                        input_html: { autocomplete: "current-password", style: "border-radius: 8px" } %>
+            <div style="max-width: 250px">
+              <%= f.input :remember_me, as: :boolean, label: "Lembrar de mim", input_html: { style: "width: inherit" } if devise_mapping.rememberable? %>
+            </div>
+          </div>
+
+          <div class="form-actions mt-3">
+            <%= f.button :submit, "Log in", class: "log-in-button" %>
+          </div>
+        <% end %>
+
+        <div class="d-flex w-100 justify-content-around">
+          <%= link_to "Esqueceu sua senha?", new_password_path(resource_name), class: "forgot-password-button" %>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Log in" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>
