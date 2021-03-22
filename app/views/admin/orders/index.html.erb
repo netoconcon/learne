@@ -116,7 +116,7 @@
           <td><%#= order.created_at.strftime("%d-%m-%Y") %></td>
           <td><%#= humanize_order_status(order.status) %></td>
           <!-- <td><%#= humanized_address(order.address) %></td> -->
-          <td><%#= number_to_currency(order.kit.amount, unit: "R$ ", separator: ",")  %></td>
+          <td><%#= number_to_currency(order.kit.price, unit: "R$ ", separator: ",")  %></td>
           <td><%#= order.created_at.strftime("%H:%M | %d-%m-%Y") %></td>
           <td>
             <%#= link_to admin_order_path(order) do %>

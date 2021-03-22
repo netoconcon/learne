@@ -1,6 +1,6 @@
 module InterestHelper
   def order_interest(order)
-  	amount = order.kit.amount + order.kit.shipment_cost
+  	amount = order.kit.price + order.kit.shipment_cost
   	max_installments = order.kit.maximum_installments
 
 	installments_result = PagarMe::Transaction.calculate_installments({

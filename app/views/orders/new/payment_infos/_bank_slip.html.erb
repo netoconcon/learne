@@ -23,7 +23,7 @@
                     <div class="form-group row font-weight-bold">
                         <div>
                             <div class="border-bottom mb-1">
-                                <p class="col-12" data-target="upsell.bankSlipProductPrice" data-product-price="<%= order.kit.amount %>">Produtos:</p>
+                                <p class="col-12" data-target="upsell.bankSlipProductPrice" data-product-price="<%= order.kit.price %>">Produtos:</p>
                                 <p class="col-12" data-target="zipcode.shipment" hidden>Frete:</p>
                             </div>
                             <div>
@@ -32,11 +32,11 @@
                         </div>
                         <div>
                             <div class="border-bottom mb-1">
-                                <p class="col-12" data-target="upsell.productsPrice" data-products-price="<%= order.kit.amount %>"><%= number_to_currency(order.kit.amount, unit: "R$ ") %></p>
+                                <p class="col-12" data-target="upsell.productsPrice" data-products-price="<%= order.kit.price %>"><%= number_to_currency(order.kit.price, unit: "R$ ") %></p>
                                 <p class="col-12" data-target="zipcode.shipment" hidden><%= order_shipping(order) %></p>
                             </div>
                             <div>
-                                <p class="col-12" data-target="upsell.totalPrice zipcode.totalPrice" data-total-price="<%= order.kit.amount + order.kit.shipment_cost %>" hidden><%= number_to_currency(order.kit.amount + order.kit.shipment_cost, unit: "R$ ") %></p>                            
+                                <p class="col-12" data-target="upsell.totalPrice zipcode.totalPrice" data-total-price="<%= order.kit.price + order.kit.shipment_cost %>" hidden><%= number_to_currency(order.kit.price + order.kit.shipment_cost, unit: "R$ ") %></p>
                             </div>
                         </div>
                         <%= render "orders/new/shared/calculating_shipment", f: f, order: order %>
