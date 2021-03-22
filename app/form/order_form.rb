@@ -41,17 +41,17 @@ class OrderForm
     order.assign_attributes order_attributes
     order.customer = customer
     order.address = address
+    order.shipment_amount = kit.shipment_cost
     if self.boleto_cpf.present?
       order.payment_method = :boleto
       self.installments = 1
       order.installments = 1
-      order.amount = calc_amount
-      self.amount = calc_amount
+      order.products_amount = calc_amount
+      self.products_amount = calc_amount
     else
       order.payment_method = :credit_card
-      order.amount = calc_amount
-      self.amount = calc_amount
-
+      order.products_amount = calc_amount
+      self.products_amount = calc_amount
     end
 
     order.cpf = cpf
@@ -97,7 +97,8 @@ class OrderForm
         if customer.present?
           customer.update phone: phone, first_name: first_name, last_name: last_name
         else
-          customer = Customer.create first_name: first_name, last_name: last_name, email: email, cpf: (credit_card_cpf || boleto_cpf), phone: phone
+          cpf = credit_card_cpf.present? ? credit_card_cpf : boleto_cpf
+          customer = Customer.create first_name: first_name, last_name: last_name, email: email, cpf: cpf, phone: phone
         end
         customer
       end
@@ -108,11 +109,11 @@ class OrderForm
     end
 
     def upsell_products
-      @upsell_products ||= kit_products.present? ? kit_products.select { |_, value| value == "1" }.keys.map { |key| KitProduct.find(key) } : []
+      @upsell_products ||= kit_products.present? ? kit_products.select { |_, value| value == "true" }.keys.map { |key| KitProduct.find(key) } : []
     end
 
     def calc_amount
-      @amount = begin
+      @amount ||= begin
                   value = (self.price * 100).to_i
                   value += ((self.upsell_products.map(&:price).sum) * 100).to_i if upsell_products.any?
 

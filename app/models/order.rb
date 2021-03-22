@@ -29,6 +29,10 @@ class Order < ApplicationRecord
     end
   end
 
+  def total_amount
+    shipment_amount + products_amount
+  end
+
   private
 
   def send_email

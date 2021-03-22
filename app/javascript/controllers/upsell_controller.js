@@ -1,10 +1,15 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-  static targets = [  "productsPrice", "totalPrice", "installments" ]
+  static targets = [  "productsPrice", "totalPrice", "installments", "checkbox" ]
 
   update(e) {
     const checked = e.currentTarget.checked
+    if (checked) {
+      this.checkboxTargets.checked = true
+    } else {
+      this.checkboxTargets.checked = false
+    }
     const upsellPrice = parseFloat(e.currentTarget.dataset.price)
     const currentProductsPrice = parseFloat(this.productsPriceTarget.dataset.productsPrice)
     const currentTotalPrice = parseFloat(this.totalPriceTarget.dataset.totalPrice)
@@ -21,12 +26,8 @@ export default class extends Controller {
       .then(response => response.json())
       .then((installments) => {
         Array.from(this.installmentsTarget.children).forEach((child, index) => {
-          if (index === 0) {
-            child.innerText = ""
-          } else {
-            const installmentPrice = installments["installments"][index]["installment_amount"] / 100
-            child.innerText = `${index} X R$ ${installmentPrice.toFixed(2).replace(".", ",")}`
-          }
+          const installmentPrice = installments["installments"][index + 1]["installment_amount"] / 100
+          child.innerText = `${index + 1} X R$ ${installmentPrice.toFixed(2).replace(".", ",")}`
         })
       });
   }

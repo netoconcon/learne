@@ -11,6 +11,7 @@ class OrdersController < ApplicationController
   def create
     flash[:notice] = "Estamos processando sua compra"
     @order = OrderForm.new(order_params)
+    @order.kit_products = params[:order][:kit_products]
 
     if @order.save
       if @order.refused?
@@ -80,7 +81,6 @@ class OrdersController < ApplicationController
         :add_upsell_product,
         :insts,
         :amount,
-        :kit_products
     )
   end
 

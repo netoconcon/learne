@@ -21,8 +21,8 @@ module OrderStatusHelper
     end
   end
 
-  def humanize_order_payment_method(method)
-    if method
+  def humanize_order_payment_method(order)
+    if order.credit_card?
       "Cartão"
     else
       "Boleto"
