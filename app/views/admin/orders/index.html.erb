@@ -81,7 +81,7 @@
 
   <% if @orders.present? %>
     <% @orders.each do |order| %>
-      <div class="card-product" data-customer-name="<%= order.customer.name %>" data-customer-email="<%= order.customer.email %>" data-customer-cpf="<%= order.customer.cpf %>" data-order-id="<%= order.id %>" data-new-status="<%= humanize_order_paid(order.paid) %>" data-order-status="<%= humanize_order_status(order) %>" data-payment-method="<%=humanize_order_payment_method(order.payment_method) %>">
+      <div class="card-product" data-customer-name="<%= order.customer.name %>" data-customer-email="<%= order.customer.email %>" data-customer-cpf="<%= order.customer.cpf %>" data-order-id="<%= order.id %>" data-new-status="<%= humanize_order_paid(order.paid) %>" data-order-status="<%= humanize_order_status(order) %>" data-payment-method="<%=humanize_order_payment_method(order) %>">
         <div class="order-small-item">
           <%= link_to admin_order_path(order) do %>
             <%= order.id %>
@@ -95,7 +95,7 @@
           <%= order.created_at.strftime('%d/%m/%y - %H:%M') %>
         </div>
         <div class="order-medium-item">
-          <%= order.customer.cpf %>
+          <%= order.cpf %>
         </div>
         <div class="order-small-item">
           Site
@@ -104,10 +104,10 @@
           <%= render 'tags', status: humanize_order_status(order) %>
         </div>
         <div class="order-medium-item">
-          <%= humanize_order_payment_method(order.payment_method)  %>
+          <%= humanize_order_payment_method(order)  %>
         </div>
         <div class="order-medium-item">
-          <%= number_to_currency( (order.amount).fdiv(100) ).to_s.gsub(".",",") %>
+          <%= number_to_currency(order.total_amount) %>
         </div>
         <div class="order-small-item">
           <%= number_to_currency( (order.kit.shipment_cost) ) %>
@@ -118,56 +118,7 @@
         <div class="order-medium-item">
           Campaign
         </div>
-        <!-- <div class="order-small-item"> -->
-          <%#= link_to admin_order_path(order) do %>
-            <!-- <i class="fa fa-info-circle"></i> -->
-          <%# end %>
-        <!-- </div> -->
       </div>
     <% end %>
   <% end %>
 </div>
-
-
-
-
-
-
-<!-- <div class="container" data-controller="table">
-  <h2>Pedidos</h2>
-
-  <table class="table" id="myTable" data-target="table.table">
-    <thead>
-    <th scope="col">ID</th>
-    <th scope="col">Usuário</th>
-    <th scope="col">Data criada</th>
-    <!-- <th scope="col">Endereço de entrega</th> -->
-    <!-- <th scope="col">Status</th>
-    <th scope="col">Valor</th>
-    <th scope="col">Criado em:</th>
-    <th scope="col">Detalhes</th> -->
-    <!-- </thead> -->
-    <!-- <tbody> -->
-    <%# if @orders.present? %>
-      <%# @orders.each do |order|%>
-        <%# order.order_status %>
-        <!-- <tr class="<%= cycle('list_line_odd', 'list_line_even') %>"> -->
-          <td><%#= order.id %></td>
-          <td><%#= link_to order.customer.email, admin_order_path(order) %></td>
-          <td><%#= order.created_at.strftime("%d-%m-%Y") %></td>
-          <td><%#= humanize_order_status(order.status) %></td>
-          <!-- <td><%#= humanized_address(order.address) %></td> -->
-          <td><%#= number_to_currency(order.kit.amount, unit: "R$ ", separator: ",")  %></td>
-          <td><%#= order.created_at.strftime("%H:%M | %d-%m-%Y") %></td>
-          <td>
-            <%#= link_to admin_order_path(order) do %>
-              <!-- <i class="fa fa-info-circle"></i> -->
-            <%# end %>
-          <!-- </td> -->
-        <!-- </tr> -->
-      <%# end %>
-    <%# end %>
-    <!-- </tbody> -->
-  <!-- </table> -->
-<!-- </div> -->
-<!-- a -->

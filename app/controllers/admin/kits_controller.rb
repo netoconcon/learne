@@ -63,8 +63,8 @@ class Admin::KitsController < ApplicationController
       :banner,
       :name,
       :description,
-      :amount_cents,
       :payment_type,
+      :price,
       :standard_installments,
       :maximum_installments,
       :shipment_cost,
@@ -75,16 +75,15 @@ class Admin::KitsController < ApplicationController
       :width,
       :plan_id,
       :discount,
-      :possale,
-      :upsell,
-      :copy,
+      :upsell_message,
       :upsell_product_id,
       kit_products_attributes:[
         :id,
         :product_id,
         :kit_id,
         :quantity,
-        :price_cents,
+        :price,
+        :upsell,
         :_destroy,
         product_attributes:[
           :id,
@@ -102,6 +101,6 @@ class Admin::KitsController < ApplicationController
   end
 
   def deactivated_plans
-    Plan.all.find_by(active: false)
+    Plan.all.where(active: false)
   end
 end

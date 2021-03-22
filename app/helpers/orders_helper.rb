@@ -17,7 +17,7 @@ module OrdersHelper
       interest_hash = order_interest(order)
       interest_hash = interest_hash["installments"]
       interest_hash.each do |key, value|
-         installments << ["#{key} X #{number_to_currency(value["installment_amount"] / 100.0, unit: "R$ ", separator: ",", delimiter: ".")}", key]
+         installments << ["#{key} X #{number_to_currency(value["installment_amount"].to_f / 100, unit: "R$ ", separator: ",", delimiter: ".")}", key]
       end
     else
       products_price = []
@@ -33,7 +33,7 @@ module OrdersHelper
   def order_single(order)
     total_price = []
     KitProduct.where(kit_id: order.kit_id).each do |order|
-      total_price << order.amount_cents.to_i
+      total_price << order.amount.to_i
     end
     total_price = number_to_currency(total_price.sum, unit: "R$ ", separator: ",")
   end

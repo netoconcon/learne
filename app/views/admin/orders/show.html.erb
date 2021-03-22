@@ -29,7 +29,7 @@
       </div>
       <div class="order-info-section-area mt-3">
         <div class="order-info-kit-box">
-          
+
           <div class="order-info-kit-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @order.kit.banner.key, height: 300, crop: :fill %>')">
           </div>
           <div class="order-info-order-info ml-4">
@@ -63,8 +63,8 @@
       </div>
       <div class="order_info-order-header">
         <%= render 'order_card_header' %>
-      </div>  
-      <div class="order-info-customer-purchase">   
+      </div>
+      <div class="order-info-customer-purchase">
         <% @order.customer.orders.each do |order| %>
           <div class="order_info-order-card text-left">
             <%= render 'order_card', order: order %>
@@ -82,58 +82,3 @@
     </div>
   </div>
 </div>
-
-<!-- <div class="order-container">
-  <h1 class="pl-4">Detalhes do Pedido</h1>
-  <div class="d-flex">
-    <div class="product-info">
-      <h3>Informações do Produto:</h3>
- -->      
-      <!-- <h4><%#= @order.kit.name.capitalize %></h4> -->
-
-      <!-- <br> -->
-      <!-- <p>Valor do Kit: <%#= number_to_currency(@order.amount.fdiv(100) , unit: "R$ ", separator: ",")  %></p> -->
-      <!-- <p>Frete: <%#= number_to_currency( (@order.kit.shipment_cost_cents.fdiv(100)) , unit: "R$ ", separator: ",")  %></p> -->
-      <!-- <p>Total:  <%#= number_to_currency( ((@order.amount.to_i + @order.kit.shipment_cost_cents).fdiv(100)) , unit: "R$ ", separator: ",")  %> </p>       -->
-<!--     </div>
-    <div class="order-info">
-      <h3>Informações do Pedido:</h3>
-      <br>
-      <h5>Pedido N° <%#= @order.id %></h5>
-      <p>Número de Parcelas: <%#= @order.installments %></p>
- -->
-      <%# unless @order.payment_method %>
-        <!-- <p>Forma de Pagamento: Boleto</p> -->
-
-        <!-- <p>Código de Barra: <%#= @order.boleto_bar_code %></p> -->
-
-        <%#= link_to "Ver Boleto", @order.boleto_url, target:"_blank", class:"btn btn-primary" %>
-      <%# else %>
-        <!-- <p>Forma de pagamento: Cartão de Crédito</p> -->
-      <%# end %>
-<!--       <br>
-      <br> -->
-<!--       <p>Horário: <%#= @order.created_at.strftime("%H:%m do dia %d-%m-%Y") %></p>
-      <p>Status: <%#= humanize_order_status(@order) %></p>
-    </div>
-  </div>
-</div> -->
-
-
-<!-- <div class="container">
-  <h2>Informações do Usuário:</h2>
-  <div>
-    <p>Usuário: <%#= "#{@order.customer.first_name} #{@order.customer.last_name}"%></p>
-    <p>Email: <%#= @order.customer.email %></p>
-    
-  
-    <div>
-      <p>Rua: <%#= Address.find(@order.address_id).street %></p>
-      <p>Numero: <%#= Address.find(@order.address_id).number %></p>
-      <p>Bairro: <%#= Address.find(@order.address_id).neighborhood %></p>
-      <p>Cidade: <%#= Address.find(@order.address_id).city %></p>
-      <p>Estado: <%#= Address.find(@order.address_id).state %></p>
-      <p>CEP: <%#= Address.find(@order.address_id).zipcode %></p>
-    </div>
-  </div>
-</div> -->

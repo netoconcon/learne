@@ -42,3 +42,8 @@ yarn-debug.log*
 /config/local_env.yml.env*
 sendgrid.env
 
+# Ignore dumps
+*.dump
+
+# ignore whatever these effing identifiers are
+*.Identifier 

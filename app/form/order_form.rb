@@ -31,25 +31,27 @@ class OrderForm
       :credit_card_expiration_year,
       :credit_card_cvv,
       :installments,
-      :bank_slip_cpf,
+      :boleto_cpf,
       :add_upsell_product,
-      :amount
-
+      :amount,
+      :kit_products
   )
 
   def save
     order.assign_attributes order_attributes
     order.customer = customer
     order.address = address
-    order.price = price.to_i
-    if self.payment_method
-      order.amount = calc_amount 
-      self.amount = calc_amount
-    else
+    order.shipment_amount = kit.shipment_cost
+    if self.boleto_cpf.present?
+      order.payment_method = :boleto
       self.installments = 1
-      order.installments =1
-      order.amount = calc_amount
-      self.amount = calc_amount
+      order.installments = 1
+      order.products_amount = calc_amount
+      self.products_amount = calc_amount
+    else
+      order.payment_method = :credit_card
+      order.products_amount = calc_amount
+      self.products_amount = calc_amount
     end
 
     order.cpf = cpf
@@ -57,7 +59,7 @@ class OrderForm
     update_visit
 
     transaction = begin
-                    if order.kit.payment_type == "single"
+                    if order.kit.single_payment?
                       Pm::Transaction.create(self)
                     else
                       Pm::Subscription.create(self)
@@ -84,10 +86,6 @@ class OrderForm
     end
   end
 
-  def upsell_product
-    kit.upsell_product
-  end
-
   private
     def order_attributes
       Order.attribute_names.index_with { |a| send(a) if respond_to?(a) }.compact
@@ -99,44 +97,38 @@ class OrderForm
         if customer.present?
           customer.update phone: phone, first_name: first_name, last_name: last_name
         else
-          customer = Customer.create first_name: first_name, last_name: last_name, email: email, cpf: (credit_card_cpf || bank_slip_cpf), phone: phone
+          cpf = credit_card_cpf.present? ? credit_card_cpf : boleto_cpf
+          customer = Customer.create first_name: first_name, last_name: last_name, email: email, cpf: cpf, phone: phone
         end
         customer
       end
     end
 
     def price
-      @price ||= begin
-      #   total_price = 0
-      #   # @order.kit.kit_products.first.price_cents + @order.kit.shipment_cost_cents
-      #   kit.kit_products.each do |kit_product|
-      #     total_price += kit_product.price_cents
-      #   end
-      #   total_price.to_i + kit.shipment_cost_cents.to_i
-       end
-      kit.amount_cents.to_i
+      @price ||= kit.price
+    end
+
+    def upsell_products
+      @upsell_products ||= kit_products.present? ? kit_products.select { |_, value| value == "true" }.keys.map { |key| KitProduct.find(key) } : []
     end
 
     def calc_amount
-      if add_upsell_product == "false" || !self.add_upsell_product.present?
-        # sem upsell
-        value = self.price.to_i
-      else
-        # com upsell
-        value = self.price.to_i + self.upsell_product.price_cents
-      end
+      @amount ||= begin
+                  value = (self.price * 100).to_i
+                  value += ((self.upsell_products.map(&:price).sum) * 100).to_i if upsell_products.any?
 
-      installments_result = PagarMe::Transaction.calculate_installments({
-        amount: value,
-        interest_rate: 2.99,
-        max_installments: self.installments
-      })
-      installments_result["installments"][self.installments.to_s]["amount"]
+                  installments_result = PagarMe::Transaction.calculate_installments({
+                                                                                      amount: value,
+                                                                                      interest_rate: 2.99,
+                                                                                      max_installments: self.installments
+                                                                                    })
+                  BigDecimal(installments_result["installments"][self.installments.to_s]["amount"]) / 100
+                end
     end
 
     def cpf
-      credit_card_cpf.present? ? credit_card_cpf : bank_slip_cpf 
-      # credit_card_cpf || bank_slip_cpf
+      credit_card_cpf.present? ? credit_card_cpf : boleto_cpf
+      # credit_card_cpf || boleto_cpf
     end
 
     def pagarme_customer
@@ -149,14 +141,6 @@ class OrderForm
         address = Address.create customer_id: customer.id, street: street, number: number, complement: complement, neighborhood: neighborhood, city: city, state: state, zipcode: zipcode unless address.present?
         address
       end
-    end
-
-    def pagarme_credit_card
-      @pagarme_card ||= Pm::Card.create(self)
-    end
-
-    def pagarme_subscription
-      @subscription ||= Pm::Subscription.create(self)
     end
 
     def update_visit

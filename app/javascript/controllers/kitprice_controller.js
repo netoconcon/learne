@@ -10,7 +10,7 @@ export default class extends Controller {
   	let result = hash.find(obj => {
   		return obj.id === prod_num;
   	})
-  	this.sumpriceTarget.value = result.price_cents * quant_num;
+  	this.sumpriceTarget.value = result.price * quant_num;
     console.log(this.sumpriceTarget.value)
 	}
 

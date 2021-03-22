@@ -2,10 +2,13 @@
   <div class="field form-kit-products" data-controller="kitprice">
     <div class="form-products">
       <%= f.association :product, as: :select, label: "Produto", input_html: { "data-target" => "kitprice.product", "data-action" => "event -> kitprice#pricefill" } %>
-      <div class="form-fields">  
-        <%= f.input :quantity, label: "Quantidade", input_html: { "data-target" => "kitprice.quantity", "data-action" => "event -> kitprice#pricefill" } %>
+      <div class="form-fields mx-3">  
+        <%= f.input :price, label: "Preço" %>
+        <%= f.input :quantity, label: "Quantidade", input_html: { class: "mx-3", "data-target" => "kitprice.quantity", "data-action" => "event -> kitprice#pricefill" } %>
       </div>
-      <%= f.input :price_cents,  input_html: {"data-target" => "kitprice.sumprice" }, as: :hidden %>
+    </div>
+    <div class="form-check">
+      <%= f.input :upsell, as: :boolean, label: "Esse produto faz parte do upsell?", input_html: { class: "form-check-input" }, label_html: { class: "form-check-label" } %>    
     </div>
       <%= link_to_remove_association "Remover produto", f %>
   </div>

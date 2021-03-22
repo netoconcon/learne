@@ -21,8 +21,8 @@ module OrderStatusHelper
     end
   end
 
-  def humanize_order_payment_method(method)
-    if method
+  def humanize_order_payment_method(order)
+    if order.credit_card?
       "Cartão"
     else
       "Boleto"
@@ -30,7 +30,7 @@ module OrderStatusHelper
   end
 
   def humanize_order_total_value(order)
-    final_price = (order.amount.to_i + order.kit.shipment_cost_cents)
+    final_price = (order.amount.to_i + order.kit.shipment_cost)
     real_price = final_price / 100
     cents = (final_price - real_price).to_s.first(2)
     "R$ #{real_price},#{cents}"

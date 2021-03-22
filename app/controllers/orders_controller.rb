@@ -11,11 +11,7 @@ class OrdersController < ApplicationController
   def create
     flash[:notice] = "Estamos processando sua compra"
     @order = OrderForm.new(order_params)
-    if params[:card]
-      @order.payment_method = true
-    elsif params[:boleto]
-      @order.payment_method = false
-    end
+    @order.kit_products = params[:order][:kit_products]
 
     if @order.save
       if @order.refused?
@@ -79,12 +75,12 @@ class OrdersController < ApplicationController
         :credit_card_expiration_month,
         :credit_card_expiration_year,
         :credit_card_cvv,
-        :bank_slip_cpf,
+        :boleto_cpf,
         :installments,
         :payment_method,
         :add_upsell_product,
         :insts,
-        :amount
+        :amount,
     )
   end
 

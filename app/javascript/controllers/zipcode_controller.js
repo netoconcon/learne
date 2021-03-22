@@ -1,7 +1,8 @@
+import { Collapse } from "bootstrap"
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-  static targets = [ "street", "city", "state", "neighborhood", "address", "shipment", "calculatingShipment" ]
+  static targets = [ "street", "city", "state", "neighborhood", "address", "shipment", "calculatingShipment", "totalPrice" ]
 
 	search (e) {
   	if (e.target.value.length == 9) {
@@ -14,11 +15,20 @@ export default class extends Controller {
 				this.neighborhoodTarget.value = data["bairro"]
 				this.stateTarget.value = data["estado"]
 
-				this.calculatingShipmentTarget.hidden = false
+				this.calculatingShipmentTargets.forEach((target) => {
+					target.hidden = false
+				});
+
 				setTimeout(() => {
-					this.calculatingShipmentTarget.hidden = true
-					this.shipmentTarget.hidden = false
-				}, 3000)
+					this.calculatingShipmentTargets.forEach((target) => {
+						target.hidden = true
+					});
+					this.shipmentTargets.forEach((target) => {
+						target.hidden = false
+					});
+					this.totalPriceTarget.hidden = false
+
+				}, 5000)
 
 			})
 		}

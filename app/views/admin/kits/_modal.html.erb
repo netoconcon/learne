@@ -32,7 +32,7 @@
             <div class="col-4" style="margin-top: 20px;">
               <p>Preço Produtos: R$ <%= total_price.sum %></p>
               <p>Frete: R$ <%= kit.shipment_cost %></p>
-              <p><strong>Preço do Kit: <%= humanized_money_with_symbol(kit.amount) %></strong></p>
+              <p><strong>Preço do Kit: <%= number_to_currency(kit.price) %></strong></p>
             </div>
           </div>
         </div>
