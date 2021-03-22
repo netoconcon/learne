@@ -12,7 +12,7 @@ class Pm::Adapter::Transaction
         amount: (final_price * 100).to_i,
         installments: @order.installments.to_i,
         postback_url: "https://www.learnesaude.com.br/orders/#{@order.id}/postback/",
-        payment_method: @order.payment_method,
+        payment_method: @order.credit_card? ? "credit_card" : "boleto",
         customer: {
             external_id: @order.customer.id.to_s,
             name: @order.customer.first_name + ' ' + @order.customer.last_name,
@@ -57,7 +57,7 @@ class Pm::Adapter::Transaction
         items: order_items
     }
 
-    if @order.payment_method
+    if @order.credit_card?
       @payload[:card_number] = @order.credit_card_number.gsub(" ","")
       @payload[:card_holder_name] = @order.credit_card_name
       @payload[:card_expiration_date] = @order.credit_card_expiration_month + @order.credit_card_expiration_year
