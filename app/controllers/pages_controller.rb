@@ -3,26 +3,26 @@ class PagesController < ApplicationController
   layout "admin"
 
   def home
-    if params[:start_date] || params[:end_date]
-      @start_date = params[:start_date]
-      @end_date = params[:end_date]
-    else
-      current_month = Date.today.at_beginning_of_month
-      @start_date = Date.today.at_beginning_of_month
-      @end_date = Date.today.end_of_month
-    end
+    # if params[:start_date] || params[:end_date]
+    #   @start_date = params[:start_date]
+    #   @end_date = params[:end_date]
+    # else
+    #   current_month = Date.today.at_beginning_of_month
+    #   @start_date = Date.today.at_beginning_of_month
+    #   @end_date = Date.today.end_of_month
+    # end
 
-    @orders = get_order_from_period(@start_date, @end_date)
-    @paid_orders = @orders.select { |order| order.status == "completed" }
-    @total_sold = total_orders_sum(@paid_orders)
-    @average_ticket = @total_sold / @paid_orders.count unless @paid_orders.count.zero?
+    # @orders = get_order_from_period(@start_date, @end_date)
+    # @paid_orders = @orders.select { |order| order.status == "completed" }
+    # @total_sold = total_orders_sum(@paid_orders)
+    # @average_ticket = @total_sold / @paid_orders.count unless @paid_orders.count.zero?
 
-    @period_card = period_card(@orders)
-    @period_boleto = period_boleto(@orders)
+    # @period_card = period_card(@orders)
+    # @period_boleto = period_boleto(@orders)
 
-    @last_sales = Order.where(status == "completed").group_by_month(:created_at, last:5, format: "%d/%m").sum('orders.amount / 100')
+    # @last_sales = Order.where(status == "completed").group_by_month(:created_at, last:5, format: "%d/%m").sum('orders.amount / 100')
 
-    @low_inventories = Inventory.where('flag_quantities > quantity')
+    # @low_inventories = Inventory.where('flag_quantities > quantity')
   end
 
   def period_card(orders)
