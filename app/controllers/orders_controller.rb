@@ -9,22 +9,24 @@ class OrdersController < ApplicationController
   end
 
   def create
-    flash[:notice] = "Estamos processando sua compra"
-    @order = OrderForm.new(order_params)
-    @order.kit_products = params[:order][:kit_products]
+    ActiveRecord::Base.transaction do
+      flash[:notice] = "Estamos processando sua compra"
+      @order = OrderForm.new(order_params)
+      @order.kit_products = params[:order][:kit_products]
 
-    if @order.save
-      if @order.refused?
-        flash[:notice] = "Compra recusada pelo #{transaction.refuse_reason}. Favor entrar em contato com seu banco"
-        render :new
+      if @order.save
+        if @order.refused?
+          flash[:notice] = "Compra recusada pelo #{transaction.refuse_reason}. Favor entrar em contato com seu banco"
+          render :new
+        else
+          reduce_inventory(@order)
+          redirect_to thanks_path(@order)
+          flash[:notice] = "Sua compra foi aprovada"
+        end
       else
-        reduce_inventory(@order)
-        redirect_to thanks_path(@order)
-        flash[:notice] = "Sua compra foi aprovada"
+        render :new
+        flash[:notice] = "Existem erros no formulário"
       end
-    else
-      render :new
-      flash[:notice] = "Existem erros no formulário"
     end
   end
 
