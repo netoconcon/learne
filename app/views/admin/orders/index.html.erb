@@ -3,33 +3,33 @@
 
   <hr>
   <div class="d-flex">
-    <form action="/admin/orders" class="inline-form">
-      <input type="text" name="id" placeholder="Id" value="<%= @id %>">
-      <select name="status">
-          <option value="" disabled selected hidden>Status</option>
+    <form action="/admin/orders" class="inline-form learne-filter-form">
+      <input type="text" name="id" placeholder="Id" value="<%= @id %>" class="filter-input">
+      <select name="status" class="filter-input">
+          <option value="<%= @show_status %>" disabled selected hidden>Status</option>
           <option value="Paga">Paga</option>
           <option value="Em Aberto">Em Aberto</option>
           <option value="Recusada">Recusada</option>
       </select>
-      <select name="payment">
+      <select name="payment" class="filter-input">
           <option  value="" disabled selected hidden>Meio de Pagamento</option>
           <option value="boleto">Boleto</option>
           <option value="cartao">Cartão</option>
       </select>
-      <select name="origin">
+      <select name="origin" class="filter-input">
         <option  value="" disabled selected hidden>Origem</option>
         <option value="boleto">Site</option>
         <option value="cartao">Equipe Parceira</option>
         <option value="cartao">Call Center</option>
       </select>
-      <input type="text" name="name" placeholder="Nome">
-      <input type="text" name="phone" placeholder="Telefone">
-      <input type="text" name="cpf" placeholder="CPF">
-      <input type="text" name="zip" placeholder="CEP">
-      <input type="text" name="address" placeholder="Endereço">
+      <input type="text" name="name" placeholder="Nome" class="filter-input">
+      <input type="text" name="phone" placeholder="Telefone" class="filter-input">
+      <input type="text" name="cpf" placeholder="CPF" class="filter-input">
+      <input type="text" name="zip" placeholder="CEP" class="filter-input">
+      <input type="text" name="address" placeholder="Endereço" class="filter-input">
 
-      <input type="date" name="start_date" placeholder="<%= Date.today %>" value="<%= @filter_start %>">
-      <input type="date" name="end_date" placeholder="Data Final" value="<%= @filter_end %>">
+      <input type="date" name="start_date" placeholder="<%= Date.today %>" value="<%= @filter_start %>" class="filter-input">
+      <input type="date" name="end_date" placeholder="Data Final" value="<%= @filter_end %>" class="filter-input">
       <input type="submit" class="btn btn-primary btn-sm">
       <%= link_to "Limpar Filtro", admin_orders_path, class:"btn btn-success btn-sm text-white" %>
     </form>

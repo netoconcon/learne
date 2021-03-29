@@ -45,14 +45,18 @@ class Admin::OrdersController < ApplicationController
 
     # BRUTE SEARCH
     if @status.present?
+      @show_status = "Status"
       if status == "Em Aberto"
         @orders = @orders.reject { |order| order.paid }
         @orders = @orders.select { |order| order.status == "completed" || order.status == "pending_payment" }
+        @show_status = "Em Aberto"
       elsif status == "Paga"
         @orders = @orders.select { |order| order.paid }
+        @show_status = "Paga"
       elsif status == "Recusada"
         @orders = @orders.reject { |order| order.paid }
         @orders = @orders.reject { |order| order.status == "completed" || order.status == "pending_payment" }
+        @show_status = "Recusada"
       end
     end
 
