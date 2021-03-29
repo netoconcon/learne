@@ -2,51 +2,49 @@ class Admin::OrdersController < ApplicationController
   layout "admin"
 
   def index
-    sql_query = ""
 
-    # select / reject params
-    status = params[:status]
-    payment = params[:payment]
-    start_date = params[:start_date]
-    end_date = params[:end_date]
-    origin = params[:origin]
-    id = params[:id]
+    # params
+    @name = params[:name]
+    @address = params[:address]
+    @cep = params[:zip]
+    @cpf = params[:cpf]
+    @phone = params[:phone]
+    @id = params[:id]
+    @origin = params[:origin]
+    @payment = params[:payment]
+    @start_date = params[:start_date]
+    @end_date = params[:end_date]
 
-    # pg search params
-    name = params[:name]
-    address = params[:address]
-    cep = params[:zip]
-    cpf = params[:cpf]
-    phone = params[:phone]
-
-
-    # FORMATER CPF CEP PHONE
+    # # FORMATER CPF CEP PHONE
 
     # PG SEARCH
-    if name.present? || address.present? || cep.present? || cpf.present? || phone.present?
-      # sql_query = [id, name, address, cep, cpf, phone].join(" ")
-      sql_query = [id, name, address].join(" ")
+    if @name.present? || @address.present? || @cep.present? || @cpf.present? || @phone.present?
+      sql_query = [@name, @address].join(" ")
       @orders = Order.search_by_fields(sql_query)
     else
       @orders = Order.all.order('created_at DESC')
     end
 
     # BRUTE SEARCH
-    if id.present?
-      @orders = @orders.select {|order| order.id == id.to_i}
+    if @id.present?
+      @orders = @orders.select {|order| order.id == @id.to_i}
     end
 
+
+
     # BRUTE SEARCH
-    if origin.present?
-      if origin == "Site"
-        @orders
-      else
+    if @origin.present?
+      if @origin == "Equipe Parceira" || @origin == "Call Center"
         @orders = []
+      else
+        @orders
       end
     end
 
+
+
     # BRUTE SEARCH
-    if status.present?
+    if @status.present?
       if status == "Em Aberto"
         @orders = @orders.reject { |order| order.paid }
         @orders = @orders.select { |order| order.status == "completed" || order.status == "pending_payment" }
@@ -58,8 +56,8 @@ class Admin::OrdersController < ApplicationController
       end
     end
 
-    # BRUTE SEARCH
-    if payment.present?
+    # # BRUTE SEARCH
+    if @payment.present?
       if payment == "cartao"
         @orders = @orders.select { |order| order.payment_method }
       else
@@ -68,15 +66,20 @@ class Admin::OrdersController < ApplicationController
     end
 
     # BRUTE SEARCH
-    if start_date.present?
-      @orders = @orders.select {|order| order.created_at >= start_date}
+    if @start_date.present?
+      @filter_start = @start_date
+      @orders = @orders.select {|order| order.created_at >= @start_date}
     else
       @start_date = Date.today
+      @filter_start = Date.today
     end
-    if end_date.present?
-      @orders = @orders.select {|order| order.created_at <= end_date}
+
+    if @end_date.present?
+      @filter_end = @end_date
+      @orders = @orders.select {|order| order.created_at <= @end_date}
     else
       @end_date = Date.today
+      @filter_end = Date.today
     end
   end
 

@@ -4,7 +4,7 @@
   <hr>
   <div class="d-flex">
     <form action="/admin/orders" class="inline-form">
-      <input type="text" name="id" placeholder="Id">
+      <input type="text" name="id" placeholder="Id" value="<%= @id %>">
       <select name="status">
           <option value="" disabled selected hidden>Status</option>
           <option value="Paga">Paga</option>
@@ -28,8 +28,8 @@
       <input type="text" name="zip" placeholder="CEP">
       <input type="text" name="address" placeholder="Endereço">
 
-      <input type="date" name="start_date" placeholder="" value="<%= @start_date %>">
-      <input type="date" name="end_date" placeholder="" value="<%= @end_date %>">
+      <input type="date" name="start_date" placeholder="<%= Date.today %>" value="<%= @filter_start %>">
+      <input type="date" name="end_date" placeholder="Data Final" value="<%= @filter_end %>">
       <input type="submit" class="btn btn-primary btn-sm">
       <%= link_to "Limpar Filtro", admin_orders_path, class:"btn btn-success btn-sm text-white" %>
     </form>
