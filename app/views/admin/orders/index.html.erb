@@ -28,8 +28,11 @@
       <input type="text" name="zip" placeholder="CEP" class="filter-input">
       <input type="text" name="address" placeholder="Endereço" class="filter-input">
 
+      <input type="text" name="kit" placeholder="Nome do Kit" class="filter-input">
+
       <input type="date" name="start_date" placeholder="<%= Date.today %>" value="<%= @filter_start %>" class="filter-input">
       <input type="date" name="end_date" placeholder="Data Final" value="<%= @filter_end %>" class="filter-input">
+      <br>
       <input type="submit" class="btn btn-primary btn-sm">
       <%= link_to "Limpar Filtro", admin_orders_path, class:"btn btn-success btn-sm text-white" %>
     </form>

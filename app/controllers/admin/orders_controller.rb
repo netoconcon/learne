@@ -14,12 +14,13 @@ class Admin::OrdersController < ApplicationController
     @payment = params[:payment]
     @start_date = params[:start_date]
     @end_date = params[:end_date]
+    @kit = params[:kit]
 
     # # FORMATER CPF CEP PHONE
 
     # PG SEARCH
-    if @name.present? || @address.present? || @cep.present? || @cpf.present? || @phone.present?
-      sql_query = [@name, @address].join(" ")
+    if @name.present? || @address.present? || @cep.present? || @cpf.present? || @phone.present? || @kit.present?
+      sql_query = [@name, @address, @kit].join(" ")
       @orders = Order.search_by_fields(sql_query)
     else
       @orders = Order.all.order('created_at DESC')
