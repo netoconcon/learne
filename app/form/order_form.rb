@@ -38,25 +38,28 @@ class OrderForm
   )
 
   def save
-    order.assign_attributes order_attributes
-    order.customer = customer
-    order.address = address
-    order.shipment_amount = kit.shipment_cost
-    if self.boleto_cpf.present?
-      order.payment_method = :boleto
-      self.installments = 1
-      order.installments = 1
-      order.products_amount = calc_amount
-      self.products_amount = calc_amount
-    else
-      order.payment_method = :credit_card
-      order.products_amount = calc_amount
-      self.products_amount = calc_amount
-    end
 
-    order.cpf = cpf
-    order.save!
-    update_visit
+    
+
+      order.assign_attributes order_attributes
+      order.customer = customer
+      order.address = address
+      order.shipment_amount = kit.shipment_cost
+      if self.boleto_cpf.present?
+        order.payment_method = :boleto
+        self.installments = 1
+        order.installments = 1
+        order.products_amount = calc_amount
+        self.products_amount = calc_amount
+      else
+        order.payment_method = :credit_card
+        order.products_amount = calc_amount
+        self.products_amount = calc_amount
+      end
+
+      order.cpf = cpf
+      order.save!
+      update_visit
 
     transaction = begin
                     if order.kit.single_payment?
