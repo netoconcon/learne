@@ -1,7 +1,7 @@
 class KitProduct < ApplicationRecord
 
   delegate :photo, :name, to: :product
-  validates :quantity, :price, presence: true
+  validates :quantity, presence: true
   
   validates_numericality_of :quantity, :greater_than_or_equal_to => 0
 
