@@ -1,6 +1,7 @@
 class FixOrder < ActiveRecord::Migration[6.1]
   def change
     # fix amount and remove price
+
     Order.all.each do |order|
       order.update! price: BigDecimal(order.amount) / 100
     end
