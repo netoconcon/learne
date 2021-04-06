@@ -34,9 +34,9 @@
           </div>
           <div class="order-info-order-info ml-4">
             <h6>Kit: <%= @order.kit.name.capitalize %></h6>
-            <h6>Valor Produtos: <%= number_to_currency(@order.amount.fdiv(100) , unit: "R$ ", separator: ",")  %></h6>
-            <h6>Frete: <%= number_to_currency( (@order.kit.shipment_cost_cents.fdiv(100)) , unit: "R$ ", separator: ",")  %> </h6>
-            <h6>Total: <%= number_to_currency( (@order.amount.fdiv(100) + @order.kit.shipment_cost_cents.fdiv(100)) , unit: "R$ ", separator: ",")  %></h6>
+            <h6>Valor Produtos: <%= number_to_currency(@order.price.fdiv(100) , unit: "R$ ", separator: ",")  %></h6>
+            <h6>Frete: <%= number_to_currency( (@order.kit.shipment_cost.fdiv(100)) , unit: "R$ ", separator: ",")  %> </h6>
+            <h6>Total: <%= number_to_currency( (@order.price.fdiv(100) + @order.kit.shipment_cost.fdiv(100)) , unit: "R$ ", separator: ",")  %></h6>
             <h6><%= render 'tags', status: humanize_order_status(@order) %></h6>
             <h6>Número de Parcelas: <%= @order.installments %></h6>
             <h6>Dia da Compra: <%= @order.created_at.strftime("%d/%m/%Y - %H:%M") %></h6>
