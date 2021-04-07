@@ -1,6 +1,18 @@
+.navbar {
+  z-index: 1;
+  border-bottom: 1px solid #999999;
+
+  .navbar-home {
+    text-decoration: none;
+    color: black;
+    font-weight: 600;
+    font-size: 24px;
+  }
+}
+
 .navbar-lewagon {
   justify-content: space-between;
-  background: white;
+  background: #fdfefe;
 }
 
 .navbar-lewagon .navbar-collapse {
