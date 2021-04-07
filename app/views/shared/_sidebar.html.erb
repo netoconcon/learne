@@ -1,11 +1,51 @@
 <div class="sidenav">
-  <p> <%= link_to "Home", root_path, class: ("text-white" if current_page?(root_path)) %> </p>
-  <p> <%= link_to "Vendas", admin_orders_path, class: ("text-white" if current_page?(admin_orders_path)) %> </p>
-  <p> <%= link_to "Empresas", admin_companies_path, class: ("text-white" if current_page?(admin_companies_path)) %> </p>
-  <p> <%= link_to "Produtos", admin_products_path, class: ("text-white" if current_page?(admin_products_path)) %> </p>
-  <p> <%= link_to "Estoque", admin_inventories_path, class: ("text-white" if current_page?(admin_inventories_path)) %> </p>
-  <p> <%= link_to "Meus kits", admin_kits_path, class: ("text-white" if current_page?(admin_kits_path)) %> </p>
-  <p> <%= link_to "Advetoriais", admin_selling_pages_path, class: ("text-white" if current_page?(admin_selling_pages_path)) %> </p>
-  <p> <%= link_to "Campanhas", admin_campaigns_path, class: ("text-white" if current_page?(admin_campaigns_path)) %> </p>
-  <p> <%= link_to "Planos", admin_plans_path, class: ("text-white" if current_page?(admin_plans_path)) %> </p>
+  <p> <%#= link_to "Home", root_path, class: ("text-white" if current_page?(root_path)) %> 
+    <%= link_to root_path, class: ("text-white" if current_page?(root_path)) do %>
+      <i class="fas fa-home"></i>  Home
+    <% end %>
+  </p>
+  <p> 
+    <%= link_to admin_orders_path, class: ("text-white" if current_page?(admin_orders_path)) do %>
+      <i class="fas fa-dollar-sign"></i> Vendas
+    <% end %>
+  </p>
+  <p> 
+    <%= link_to admin_companies_path, class: ("text-white" if current_page?(admin_companies_path)) do %>
+      <i class="fas fa-briefcase"></i> Empresas
+    <% end %>
+  </p>
+  <p>
+    <%= link_to admin_products_path, class: ("text-white" if current_page?(admin_products_path)) do %>
+      <i class="fas fa-gift"></i> Produtos
+    <% end %>
+
+   <%#= link_to "Produtos", admin_products_path, class: ("text-white" if current_page?(admin_products_path)) %> </p>
+  <p> 
+    <%= link_to admin_inventories_path, class: ("text-white" if current_page?(admin_inventories_path)) do %>
+      <i class="fas fa-truck-moving"></i> Estoque
+    <% end %>
+
+    <%#= link_to "Estoque", admin_inventories_path, class: ("text-white" if current_page?(admin_inventories_path)) %> </p>
+  <p> 
+    <%= link_to admin_kits_path, class: ("text-white" if current_page?(admin_kits_path)) do %>
+      <i class="fas fa-box-open"></i> Kits
+    <% end %>
+    <%#= link_to "Meus kits", admin_kits_path, class: ("text-white" if current_page?(admin_kits_path)) %> </p>
+  <p> 
+    <%= link_to  admin_selling_pages_path, class: ("text-white" if current_page?(admin_selling_pages_path)) do %>
+      <i class="fas fa-ad"></i> Advetoriais
+    <% end %>
+
+    <%#= link_to "Advetoriais", admin_selling_pages_path, class: ("text-white" if current_page?(admin_selling_pages_path)) %> </p>
+  <p> 
+    <%= link_to admin_campaigns_path, class: ("text-white" if current_page?(admin_campaigns_path)) do  %>
+      <i class="fas fa-comment-dollar"></i> Campanhas
+    <% end %>
+
+    <%#= link_to "Campanhas", admin_campaigns_path, class: ("text-white" if current_page?(admin_campaigns_path)) %> </p>
+  <p> 
+    <%= link_to admin_plans_path, class: ("text-white" if current_page?(admin_plans_path)) do %>
+      <i class="fas fa-money-check"></i> Planos
+    <% end %>
+    <%#= link_to "Planos", admin_plans_path, class: ("text-white" if current_page?(admin_plans_path)) %> </p>
 </div>
