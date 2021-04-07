@@ -1,0 +1,4 @@
+  <% if product.photo.attached? %>
+    <%= cl_image_tag product.photo.key, style: "", width: 50 %>
+  <% end %>
+
