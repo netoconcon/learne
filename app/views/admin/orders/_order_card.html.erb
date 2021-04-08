@@ -4,13 +4,13 @@
   <%= order.kit.name.capitalize %>
 </div>
 <div class="order-info-kit-name">
-  <%= number_to_currency(order.price * 100, unit: "R$ ", separator: ",")  %>
+  <%#= number_to_currency(order.price * 100, unit: "R$ ", separator: ",")  %>
 </div>
 <div class="order-info-kit-name">
-  <%= number_to_currency( (@order.kit.shipment_cost * 100) , unit: "R$ ", separator: ",")  %>
+  <%#= number_to_currency( (@order.kit.shipment_cost * 100) , unit: "R$ ", separator: ",")  %>
 </div>
 <div class="order-info-kit-name">
-  <%= number_to_currency( (@order.price * 100 + @order.kit.shipment_cost * 100) , unit: "R$ ", separator: ",")  %>
+  <%#= number_to_currency( (@order.price * 100 + @order.kit.shipment_cost * 100) , unit: "R$ ", separator: ",")  %>
 </div>
 <div class="order-info-kit-name">
   <% if order.payment_method %>
