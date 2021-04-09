@@ -1,47 +1,55 @@
+
+
 <div class="sidenav">
-  <p>  
-    <%= link_to root_path, class: ("text-white" if current_page?(root_path)) do %>
-      <i class="fas fa-home"></i>  Home
-    <% end %>
-  </p>
-  <p> 
-    <%= link_to admin_orders_path, class: ("text-white" if current_page?(admin_orders_path)) do %>
-      <i class="fas fa-dollar-sign"></i> Vendas
-    <% end %>
-  </p>
-  <p> 
-    <%= link_to admin_companies_path, class: ("text-white" if current_page?(admin_companies_path)) do %>
-      <i class="fas fa-briefcase"></i> Empresas
-    <% end %>
-  </p>
-  <p>
-    <%= link_to admin_products_path, class: ("text-white" if current_page?(admin_products_path)) do %>
-      <i class="fas fa-gift"></i> Produtos
-    <% end %>
-  </p>
-  <p> 
-    <%= link_to admin_inventories_path, class: ("text-white" if current_page?(admin_inventories_path)) do %>
-      <i class="fas fa-truck-moving"></i> Estoque
-    <% end %>
-  </p>
-  <p> 
-    <%= link_to admin_kits_path, class: ("text-white" if current_page?(admin_kits_path)) do %>
-      <i class="fas fa-box-open"></i> Kits
-    <% end %>
-  </p>
-  <p> 
-    <%= link_to  admin_selling_pages_path, class: ("text-white" if current_page?(admin_selling_pages_path)) do %>
-      <i class="fas fa-ad"></i> Advetoriais
-    <% end %>
-  </p>
-  <p> 
-    <%= link_to admin_campaigns_path, class: ("text-white" if current_page?(admin_campaigns_path)) do  %>
-      <i class="fas fa-comment-dollar"></i> Campanhas
-    <% end %>
-  </p>
-  <p> 
-    <%= link_to admin_plans_path, class: ("text-white" if current_page?(admin_plans_path)) do %>
-      <i class="fas fa-money-check"></i> Planos
-    <% end %>
-  </p>
+  <div class="sidenav-arrow">
+    <i class="fas fa-chevron-right"></i>
+  </div>
+
+  <div class="sidenav-content">
+    <p>
+      <%= link_to root_path, class: ("text-white" if current_page?(root_path)) do %>
+        <i class="fas fa-home"></i>  Home
+      <% end %>
+    </p>
+    <p>
+      <%= link_to admin_orders_path, class: ("text-white" if current_page?(admin_orders_path)) do %>
+        <i class="fas fa-dollar-sign"></i> Vendas
+      <% end %>
+    </p>
+    <p>
+      <%= link_to admin_companies_path, class: ("text-white" if current_page?(admin_companies_path)) do %>
+        <i class="fas fa-briefcase"></i> Empresas
+      <% end %>
+    </p>
+    <p>
+      <%= link_to admin_products_path, class: ("text-white" if current_page?(admin_products_path)) do %>
+        <i class="fas fa-gift"></i> Produtos
+      <% end %>
+    </p>
+    <p>
+      <%= link_to admin_inventories_path, class: ("text-white" if current_page?(admin_inventories_path)) do %>
+        <i class="fas fa-truck-moving"></i> Estoque
+      <% end %>
+    </p>
+    <p>
+      <%= link_to admin_kits_path, class: ("text-white" if current_page?(admin_kits_path)) do %>
+        <i class="fas fa-box-open"></i> Kits
+      <% end %>
+    </p>
+    <p>
+      <%= link_to  admin_selling_pages_path, class: ("text-white" if current_page?(admin_selling_pages_path)) do %>
+        <i class="fas fa-ad"></i> Advetoriais
+      <% end %>
+    </p>
+    <p>
+      <%= link_to admin_campaigns_path, class: ("text-white" if current_page?(admin_campaigns_path)) do  %>
+        <i class="fas fa-comment-dollar"></i> Campanhas
+      <% end %>
+    </p>
+    <p>
+      <%= link_to admin_plans_path, class: ("text-white" if current_page?(admin_plans_path)) do %>
+        <i class="fas fa-money-check"></i> Planos
+      <% end %>
+    </p>
+  </div>
 </div>
