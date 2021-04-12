@@ -12,4 +12,7 @@
   <div class="my-5">
     <%= line_chart @daily_graph_data %>
   </div>
+  <div class="d-flex mb-5">
+    <%= render "shared/cards/report_table", title: "Estoque", card_color: "darkgray", products: @items %>    
+  </div>
 </div>
