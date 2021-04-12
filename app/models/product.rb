@@ -12,6 +12,7 @@ class Product < ApplicationRecord
 
   has_many :upsells, dependent: :destroy
   has_many :kits, through: :upsells
+  has_one :inventory
 
   has_one_attached :photo
 end

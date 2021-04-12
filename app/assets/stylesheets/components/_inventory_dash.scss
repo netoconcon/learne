@@ -1,0 +1,16 @@
+.inventory-dash{
+  display: flex;
+  justify-content: center;
+  width: 90%;
+  margin: 0px 20px;
+  text-align: center;
+}
+
+.inventory-dash-item{
+  border: 1px solid lightgray;
+  flex-grow: 1
+}
+
+.low_inventory{
+  background-color: rgba(orange, 0.7)
+}
