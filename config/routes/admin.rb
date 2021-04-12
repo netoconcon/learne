@@ -1,4 +1,5 @@
 namespace :admin do
+  resources :dashboards, only: [:index]
   resources :orders, only: [:index, :show, :edit, :update]
   resources :companies do
     resources :bank_accounts

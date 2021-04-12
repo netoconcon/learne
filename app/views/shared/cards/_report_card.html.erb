@@ -1,0 +1,27 @@
+<div class="report-card">
+  <div class="report-card-title" style="background-color: <%= card_color %>">
+    <h5><%= title %></h5>
+  </div>
+  <div class="report-card-content">
+    <div style="height: 28px"></div>
+    <div class="d-flex w-100 px-3 justify-content-between">
+      <span class="d-block text-secondary"><small><%= humanize_date(reference_period_start) %> a <%= humanize_date(reference_period_end) %></small></span>
+      <span class="d-block text-secondary"><small><%= humanize_date(filtered_period_start) %> a <%= humanize_date(filtered_period_end) %></small></span>
+    </div>
+    <div class="mt-3 d-flex w-100 px-3 justify-content-between">
+      <span class="d-block"><strong><%= reference_period_total %></strong></span>
+      <span class="d-block"><strong><%= filtered_period_total %></strong></span>
+    </div>
+    <div class="mt-3 d-flex w-100 px-3 justify-content-between">
+      <div class="progress w-100">
+        <div class="progress-bar bg-success" role="progressbar" style="width: <%= performance_total %>%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+    </div>
+    <div class="mt-3 d-flex w-100 px-3 justify-content-center border-bottom pb-3">
+      <span class="d-block">Desempenho: <strong><%= performance_total %></strong></span>
+    </div>
+    <div class="mt-3 w-100 px-3 pb-3">
+      <span class="d-block"><strong>Diferença: <%= difference %></strong></span>
+    </div>
+  </div>
+</div>

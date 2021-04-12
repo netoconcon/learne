@@ -1,0 +1,15 @@
+<div class="text-center">
+  <h1>Dashboard de Vendas</h1>
+</div>
+
+<div class="mt-5">
+  <div class="d-flex">
+    <%= render "shared/cards/report_card", title: "Vendas", card_color: "blue", filtered_period_start: @filtered_period_start, filtered_period_end: @filtered_period_end, reference_period_start: @reference_period_start, reference_period_end: @reference_period_end, filtered_period_total: @filtered_sales.count, reference_period_total: @reference_sales.count, difference: (@filtered_sales.count - @reference_sales.count), performance_total: performance(@filtered_sales.count, @reference_sales.count) %>
+    <%= render "shared/cards/report_card", title: "Receita", card_color: nil, filtered_period_start: @filtered_period_start, filtered_period_end: @filtered_period_end, reference_period_start: @reference_period_start, reference_period_end: @reference_period_end, filtered_period_total: number_to_currency(@filtered_sales.sum(&:total_amount), unit: "R$ "), reference_period_total: number_to_currency(@reference_sales.sum(&:total_amount), unit: "R$ "), difference: number_to_currency(@filtered_sales.sum(&:total_amount) - @reference_sales.sum(&:total_amount), unit: "R$ "), performance_total: performance(@filtered_sales.sum(&:total_amount), @reference_sales.sum(&:total_amount)) %>
+    <%= render "shared/cards/report_card", title: "Lucro", card_color: "green", filtered_period_start: @filtered_period_start, filtered_period_end: @filtered_period_end, reference_period_start: @reference_period_start, reference_period_end: @reference_period_end, filtered_period_total: number_to_currency(@filtered_sales.sum(&:total_amount), unit: "R$ "), reference_period_total: number_to_currency(@reference_sales.sum(&:total_amount), unit: "R$ "), difference: number_to_currency(@filtered_sales.sum(&:total_amount) - @reference_sales.sum(&:total_amount), unit: "R$ "), performance_total: performance(@filtered_sales.sum(&:total_amount), @reference_sales.sum(&:total_amount)) %>
+    <%= render "shared/cards/report_card", title: "Margem de lucro", card_color: "orange", filtered_period_start: @filtered_period_start, filtered_period_end: @filtered_period_end, reference_period_start: @reference_period_start, reference_period_end: @reference_period_end, filtered_period_total: number_to_currency(@filtered_sales.sum(&:total_amount), unit: "R$ "), reference_period_total: number_to_currency(@reference_sales.sum(&:total_amount), unit: "R$ "), difference: number_to_currency(@filtered_sales.sum(&:total_amount) - @reference_sales.sum(&:total_amount), unit: "R$ "), performance_total: performance(@filtered_sales.sum(&:total_amount), @reference_sales.sum(&:total_amount)) %>
+  </div>
+  <div class="my-5">
+    <%= line_chart [{ name: "Período foco", data: @filtered_sales.group_by_day(:created_at).count }, { name: "Período de referência", data: @reference_sales.group_by_day(:created_at).count } ] %>
+  </div>
+</div>
