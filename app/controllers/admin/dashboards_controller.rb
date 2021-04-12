@@ -10,5 +10,17 @@ class Admin::DashboardsController < AdminController
     # filter sales by product if necessary
     @filtered_sales = @filtered_sales.includes(kit: :products).where(products: { id: @filtered_product.id }) if @filtered_product.present?
     @reference_sales = @reference_sales.includes(kit: :products).where(products: { id: @filtered_product.id }) if @filtered_product.present?
+
+    set_graphs_data
+  end
+
+  private
+  def set_graphs_data
+    set_daily_graph_date
+  end
+
+  def set_daily_graph_date
+    @daily_graph_data = {}
+    @filtered_sales.group_by { |order| order.created_at.to_date }.map { |date, orders| @daily_graph_data[date] = orders.count }
   end
 end

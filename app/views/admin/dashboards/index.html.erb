@@ -10,6 +10,6 @@
     <%= render "shared/cards/report_card", title: "Margem de lucro", card_color: "orange", filtered_period_start: @filtered_period_start, filtered_period_end: @filtered_period_end, reference_period_start: @reference_period_start, reference_period_end: @reference_period_end, filtered_period_total: number_to_currency(@filtered_sales.sum(&:total_amount), unit: "R$ "), reference_period_total: number_to_currency(@reference_sales.sum(&:total_amount), unit: "R$ "), difference: number_to_currency(@filtered_sales.sum(&:total_amount) - @reference_sales.sum(&:total_amount), unit: "R$ "), performance_total: performance(@filtered_sales.sum(&:total_amount), @reference_sales.sum(&:total_amount)) %>
   </div>
   <div class="my-5">
-    <%= line_chart @filtered_sales.group_by_day(:created_at).count %>
+    <%= line_chart @daily_graph_data %>
   </div>
 </div>
