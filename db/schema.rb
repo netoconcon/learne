@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_11_232433) do
+ActiveRecord::Schema.define(version: 2021_04_13_085558) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -166,6 +166,17 @@ ActiveRecord::Schema.define(version: 2021_04_11_232433) do
     t.index ["plan_id"], name: "index_kits_on_plan_id"
   end
 
+  create_table "order_items", force: :cascade do |t|
+    t.bigint "order_id", null: false
+    t.bigint "product_id", null: false
+    t.integer "quantity"
+    t.decimal "price", precision: 8, scale: 2
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["order_id"], name: "index_order_items_on_order_id"
+    t.index ["product_id"], name: "index_order_items_on_product_id"
+  end
+
   create_table "orders", force: :cascade do |t|
     t.boolean "paid", default: false
     t.integer "installments"
@@ -292,6 +303,8 @@ ActiveRecord::Schema.define(version: 2021_04_11_232433) do
   add_foreign_key "kit_products", "kits"
   add_foreign_key "kit_products", "products"
   add_foreign_key "kits", "plans"
+  add_foreign_key "order_items", "orders"
+  add_foreign_key "order_items", "products"
   add_foreign_key "orders", "addresses"
   add_foreign_key "orders", "customers"
   add_foreign_key "orders", "kits"

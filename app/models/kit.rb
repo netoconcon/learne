@@ -25,11 +25,11 @@ class Kit < ApplicationRecord
   end
 
   def main_products
-    KitProduct.where(upsell: false, kit_id: id)
+    kit_products.where(upsell: false)
   end
 
   def upsell_products
-    KitProduct.where(upsell: true, kit_id: id)
+    kit_products.where(upsell: true)
   end
 
   def upsell?
