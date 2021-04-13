@@ -13,14 +13,12 @@
   <%#= number_to_currency( (@order.price * 100 + @order.kit.shipment_cost * 100) , unit: "R$ ", separator: ",")  %>
 </div>
 <div class="order-info-kit-name">
-  <% if order.payment_method %>
-    Cartão
-  <% else %>
-    Boleto
-  <% end %>
+  <%= humanize_payment_method(order) %>
 </div>
 <div class="order-info-kit-name text-left">
-  <%= render 'tags', status: humanize_order_status(@order) %>
+  <div class="order-status-tag status-<%= order.status %>">
+    <%= humanize_order_status(order) %>
+  </div>
 </div>
 <div class="order-info-kit-name">
   <!-- UTM Source:  %> -->UTM

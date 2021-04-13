@@ -37,7 +37,11 @@
             <h6>Valor Produtos: <%#= number_to_currency(@order.price.fdiv(100) , unit: "R$ ", separator: ",")  %></h6>
             <h6>Frete: <%#= number_to_currency( (@order.kit.shipment_cost.fdiv(100)) , unit: "R$ ", separator: ",")  %> </h6>
             <h6>Total: <%#= number_to_currency( (@order.price.fdiv(100) + @order.kit.shipment_cost.fdiv(100)) , unit: "R$ ", separator: ",")  %></h6>
-            <h6><%= render 'tags', status: humanize_order_status(@order) %></h6>
+            <h6>
+              <div class="order-status-tag status-<%= @order.status %>">
+                <%= humanize_order_status(@order) %>
+              </div>
+            </h6>
             <h6>Número de Parcelas: <%= @order.installments %></h6>
             <h6>Dia da Compra: <%= @order.created_at.strftime("%d/%m/%Y - %H:%M") %></h6>
 
@@ -47,7 +51,7 @@
               <p>Código de Barra: <%= @order.boleto_bar_code %></p>
               <%= link_to "Ver Boleto", @order.boleto_url, target:"_blank", class:"btn btn-primary btn-sm" %>
             <% else %>
-              <p>Forma de pagamento: Cartão de Crédito</p>
+              <p>Forma de pagamento: <%= humanize_payment_method(@order) %></p>
             <% end %>
             <hr>
 

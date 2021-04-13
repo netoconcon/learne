@@ -5,12 +5,12 @@
   text-align: center;
 }
 
-.status-paid{
+.status-completed{
   background-color: $success;
   color: white;
 }
 
-.status-waiting{
+.status-pending_payment{
   background-color: $warning;
   color: white;
 }

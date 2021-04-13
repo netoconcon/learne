@@ -1,48 +1,6 @@
 <div class="container">
   <h2>Pedidos</h2>
 
-  <hr>
-  <div class="d-flex">
-    <form action="/admin/orders" class="inline-form learne-filter-form">
-      <input type="text" name="id" placeholder="Id" value="<%= @id %>" class="filter-input">
-      <select name="status" class="filter-input">
-          <option value="<%= @show_status %>" disabled selected hidden>Status</option>
-          <option value="Paga">Paga</option>
-          <option value="Em Aberto">Em Aberto</option>
-          <option value="Recusada">Recusada</option>
-      </select>
-      <select name="payment" class="filter-input">
-          <option  value="" disabled selected hidden class="filter-selctor">Meio de Pagamento</option>
-          <option value="boleto">Boleto</option>
-          <option value="cartao">Cartão</option>
-      </select>
-      <select name="origin" class="filter-input">
-        <option  value="" disabled selected hidden>Origem</option>
-        <option value="boleto">Site</option>
-        <option value="cartao">Equipe Parceira</option>
-        <option value="cartao">Call Center</option>
-      </select>
-      <input type="text" name="name" placeholder="Nome" class="filter-input">
-      <input type="text" name="phone" placeholder="Telefone" class="filter-input">
-      <input type="text" name="cpf" placeholder="CPF" class="filter-input">
-      <input type="text" name="zip" placeholder="CEP" class="filter-input">
-      <input type="text" name="address" placeholder="Endereço" class="filter-input">
-
-      <input type="text" name="kit" placeholder="Nome do Kit" class="filter-input">
-
-      <input type="date" name="start_date" placeholder="<%= Date.today %>" value="<%= @filter_start %>" class="filter-input">
-      <input type="date" name="end_date" placeholder="Data Final" value="<%= @filter_end %>" class="filter-input">
-      <br>
-      <input type="submit" class="btn btn-primary btn-sm">
-      <%= link_to "Limpar Filtro", admin_orders_path, class:"btn btn-success btn-sm text-white" %>
-    </form>
-  </div>
-  <hr>
-  <div class="d-flex">
-    <input type="text" id="filter_by_name" placeholder="Pesquisar" class="form-control mr-sm-2">
-  </div>
-  <hr>
-
   <div class="card-product-header">
     <div class="order-small-item">
       <strong>Id</strong>
@@ -84,7 +42,7 @@
 
   <% if @orders.present? %>
     <% @orders.each do |order| %>
-      <div class="card-product" data-customer-name="<%= order.customer.name %>" data-customer-email="<%= order.customer.email %>" data-customer-cpf="<%= order.customer.cpf %>" data-order-id="<%= order.id %>" data-new-status="<%= humanize_order_paid(order.paid) %>" data-order-status="<%= humanize_order_status(order) %>" data-payment-method="<%=humanize_order_payment_method(order) %>">
+      <div class="card-product" data-customer-name="<%= order.customer.name %>" data-customer-email="<%= order.customer.email %>" data-customer-cpf="<%= order.customer.cpf %>" data-order-id="<%= order.id %>" data-new-status="<%= humanize_order_paid(order.paid) %>" data-order-status="<%= humanize_order_status(order) %>" data-payment-method="<%=humanize_payment_method(order) %>">
         <div class="order-small-item">
           <%= link_to admin_order_path(order) do %>
             <%= order.id %>
@@ -104,10 +62,12 @@
           Site
         </div>
         <div class="order-medium-item">
-          <%= render 'tags', status: humanize_order_status(order) %>
+          <div class="order-status-tag status-<%= order.status %>">
+            <%= humanize_order_status(order) %>
+          </div>
         </div>
         <div class="order-medium-item">
-          <%= humanize_order_payment_method(order)  %>
+          <%= humanize_payment_method(order)  %>
         </div>
         <div class="order-medium-item">
           <%= number_to_currency(order.total_amount) %>
