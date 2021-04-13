@@ -6,6 +6,8 @@ class Order < ApplicationRecord
   belongs_to :address
   belongs_to :customer
   has_many :visits
+  has_many :order_items
+  has_many :adjustments
 
   after_create :get_order_infos
 
@@ -53,9 +55,18 @@ class Order < ApplicationRecord
     end
     return [boleto_url, boleto_bar_code]
   end
+    
+    
+  def products_amount
+    order_items.sum(&:price)
+  end
+
+  def adjustments_amount
+    adjustments.sum(&:amount)
+  end
 
   def total_amount
-    shipment_amount + products_amount
+    shipment_amount + products_amount + adjustments_amount
   end
 
   private

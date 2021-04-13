@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_11_232433) do
+ActiveRecord::Schema.define(version: 2021_04_13_092925) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,17 @@ ActiveRecord::Schema.define(version: 2021_04_11_232433) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "customer_id", null: false
     t.index ["customer_id"], name: "index_addresses_on_customer_id"
+  end
+
+  create_table "adjustments", force: :cascade do |t|
+    t.bigint "order_id", null: false
+    t.decimal "amount"
+    t.string "source_type", null: false
+    t.bigint "source_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["order_id"], name: "index_adjustments_on_order_id"
+    t.index ["source_type", "source_id"], name: "index_adjustments_on_source"
   end
 
   create_table "bank_accounts", force: :cascade do |t|
@@ -166,6 +177,18 @@ ActiveRecord::Schema.define(version: 2021_04_11_232433) do
     t.index ["plan_id"], name: "index_kits_on_plan_id"
   end
 
+  create_table "order_items", force: :cascade do |t|
+    t.bigint "order_id", null: false
+    t.bigint "product_id", null: false
+    t.integer "quantity"
+    t.decimal "price", precision: 8, scale: 2
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.boolean "upsell", null: false
+    t.index ["order_id"], name: "index_order_items_on_order_id"
+    t.index ["product_id"], name: "index_order_items_on_product_id"
+  end
+
   create_table "orders", force: :cascade do |t|
     t.boolean "paid", default: false
     t.integer "installments"
@@ -183,7 +206,6 @@ ActiveRecord::Schema.define(version: 2021_04_11_232433) do
     t.string "cpf", null: false
     t.string "insts"
     t.datetime "expiration_date"
-    t.decimal "products_amount", precision: 8, scale: 2, null: false
     t.integer "payment_method"
     t.decimal "price", precision: 8, scale: 2
     t.decimal "shipment_amount", null: false
@@ -286,12 +308,15 @@ ActiveRecord::Schema.define(version: 2021_04_11_232433) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "addresses", "customers"
+  add_foreign_key "adjustments", "orders"
   add_foreign_key "bank_accounts", "companies"
   add_foreign_key "campaigns", "selling_pages"
   add_foreign_key "inventories", "products"
   add_foreign_key "kit_products", "kits"
   add_foreign_key "kit_products", "products"
   add_foreign_key "kits", "plans"
+  add_foreign_key "order_items", "orders"
+  add_foreign_key "order_items", "products"
   add_foreign_key "orders", "addresses"
   add_foreign_key "orders", "customers"
   add_foreign_key "orders", "kits"
