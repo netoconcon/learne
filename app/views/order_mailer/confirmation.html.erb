@@ -1,34 +1,23 @@
-Olá, <%= @customer.name %>,
+<h5>Olá, <%= @customer.name %>, </h5>
 
-Seu pagamento no site <%= @order.kit.name.capitalize %> foi confirmado
+<p>Seu pagamento no site <%= @order.kit.name.capitalize %> foi confirmado <p>
 
-<% unless @order.payment_method %>
-  Seu boleto pode ser econtrado em <%= @order.get_boleto_barcode[0] %>
+<% if @order.payment_method == "boleto" %>
+  <p>Seu boleto pode ser econtrado em <%= link_to "boleto", @order.get_boleto_barcode[0] %> </p>
 
-  Com a linha digitável: <br>
-  <%= @order.get_boleto_barcode[1] %>
+  <p>Com a linha digitável: </p>
+  <p><strong> <%= @order.get_boleto_barcode[1] %> </strong></p>
   
 <% end %>
 
-Para suporte relacionado ao seu pedido, entre em
-contato com o vendedor:
+<p>Para suporte relacionado ao seu pedido, entre em
+contato com o vendedor: </p>
 
-Empresa: Learne Digital Vendas Online LTDA
-CNPJ: 23.742.740/0001-07
+<p>Empresa: Learne Digital Vendas Online LTDA </p>
+<p>CNPJ: 23.742.740/0001-07 </p>
 
-E-mail: cliente@learne.zendesk.com
+<p> E-mail: cliente@learne.zendesk.com </p>
 
+<p> Obrigado </p>
 
-<!-- Pedido #7634911
-Qtd.  Itens do seu pedido Links para download
-5 Tinnitus Pro  N/A
-1 E-book Artrite  
-E-book Artrite
-1 E-book - Colesterol 
-E-book - Colesterol
-1 E-book Imunidade  
-E-book Imunidade -->
-
-Obrigado
-
-Learne
+<h5>Learne</h5>
