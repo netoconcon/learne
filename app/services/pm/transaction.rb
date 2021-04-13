@@ -5,7 +5,7 @@ class Pm::Transaction
     payload = Pm::Adapter::Transaction.new(order).payload
 
     data = PagarMe::Transaction.new(payload).charge
-    data
+    Pm::Model::Transaction.new(data)
   rescue => message
     Rails.logger.debug(message)
     return nil

@@ -89,11 +89,10 @@ class OrdersController < ApplicationController
   end
 
   def reduce_inventory(order)
-    order.kit.kit_products.each do |kit_product|
-      quantity = kit_product.quantity
-      inventory_product = Inventory.find_by(product_id: kit_product.product_id)
+    order.order_items.each do |order_item|
+      inventory_product = Inventory.find_by(product_id: order_item.product_id)
       unless inventory_product.nil?
-        inventory_product.update_attributes(quantity: inventory_product.quantity - quantity)
+        inventory_product.decrement!(:quantity, order_item.quantity)
       end
     end
   end
