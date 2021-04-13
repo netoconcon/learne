@@ -11,7 +11,11 @@ class Admin::DashboardsController < AdminController
     @filtered_sales = @filtered_sales.includes(kit: :products).where(products: { id: @filtered_product.id }) if @filtered_product.present?
     @reference_sales = @reference_sales.includes(kit: :products).where(products: { id: @filtered_product.id }) if @filtered_product.present?
 
+    # charts
     set_graphs_data
+
+    # products
+    @items = Product.all
   end
 
   private

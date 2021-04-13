@@ -31,4 +31,8 @@
       <%= column_chart @boleto_revenue, title: "Receita boleto" %>
     </div>
   </div>
+
+  <div class="d-flex mb-5">
+    <%= render "shared/cards/report_table", title: "Estoque", card_color: "darkgray", products: @items %>
+  </div>
 </div>

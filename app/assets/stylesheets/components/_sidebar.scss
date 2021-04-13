@@ -2,7 +2,7 @@
   position: fixed; /* Fixed Sidebar (stay in place on scroll) */
   height: 100%; /* Full-height: remove this if you want "auto" height */
   width: 10px; /* Set the width of the sidebar */
-  z-index: 0; /* Stay on top */
+  z-index: 100; /* Stay on top */
   top: 66px; /* Stay at the top */
   left: 0;
   max-width: 26px;
