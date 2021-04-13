@@ -38,28 +38,32 @@ class OrderForm
   )
 
   def save
+    order.assign_attributes order_attributes
+    order.customer = customer
+    order.address = address
+    order.shipment_amount = kit.shipment_cost
 
-    
+    if self.boleto_cpf.present?
+      order.cpf = boleto_cpf
+      order.payment_method = :boleto
+      order.installments = 1
+      self.installments = 1
+    else
+      order.cpf = credit_card_cpf
+      order.payment_method = :credit_card
+    end
 
-      order.assign_attributes order_attributes
-      order.customer = customer
-      order.address = address
-      order.shipment_amount = kit.shipment_cost
-      if self.boleto_cpf.present?
-        order.payment_method = :boleto
-        self.installments = 1
-        order.installments = 1
-        order.products_amount = calc_amount
-        self.products_amount = calc_amount
-      else
-        order.payment_method = :credit_card
-        order.products_amount = calc_amount
-        self.products_amount = calc_amount
-      end
+    order.save!
 
-      order.cpf = cpf
-      order.save!
-      update_visit
+    kit.main_products.each do |kit_product|
+      order.order_items.create! quantity: kit_product.quantity, price: kit_product.price, upsell: false, product: kit_product.product
+    end
+
+    upsell_products.each do |kit_product|
+      order.order_items.create! quantity: kit_product.quantity, price: kit_product.price, upsell: true, product: kit_product.product
+    end
+
+    order.adjustments.create! amount: products_amount - order_items.sum(&:price), source: kit
 
     transaction = begin
                     if order.kit.single_payment?
@@ -68,13 +72,11 @@ class OrderForm
                       Pm::Subscription.create(self)
                     end
                   end
-    order.status = transaction.status == "refused" ? :refused : :completed
+
+    order.status = transaction.status
     order.refused_reason = transaction.refused_reason
     order.boleto_url = transaction.boleto_url
     order.boleto_bar_code = transaction.boleto_barcode
-    if order.status == "completed" && order.payment_method
-      order.paid = true
-    end
     order.pagarme_transaction_id = transaction.id.to_i
     order.save!
   end
@@ -107,35 +109,22 @@ class OrderForm
       end
     end
 
-    def price
-      @price ||= kit.price
-    end
-
     def upsell_products
       @upsell_products ||= kit_products.present? ? kit_products.select { |_, value| value == "true" }.keys.map { |key| KitProduct.find(key) } : []
     end
 
-    def calc_amount
-      @amount ||= begin
-                  value = (self.price * 100).to_i
-                  value += ((self.upsell_products.map(&:price).sum) * 100).to_i if upsell_products.any?
+    def products_amount
+      @products_amount ||= begin
+                  value = (kit.price * 100).to_i
+                  value += ((upsell_products.map(&:price).sum) * 100).to_i if upsell_products.any?
 
                   installments_result = PagarMe::Transaction.calculate_installments({
                                                                                       amount: value,
                                                                                       interest_rate: 2.99,
                                                                                       max_installments: self.installments
                                                                                     })
-                  BigDecimal(installments_result["installments"][self.installments.to_s]["amount"]) / 100
+                  BigDecimal(installments_result["installments"][installments.to_s]["amount"]) / 100
                 end
-    end
-
-    def cpf
-      credit_card_cpf.present? ? credit_card_cpf : boleto_cpf
-      # credit_card_cpf || boleto_cpf
-    end
-
-    def pagarme_customer
-      @pagarme_customer ||= Pm::Customer.create(customer)
     end
 
     def address
@@ -144,9 +133,5 @@ class OrderForm
         address = Address.create customer_id: customer.id, street: street, number: number, complement: complement, neighborhood: neighborhood, city: city, state: state, zipcode: zipcode unless address.present?
         address
       end
-    end
-
-    def update_visit
-      # Visit.find(visit_id).update order: order
     end
 end

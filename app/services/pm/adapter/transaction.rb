@@ -6,10 +6,8 @@ class Pm::Adapter::Transaction
   end
 
   def payload
-    final_price = @order.amount + @order.kit.shipment_cost
-
     @payload = {
-        amount: (final_price * 100).to_i,
+        amount: (@order.total_amount * 100).to_i,
         installments: @order.installments.to_i,
         postback_url: "https://www.learnesaude.com.br/orders/#{@order.id}/postback/",
         payment_method: @order.payment_method,
@@ -69,17 +67,12 @@ class Pm::Adapter::Transaction
 
   private
     def order_items
-      kit_price = @order.amount
-
-      @order.kit.kit_products.map do |order_product|
-        quantity = order_product.quantity
-        item_price = kit_price / quantity
-
+      @order.order_items.map do |order_item|
         {
-            id: order_product.product_id.to_s,
-            title: order_product.product.name,
-            unit_price: item_price.to_i,
-            quantity: order_product.quantity,
+            id: order_item.product_id.to_s,
+            title: order_item.product.name,
+            unit_price: order_item.price.to_i,
+            quantity: order_item.quantity,
             tangible: true
         }
       end
