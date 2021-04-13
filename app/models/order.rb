@@ -6,6 +6,7 @@ class Order < ApplicationRecord
   belongs_to :address
   belongs_to :customer
   has_many :visits
+  has_many :order_items
 
   after_create :get_order_infos
 
