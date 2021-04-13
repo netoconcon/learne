@@ -1,6 +1,34 @@
-<p>
-  Sua compra foi confirmada em nosso sistema!
-</p>
+Olá, <%= @customer.name %>,
 
-<p>Nome:  <%= @customer.first_name + ' ' + @customer.last_name %> </p>
+Seu pagamento no site <%= @order.kit.name.capitalize %> foi confirmado
 
+<% unless @order.payment_method %>
+  Seu boleto pode ser econtrado em <%= @order.get_boleto_barcode[0] %>
+
+  Com a linha digitável: <br>
+  <%= @order.get_boleto_barcode[1] %>
+  
+<% end %>
+
+Para suporte relacionado ao seu pedido, entre em
+contato com o vendedor:
+
+Empresa: Learne Digital Vendas Online LTDA
+CNPJ: 23.742.740/0001-07
+
+E-mail: cliente@learne.zendesk.com
+
+
+<!-- Pedido #7634911
+Qtd.  Itens do seu pedido Links para download
+5 Tinnitus Pro  N/A
+1 E-book Artrite  
+E-book Artrite
+1 E-book - Colesterol 
+E-book - Colesterol
+1 E-book Imunidade  
+E-book Imunidade -->
+
+Obrigado
+
+Learne
