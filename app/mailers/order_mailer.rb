@@ -5,8 +5,8 @@ class OrderMailer < ApplicationMailer
   #
   #   en.order_mailer.confirmation.subject
   #
-  def confirmation
-    @order = Order.last
+  def confirmation(order)
+    @order = order
     @customer = @order.customer
 
     mail(to: @customer.email, subject: 'Seu pedido foi confirmado')
