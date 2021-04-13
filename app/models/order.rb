@@ -9,6 +9,8 @@ class Order < ApplicationRecord
 
   after_create :get_order_infos
 
+  after_commit :send_order_confirmation
+
   enum status: {
       pending_payment: 0,   # User completed the checkout, we must wait confirmation
       completed: 1,         # Everything went fine.
@@ -43,13 +45,22 @@ class Order < ApplicationRecord
     end
   end
 
+  def get_boleto_barcode
+    unless self.pagarme_transaction_id.nil?
+      transaction = PagarMe::Transaction.find_by_id(self.pagarme_transaction_id.to_i)
+      boleto_url = transaction["boleto_url"]
+      boleto_bar_code = transaction["boleto_barcode"]
+    end
+    return [boleto_url, boleto_bar_code]
+  end
+
   def total_amount
     shipment_amount + products_amount
   end
 
   private
 
-  def send_email
+  def send_order_confirmation
     OrderMailer.confirmation.deliver_now
   end
 end
