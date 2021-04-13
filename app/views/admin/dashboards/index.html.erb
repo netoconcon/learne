@@ -9,10 +9,30 @@
     <%= render "shared/cards/report_card", title: "Lucro", card_color: "green", filtered_period_start: @filtered_period_start, filtered_period_end: @filtered_period_end, reference_period_start: @reference_period_start, reference_period_end: @reference_period_end, filtered_period_total: number_to_currency(@filtered_sales.sum(&:total_amount), unit: "R$ "), reference_period_total: number_to_currency(@reference_sales.sum(&:total_amount), unit: "R$ "), difference: number_to_currency(@filtered_sales.sum(&:total_amount) - @reference_sales.sum(&:total_amount), unit: "R$ "), performance_total: performance(@filtered_sales.sum(&:total_amount), @reference_sales.sum(&:total_amount)) %>
     <%= render "shared/cards/report_card", title: "Margem de lucro", card_color: "orange", filtered_period_start: @filtered_period_start, filtered_period_end: @filtered_period_end, reference_period_start: @reference_period_start, reference_period_end: @reference_period_end, filtered_period_total: number_to_currency(@filtered_sales.sum(&:total_amount), unit: "R$ "), reference_period_total: number_to_currency(@reference_sales.sum(&:total_amount), unit: "R$ "), difference: number_to_currency(@filtered_sales.sum(&:total_amount) - @reference_sales.sum(&:total_amount), unit: "R$ "), performance_total: performance(@filtered_sales.sum(&:total_amount), @reference_sales.sum(&:total_amount)) %>
   </div>
+
   <div class="my-5">
     <%= line_chart @daily_graph_data %>
   </div>
+
+  <div class="my-5 d-flex justify-content-around">
+    <div class="w-100p">
+      <%= column_chart @credit_card_sales, title: "Vendas cartão de crédito" %>
+    </div>
+    <div class="w-100p">
+      <%= column_chart @credit_card_revenue, title: "Receita cartão de crédito" %>
+    </div>
+  </div>
+
+  <div class="my-5 d-flex justify-content-around">
+    <div class="w-100p">
+      <%= column_chart @boleto_sales, title: "Vendas boleto" %>
+    </div>
+    <div class="w-100p">
+      <%= column_chart @boleto_revenue, title: "Receita boleto" %>
+    </div>
+  </div>
+
   <div class="d-flex mb-5">
-    <%= render "shared/cards/report_table", title: "Estoque", card_color: "darkgray", products: @items %>    
+    <%= render "shared/cards/report_table", title: "Estoque", card_color: "darkgray", products: @items %>
   </div>
 </div>
