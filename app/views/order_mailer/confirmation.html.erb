@@ -3,10 +3,10 @@
 <p>Seu pagamento no site <%= @order.kit.name.capitalize %> foi confirmado <p>
 
 <% if @order.payment_method == "boleto" %>
-  <p>Seu boleto pode ser econtrado em <%= link_to "boleto", @order.get_boleto_barcode[0] %> </p>
+  <p>Seu boleto pode ser econtrado em <%= link_to "boleto", @order.get_boleto_barcode[0] if @order.pagarme_transaction_id %> </p>
 
   <p>Com a linha digitável: </p>
-  <p><strong> <%= @order.get_boleto_barcode[1] %> </strong></p>
+  <p><strong> <%= @order.get_boleto_barcode[1] if @order.pagarme_transaction_id %> </strong></p>
   
 <% end %>
 
