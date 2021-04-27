@@ -11,7 +11,7 @@ class Order < ApplicationRecord
 
   after_create :get_order_infos
 
-  # after_create :send_order_confirmation
+  after_create :send_order_confirmation
 
   enum status: {
       pending_payment: 0,   # User completed the checkout, we must wait confirmation
