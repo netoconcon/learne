@@ -29,8 +29,8 @@ class Admin::DashboardsController < AdminController
   def set_daily_graph_data
     boleto_data = { name: "Vendas boleto", data: {} }
     credit_card_data = { name: "Vendas cartão de crédito", data: {} }
-    @filtered_sales.boleto.group_by { |order| order.created_at.to_date }.map { |date, orders| boleto_data[:data][date] = orders.count }
-    @filtered_sales.credit_card.group_by { |order| order.created_at.to_date }.map { |date, orders| credit_card_data[:data][date] = orders.count }
+    @filtered_sales.boleto.group_by { |order| order.created_at.to_date }.each { |date, orders| boleto_data[:data][date] = orders.count }
+    @filtered_sales.credit_card.group_by { |order| order.created_at.to_date }.each { |date, orders| credit_card_data[:data][date] = orders.count }
     @daily_graph_data = [boleto_data, credit_card_data]
   end
 
