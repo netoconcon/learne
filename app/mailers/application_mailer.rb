@@ -1,5 +1,5 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'cliente@learne.zendesk.com'
+  default from: 'cliente@learne.com.br'
 
   layout 'mailer'
 end
