@@ -1,5 +1,5 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'contato@learne.com.br'
+  default from: 'cliente@learne.com.br'
 
   layout 'mailer'
 end

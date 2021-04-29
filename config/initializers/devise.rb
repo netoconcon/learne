@@ -25,7 +25,7 @@ Devise.setup do |config|
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
   # config.mailer_sender = 'cliente@learne.zendesk.com'
-  config.mailer_sender = 'contato@learne.com.br'
+  config.mailer_sender = 'cliente@learne.com.br'
 
 
   # Configure the class responsible to send e-mails.
