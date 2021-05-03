@@ -19,4 +19,9 @@ class Customer < ApplicationRecord
     self.orders.select { |order| order.completed? }
     orders.count
   end
+
+  def left_carts
+    self.orders.reject { |order| order.completed? }
+    orders.count
+  end
 end

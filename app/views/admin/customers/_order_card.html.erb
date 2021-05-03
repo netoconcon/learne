@@ -1,0 +1,25 @@
+<div class="order-info-kit-image-list" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path order.kit.banner.key, height: 50, crop: :fill if order.kit.banner.attached? %>')">
+</div>
+<div class="order-info-kit-name">
+  <%= order.kit.name.capitalize %>
+</div>
+<div class="order-info-kit-name">
+  <%= number_to_currency(order.price * 100, unit: "R$ ", separator: ",") if order.price  %>
+</div>
+<div class="order-info-kit-name">
+  <%= number_to_currency( (@order.kit.shipment_cost * 100) , unit: "R$ ", separator: ",") if order.price  %>
+</div>
+<div class="order-info-kit-name">
+  <%= number_to_currency( (order.price * 100 + order.kit.shipment_cost * 100) , unit: "R$ ", separator: ",") if order.price && order.shipment_cost  %>
+</div>
+<div class="order-info-kit-name">
+  <%= humanize_payment_method(order) %>
+</div>
+<div class="order-info-kit-name text-left">
+  <div class="order-status-tag status-<%= order.status %>">
+    <%= humanize_order_status(order) %>
+  </div>
+</div>
+<div class="order-info-kit-name text-left">
+  <%= link_to "Ver", admin_order_path(order), class:"btn btn-primary" %>
+</div>

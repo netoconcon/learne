@@ -25,30 +25,16 @@
     </div>
     <div class="order-info-data order-info-order">
       <div class="order-info-section-header">
-        <h5>Informações do Pedido:</h5>
+        <h5>Estatísticas de Compra:</h5>
       </div>
       <div class="order-info-section-area mt-3">
         <div class="order-info-kit-box">
-
-          <div class="order-info-kit-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%#= cl_image_path @order.kit.banner.key, height: 300, crop: :fill %>')">
-          </div>
           <div class="order-info-order-info ml-4">
-            <h6>Kit: <%#= @order.kit.name.capitalize %></h6>
-            <h6>Valor Produtos: <%#= number_to_currency(@order.price.fdiv(100) , unit: "R$ ", separator: ",")  %></h6>
-            <h6>Frete: <%#= number_to_currency( (@order.kit.shipment_cost.fdiv(100)) , unit: "R$ ", separator: ",")  %> </h6>
-            <h6>Total: <%#= number_to_currency( (@order.price.fdiv(100) + @order.kit.shipment_cost.fdiv(100)) , unit: "R$ ", separator: ",")  %></h6>
-            <h6>
-              <div class="order-status-tag status">
-                <%#= humanize_order_status(@order) %>
-              </div>
-            </h6>
-            <h6>Número de Parcelas: <%#= @order.installments %></h6>
-            <h6>Dia da Compra: <%#= @order.created_at.strftime("%d/%m/%Y - %H:%M") %></h6>
-
-            <hr>
-
-            <hr>
-
+            <h6>Número de Compras: <%= @customer.orders.count %></h6>
+            <h6>Gasto Total: <%= @customer.total_spent %></h6>
+            <h6>Ticket Médio: <%= @customer.total_spent / @customer.orders.count %> </h6>
+            <h6>Carrinhos Abandonados: <%= @customer.left_carts %></h6>
+            <h6>Última Compra: <%= @customer.orders.last.created_at %>
           </div>
         </div>
       </div>
@@ -60,23 +46,23 @@
         <h5>Compras Anteriores de <%= @customer.first_name.capitalize %>:</h5>
       </div>
       <div class="order_info-order-header">
-        <%#= render 'order_card_header' %>
+        <%= render 'order_card_header' %>
       </div>
       <div class="order-info-customer-purchase">
-        <%# @order.customer.orders.each do |order| %>
+        <% @customer.orders.each do |order| %>
           <div class="order_info-order-card text-left">
-            <%#= render 'order_card', order: order %>
+            <%= render 'order_card', order: order %>
           </div>
-        <%# end %>
+        <% end %>
       </div>
     </div>
   </div>
-  <div class="order-info-box">
+<!--   <div class="order-info-box">
     <div class="order-info-data order-info-customer">
       <div class="order-info-section-header">
         <h5>Cliente Tracker:</h5>
       </div>
       <%#= @order.customer %>
     </div>
-  </div>
+  </div> -->
 </div>
