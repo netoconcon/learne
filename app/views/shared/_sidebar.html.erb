@@ -27,6 +27,11 @@
       <% end %>
     </p>
     <p>
+      <%= link_to admin_customers_path, class: ("text-white" if current_page?(admin_customers_path)) do %>
+        <i class="fas fa-users"></i> Leads
+      <% end %>
+    </p>
+    <p>
       <%= link_to admin_inventories_path, class: ("text-white" if current_page?(admin_inventories_path)) do %>
         <i class="fas fa-truck-moving"></i> Estoque
       <% end %>

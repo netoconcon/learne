@@ -1,0 +1,68 @@
+<div class="container">
+  <div class="order-highlights">
+    <div class="order-title">
+      <h3><%= @customer.name.capitalize %> </h3>
+    </div>
+  </div>
+  <div class="order-info-box">
+    <div class="order-info-data order-info-customer">
+      <div class="order-info-section-header">
+        <h5>Informações do Cliente:</h5>
+      </div>
+      <div class="order-info-section-area mt-3">
+        <h6>Nome: <%= "#{@customer.first_name} #{@customer.last_name}"%></h6>
+        <h6>Email: <%= @customer.email %> </h6>
+        <h6>CPF: <%= @customer.cpf %></h6>
+        <h6>Data de Nascimento: <%= @customer.birthday %></h6>
+        <h6>Endereço: <%= @customer.addresses.last.street %></h6>
+        <h6>Número: <%= @customer.addresses.last.number %> </h6>
+        <h6>Bairro: <%= @customer.addresses.last.neighborhood %> </h6>
+        <h6>Complemento: <%= @customer.addresses.last.complement %> </h6>
+        <h6>Cidade: <%= @customer.addresses.last.city %> </h6>
+        <h6>Estado: <%= @customer.addresses.last.state %> </h6>
+        <h6>CEP: <%= @customer.addresses.last.zipcode %> </h6>
+      </div>
+    </div>
+    <div class="order-info-data order-info-order">
+      <div class="order-info-section-header">
+        <h5>Estatísticas de Compra:</h5>
+      </div>
+      <div class="order-info-section-area mt-3">
+        <div class="order-info-kit-box">
+          <div class="order-info-order-info ml-4">
+            <h6>Número de Compras: <%= @customer.orders.count %></h6>
+            <h6>Gasto Total: <%= @customer.total_spent %></h6>
+            <h6>Ticket Médio: <%= @customer.total_spent / @customer.orders.count %> </h6>
+            <h6>Carrinhos Abandonados: <%= @customer.left_carts %></h6>
+            <h6>Última Compra: <%= @customer.orders.last.created_at %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="order-info-box">
+    <div class="order-info-data order-info-customer">
+      <div class="order-info-section-header">
+        <h5>Compras Anteriores de <%= @customer.first_name.capitalize %>:</h5>
+      </div>
+      <div class="order_info-order-header">
+        <%= render 'order_card_header' %>
+      </div>
+      <div class="order-info-customer-purchase">
+        <% @customer.orders.each do |order| %>
+          <div class="order_info-order-card text-left">
+            <%= render 'order_card', order: order %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<!--   <div class="order-info-box">
+    <div class="order-info-data order-info-customer">
+      <div class="order-info-section-header">
+        <h5>Cliente Tracker:</h5>
+      </div>
+      <%#= @order.customer %>
+    </div>
+  </div> -->
+</div>

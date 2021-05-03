@@ -10,6 +10,7 @@ namespace :admin do
   resources :campaigns
   resources :selling_pages, only: [:index, :new, :create, :edit, :update, :destroy]
   resources :inventories
+  resources :customers
 
   namespace :charts do
     get "values"
