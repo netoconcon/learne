@@ -1,0 +1,58 @@
+<div class="container">
+  <h2>Leads</h2>
+
+  <div class="card-product-header">
+    <div class="order-small-item">
+      <strong>Id</strong>
+    </div>
+    <div class="order-large-item text-left">
+      <strong>Nome</strong>
+    </div>
+    <div class="order-large-item">
+      <strong>Email</strong>
+    </div>
+    <div class="order-medium-item">
+      <strong>CPF</strong>
+    </div>
+    <div class="order-large-item">
+      <strong>Número de Compras</strong>
+    </div>
+    <div class="order-large-item">
+      <strong>Total</strong>
+    </div>
+    <div class="order-large-item">
+      <strong>Status</strong>
+    </div>
+  </div>
+
+    <% @customers.each do |customer| %>
+      <div class="card-product" data-customer-name="<%= customer.name %>" >
+        <div class="order-small-item">
+          <%= link_to admin_customer_path(customer) do %>
+            <%= customer.id %>
+          <% end %>
+        </div>
+
+
+        <div class="order-large-item text-left">
+          <strong><%= customer.name.capitalize %></strong>
+        </div>
+        <div class="order-large-item">
+          <strong><%= customer.email %></strong>
+        </div>
+        <div class="order-medium-item">
+          <strong><%= customer.cpf %></strong>
+        </div>
+        <div class="order-large-item">
+          <strong><%= customer.orders.count %></strong>
+        </div>
+        <div class="order-large-item">
+          <strong><%= customer.total_spent %></strong>
+        </div>
+        <div class="order-large-item">
+          <strong><%= pending_tag(customer.pending_order) %></strong>
+        </div>
+
+      </div>
+    <% end %>
+</div>
