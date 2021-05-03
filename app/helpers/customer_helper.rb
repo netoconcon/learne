@@ -6,4 +6,12 @@ module CustomerHelper
       "Alerta"
     end
   end
+
+  def problems_tag(problems)
+    if problems.zero?
+      "completed"
+    else
+      "refused"
+    end
+  end
 end

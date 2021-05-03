@@ -50,7 +50,9 @@
           <strong><%= customer.total_spent %></strong>
         </div>
         <div class="order-large-item">
-          <strong><%= pending_tag(customer.pending_order) %></strong>
+          <div class="order-status-tag status-<%= problems_tag(customer.pending_order) %>">
+            <strong><%= pending_tag(customer.pending_order) %></strong>
+          </div>
         </div>
 
       </div>
