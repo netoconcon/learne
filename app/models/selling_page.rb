@@ -4,4 +4,12 @@ class SellingPage < ApplicationRecord
 
   belongs_to :product
   has_many :campaigns, dependent: :destroy
+
+  def total_visits
+    visits = 0
+    self.campaigns.each do |camp|
+      visits += camp.visits.count
+    end
+    visits
+  end
 end

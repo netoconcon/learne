@@ -53,8 +53,28 @@
       <div class="order_info-order-header">
         <%= render 'selling_page_header' %>
       </div>
-      <div class="order-info-customer-purchase">
-        <%= render 'selling_page_info' %>
+      <div class="order_info-order-card text-left">
+        <% @selling_pages.each do |sp| %>
+          <%= render 'selling_page_info', sp: sp %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="order-info-box">
+    <div class="order-info-data order-info-customer">
+      <div class="order-info-section-header">
+        <h5>Campanhas</h5>
+      </div>
+      <div class="order_info-order-header">
+        <%= render 'campaign_header' %>
+      </div>
+      <div class="order_info-order-card text-left">
+        <% @selling_pages.each do |sp| %>
+          <% sp.campaigns.each do |camp| %>
+            <%= render 'campaign_infos', camp: camp %>
+          <% end %>
+        <% end %>
       </div>
     </div>
   </div>
