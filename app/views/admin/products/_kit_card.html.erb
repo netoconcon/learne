@@ -1,0 +1,12 @@
+<div class="kit-product-show">
+  <% if kit.banner.attached? %>
+    <div class="order-info-kit-image-list" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path kit.banner.key, height: 50, crop: :fill %>')">
+    </div>
+  <% end %>
+  <div class="order-info-kit-name">
+    <%= kit.name.capitalize %>
+  </div>
+  <div class="order-info-kit-name">
+    <%= link_to "Ver Kit", admin_kits_path, class:"btn btn-primary" %>
+  </div>
+</div>

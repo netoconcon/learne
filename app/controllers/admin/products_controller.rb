@@ -7,6 +7,9 @@ class Admin::ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
+    @selling_pages = @product.selling_pages
+    @kits_products = KitProduct.all
+    @kits_products = @kits_products.select {|k| k.product_id == @product.id }
   end
 
   def new

@@ -1,0 +1,61 @@
+<div class="container">
+  <div class="order-highlights">
+    <div class="order-title">
+      <h3><%= @product.name.titlecase %> </h3>
+    </div>
+  </div>
+  <div class="order-info-box">
+    <div class="order-info-data order-info-customer">
+      <div class="order-info-section-header">
+        <h5>Informações do Produto:</h5>
+      </div>
+      <div class="order-info-section-area mt-3">
+        <h6>Nome: <%= @product.name.titlecase %></h6>
+        <h6>Sku: <%= @product.sku %>  </h6>
+        <h6>Descrição: <%= @product.description %>  </h6>
+        <h6>Peso: <%= @product.weight %>  </h6>
+        <h6>Largura: <%= @product.width %>  </h6>
+        <h6>Altura: <%= @product.height %>  </h6>
+        <h6>Comprimento: <%= @product.length %>  </h6>
+        <h6>URL Virtual: <%= @product.virtual_url %>  </h6>
+        <h6>Preço: <%= @product.price %></h6>
+        <h6>Custo: <%= @product.cost %></h6>
+
+        <hr>
+
+        <h6>Estoque: <%= @product.inventory.quantity if @product.inventory %></h6>
+        <h6>Quantidade de Emergência: <%= @product.inventory.flag_quantity if @product.inventory %></h6>
+      </div>
+    </div>
+    <div class="order-info-data order-info-order">
+      <div class="order-info-section-header">
+        <h5>Kits:</h5>
+      </div>
+      <div class="order-info-section-area mt-3">
+        <div class="order-info-kit-box">
+
+          <div class="order-info-order-info ml-4">
+            <% @kits_products.each do |kp| %>
+              <div class="text-left w-100">
+                <%= render 'kit_card', kit: kp.kit %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="order-info-box">
+    <div class="order-info-data order-info-customer">
+      <div class="order-info-section-header">
+        <h5>Páginas de Venda </h5>
+      </div>
+      <div class="order_info-order-header">
+        <%= render 'selling_page_header' %>
+      </div>
+      <div class="order-info-customer-purchase">
+        <%= render 'selling_page_info' %>
+      </div>
+    </div>
+  </div>
+</div>
